@@ -1,0 +1,5 @@
+<!-- Affichage d'un message global s'il y a des erreurs -->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="errors" class="cards"
+	th:if="${#fields.hasErrors('*')}">
+	<h2 style="text-align: center;" th:text="#{errors-champs.verifier}">Veuillez vérifier vos champs</h2>
+</div>

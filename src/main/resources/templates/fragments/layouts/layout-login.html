@@ -1,0 +1,27 @@
+<form xmlns:th="http://www.thymeleaf.org"
+	th:fragment="login-form(titleForm, action)" th:action="@{/login}"
+	method="post">
+	<h1 class="h1Title" th:text="#{login.h1}"></h1>
+	<ul class="flex-outer">
+		<li>
+			<div class="alignement-label">
+				<label for="inputNom" th:text="#{login-form.username}"></label>
+			</div>
+			<input id="inputNom" name="username" type="text"
+				   th:attr="placeholder=#{username.placeholder}" required />
+		</li>
+		<li>
+			<div class="alignement-label">
+				<label for="inputPassword" th:text="#{login-form.password}"></label>
+			</div>
+			<input id="inputPassword" name="password" type="password" 
+				   th:attr="placeholder=#{password.placeholder}" placeholder="Votre Mot de passe" required />
+		</li>
+		<li data-th-if="${errorMessage}" data-th-text="${errorMessage}"
+			class="error-message"></li>
+		<li>
+			<button type="submit" name="SeConnecter" id="loginButton">Se
+				Connecter</button>
+		</li>
+	</ul>
+</form>

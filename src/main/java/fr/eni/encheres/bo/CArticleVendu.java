@@ -8,7 +8,7 @@ public class CArticleVendu {
     private String dateFinEncheres;
     private int miseAPrix;
     private int prixVente;
-    private String etatVente;
+    private int etatVente;
     private CCategorie categorie;
     private String photo;
     private CRetrait retrait;
@@ -17,7 +17,7 @@ public class CArticleVendu {
 
     public CArticleVendu() {
     }
-    public CArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres, int miseAPrix, int prixVente, String etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
+    public CArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -88,11 +88,11 @@ public class CArticleVendu {
         this.prixVente = prixVente;
     }
 
-    public String getEtatVente() {
+    public int getEtatVente() {
         return etatVente;
     }
 
-    public void setEtatVente(String etatVente) {
+    public void setEtatVente(int etatVente) {
         this.etatVente = etatVente;
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EnchereDAO {
     void SoldArticle(CArticleVendu article);
-    List<CEnchere> listEncheresDeconnecte();
+    List<CUtilisateur> listEncheresDeconnecte();
     List<CEnchere> listEncheresConnecte();
     void ProposeEnchere(CEnchere enchere);
     CEnchere remporterVente(CArticleVendu vente);
