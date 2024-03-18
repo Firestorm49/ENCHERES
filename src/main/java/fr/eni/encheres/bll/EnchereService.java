@@ -2,6 +2,7 @@ package fr.eni.encheres.bll;
 
 import fr.eni.encheres.bo.*;
 import java.util.List;
+
 public interface EnchereService {
     void vendreArticle(CArticleVendu article);
     List<CEnchere> listerEncheresDeconnecte();
