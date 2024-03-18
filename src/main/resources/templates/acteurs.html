@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+	<title>Liste des Articles</title>
+	<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	<main class="center-main">
+	<div class="center-avis">
+		<h1>Acteurs</h1>
+		<BR>
+<!-- 		<p data-th-with=premier=${films[0]} style="background-color: #008080;color:white;">
+<!-- 			<span data-th-text="${premier.titre}"></span> -->
+<!-- 		</p>	
+	 -->
+	 <BR>
+		<table>
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="item : ${acteursSession}">
+					<td data-th-text="${item.getNom() + ' ' + item.getPrenom()}"></td>
+					<td>
+            <a data-th-href="@{/acteurs/modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ADMIN')">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Modifier</a>
+            <a data-th-href="@{/acteurs/delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ADMIN')">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Supprimer</a>
+            </td>
+				</tr>
+			</tbody>
+		</table>
+		<BR>
+		<form action="/acteurs/create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" sec:authorize="hasRole('ADMIN')" class="form-genre">
+			<h2>Ajouter un nouveau Acteur :</h2>
+			<ul class="flex-outer">
+					<li>
+					<label for="inputPrenom">Prénom : 
+					</label> 
+					<input type="text"
+					name="Prenom" id="inputPrenom"/>
+				</li>
+				<li>
+					<label for="inputNom">Nom : 
+					</label> 
+					<input type="text"
+					name="Nom" id="inputNom"/>
+				</li>
+				</ul>
+				 <button type="submit">
+			<span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Créer</button>
+		</form>
+		<form action="/acteurs/modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify}" sec:authorize="hasRole('ADMIN')" class="form-genre">
+			<h2>Modifier un Acteur :</h2>
+			<ul class="flex-outer">
+			<li>
+					<input type="hidden" data-th-value="${acteurs.getId()}"
+					name="id"/>
+				</li>
+				<li>
+					<label for="inputPrenom">Prénom : 
+					</label> 
+					<input type="text" data-th-value="${acteurs.getPrenom()}"
+					name="Prenom" id="inputPrenom"/>
+				</li>
+				<li>
+					<label for="inputNom">Nom : 
+					</label> 
+					<input type="text" data-th-value="${acteurs.getNom()}"
+					name="Nom" id="inputNom"/>
+				</li>
+							</ul>
+			 <button type="submit">
+			<span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Modifier</button>
+		</form>
+		</div>
+	</main>
+</html>

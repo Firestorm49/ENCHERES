@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+	<title>Liste des films</title>
+	<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	<main class="center-main">
+	<div class="center-films">
+		<h1>Les films de l'ENI</h1>
+		<BR>
+<!-- 		<p data-th-with=premier=${films[0]} style="background-color: #008080;color:white;">
+<!-- 			<span data-th-text="${premier.titre}"></span> -->
+<!-- 		</p>	
+	 -->
+	 <BR>
+		<table>
+			<thead>
+				<tr>
+					<th>Genre</th>
+					<th>Année</th>
+					<th>Titre</th>
+					<th>Réalisateur</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="item, iter : ${films}">
+					<td data-th-text="${item.getGenre().getTitre()}"></td>
+					<td data-th-text="${item.getAnnee()}"></td>
+					<td data-th-text="${item.getTitre()}"></td>
+					<td data-th-text="${item.getRealisateur()}"></td>
+					<td>
+					<a data-th-href="@{/films/detail(id=${item.getId()})}">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Détail</a>
+            <a data-th-href="@{/films/avis(id=${item.getId()})}">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Avis</a>
+            <a data-th-href="@{/films/modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ADMIN')">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Modifier</a>
+            <a data-th-href="@{/films/delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ADMIN')">
+					  <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Supprimer</a>
+            </td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</main>
+</html>

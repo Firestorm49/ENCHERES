@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-th-fragment="layout(contenuPage,title,ressources)">
+<head>
+	<meta charset="UTF-8">
+	<title data-th-replace="${title} ?: ~{}">Demo Spring Web</title>
+	<link rel="stylesheet" data-th-href="@{/css/general.css}">
+	<link rel="stylesheet" data-th-href="@{/css/demo-table.css}">
+	<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	<link rel="icon" data-th-href="@{/images/logoENI.png}" sizes="32x32">
+	<data-th-block data-th-replace="${ressources} ?: ~{}">
+</head>
+<body>
+	<!-- Intégration du fragment d'entête -->
+	<div data-th-replace="~{fragments/entete :: entete}"></div>
+
+	<main class="center-main" data-th-replace="${contenuPage} ?:  ~{}">
+		<section class="center-section">
+			<h1 style="text-align:center;">Bienvenue à une formation ENI Ecole</h1>
+			<h2 style="text-align:center;">Vous utilisez l'application de démonstration sur Spring Web</h2>
+		</section>
+	</main>
+		<!-- Intégration du fragment de pied page -->
+	<div data-th-replace="~{fragments/footer :: footer}"></div>
+	
+</body>
+</html>

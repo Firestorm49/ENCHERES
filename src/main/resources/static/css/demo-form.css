@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+form {
+	background-color: #f2f2f2;
+	height: 700px;
+}
+.form-genre{
+	background-color: #f2f2f2;
+	height: 240px;
+	margin-top:5px;
+	margin-bottom:60px;
+}
+form h1 {
+	margin: 15px;
+}
+
+.flex-outer li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+}
+
+.flex-outer>li>label {
+	flex: 1 0 120px;
+	max-width: 220px;
+}
+
+.flex-outer>li>label+* {
+	flex: 1 0 220px;
+}
+
+.flex-outer>li>select {
+	flex: 1 0 220px;
+}
+
+.flex-outer li button {
+	margin-left: auto;
+	margin-bottom: 5px; padding : 8px 16px;
+	border: none;
+	background: #333;
+	color: #f2f2f2;
+	text-transform: uppercase;
+	letter-spacing: .09em;
+	border-radius: 2px;
+	padding: 8px 16px
+}
+li {
+    list-style-type: none;
+}
+
+.etoile, .etoile0 {
+    display: inline-block;
+    width: 270px;
+    height: 30px;
+    background: red;
+    cursor: pointer;
+    transform: rotate(-180deg);
+    color: white;
+}
+input[type="radio"] {
+    display: none; 
+}
+
+
+input[type="radio"]:checked ~ .etoile,
+input[type="radio"]:not(:checked) ~ .etoile:hover {
+    background: green; 
+}
+input[type="radio"]:checked ~ .etoile0,
+input[type="radio"]:not(:checked) ~ .etoile0:hover {
+    background: green; 
+}
+
+.etoile::after {
+    content: " \2605"; 
+    font-size: 24px;
+    color: white; 
+    line-height: 30px;
+    text-align: center;
+}
+.etoile0::after {
+    content: " \2606"; 
+    font-size: 24px;
+    color: white; 
+    line-height: 30px;
+    text-align: center;
+}
+
+.etoileSelect{
+	margin-left: 220px;
+	transform: rotate(180deg);
+}

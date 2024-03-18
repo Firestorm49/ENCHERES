@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Demo Spring Web</title>
+<link rel="stylesheet" data-th-href="@{css/Login.css}">
+<link rel="icon" data-th-href="@{/images/logoENI.png}" sizes="32x32">
+</head>
+<body>
+	<div data-th-replace="~{fragments/entete::entete}"> </div>
+	<main class="center-main">
+	
+    <div className='login-box'>
+      <h2>Bienvenue sur ENI Filmotheque </h2>
+      
+      <div th:if="${param.error}">
+			Invalid username and password.</div>
+		<div th:if="${param.logout}">
+			You have been logged out.</div>
+      <form data-th-action="@{/login}" method="post">
+        <div className="div_Input">
+        <br />
+
+         <ul class="flex-outer">
+				<li><label for="inputNom"></label> 
+				 <br />
+				<input className="Login"
+					type="text" name="username" id="inputNom" required placeholder="Votre Nom d'utilisateur"
+					 /></li>
+				<li><label for="inputPassword"></label>
+				 <br />
+				 <input type="password" className="Login" placeholder="Votre Mot de passe"
+					name="password" id="inputPassword" required  />
+				</li>
+				 <li data-th-if="${errorMessage}" data-th-text="${errorMessage}" class="error-message"></li>
+			</ul>	
+          <br />
+          <button type="submit" name="SeConnecter" className='login-button' >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Se Connecter
+          </button>
+        </div>
+       
+      </form>
+    </div>
+	</main>
+</body>
+</html>
