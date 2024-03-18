@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+form {
+	background-color: rgb(221, 225, 219);
+	border-radius: 5px;
+}
+
+form h1 {
+	margin: 15px;
+}
+
+.flex-outer li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 5px;
+}
+
+.flex-outer>li>label {
+	flex: 1 0 120px;
+	max-width: 220px;
+}
+
+.flex-outer>li>label+* {
+	flex: 1 0 220px;
+}
+
+.flex-outer li button {
+	margin-left: auto;
+	margin-bottom: 5px;
+	padding : 8px 8px;
+	border: none;
+	background: #333;
+	color: #f2f2f2;
+	text-transform: uppercase;
+	letter-spacing: .09em;
+	border-radius: 2px;
+	padding: 8px 16px;
+}
+
+input {
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+button{
+	border-radius: 5px;
+}
+
+li.save-button{
+	margin-top: 5px;
+}
+
+.h1Title{
+	margin: 0.25rem 0.5rem 0.25rem 0.5rem;
+	padding-top: 1rem;
+	text-align: center;
+}
+
+.synopsis{
+	padding-bottom: 1rem;
+}
+
+.alignement-label{
+	margin-left: 0rem;
+	width: 10rem;
+}
+
+#inputGenre,
+#inputRealisateur,
+#inputAnnee,
+#inputTitre,
+#inputDuree,
+#taComment,
+#inputNote,
+#inputNom,
+#inputPrenom,
+#inputTitreGenre,
+#inputPassword{
+	padding: 0.3rem;
+	width: 85.8%;	
+}
+
+#selectActeurs{
+	padding: 0.3rem;
+	width: 86.6%;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+#textarea-synopsis{
+	width: 85.7%;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 0.3rem;
+}
+
+li{
+	padding: 0.2rem;
+}
+
+main{
+	margin-top: 0.5rem;
+}
+
+select#inputGenre,
+select#inputRealisateur,
+select#inputActeurs{
+	border-radius: 5px;
+	width: 86.5%;
+	padding: 0.3rem;
+	border: 1px solid black;
+}
+
+#titreAvis{
+	padding-top: 0.5rem;
+}
+
+#boutonAjouter, #boutonEnregistrer, #loginButton, #modifyButton {
+	border-radius: 5px;
+	margin-right: 2.5rem;
+}

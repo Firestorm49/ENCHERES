@@ -1,0 +1,33 @@
+<form xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  th:fragment="modifier-acteur(titleForm, action)"
+	  th:if="${#authorization.expression('isAuthenticated()') and participantId != null}"
+	  sec:authorize="hasRole('ADMIN')"
+	  th:action="@{${action}}"
+	  th:object="${participantId}"
+	  method="post">
+
+	<h1 class="h1Title"
+		th:text="'Modifier ' + ${participantId.getNom()} + ' ' + ${participantId.getPrenom()}"></h1>
+	<ul class="flex-outer">
+		<li><input type="hidden" name="id"
+				   th:value="${participantId.getId()}" /></li>
+		<li>
+			<div class="alignement-label">
+				<label for="inputPrenom">Prenom : </label>
+			</div>
+			<input type="text" name="prenom" id="inputPrenom"
+				   th:value="${participantId.getNom()}" />
+		</li>
+		<li>
+			<div class="alignement-label">
+				<label for="inputNom">Nom : </label>
+			</div>
+			<input type="text" name="nom" id="inputNom"
+				   th:value="${participantId.getPrenom()}" />
+		</li>
+		<li>
+			<button id="modifyButton" type="submit">Modifier</button>
+		</li>
+	</ul>
+</form>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{fragments/layouts/layout :: layout(
+				 	title=~{:: title}, 
+				 	contenuPage=~{:: .center-main}, 
+				 	ressources=~{:: #ressources-css})}">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{connexion.title}"></title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" th:href="@{/css/general.css}">
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+</th:block>
+</head>
+<body>
+	<main class="center-main">
+		<form
+			th:replace="~{fragments/layouts/layout-login :: login-form('Se connecter', '/login')}"></form>
+	</main>
+</body>
+</html>
