@@ -10,4 +10,5 @@ public interface UtilisateurService {
     void DeleteProfil(CUtilisateur utilisateur);
     void DesactiveProfil(CUtilisateur utilisateur);
     void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
+    CUtilisateur getUtilisateurByEmail(String mail);
 }

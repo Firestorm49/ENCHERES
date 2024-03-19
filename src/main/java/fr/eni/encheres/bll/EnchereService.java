@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EnchereService {
     void vendreArticle(CArticleVendu article);
-    List<CEnchere> listerEncheresDeconnecte();
+    List<CUtilisateur> listerEncheresDeconnecte();
     List<CEnchere> listerEncheresConnecte();
     void faireEnchere(CEnchere enchere);
     CEnchere remporterVente(CArticleVendu vente);
@@ -13,7 +13,7 @@ public interface EnchereService {
     void modifierVente(CArticleVendu vente);
     void annulerVente(CArticleVendu vente);
     void ajouterPhotoVente(CArticleVendu vente);
-    List<CEnchere> pagination(int pageNumber, int pageSize);
+    List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
     void achatCredits(CUtilisateur utilisateur, int creditsAmount);
 

@@ -1,7 +1,5 @@
 package fr.eni.encheres.configuration;
 
-import java.util.Locale;
-
 import javax.sql.DataSource;
 
 import fr.eni.encheres.bll.EnchereService;
@@ -9,9 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,6 +19,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import java.util.Locale;
 
 @Configuration
 @EnableWebSecurity
@@ -46,15 +44,24 @@ public class WebConfiguration implements WebMvcConfigurer {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(HttpMethod.GET,"/").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/encheres").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/encheres/detail").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/encheres/ajouter").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/encheres/modifier").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/encheres/supprimer").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/users").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/users/ajouter").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/users/modifier").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/users/supprimer").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Encheres").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/detail").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Create").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Modify").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Delete").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Annule").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Propose").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Create").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Modify").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Delete").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Desactivation").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Activation").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Category").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Category/detail").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Category/Create").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Category/Modify").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Category/Delete").hasRole("ADMIN");
             auth.requestMatchers("/css/*").permitAll();
             auth.requestMatchers("/img/*").permitAll();
             auth.requestMatchers("/errors/**").permitAll();
@@ -68,34 +75,35 @@ public class WebConfiguration implements WebMvcConfigurer {
 
         http.logout(logout -> logout.logoutSuccessUrl("/").deleteCookies("JSESSIONID"));
 
+
         return http.build();
     }
 
-	/*
-	@Bean
-	LocaleResolver localeResolver() {
-		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(new Locale("fr"));
-		return slr;
-	}
 
-	@Bean
-	LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-		localeChangeInterceptor.setParamName("language");
-		return localeChangeInterceptor;
-	}
+    @Bean
+    LocaleResolver localeResolver() {
+       SessionLocaleResolver slr = new SessionLocaleResolver();
+       slr.setDefaultLocale(new Locale("fr"));
+       return slr;
+    }
 
-	@Bean
-	MessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("messages");
-		messageSource.setFallbackToSystemLocale(false);
-		return messageSource;
-	}
+    @Bean
+    LocaleChangeInterceptor localeChangeInterceptor() {
+       LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+       localeChangeInterceptor.setParamName("language");
+       return localeChangeInterceptor;
+    }
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
-	}*/
+    @Bean
+    MessageSource messageSource() {
+       ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+       messageSource.setBasename("messages");
+       messageSource.setFallbackToSystemLocale(false);
+       return messageSource;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+       registry.addInterceptor(localeChangeInterceptor());
+    }
 }

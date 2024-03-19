@@ -2,6 +2,7 @@ package fr.eni.encheres.bo;
 
 public class CUtilisateur {
     private int noUtilisateur;
+
     private String pseudo;
     private String nom;
     private String prenom;
