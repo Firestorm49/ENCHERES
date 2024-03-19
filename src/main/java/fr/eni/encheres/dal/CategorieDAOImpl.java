@@ -31,6 +31,10 @@ public class CategorieDAOImpl implements CategorieDAO {
     @Override
     public void DeleteCategorie(int id) {
         Logger.log("Trace_ENI.log","DeleteCategorie : "+ id);
+
+        String updateCategorieQuery = "UPDATE ARTICLES_VENDUS SET no_categorie=NULL WHERE no_categorie=?";
+        jdbcTemplate.update(updateCategorieQuery, id);
+
         String deleteCategorieQuery = "DELETE FROM CATEGORIES WHERE no_categorie=?";
         jdbcTemplate.update(deleteCategorieQuery, id);
     }
