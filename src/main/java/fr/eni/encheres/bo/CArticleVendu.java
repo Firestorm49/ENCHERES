@@ -7,9 +7,9 @@ public class CArticleVendu {
     private String description;
     private LocalDate  dateDebutEncheres;
     private LocalDate dateFinEncheres;
-    private int miseAPrix;
-    private int prixVente;
-    private int etatVente;
+    private int miseAPrix = 0;
+    private int prixVente = 0;
+    private int etatVente = 0;
     private CCategorie categorie;
     private String photo;
     private CRetrait retrait;
@@ -17,6 +17,7 @@ public class CArticleVendu {
     private CUtilisateur Vendeur;
 
     public CArticleVendu() {
+
     }
     public CArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
         this.noArticle = noArticle;

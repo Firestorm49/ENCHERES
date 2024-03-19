@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title>Catégories de film</title>
+<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+<main class="center-main">
+    <div class="center-avis">
+        <h1>Utilisateurs</h1>
+        <BR>
+        <BR>
+        <table>
+            <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-if="${genreId != null}" data-th-each="item : ${genreId}">
+            <tr data-th-unless="${genreId != null}" data-th-each="item : ${genreSession}">
+                <td data-th-text="${item.getTitre()}"></td>
+                <td>
+                    <a data-th-href="@{/Users/Details(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Detail</a>
+                    <a data-th-href="@{/Users/Modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Modifier</a>
+                    <a data-th-href="@{/Users/Delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Supprimer</a>
+                    <a data-th-href="@{/Users/Desactivation(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Desactiver</a>
+                    <a data-th-href="@{/Users/Activation(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Activer</a>
+                    <a data-th-href="@{/Users/Administrateur(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Administrateur</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <BR>
+    </div>
+</main>
+</html>

@@ -8,9 +8,17 @@ import java.util.List;
 
 public interface EnchereDAO {
     void SoldArticle(CArticleVendu article);
+
+    CArticleVendu viewArticle(int id);
+
     List<CUtilisateur> listEncheresDeconnecte();
     List<CEnchere> listEncheresConnecte();
     void ProposeEnchere(CEnchere enchere);
+
+    boolean IsPositifCredit(CEnchere enchere);
+
+    boolean IsPositifOffre(CEnchere enchere);
+
     CEnchere remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
