@@ -16,26 +16,31 @@ public class CategorieControlleur {
     private final CategorieService categorieService;
 
     public CategorieControlleur(CategorieService categorieService) {
+
         this.categorieService = categorieService;
     }
     @GetMapping
     public String getCategorie() {
+        Logger.log("Trace_ENI.log","Controlleur : getCategorie ");
     return "Categorie";
 
     }
     @GetMapping("/Delete")
     public String getDeleteCategorie(@RequestParam(name = "id", required = true) int id) {
+        Logger.log("Trace_ENI.log","Controlleur : getDeleteCategorie ");
         categorieService.DeleteCategorie(id);
         return "redirect:/Categorie";
     }
     @GetMapping("/Create")
     public String getCreateCategorie(Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getCreateCategorie ");
         CCategorie categorie = new CCategorie();
         model.addAttribute("categorie",categorie);
         return "redirect:/Categorie";
     }
     @GetMapping("/Modify")
     public String getModifyCategorie(@RequestParam(name = "id", required = true) int id, Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getModifyCategorie ");
         CCategorie Categorie = categorieService.SearchCategorie(id);
         model.addAttribute("genreId", Categorie);
         model.addAttribute("isNotModify",false);
@@ -44,6 +49,7 @@ public class CategorieControlleur {
     @PostMapping("/Modify")
     public String postModifyCategorie(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                       BindingResult bindingResult) {
+        Logger.log("Trace_ENI.log","Controlleur : postModifyCategorie ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "Categorie";
@@ -55,6 +61,7 @@ public class CategorieControlleur {
     @PostMapping("/Create")
     public String postCategorieCreate(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                  BindingResult bindingResult) {
+        Logger.log("Trace_ENI.log","Controlleur : postCategorieCreate ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "Categorie";
