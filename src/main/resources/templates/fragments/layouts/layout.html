@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(title, contenuPage, ressources)">
+<head>
+<title th:replace="${title}">Enchères</title>
+<link rel="icon" th:href="@{/img/encheres.png}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<th:block th:replace="${ressources} ?: ~{}">
+</head>
+<body>
+	<div th:replace="~{fragments/entete::entete}"></div>
+	<main class="center-main" th:replace="${contenuPage} ?: ~{}">
+		Contenu de la page</main>
+	<div th:replace="~{fragments/footer::footer}"></div>
+</body>
+</html>

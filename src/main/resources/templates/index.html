@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-	<title>Accueil</title>
-	<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
-<main class="center-main">
-	<section class="center-section">
-		<h1 style="text-align:center">Voici la bibliothèque des Films de ENI Ecole</h1>
-	</section>
-</main>
+	  th:replace="~{fragments/layouts/layout :: layout(
+					contenuPage=~{:: .center-main},
+					title=~{:: title},
+					ressources=~{})}">
+<head>
+<title th:text="#{index.title}"></title>
+</head>	
+<body>
+	<main class="center-main">
+		<section class="center-section">
+			<h1 style="text-align: center;" th:text="#{index.h1}"></h1>
+		</section>
+	</main>
+</body>
 </html>
