@@ -9,7 +9,7 @@ public class CUtilisateur {
     private String email;
     private String telephone;
     private String rue;
-    private String codePostal;
+    private int codePostal;
     private String ville;
     private String motdepasse;
     private int credit;
@@ -20,7 +20,7 @@ public class CUtilisateur {
 
     }
 
-    public CUtilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String codePostal, String ville, String motdepasse, int credit, boolean administrateur) {
+    public CUtilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, int codePostal, String ville, String motdepasse, int credit, boolean administrateur) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -91,11 +91,11 @@ public class CUtilisateur {
         this.rue = rue;
     }
 
-    public String getCodePostal() {
+    public int getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(String codePostal) {
+    public void setCodePostal(int codePostal) {
         this.codePostal = codePostal;
     }
 
