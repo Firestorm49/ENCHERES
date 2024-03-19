@@ -1,5 +1,6 @@
 package fr.eni.encheres.dal;
 
+import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.bo.CCategorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,13 +15,14 @@ public class CategorieDAOImpl implements CategorieDAO {
 
     @Override
     public void CreateCategorie(CCategorie categorie) {
-
+        Logger.log("Trace_ENI.log","CreateCategorie : "+ categorie.getLibelle());
         String insertCategorieQuery = "INSERT INTO CATEGORIES (libelle) VALUES (?)";
         jdbcTemplate.update(insertCategorieQuery, categorie.getLibelle());
     }
 
     @Override
     public void ModifyCategorie(CCategorie categorie) {
+        Logger.log("Trace_ENI.log","ModifyCategorie : "+ categorie.getLibelle() + " " +  categorie.getNoCategorie());
         String updateCategorieQuery = "UPDATE CATEGORIES SET libelle=? WHERE no_categorie=?";
         jdbcTemplate.update(updateCategorieQuery, categorie.getLibelle(), categorie.getNoCategorie());
     }
@@ -28,6 +30,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 
     @Override
     public void DeleteCategorie(int id) {
+        Logger.log("Trace_ENI.log","DeleteCategorie : "+ id);
         String deleteCategorieQuery = "DELETE FROM CATEGORIES WHERE no_categorie=?";
         jdbcTemplate.update(deleteCategorieQuery, id);
     }
@@ -35,6 +38,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 
     @Override
     public CCategorie SearchCategorie(int id) {
+        Logger.log("Trace_ENI.log","SearchCategorie : "+ id);
         String sql = "SELECT no_categorie, libelle FROM CATEGORIES WHERE no_categorie=?";
             return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) ->
                     new CCategorie(rs.getInt("no_categorie"), rs.getString("libelle")));
@@ -42,6 +46,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 
     @Override
     public List<CCategorie> ListCategorie() {
+        Logger.log("Trace_ENI.log","ListCategorie ");
         String sql = "SELECT no_categorie, libelle FROM CATEGORIES";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
                 new CCategorie(rs.getInt("no_categorie"), rs.getString("libelle")));

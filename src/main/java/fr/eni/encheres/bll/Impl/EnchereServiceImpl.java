@@ -26,7 +26,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CEnchere> listerEncheresDeconnecte() {
+    public List<CUtilisateur> listerEncheresDeconnecte() {
         return  encheresDAO.listEncheresDeconnecte();
     }
 
@@ -66,7 +66,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CEnchere> pagination(int pageNumber, int pageSize) {
+    public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
         return encheresDAO.pagination(pageNumber,pageSize);
     }
 
