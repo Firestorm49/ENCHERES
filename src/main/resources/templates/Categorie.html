@@ -55,18 +55,18 @@
                 <span></span>
                 Créer</button>
         </form>
-        <form action="/Category/Modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"  class="form-genre">
+        <form data-th-object="${CategorieId}" action="/Category/Modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"  class="form-genre">
             <h2>Modifier une catégorie :</h2>
             <ul class="flex-outer">
                 <li>
-                    <input type="hidden" data-th-value="${CategorieId.getNoCategorie()}"
+                    <input type="hidden" data-th-value="*{noCategorie}"
                            name="id"/>
                 </li>
                 <li>
                     <label for="inputTitre2">Titre de la catégorie :
                     </label>
-                    <input type="text" data-th-value="${CategorieId.getLibelle()}"
-                           name="titre" id="inputTitre2"/>
+                    <input type="text" data-th-value="*{libelle}"
+                           name="libelle" id="inputTitre2"/>
                 </li>
             </ul>
             <BR>

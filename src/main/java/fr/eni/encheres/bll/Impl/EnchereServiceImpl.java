@@ -37,7 +37,9 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public void faireEnchere(CEnchere enchere) {
-         encheresDAO.ProposeEnchere(enchere);
+         if(VerifierCreditPositif(enchere) && VerifierOffreSup(enchere)){
+             encheresDAO.ProposeEnchere(enchere);
+         }
     }
 
     @Override
@@ -78,5 +80,20 @@ public class EnchereServiceImpl implements EnchereService {
     @Override
     public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
         encheresDAO.achatCredits(utilisateur,creditsAmount);
+    }
+
+    @Override
+    public CArticleVendu AfficherArticleById(int id) {
+        return encheresDAO.viewArticle(id);
+    }
+
+    @Override
+    public boolean VerifierCreditPositif(CEnchere enchere) {
+        return encheresDAO.IsPositifCredit(enchere);
+    }
+
+    @Override
+    public boolean VerifierOffreSup(CEnchere enchere) {
+        return encheresDAO.IsPositifOffre(enchere);
     }
 }

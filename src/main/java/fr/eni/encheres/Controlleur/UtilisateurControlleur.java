@@ -45,13 +45,9 @@ public class UtilisateurControlleur {
 
 
     @GetMapping
-    public String getUsers(Model model) {
+    public String getUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getUsers ");
-
-        if(UtilisateurConnecte != null){
-            model.addAttribute("user", UtilisateurConnecte);
-        }
-        return "view-user-detail";
+        return "view_list_users";
     }
 
     @GetMapping("/Create")
@@ -75,9 +71,12 @@ public class UtilisateurControlleur {
     }
 
     @GetMapping("/Detail")
-    public String getDetailUsers() {
+    public String getDetailUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getDetailUsers ");
-        return "view-user";
+        if(UtilisateurConnecte != null){
+            model.addAttribute("user", UtilisateurConnecte);
+        }
+        return "view-user-detail";
     }
 
 

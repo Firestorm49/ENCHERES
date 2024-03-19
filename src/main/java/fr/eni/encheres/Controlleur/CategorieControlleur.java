@@ -60,16 +60,14 @@ public class CategorieControlleur {
         return "/Categorie";
     }
     @PostMapping("/Modify")
-    public String postModifyCategorie(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
-                                      BindingResult bindingResult) {
+    public String postModifyCategorie(@RequestParam(name = "id", required = true) int id,
+                                      @RequestParam(name = "libelle", required = true) String libelle) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyCategorie ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Categorie";
-        } else {
-            categorieService.ModifyCategorie(Categorie);
-            return "redirect:/Categorie";
-        }
+        CCategorie categorie = new CCategorie();
+        categorie.setNoCategorie(id);
+        categorie.setLibelle(libelle);
+            categorieService.ModifyCategorie(categorie);
+            return "redirect:/Category";
     }
     @PostMapping("/Create")
     public String postCategorieCreate(@RequestParam(name = "libelle", required = true) String Categorie) {
