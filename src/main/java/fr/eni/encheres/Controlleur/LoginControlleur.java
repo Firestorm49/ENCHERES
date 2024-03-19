@@ -18,7 +18,7 @@ public class LoginControlleur {
                         Model model) {
         model.addAttribute("error", error);
         model.addAttribute("logoutSuccess", logoutSuccess);
-        return "login";
+        return "view-login";
     }
 
     @GetMapping("/logout")
@@ -29,6 +29,6 @@ public class LoginControlleur {
             session.invalidate();
         }
         redirectAttributes.addFlashAttribute("message", "Vous avez été déconnecté avec succès.");
-        return "login";
+        return "view-login";
     }
 }
