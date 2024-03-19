@@ -74,6 +74,7 @@ public class CategorieControlleur {
     @PostMapping("/Delete")
     public String postCategorieDelete(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                       BindingResult bindingResult) {
+        Logger.log("Trace_ENI.log","Controlleur : postCategorieDelete ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "Categorie";
