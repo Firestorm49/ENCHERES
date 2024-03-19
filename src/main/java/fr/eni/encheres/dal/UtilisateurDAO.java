@@ -6,8 +6,11 @@ import java.util.List;
 
 public interface UtilisateurDAO {
     void Subscribe(CUtilisateur utilisateur);
+    CUtilisateur viewAcheteurByArticleID(int id);
     CUtilisateur ViewProfil(int id);
+    void ModifyRoleUtilisateur(int id, int isAdministrateur);
     void DeleteProfil(int id);
+    List<CUtilisateur> ViewAllUtilisateurs();
     void ModifyProfil(CUtilisateur utilisateur);
     void DeleteProfil(CUtilisateur utilisateur);
     void DesactiveProfil(CUtilisateur utilisateur);

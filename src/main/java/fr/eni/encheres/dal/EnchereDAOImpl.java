@@ -1,9 +1,7 @@
 package fr.eni.encheres.dal;
 
 import fr.eni.encheres.Logger.Logger;
-import fr.eni.encheres.bo.CArticleVendu;
-import fr.eni.encheres.bo.CEnchere;
-import fr.eni.encheres.bo.CUtilisateur;
+import fr.eni.encheres.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -29,6 +27,15 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
+    public CArticleVendu viewArticle(int id) {
+        Logger.log("Trace_ENI.log","viewArticle : " + id);
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*\n" +
+                "FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\n" +
+                "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE no_article=?";
+        return (CArticleVendu) Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{id}, new ArticleVenduRowMapper()));
+    }
+
+    @Override
     public List<CUtilisateur> listEncheresDeconnecte() {
         Logger.log("Trace_ENI.log","listEncheresDeconnecte : ");
         String sql = "SELECT        UTILISATEURS.nom, UTILISATEURS.prenom, RETRAITS.rue, RETRAITS.code_postal, RETRAITS.ville, CATEGORIES.libelle, ARTICLES_VENDUS.nom_article, ARTICLES_VENDUS.description, \n" +
@@ -51,10 +58,38 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public void ProposeEnchere(CEnchere enchere) {
         Logger.log("Trace_ENI.log","ProposeEnchere : " + enchere);
-        String updateCreditsQuery = "INSERT INTO ENCHERES (montant_enchere,date_enchere) VALUES (?,?) WHERE no_encheres=?";
-        jdbcTemplate.update(updateCreditsQuery, enchere.getNoEnchere());
-    }
+            String updateProposeQuery = "INSERT INTO ENCHERES (no_utilisateur,no_article, montant_enchere,date_enchere) VALUES (?,?,?,?)";
+            jdbcTemplate.update(updateProposeQuery, enchere.getUtilisateur().getNoUtilisateur(), enchere.getArticle().getNoArticle(), enchere.getMontant_enchere(), enchere.getDateEnchere());
 
+            String updateCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit - ?)  WHERE no_utilisateur=?";
+            jdbcTemplate.update(updateCreditsQuery, enchere.getMontant_enchere(), enchere.getUtilisateur().getNoUtilisateur());
+    }
+    @Override
+    public boolean IsPositifCredit(CEnchere enchere) {
+        Logger.log("Trace_ENI.log","IsPositifCredit : " + enchere);
+        String sql = "SELECT credit FROM UTILISATEURS WHERE no_utilisateur=?";
+        Integer credit = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getUtilisateur().getNoUtilisateur()}, Integer.class);
+
+        if (credit != null && enchere.getMontant_enchere() < credit) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    @Override
+    public boolean IsPositifOffre(CEnchere enchere) {
+        Logger.log("Trace_ENI.log","IsPositifOffre : " + enchere);
+        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+
+        if (maxOffre != null && enchere.getMontant_enchere() > maxOffre) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
     @Override
     public CEnchere remporterVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","remporterVente : " + vente);
@@ -112,9 +147,14 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public List<CUtilisateur> voirEncherisseurs(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","voirEncherisseurs : " + vente);
-        String sql = "SELECT  UTILISATEURS.* FROM ENCHERES INNER JOIN\n" +
-                "ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article INNER JOIN\n" +
-                "UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES_VENDUS.no_article=?";
+        String sql = "SELECT        VENDEUR.nom AS Nom_Encherisseur, VENDEUR.prenom AS Prenom_Encherisseur, ENCHERISSEURS.nom AS Nom_Vendeur, ENCHERISSEURS.prenom AS Prénom_Vendeur, ENCHERES.date_enchere, \n" +
+                "                         ENCHERES.montant_enchere, ENCHERES.no_encheres, ARTICLES_VENDUS.no_article, ARTICLES_VENDUS.nom_article, ARTICLES_VENDUS.description, ARTICLES_VENDUS.date_debut_encheres, \n" +
+                "                         ARTICLES_VENDUS.date_fin_encheres, ARTICLES_VENDUS.prix_initial, ARTICLES_VENDUS.prix_vente, ARTICLES_VENDUS.no_utilisateur, ARTICLES_VENDUS.no_categorie, ARTICLES_VENDUS.photo_url, \n" +
+                "                         ARTICLES_VENDUS.etat_article\n" +
+                "FROM            UTILISATEURS AS ENCHERISSEURS INNER JOIN\n" +
+                "                         ARTICLES_VENDUS ON ENCHERISSEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur AND ENCHERISSEURS.no_utilisateur = ARTICLES_VENDUS.no_utilisateur RIGHT OUTER JOIN\n" +
+                "                         ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article LEFT OUTER JOIN\n" +
+                "                         UTILISATEURS AS VENDEUR ON ENCHERES.no_utilisateur = VENDEUR.no_utilisateur WHERE ARTICLES_VENDUS.no_article=?";
         return Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{vente.getNoArticle()}, CUtilisateur.class));
     }
 
@@ -131,14 +171,46 @@ public class EnchereDAOImpl implements EnchereDAO {
         @Override
         public CEnchere mapRow(ResultSet rs, int rowNum) throws SQLException {
             CEnchere a = new CEnchere();
-
-            CUtilisateur utilisateur = new CUtilisateur();
-            a.setNoEnchere(rs.getInt("iKey_avis"));
-            a.setDateEnchere(LocalDate.parse(rs.getString("s_Commentaire")));
-            a.setMontant_enchere(rs.getInt("s_Commentaire"));
-            utilisateur.setNom(rs.getString("s_Nom"));
-            utilisateur.setPrenom(rs.getString("s_Prenom"));
+            UtilisateurDAO utilisateurDAO = null;
+            CUtilisateur utilisateur = utilisateurDAO.ViewProfil(rs.getInt("no_utilisateur"));
+            CArticleVendu article = viewArticle(rs.getInt("no_article"));
+            a.setNoEnchere(rs.getInt("no_encheres"));
+            a.setDateEnchere(LocalDate.parse(rs.getString("date_enchere")));
+            a.setMontant_enchere(rs.getInt("montant_enchere"));
             a.setUtilisateur(utilisateur);
+
+
+            return a;
+        }
+    }
+    public class ArticleVenduRowMapper implements RowMapper<CArticleVendu> {
+
+        @Override
+        public CArticleVendu mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CArticleVendu a = new CArticleVendu();
+
+            CategorieDAO categorieDAO = null;
+            CCategorie categorie = categorieDAO.SearchCategorie(rs.getInt("no_categorie"));
+
+            UtilisateurDAO utilisateurDAO = null;
+            CUtilisateur utilisateur = utilisateurDAO.ViewProfil(rs.getInt("no_utilisateur"));
+            CUtilisateur acheteur = utilisateurDAO.viewAcheteurByArticleID(rs.getInt("no_article"));
+            RetraitDAO retraitDAO = null;
+            CRetrait retrait = retraitDAO.SearchRetrait(rs.getInt("no_retrait"));
+
+            a.setNoArticle(rs.getInt("no_article"));
+            a.setVendeur(utilisateur);
+            a.setAcheteur(acheteur);
+            a.setCategorie(categorie);
+            a.setDescription(rs.getString("description"));
+            a.setDateDebutEncheres(LocalDate.parse(rs.getString("date_debut_encheres")));
+            a.setDateFinEncheres(LocalDate.parse(rs.getString("date_fin_encheres")));
+            a.setEtatVente(rs.getInt("etat_article"));
+            a.setMiseAPrix(rs.getInt("prix_initial"));
+            a.setNomArticle(rs.getString("nom_article"));
+            a.setPhoto(rs.getString("photo_url"));
+            a.setPrixVente(rs.getInt("prix_vente"));
+            a.setRetrait(retrait);
 
             return a;
         }
