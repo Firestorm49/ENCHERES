@@ -20,13 +20,13 @@
             <tr data-th-unless="${genreId != null}" data-th-each="item : ${genreSession}">
                 <td data-th-text="${item.getTitre()}"></td>
                 <td>
-                    <a data-th-href="@{/genre/modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                    <a data-th-href="@{/Category/Modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Modifier</a>
-                    <a data-th-href="@{/genre/delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                    <a data-th-href="@{/Category/Delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -37,7 +37,7 @@
             </tbody>
         </table>
         <BR>
-        <form action="/genre/create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
+        <form action="/Category/Create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
             <h2>Ajouter une nouvelle catégorie :</h2>
             <ul class="flex-outer">
                 <li>
@@ -55,7 +55,7 @@
                 <span></span>
                 Créer</button>
         </form>
-        <form action="/genre/modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and genreId != null}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
+        <form action="/Category/Modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and genreId != null}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
             <h2>Modifier une catégorie :</h2>
             <ul class="flex-outer">
                 <li>

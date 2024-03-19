@@ -45,7 +45,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(HttpMethod.GET,"/").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/Encheres").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/Encheres/detail").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Encheres/Details").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/Encheres/Create").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Encheres/Modify").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Encheres/Delete").hasRole("ADMIN");
@@ -57,8 +57,9 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/Users/Delete").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Users/Desactivation").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Users/Activation").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/Users/Details").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Category").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/Category/detail").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Category/Details").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/Category/Create").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Category/Modify").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Category/Delete").hasRole("ADMIN");
