@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>test</title>
-</head>
-<body>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title>Catégories de film</title>
+<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+<main class="center-main">
+    <div class="center-avis">
+        <h1>Catégories</h1>
+        <BR>
+        <BR>
+        <table>
+            <thead>
+            <tr>
+                <th>Catégories</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-if="${genreId != null}" data-th-each="item : ${genreId}">
+            <tr data-th-unless="${genreId != null}" data-th-each="item : ${genreSession}">
+                <td data-th-text="${item.getTitre()}"></td>
+                <td>
+                    <a data-th-href="@{/genre/modify(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Modifier</a>
+                    <a data-th-href="@{/genre/delete(id=${item.getId()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasRole('ADMIN')">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Supprimer</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <BR>
+        <form action="/genre/create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
+            <h2>Ajouter une nouvelle catégorie :</h2>
+            <ul class="flex-outer">
+                <li>
+                    <label for="inputTitre1">Titre de la catégorie :
+                    </label>
+                    <input type="text"
+                           name="titre" id="inputTitre1"/>
+                </li>
+            </ul>
+            <BR>
+            <button type="submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Créer</button>
+        </form>
+        <form action="/genre/modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and genreId != null}" data-sec-authorize="hasRole('ADMIN')" class="form-genre">
+            <h2>Modifier une catégorie :</h2>
+            <ul class="flex-outer">
+                <li>
+                    <input type="hidden" data-th-value="${genreId.getId()}"
+                           name="id"/>
+                </li>
+                <li>
+                    <label for="inputTitre2">Titre de la catégorie :
+                    </label>
+                    <input type="text" data-th-value="${genreId.getTitre()}"
+                           name="titre" id="inputTitre2"/>
+                </li>
+            </ul>
+            <BR>
+            <button type="submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Modifier</button>
+        </form>
+    </div>
+</main>
 </html>
