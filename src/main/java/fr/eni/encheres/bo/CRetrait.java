@@ -3,12 +3,12 @@ package fr.eni.encheres.bo;
 public class CRetrait {
     private int noRetrait;
     private String rue;
-    private String code_postal;
+    private int code_postal;
     private String ville;
     public CRetrait() {
 
     }
-    public CRetrait(int noRetrait,String rue, String code_postal, String ville) {
+    public CRetrait(int noRetrait,String rue, int code_postal, String ville) {
         this.noRetrait = noRetrait;
         this.rue = rue;
         this.code_postal = code_postal;
@@ -31,11 +31,11 @@ public class CRetrait {
         this.rue = rue;
     }
 
-    public String getCode_postal() {
+    public int getCode_postal() {
         return code_postal;
     }
 
-    public void setCode_postal(String code_postal) {
+    public void setCode_postal(int code_postal) {
         this.code_postal = code_postal;
     }
 
