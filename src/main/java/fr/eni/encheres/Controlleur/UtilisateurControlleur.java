@@ -4,6 +4,7 @@ import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
 import fr.eni.encheres.bo.CEnchere;
+import fr.eni.encheres.bo.CUtilisateur;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,21 +21,57 @@ import jakarta.servlet.http.HttpSession;
 public class UtilisateurControlleur {
 
     private final UtilisateurService utilisateurService;
+    private CUtilisateur UtilisateurConnecte;
 
     public UtilisateurControlleur(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
 
+    @ModelAttribute("membreEnSession")
+    public CUtilisateur MembreAuthenticate(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
+            if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                UtilisateurConnecte.setAdministrateur(true);
+            }
+            else {
+                UtilisateurConnecte.setAdministrateur(false);
+            }
+        } else {
+            UtilisateurConnecte = null;
+        }
+        return UtilisateurConnecte;
+    }
+
+
     @GetMapping
-    public String getUsers() {
+    public String getUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getUsers ");
-        return "view-user";
+
+        if(UtilisateurConnecte != null){
+            model.addAttribute("user", UtilisateurConnecte);
+        }
+        return "view-user-detail";
     }
 
     @GetMapping("/Create")
-    public String getCreateUsers() {
+    public String getCreateUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateUsers ");
-        return "view-user";
+        model.addAttribute("postValue", "/Users/Create");
+        model.addAttribute("user", new CUtilisateur());
+        return "view-user-edit";
+    }
+
+    @GetMapping("/Modify")
+    public String getModifyUsers(Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
+        if(UtilisateurConnecte != null){
+            model.addAttribute("postValue", "/Users/Modify");
+            model.addAttribute("user", UtilisateurConnecte);
+            return "view-user-edit";
+        }else{
+            return "redirect:/Create";
+        }
     }
 
     @GetMapping("/Detail")
@@ -43,11 +80,7 @@ public class UtilisateurControlleur {
         return "view-user";
     }
 
-    @GetMapping("/Modify")
-    public String getModifyUsers() {
-        Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
-        return "view-user";
-    }
+
     @GetMapping("/Delete")
     public String getDeleteUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteUsers ");
