@@ -14,6 +14,9 @@ public interface UtilisateurDAO {
     void ModifyProfil(CUtilisateur utilisateur);
     void DeleteProfil(CUtilisateur utilisateur);
     void DesactiveProfil(CUtilisateur utilisateur);
+
+    void ActiveProfil(CUtilisateur utilisateur);
+
     void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
 }

@@ -52,7 +52,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), utilisateur.getMotdepasse(), utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
     }
     @Override
-    public void ModifyRoleUtilisateur(int id,int isAdministrateur) {
+    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
         Logger.log("Trace_ENI.log","ModifyRoleUtilisateur : " + id);
         String updateProfilQuery = "UPDATE UTILISATEURS SET  administrateur=? WHERE no_utilisateur=?";
         jdbcTemplate.update(updateProfilQuery, isAdministrateur, id);
@@ -76,6 +76,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","DesactiveProfil : " + utilisateur);
         String desactivateProfilQuery = "UPDATE UTILISATEURS SET active=0 WHERE no_utilisateur=?";
         jdbcTemplate.update(desactivateProfilQuery, utilisateur.getNoUtilisateur());
+    }
+    @Override
+    public void ActiveProfil(CUtilisateur utilisateur) {
+        Logger.log("Trace_ENI.log","ActiveProfil : " + utilisateur);
+        String ActivateProfilQuery = "UPDATE UTILISATEURS SET active=1 WHERE no_utilisateur=?";
+        jdbcTemplate.update(ActivateProfilQuery, utilisateur.getNoUtilisateur());
     }
 
     @Override
