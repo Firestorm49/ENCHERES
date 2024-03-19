@@ -53,4 +53,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             DeleteProfil(utilisateur);
         }
     }
+
+    @Override
+    public CUtilisateur getUtilisateurByEmail(String mail) {
+        String sql = "SELECT * FROM utilisateur WHERE email=?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{mail}, CUtilisateur.class );
+    }
 }

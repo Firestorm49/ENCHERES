@@ -16,7 +16,7 @@ public interface EnchereDAO {
     void modifierVente(CArticleVendu vente);
     void annulerVente(CArticleVendu vente);
     void ajouterPhotoVente(CArticleVendu vente);
-    List<CEnchere> pagination(int pageNumber, int pageSize);
+    List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
     void achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }

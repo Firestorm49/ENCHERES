@@ -50,4 +50,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public void DeleteMultiProfil(List<CUtilisateur> utilisateurList) {
         utilisateursDAO.DeleteMultiProfil(utilisateurList);
     }
+    @Override
+    public CUtilisateur getUtilisateurByEmail(String mail) {
+        return utilisateursDAO.getUtilisateurByEmail(mail);
+    }
 }

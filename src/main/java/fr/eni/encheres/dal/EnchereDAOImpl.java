@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 @Repository
@@ -35,7 +36,7 @@ public class EnchereDAOImpl implements EnchereDAO {
                 "                         CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\n" +
                 "                         RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article INNER JOIN\n" +
                 "                         UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE etat_article=1";
-        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, CUtilisateur.class)));
+        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, CUtilisateur.class));
 
     }
 
@@ -92,9 +93,11 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
-    public List<CEnchere> pagination(int pageNumber, int pageSize) {
-
-       return null;
+    public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
+        int min = pageNumber*pageSize;
+        int max = min + pageSize;
+        String sql = "SELECT  * FROM ARTICLES_VENDUS WHERE no_article BETWEEN ? AND ?";
+        return Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{min,max}, CArticleVendu.class));
     }
 
     @Override
@@ -120,7 +123,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 
             CUtilisateur utilisateur = new CUtilisateur();
             a.setNoEnchere(rs.getInt("iKey_avis"));
-            a.setDateEnchere(rs.getString("s_Commentaire"));
+            a.setDateEnchere(LocalDate.parse(rs.getString("s_Commentaire")));
             a.setMontant_enchere(rs.getInt("s_Commentaire"));
             utilisateur.setNom(rs.getString("s_Nom"));
             utilisateur.setPrenom(rs.getString("s_Prenom"));

@@ -1,5 +1,6 @@
 package fr.eni.encheres.Controlleur;
 
+import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bo.CCategorie;
@@ -10,31 +11,37 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/Category")
 public class CategorieControlleur {
     private final CategorieService categorieService;
 
     public CategorieControlleur(CategorieService categorieService) {
         this.categorieService = categorieService;
     }
-    @GetMapping("/")
-    public String getCategorie(Model model) {
-        model.addAttribute("isNotModify",true);
-        return "Categorie";
+    @GetMapping
+    public String getCategorie() {
+    return "Categorie";
+
     }
-    @GetMapping("/delete")
+    @GetMapping("/Delete")
     public String getDeleteCategorie(@RequestParam(name = "id", required = true) int id) {
         categorieService.DeleteCategorie(id);
         return "redirect:/Categorie";
     }
-    @GetMapping("/modify")
+    @GetMapping("/Create")
+    public String getCreateCategorie(Model model) {
+        CCategorie categorie = new CCategorie();
+        model.addAttribute("categorie",categorie);
+        return "redirect:/Categorie";
+    }
+    @GetMapping("/Modify")
     public String getModifyCategorie(@RequestParam(name = "id", required = true) int id, Model model) {
         CCategorie Categorie = categorieService.SearchCategorie(id);
         model.addAttribute("genreId", Categorie);
         model.addAttribute("isNotModify",false);
         return "/Categorie";
     }
-    @PostMapping("/modify")
+    @PostMapping("/Modify")
     public String postModifyCategorie(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -45,7 +52,7 @@ public class CategorieControlleur {
             return "redirect:/Categorie";
         }
     }
-    @PostMapping("/create")
+    @PostMapping("/Create")
     public String postCategorieCreate(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                  BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -53,6 +60,18 @@ public class CategorieControlleur {
             return "Categorie";
         } else {
             categorieService.CreateCategorie(Categorie);
+            return "redirect:/Categorie";
+        }
+    }
+
+    @PostMapping("/Delete")
+    public String postCategorieDelete(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            return "Categorie";
+        } else {
+            categorieService.DeleteCategorie(Categorie.getNoCategorie());
             return "redirect:/Categorie";
         }
     }

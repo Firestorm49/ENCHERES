@@ -1,11 +1,12 @@
 package fr.eni.encheres.bo;
 
+import java.time.LocalDate;
 public class CArticleVendu {
     private int noArticle;
     private String nomArticle;
     private String description;
-    private String dateDebutEncheres;
-    private String dateFinEncheres;
+    private LocalDate  dateDebutEncheres;
+    private LocalDate dateFinEncheres;
     private int miseAPrix;
     private int prixVente;
     private int etatVente;
@@ -17,7 +18,7 @@ public class CArticleVendu {
 
     public CArticleVendu() {
     }
-    public CArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
+    public CArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -56,19 +57,19 @@ public class CArticleVendu {
         this.description = description;
     }
 
-    public String getDateDebutEncheres() {
+    public LocalDate getDateDebutEncheres() {
         return dateDebutEncheres;
     }
 
-    public void setDateDebutEncheres(String dateDebutEncheres) {
+    public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
         this.dateDebutEncheres = dateDebutEncheres;
     }
 
-    public String getDateFinEncheres() {
+    public LocalDate getDateFinEncheres() {
         return dateFinEncheres;
     }
 
-    public void setDateFinEncheres(String dateFinEncheres) {
+    public void setDateFinEncheres(LocalDate dateFinEncheres) {
         this.dateFinEncheres = dateFinEncheres;
     }
 
