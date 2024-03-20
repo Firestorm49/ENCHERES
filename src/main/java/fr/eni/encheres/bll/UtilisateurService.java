@@ -12,7 +12,7 @@ public interface UtilisateurService {
     void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
     CUtilisateur viewAcheteurByArticleID(int id);
-    void ModifyRoleUtilisateur(int id, int isAdministrateur);
+    void ModifyRoleUtilisateur(int id, boolean isAdministrateur);
     List<CUtilisateur> ViewAllUtilisateurs();
     void ActiveProfil(CUtilisateur utilisateur);
 }

@@ -148,18 +148,21 @@ public class UtilisateurControlleur {
         return "view_user_list";
     }
     @GetMapping("/deactivation")
-    public String getDesactivationUsers() {
+    public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
+        utilisateurService.DesactiveProfil(utilisateurService.ViewProfil(id));
         return "view-user";
     }
     @GetMapping("/activation")
-    public String getActivationUsers() {
+    public String getActivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
+        utilisateurService.ActiveProfil(utilisateurService.ViewProfil(id));
         return "view-user";
     }
     @GetMapping("/administrateur")
-    public String getAdministrateurUsers(Model model) {
+    public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getAdministrateurUsers ");
+        utilisateurService.ModifyRoleUtilisateur(id,(!utilisateurService.ViewProfil(id).isAdministrateur()));
         if(UtilisateurConnecte != null){
             model.addAttribute("user", UtilisateurConnecte);
         }

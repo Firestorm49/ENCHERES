@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
@@ -55,7 +54,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), mdpCrypte, utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
     }
     @Override
-    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
+    public void ModifyRoleUtilisateur(int id, boolean isAdministrateur) {
         Logger.log("Trace_ENI.log","ModifyRoleUtilisateur : " + id);
         String updateProfilQuery = "UPDATE UTILISATEURS SET  administrateur=? WHERE no_utilisateur=?";
         jdbcTemplate.update(updateProfilQuery, isAdministrateur, id);
