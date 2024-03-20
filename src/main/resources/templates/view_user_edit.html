@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{fragments/layouts/layout :: layout(
+				 	title=~{:: title}, 
+				 	contenuPage=~{:: .center-main}, 
+				 	ressources=~{:: #ressources-css})}">
+<head>
+<meta charset="UTF-8">
+<title th:text="user"></title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" th:href="@{/css/general.css}">
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+	<link rel="stylesheet" th:href="@{/css/user.css}">
+</th:block>
+</head>
+<body>
+	<main class="center-main page-user">
+		<div class="content">
+			<h1> Mon profil EDIT / CREATE </h1>
+			<form action="#" th:action="@{${postValue}}" th:object="${user}" method="post">
+				<div class="content-form">
+					<div class="left colone">
+						<div class="input">
+							<input type="hidden" th:field="*{noUtilisateur}" />
+							<label for="pseudo">Pseudo :</label>
+							<input type="text" id="pseudo" th:field="*{pseudo}" />
+							<label for="prenom">Prénom :</label>
+							<input type="text" id="prenom" th:field="*{prenom}" />
+							<label for="telephone">Téléphone :</label>
+							<input type="text" id="telephone" th:field="*{telephone}" />
+							<label for="codePoste">Code postal :</label>
+							<input type="text" id="codePoste" th:field="*{codePostal}" />
+
+							<label for="mypassword">Mot de passe actuel :</label>
+							<input type="password" id="mypassword" th:field="*{motdepasse}" />
+
+							<label for="password">Mot de passe :</label>
+							<input type="password" id="password" th:field="*{motdepasse}" />
+						</div>
+					</div>
+					<div class="right colone">
+						<div class="input">
+							<label for="nom">Nom :</label>
+							<input type="text" id="nom" th:field="*{nom}" />
+							<label for="email">Email :</label>
+							<input type="text" id="email" th:field="*{email}" />
+							<label for="adresse">Rue :</label>
+							<input type="text" id="adresse" th:field="*{rue}" />
+							<label for="ville">Ville :</label>
+							<input type="text" id="ville" th:field="*{ville}" />
+							<label style="opacity:0;" for="input-vide">Code postal :</label>
+							<input style="opacity:0;" type="text" id="input-vide" th:field="*{codePostal}" />
+							<label for="confirmPassword">Confirmation :</label>
+							<input type="password" id="confirmPassword" th:field="*{motdepasse}" />
+						</div>
+					</div>
+				</div>
+				<div class="input">
+					<input type="submit" value="Créer" />
+					<input type="reset" value="Annuler" />
+				</div>
+			</form>
+		</div>
+	</main>
+</body>
+</html>
