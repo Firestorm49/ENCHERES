@@ -31,6 +31,7 @@ public class UtilisateurControlleur {
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
+            System.out.println(UtilisateurConnecte.toString());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                 UtilisateurConnecte.setAdministrateur(true);
             }
@@ -47,7 +48,7 @@ public class UtilisateurControlleur {
     @GetMapping
     public String getUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getUsers ");
-        return "view_list_users";
+        return "view_user_list";
     }
 
     @GetMapping("/Create")
@@ -55,7 +56,17 @@ public class UtilisateurControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getCreateUsers ");
         model.addAttribute("postValue", "/Users/Create");
         model.addAttribute("user", new CUtilisateur());
-        return "view-user-edit";
+        return "view_user_edit";
+    }
+
+    @PostMapping("/Create")
+    public String postCreateUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
+        Logger.log("Trace_ENI.log","Controlleur : postCreateUsers ");
+        if (result.hasErrors()) {
+            return "view_user_edit";
+        }
+        utilisateurService.Inscription(user);
+        return "redirect:/Enchere";
     }
 
     @GetMapping("/Modify")
@@ -64,11 +75,58 @@ public class UtilisateurControlleur {
         if(UtilisateurConnecte != null){
             model.addAttribute("postValue", "/Users/Modify");
             model.addAttribute("user", UtilisateurConnecte);
-            return "view-user-edit";
+            return "view_user_edit";
         }else{
             return "redirect:/Create";
         }
     }
+
+    @PostMapping("/Modify")
+    public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
+        Logger.log("Trace_ENI.log","Controlleur : postModifyUsers ");
+
+        System.out.println("user : " + user.toString());
+
+
+        String mdpActuel = user.getMotdepasse().split(",")[0];
+        String mdpNouveau = "";
+        String mdpConfirmation = "";
+
+        //si user.getMotdepasse().split(",")[1] exist
+        if(user.getMotdepasse().split(",").length > 1){
+            mdpNouveau = user.getMotdepasse().split(",")[1];
+        }
+        if(user.getMotdepasse().split(",").length > 2){
+            mdpConfirmation = user.getMotdepasse().split(",")[2];
+        }
+
+        if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
+            user.setMotdepasse(mdpNouveau);
+
+            utilisateurService.ModifyProfil(user);
+            System.out.println(user);
+            return "view_user_edit";
+
+            //return "redirect:/Detail";
+        }else if(!mdpNouveau.equals(mdpConfirmation)){
+            return "view_user_edit";
+        }else if(mdpNouveau.equals("") || mdpConfirmation.equals("")){
+            return "view_user_edit";
+        }
+
+        return "view_user_edit";
+
+        /*if (result.hasErrors()) {
+            return "view_user_edit";
+        }
+        if(UtilisateurConnecte != null) {
+            utilisateurService.ModifyProfil(user);
+            return "redirect:/Enchere";
+        }else{
+            return "redirect:/login";
+        }*/
+    }
+
 
     @GetMapping("/Detail")
     public String getDetailUsers(Model model) {
@@ -76,7 +134,7 @@ public class UtilisateurControlleur {
         if(UtilisateurConnecte != null){
             model.addAttribute("user", UtilisateurConnecte);
         }
-        return "view-user-detail";
+        return "view_user_detail";
     }
 
 
@@ -94,16 +152,6 @@ public class UtilisateurControlleur {
     public String getActivationUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
         return "view-user";
-    }
-    @PostMapping("/Create")
-    public String postUsersCreate() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersCreate ");
-            return "redirect:/Enchere";
-    }
-    @PostMapping("/Modify")
-    public String postUsersModify() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersModify ");
-        return "redirect:/Enchere";
     }
     @PostMapping("/Delete")
     public String postUsersDelete() {

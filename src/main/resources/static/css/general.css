@@ -74,7 +74,7 @@ header h1 {
 	text-align: center;
 }
 
-input[type=text], input[type=number] {
+input[type=text], input[type=number], input[type=password] {
     width: 26.438rem;
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
@@ -86,7 +86,7 @@ input[type=text], input[type=number] {
     bottom: 0px;
     z-index: 1000;
 }
-input[type=text]:focus , input[type=number]:focus {
+input[type=text]:focus , input[type=number]:focus, input[type=password]:focus {
     border: 0.188rem solid #555;
 }
 
@@ -121,10 +121,8 @@ textarea:focus {
     border: 0.188rem solid #555;
 }
 .disabled-input {
-
     color: #888; 
     background-color: #eee; 
-	size: 
 }
 body {
     margin: 0;

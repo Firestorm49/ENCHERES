@@ -5,6 +5,7 @@ import fr.eni.encheres.bo.CUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     @Override
     public void Subscribe(CUtilisateur utilisateur) {
         Logger.log("Trace_ENI.log","Subscribe : " + utilisateur);
+        String mdpCrypte = "{bcrypt}"+BCrypt.hashpw(utilisateur.getMotdepasse(), BCrypt.gensalt());
         String insertUtilisateurQuery = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(insertUtilisateurQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), utilisateur.getMotdepasse(), utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive());
     }
@@ -49,7 +51,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     public void ModifyProfil(CUtilisateur utilisateur) {
         Logger.log("Trace_ENI.log","ModifyProfil : " + utilisateur);
         String updateProfilQuery = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=?, active=? WHERE no_utilisateur=?";
-        jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), utilisateur.getMotdepasse(), utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
+        String mdpCrypte = "{bcrypt}"+BCrypt.hashpw(utilisateur.getMotdepasse(), BCrypt.gensalt());
+        jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), mdpCrypte, utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
     }
     @Override
     public void ModifyRoleUtilisateur(int id, int isAdministrateur) {

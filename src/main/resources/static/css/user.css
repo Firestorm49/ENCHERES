@@ -6,7 +6,22 @@
     gap: 40px;
 }
 
+.page-user .content-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
 .page-user .content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.page-user form .content-form{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,3 +35,4 @@
     flex-direction: column;
     gap: 10px;
 }
+
