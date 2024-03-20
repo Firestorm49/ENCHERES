@@ -21,10 +21,23 @@ public class EnchereDAOImpl implements EnchereDAO {
 
     @Override
     public void SoldArticle(CArticleVendu article) {
-        Logger.log("Trace_ENI.log","SoldArticle : " + article);
-        String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, photo_url,etat_article) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
-        jdbcTemplate.update(insertArticleQuery, article.getNomArticle(), article.getDescription(), article.getDateDebutEncheres(), article.getDateFinEncheres(), article.getMiseAPrix(), article.getPrixVente(), article.getVendeur().getNoUtilisateur(), article.getCategorie().getNoCategorie(), article.getPhoto(), article.getEtatVente());
+        String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, photo_url, etat_article) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        int rowsAffected = jdbcTemplate.update(insertArticleQuery, article.getNomArticle(), article.getDescription(), article.getDateDebutEncheres(), article.getDateFinEncheres(), article.getMiseAPrix(), article.getPrixVente(), article.getVendeur().getNoUtilisateur(), article.getCategorie().getNoCategorie(), article.getPhoto(), article.getEtatVente());
 
+        if (rowsAffected > 0) {
+            String sql = "SELECT MAX(no_article) FROM ARTICLES_VENDUS WHERE nom_article = ?";
+            Integer IdArticle = jdbcTemplate.queryForObject(sql, new Object[]{article.getNomArticle()}, Integer.class);
+
+            if(article.getRetrait() == null){
+                String insertRetraitQuery = "INSERT INTO RETRAITS (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
+                jdbcTemplate.update(insertRetraitQuery, IdArticle, article.getVendeur().getRue(), article.getVendeur().getCodePostal(), article.getVendeur().getVille());
+
+            }
+            else{
+                String insertRetraitQuery = "INSERT INTO RETRAITS (no_article, rue, code_postal, ville) VALUES (?, ?, ?, ?)";
+                jdbcTemplate.update(insertRetraitQuery, IdArticle, article.getRetrait().getRue(), article.getRetrait().getCode_postal(), article.getRetrait().getVille());
+            }
+          }
     }
 
     @Override
