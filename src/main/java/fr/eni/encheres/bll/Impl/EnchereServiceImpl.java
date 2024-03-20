@@ -26,7 +26,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CUtilisateur> listerEncheresDeconnecte() {
+    public List<CEnchere> listerEncheresDeconnecte() {
         return  encheresDAO.listEncheresDeconnecte();
     }
 

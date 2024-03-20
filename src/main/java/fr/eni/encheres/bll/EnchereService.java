@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EnchereService {
     void vendreArticle(CArticleVendu article);
-    List<CUtilisateur> listerEncheresDeconnecte();
+    List<CEnchere> listerEncheresDeconnecte();
     List<CEnchere> listerEncheresConnecte();
     void faireEnchere(CEnchere enchere);
     CEnchere remporterVente(CArticleVendu vente);

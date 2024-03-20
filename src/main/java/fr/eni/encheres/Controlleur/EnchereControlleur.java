@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/Encheres")
 @SessionAttributes({ "membreEnSession" })
@@ -41,8 +43,16 @@ public class EnchereControlleur {
     }
 
     @GetMapping
-    public String getEnchere() {
+    public String getEnchere(Authentication authentication, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getEnchere ");
+        List<CEnchere> encheres = null;
+        if(authentication != null && authentication.isAuthenticated()){
+            encheres = enchereService.listerEncheresConnecte();
+        }
+        else{
+            encheres = enchereService.listerEncheresDeconnecte();
+        }
+        model.addAttribute("encheres",encheres);
         return "view-Enchere";
     }
 

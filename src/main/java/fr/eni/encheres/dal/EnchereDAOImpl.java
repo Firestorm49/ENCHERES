@@ -29,30 +29,27 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public CArticleVendu viewArticle(int id) {
         Logger.log("Trace_ENI.log","viewArticle : " + id);
-        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*\n" +
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.*\n" +
                 "FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\n" +
-                "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE no_article=?";
+                "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN\n" +
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article\n" +
+                "WHERE (ARTICLES_VENDUS.no_article = ?)";
         return (CArticleVendu) Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{id}, new ArticleVenduRowMapper()));
     }
 
     @Override
-    public List<CUtilisateur> listEncheresDeconnecte() {
+    public List<CEnchere> listEncheresDeconnecte() {
         Logger.log("Trace_ENI.log","listEncheresDeconnecte : ");
-        String sql = "SELECT        UTILISATEURS.nom, UTILISATEURS.prenom, RETRAITS.rue, RETRAITS.code_postal, RETRAITS.ville, CATEGORIES.libelle, ARTICLES_VENDUS.nom_article, ARTICLES_VENDUS.description, \n" +
-                "                         ARTICLES_VENDUS.date_debut_encheres, ARTICLES_VENDUS.date_fin_encheres, ARTICLES_VENDUS.prix_initial, ARTICLES_VENDUS.no_utilisateur, ARTICLES_VENDUS.etat_article\n" +
-                "FROM            ARTICLES_VENDUS INNER JOIN\n" +
-                "                         ENCHERES ON ARTICLES_VENDUS.no_article = ENCHERES.no_article INNER JOIN\n" +
-                "                         CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\n" +
-                "                         RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article INNER JOIN\n" +
-                "                         UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur WHERE etat_article=1";
-        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, CUtilisateur.class));
+        String sql = "SELECT ENCHERES.* FROM ENCHERES INNER JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article WHERE etat_article = 1";
+        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, new EnchereRowMapper()));
 
     }
 
     @Override
     public List<CEnchere> listEncheresConnecte() {
         Logger.log("Trace_ENI.log","listEncheresConnecte : ");
-        return null;
+        String sql = "SELECT ENCHERES.* FROM ENCHERES";
+        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, new EnchereRowMapper()));
     }
 
     @Override
@@ -178,7 +175,7 @@ public class EnchereDAOImpl implements EnchereDAO {
             a.setDateEnchere(LocalDate.parse(rs.getString("date_enchere")));
             a.setMontant_enchere(rs.getInt("montant_enchere"));
             a.setUtilisateur(utilisateur);
-
+            a.setArticle(article);
 
             return a;
         }

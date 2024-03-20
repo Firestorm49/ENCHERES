@@ -36,7 +36,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     UserDetailsManager userDetailsManager (DataSource datasource) {
         var jdbcUserDetailsManager = new JdbcUserDetailsManager(datasource);
         jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT email, mot_de_passe, 1 FROM UTILISATEURS WHERE email=?");
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT email, administrateur from UTILISATEURS WHERE email=?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select Email, role from ROLES inner join UTILISATEURS ON ROLES.IS_ADMIN = UTILISATEURS.administrateur WHERE Email=?");
         return jdbcUserDetailsManager;
     }
 
@@ -59,7 +59,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/Category").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/Category/detail").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/Category/Create").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/Category/Modify").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/Category/Modify").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/Category/Delete").permitAll();
             auth.requestMatchers("/css/*").permitAll();
             auth.requestMatchers("/img/*").permitAll();
