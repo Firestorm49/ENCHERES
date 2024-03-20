@@ -65,7 +65,7 @@ public class EnchereControlleur {
             encheres = enchereService.listerEncheresDeconnecte();
         }
         model.addAttribute("encheres",encheres);
-        return "view_bid";
+        return "view_bid_list";
     }
 
     @GetMapping("/detail")
@@ -74,7 +74,7 @@ public class EnchereControlleur {
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("enchere",Enchere);
 
-        return "view_bid";
+        return "view_bid_list";
     }
 
     @GetMapping("/purpose")
@@ -82,7 +82,7 @@ public class EnchereControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("enchere",Enchere);
-        return "view_bid";
+        return "view_bid_list";
     }
 
     @PostMapping("/purpose")
@@ -91,7 +91,7 @@ public class EnchereControlleur {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "view_bid";
+            return "view_bid_list";
         } else {
             enchereService.faireEnchere(Enchere);
             return "redirect:/bid";

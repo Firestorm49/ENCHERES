@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 @Repository
@@ -66,7 +67,7 @@ public class EnchereDAOImpl implements EnchereDAO {
     public List<CEnchere> listEncheresDeconnecte() {
         Logger.log("Trace_ENI.log","listEncheresDeconnecte : ");
         String sql = "SELECT ENCHERES.* FROM ENCHERES INNER JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article WHERE etat_article = 1";
-        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, new EnchereRowMapper()));
+        return  jdbcTemplate.query(sql, new EnchereRowMapper());
 
     }
 
@@ -74,7 +75,7 @@ public class EnchereDAOImpl implements EnchereDAO {
     public List<CEnchere> listEncheresConnecte() {
         Logger.log("Trace_ENI.log","listEncheresConnecte : ");
         String sql = "SELECT ENCHERES.* FROM ENCHERES";
-        return  Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, new EnchereRowMapper()));
+        return  jdbcTemplate.query(sql, new EnchereRowMapper());
     }
 
     @Override
@@ -149,7 +150,7 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public void modifierVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","modifierVente : " + vente);
-        String insertArticleQuery = "UPDATE (nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?, photo_url= ?,etat_article= ?)  SET ARTICLES_VENDUS WHERE no_article=?";
+        String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?, photo_url= ?,etat_article= ? WHERE no_article =?";
         jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getPhoto(), vente.getEtatVente(), vente.getNoArticle());
 
     }
@@ -212,7 +213,6 @@ public class EnchereDAOImpl implements EnchereDAO {
         @Override
         public CEnchere mapRow(ResultSet rs, int rowNum) throws SQLException {
             CEnchere a = new CEnchere();
-            UtilisateurDAO utilisateurDAO = null;
             CUtilisateur utilisateur = utilisateurDAO.ViewProfil(rs.getInt("no_utilisateur"));
             CArticleVendu article = viewArticle(rs.getInt("no_article"));
             a.setNoEnchere(rs.getInt("no_encheres"));
@@ -243,8 +243,8 @@ public class EnchereDAOImpl implements EnchereDAO {
             a.setVendeur(utilisateur);
             a.setCategorie(categorie);
             a.setDescription(rs.getString("description"));
-            a.setDateDebutEncheres(LocalDateTime.parse(rs.getString("date_debut_encheres")));
-            a.setDateFinEncheres(LocalDateTime.parse(rs.getString("date_fin_encheres")));
+            a.setDateDebutEncheres((rs.getTimestamp("date_debut_encheres")).toLocalDateTime());
+            a.setDateFinEncheres((rs.getTimestamp("date_fin_encheres")).toLocalDateTime());
             a.setEtatVente(rs.getInt("etat_article"));
             a.setMiseAPrix(rs.getInt("prix_initial"));
             a.setNomArticle(rs.getString("nom_article"));

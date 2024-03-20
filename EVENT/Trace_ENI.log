@@ -284,3 +284,183 @@
 [2024-03-20] SearchCategorie : 9
 [2024-03-20] ViewProfil : 1
 [2024-03-20] IsVenteFinish : 12
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getEnchere 
+[2024-03-20] listEncheresConnecte : 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getEnchere 
+[2024-03-20] listEncheresConnecte : 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getEnchere 
+[2024-03-20] listEncheresConnecte : 
+[2024-03-20] ViewProfil : 2
+[2024-03-20] viewArticle : 1
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 12
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] ViewProfil : 1
+[2024-03-20] IsVenteFinish : 12
+[2024-03-20] SearchRetrait : 2
+[2024-03-20] SearchRetraitByArticleID : 12
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] SearchCategorie : 10
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 7
+[2024-03-20] Controlleur : postEncheresModify 
+[2024-03-20] modifierVente : CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle pas deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-03-31T00:00', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getEnchere 
+[2024-03-20] listEncheresConnecte : 
+[2024-03-20] ViewProfil : 2
+[2024-03-20] viewArticle : 1

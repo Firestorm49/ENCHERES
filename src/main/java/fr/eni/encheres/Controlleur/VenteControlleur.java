@@ -93,7 +93,7 @@ public class VenteControlleur {
             ArticleVendu.setRetrait(Retrait);
             ArticleVendu.setVendeur(UtilisateurConnecte);
             enchereService.vendreArticle(ArticleVendu);
-            return "redirect:/category";
+            return "redirect:/bid";
         }
     }
 
@@ -104,7 +104,7 @@ public class VenteControlleur {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresModify ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "bid";
+            return "view_bid_list";
         } else {
             ArticleVendu.setRetrait(Retrait);
             ArticleVendu.setVendeur(UtilisateurConnecte);
@@ -118,7 +118,7 @@ public class VenteControlleur {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresDelete ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "bid";
+            return "view_bid_list";
         } else {
             enchereService.annulerVente(ArticleVendu);
             return "redirect:/bid";
