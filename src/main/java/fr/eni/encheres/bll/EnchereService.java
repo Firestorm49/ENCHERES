@@ -19,5 +19,10 @@ public interface EnchereService {
     CArticleVendu AfficherArticleById(int id);
     boolean VerifierCreditPositif(CEnchere enchere);
     boolean VerifierOffreSup(CEnchere enchere);
+    void CreateRetrait(CRetrait Retrait);
+    void ModifyRetrait(CRetrait Retrait);
+    void DeleteRetrait(int id);
+    CRetrait SearchRetrait(int id);
+    CRetrait SearchRetraitByArticleID(int id);
 
 }

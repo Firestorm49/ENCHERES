@@ -1,12 +1,12 @@
 <!-- Navbar -->
 	<header data-th-fragment="entete" >
-	<img data-th-src="@{/images/logoFilmotheque.png}"  width="100"
+	<img data-th-src="@{/images/logoENI.png}"  width="100"
   height="80" />
   		<h1 id="nav-title"><a href="/static" data-th-if="${not #authorization.expression('isAuthenticated()')}" data-th-text="'Filmothèque'" ></a>
 		</h1>
 		<nav>
 			<ul>
-				<li><a href="/Encheres">Enchères</a></li>
+				<li><a href="/bid">Enchères</a></li>
 				<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/sale/create">Vendre un article</a></li>
 				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/users/detail">Mon Profil</a></li>
 				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/category">Catégorie</a></li>

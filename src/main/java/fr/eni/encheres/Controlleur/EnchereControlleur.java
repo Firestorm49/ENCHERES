@@ -1,8 +1,10 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
+import fr.eni.encheres.bo.CCategorie;
 import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
 import org.springframework.security.core.Authentication;
@@ -16,15 +18,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/bid")
-@SessionAttributes({ "membreEnSession" })
+@SessionAttributes({"membreEnSession", "CategorieSession"})
 public class EnchereControlleur {
     private final EnchereService enchereService;
     private final UtilisateurService utilisateurService;
+    private final CategorieService categorieService;
     private CUtilisateur UtilisateurConnecte;
-    public EnchereControlleur(EnchereService enchereService,UtilisateurService utilisateurService)
+    public EnchereControlleur(EnchereService enchereService,UtilisateurService utilisateurService,CategorieService categorieService)
     {
         this.enchereService = enchereService;
         this.utilisateurService = utilisateurService;
+        this.categorieService = categorieService;
     }
     @ModelAttribute("membreEnSession")
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
@@ -45,6 +49,11 @@ public class EnchereControlleur {
         return UtilisateurConnecte;
     }
 
+    @ModelAttribute("CategorieSession")
+    public List<CCategorie> chargerSession() {
+        System.out.println("liste de categorie");
+        return categorieService.ListCategorie();
+    }
     @GetMapping
     public String getEnchere(Authentication authentication, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getEnchere ");
@@ -63,7 +72,7 @@ public class EnchereControlleur {
     public String getDetailEncheres(@RequestParam(name = "id", required = true) int id, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getDetailEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
-        model.addAttribute("Enchere",Enchere);
+        model.addAttribute("enchere",Enchere);
 
         return "view_bid";
     }
@@ -72,7 +81,7 @@ public class EnchereControlleur {
     public String getProposeEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
-        model.addAttribute("Enchere",Enchere);
+        model.addAttribute("enchere",Enchere);
         return "view_bid";
     }
 

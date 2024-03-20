@@ -1,0 +1,156 @@
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-20] SoldArticle : CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=0, ville=marivineen}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-20] SoldArticle : CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=0, ville=marivineen}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] SearchCategorie : 8
+[2024-03-20] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-20] SoldArticle : CArticleVendu{noArticle=0, nomArticle='testonsencore', description='xiamoi45', dateDebutEncheres='2024-02-27T14:18', dateFinEncheres='2024-03-30T14:18', miseAPrix=1700, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=8, libelle=ménager}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=0, ville=marivineen}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=100, administrateur=true}}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getEnchere 
+[2024-03-20] listEncheresConnecte : 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getDetailUsers 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] ViewAllUtilisateurs  
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] ViewAllUtilisateurs  
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] ViewAllUtilisateurs  
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] ViewAllUtilisateurs  
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getUsers 
+[2024-03-20] ViewAllUtilisateurs  
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getDeleteCategorie 
+[2024-03-20] DeleteCategorie : 5
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getDeleteCategorie 
+[2024-03-20] DeleteCategorie : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : postCategorieCreate 
+[2024-03-20] CreateCategorie : ménager
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : postCategorieCreate 
+[2024-03-20] CreateCategorie : bricolage
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getDeleteCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getDeleteCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getDeleteCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 

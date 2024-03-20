@@ -2,11 +2,15 @@ package fr.eni.encheres.configuration;
 
 import javax.sql.DataSource;
 
+import fr.eni.encheres.Tools.CategorieConverter;
+import fr.eni.encheres.Tools.DateTimeConverter;
+import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,8 +32,11 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     private final EnchereService enchereService;
 
-    public WebConfiguration(EnchereService unEnchereService) {
-        this.enchereService = unEnchereService;
+    private final CategorieService categorieService;
+
+    public WebConfiguration(EnchereService enchereService,CategorieService categorieService) {
+        this.enchereService = enchereService;
+        this.categorieService = categorieService;
     }
 
     @Bean
@@ -104,5 +111,21 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
        registry.addInterceptor(localeChangeInterceptor());
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getDateTimeConverter());
+        registry.addConverter(getActeurConverter());
+    }
+
+    @Bean
+    CategorieConverter getActeurConverter() {
+        return new CategorieConverter(categorieService);
+    }
+
+    @Bean
+    DateTimeConverter getDateTimeConverter() {
+        return new DateTimeConverter();
     }
 }

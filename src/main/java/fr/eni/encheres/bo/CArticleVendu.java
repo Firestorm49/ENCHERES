@@ -1,12 +1,14 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class CArticleVendu {
     private int noArticle;
     private String nomArticle;
     private String description;
-    private LocalDate  dateDebutEncheres;
-    private LocalDate dateFinEncheres;
+    private LocalDateTime  dateDebutEncheres;
+    private LocalDateTime dateFinEncheres;
     private int miseAPrix = 0;
     private int prixVente = 0;
     private int etatVente = 0;
@@ -19,7 +21,7 @@ public class CArticleVendu {
     public CArticleVendu() {
 
     }
-    public CArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
+    public CArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int etatVente, CCategorie categorie, String photo,CRetrait retrait,CUtilisateur Vendeur) {
         this.noArticle = noArticle;
         this.nomArticle = nomArticle;
         this.description = description;
@@ -58,19 +60,19 @@ public class CArticleVendu {
         this.description = description;
     }
 
-    public LocalDate getDateDebutEncheres() {
+    public LocalDateTime getDateDebutEncheres() {
         return dateDebutEncheres;
     }
 
-    public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+    public void setDateDebutEncheres(LocalDateTime dateDebutEncheres) {
         this.dateDebutEncheres = dateDebutEncheres;
     }
 
-    public LocalDate getDateFinEncheres() {
+    public LocalDateTime getDateFinEncheres() {
         return dateFinEncheres;
     }
 
-    public void setDateFinEncheres(LocalDate dateFinEncheres) {
+    public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
         this.dateFinEncheres = dateFinEncheres;
     }
 
