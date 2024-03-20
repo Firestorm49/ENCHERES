@@ -48,7 +48,7 @@ public class EnchereDAOImpl implements EnchereDAO {
                 "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN\n" +
                 "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article\n" +
                 "WHERE (ARTICLES_VENDUS.no_article = ?)";
-        return (CArticleVendu) Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{id}, new ArticleVenduRowMapper()));
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new ArticleVenduRowMapper());
     }
 
     @Override

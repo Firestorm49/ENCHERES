@@ -170,3 +170,36 @@
 [2024-03-20] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T15:34', dateFinEncheres='2024-03-31T15:34', miseAPrix=10, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
 [2024-03-20] ListCategorie 
 [2024-03-20] Controlleur : getCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 5
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 8
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 1
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 0
+[2024-03-20] ListCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] SearchCategorie : 9
+[2024-03-20] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='television', description='4k mes couilles', dateDebutEncheres='2024-03-04T15:56', dateFinEncheres='2024-03-31T15:56', miseAPrix=2, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getCategorie 
+[2024-03-20] ListCategorie 
+[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-20] Controlleur : getCreateEncheres 
+[2024-03-20] ListCategorie 
+[2024-03-20] Controlleur : getModifyEncheres 
+[2024-03-20] viewArticle : 1
