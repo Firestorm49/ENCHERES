@@ -20,13 +20,13 @@
             <tr data-th-unless="${CategorieId != null}" data-th-each="item : ${CategorieSession}">
                 <td data-th-text="${item.getLibelle()}"></td>
                 <td>
-                    <a data-th-href="@{/Category/Modify(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}">
+                    <a data-th-href="@{/category/modify(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Modifier</a>
-                    <a data-th-href="@{/Category/Delete(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" >
+                    <a data-th-href="@{/category/delete(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" >
                         <span></span>
                         <span></span>
                         <span></span>
@@ -37,7 +37,7 @@
             </tbody>
         </table>
         <BR>
-        <form action="/Category/Create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" class="form-genre">
+        <form action="/category/create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" class="form-genre">
             <h2>Ajouter une nouvelle catégorie :</h2>
             <ul class="flex-outer">
                 <li>
@@ -55,7 +55,7 @@
                 <span></span>
                 Créer</button>
         </form>
-        <form data-th-object="${CategorieId}" action="/Category/Modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"  class="form-genre">
+        <form data-th-object="${CategorieId}" action="/category/modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"  class="form-genre">
             <h2>Modifier une catégorie :</h2>
             <ul class="flex-outer">
                 <li>

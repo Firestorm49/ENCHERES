@@ -54,4 +54,24 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public CUtilisateur getUtilisateurByEmail(String mail) {
         return utilisateursDAO.getUtilisateurByEmail(mail);
     }
+
+    @Override
+    public CUtilisateur viewAcheteurByArticleID(int id) {
+        return utilisateursDAO.viewAcheteurByArticleID(id);
+    }
+
+    @Override
+    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
+        utilisateursDAO.ModifyRoleUtilisateur(id,isAdministrateur);
+    }
+
+    @Override
+    public List<CUtilisateur> ViewAllUtilisateurs() {
+        return utilisateursDAO.ViewAllUtilisateurs();
+    }
+
+    @Override
+    public void ActiveProfil(CUtilisateur utilisateur) {
+        utilisateursDAO.ActiveProfil(utilisateur);
+    }
 }

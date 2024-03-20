@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
@@ -45,7 +45,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     public List<CUtilisateur> ViewAllUtilisateurs() {
         Logger.log("Trace_ENI.log","ViewAllUtilisateurs  ");
         String sql = "SELECT * FROM UTILISATEURS";
-        return Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{}, new UtilisateurRowMapper()));
+        return jdbcTemplate.query(sql, new UtilisateurListRowMapper());
     }
     @Override
     public void ModifyProfil(CUtilisateur utilisateur) {
@@ -102,10 +102,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         return jdbcTemplate.queryForObject(sql, new Object[]{mail},  new UtilisateurRowMapper() );
     }
 
-    public class UtilisateurRowMapper implements RowMapper<CUtilisateur> {
+    public class UtilisateurRowMapper implements RowMapper<CUtilisateur>
+    {
 
         @Override
-        public CUtilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public CUtilisateur mapRow(ResultSet rs, int rowNum) throws SQLException
+        {
             CUtilisateur a = new CUtilisateur();
 
             a.setNoUtilisateur(rs.getInt("no_utilisateur"));
@@ -122,6 +124,28 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             a.setActive(rs.getBoolean("active"));
 
             return a;
+        }
+    }
+
+    public class UtilisateurListRowMapper implements RowMapper<CUtilisateur> {
+        @Override
+        public CUtilisateur mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CUtilisateur utilisateur = new CUtilisateur();
+
+            utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+            utilisateur.setNom(rs.getString("nom"));
+            utilisateur.setPrenom(rs.getString("prenom"));
+            utilisateur.setPseudo(rs.getString("pseudo"));
+            utilisateur.setEmail(rs.getString("email"));
+            utilisateur.setTelephone(rs.getString("telephone"));
+            utilisateur.setCodePostal(rs.getInt("code_postal"));
+            utilisateur.setRue(rs.getString("rue"));
+            utilisateur.setVille(rs.getString("ville"));
+            utilisateur.setCredit(rs.getInt("credit"));
+            utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+            utilisateur.setActive(rs.getBoolean("active"));
+
+            return utilisateur;
         }
     }
 }

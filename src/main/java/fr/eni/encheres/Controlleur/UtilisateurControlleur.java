@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/users")
 public class UtilisateurControlleur {
@@ -46,8 +48,10 @@ public class UtilisateurControlleur {
 
 
     @GetMapping
-    public String getUsers() {
+    public String getUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getUsers ");
+        List<CUtilisateur> users = utilisateurService.ViewAllUtilisateurs();
+        model.addAttribute("users",users);
         return "view_user_list";
     }
 
@@ -137,11 +141,11 @@ public class UtilisateurControlleur {
         return "view_user_detail";
     }
 
-
     @GetMapping("/delete")
-    public String getDeleteUsers() {
+    public String getDeleteUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteUsers ");
-        return "view-user";
+        utilisateurService.DeleteProfil(id);
+        return "view_user_list";
     }
     @GetMapping("/deactivation")
     public String getDesactivationUsers() {
@@ -153,19 +157,28 @@ public class UtilisateurControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
         return "view-user";
     }
+    @GetMapping("/administrateur")
+    public String getAdministrateurUsers(Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getAdministrateurUsers ");
+        if(UtilisateurConnecte != null){
+            model.addAttribute("user", UtilisateurConnecte);
+        }
+        return "view_user_detail";
+    }
+
     @PostMapping("/delete")
     public String postUsersDelete() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersDelete ");
-        return "redirect:/bid";
+        return "redirect:/";
     }
     @PostMapping("/deactivation")
-    public String postUsersDesactivation() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersDesactivation ");
-        return "redirect:/bid";
+    public String postUsersdeactivation() {
+        Logger.log("Trace_ENI.log","Controlleur : postUsersdeactivation ");
+        return "redirect:/";
     }
     @PostMapping("/activation")
     public String postUsersActivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersActivation ");
-        return "redirect:/bid";
+        return "redirect:/";
     }
 }
