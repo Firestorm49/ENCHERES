@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{fragments/layouts/layout :: layout(
+	  				title=~{:: title},
+	  				contenuPage=~{:: .center-main},					  	 
+					ressources=~{:: #ressources-css})}">
+
+<head>
+<title th:text="#{film-detail.title} + ${film.titre}"></title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" th:href="@{/css/general.css}">
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+</th:block>
+</head>
+<body>
+	<main class="center-main">
+		<form th:replace="~{fragments/layouts/films/layout-afficher-film :: film-detail(#{film-detail.title} + ${film.titre}, ~{})}"></form>
+	</main>
+</body>
+</html>
