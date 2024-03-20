@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  th:replace="~{fragments/layouts/layout :: layout(
+	  				title=~{:: title},
+					contenuPage=~{:: main},
+					ressources=~{:: #ressources-css})}">
+<head>
+<title th:text="#{afficher-encheres.title}"></title>
+<th:block id="ressources-css">
+	<link rel="stylesheet" th:href="@{/css/general.css}">
+	<link rel="stylesheet" th:href="@{/css/table.css}">
+</th:block>
+</head>
+<body>
+	<h1>Liste des enchères</h1>
+	<main>
+		<form>		
+			<br><br>
+			<label>Filtres : </label>
+			<input type="text" placeholder="Rechercher"></input>
+			&nbsp;
+			<button type="submit">Rechercher</button>
+			<br><br>
+			<label>Catégorie :</label>
+			<select>
+			<option>Informatique</option>
+			<option>Ameublement</option>
+			<option>Vêtements</option>
+			<option>Sport & Loisirs</option>
+			</select>
+			<br><br>
+			<div style="display: flex;">
+			<section class="pcGamer" style="display: flex;">
+				<img th:src="@{/img/encheres.png}" id="logoEncheres">
+				<p>PC Gamer</p></section>
+			<section style="display: flex;">
+				<img th:src="@{/img/encheres.png}" id="logoEncheres">
+				<p>Cuisine</p></section>			
+			</div>
+		</form>
+		<form
+			th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('Afficher les enchères', '/encheres')}"></form>					
+	</main>
+	<br>
+</body>
+</html>
