@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/Vente")
+@RequestMapping("/sale")
 @SessionAttributes({ "membreEnSession" })
 public class VenteControlleur {
 
@@ -42,63 +42,63 @@ public class VenteControlleur {
         return UtilisateurConnecte;
     }
 
-    @GetMapping("/Create")
+    @GetMapping("/create")
     public String getCreateArticleVendu(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateEncheres ");
         CArticleVendu ArticleVendu= new CArticleVendu();
         model.addAttribute("ArticleVendu",ArticleVendu);
-        return "view-Vente";
+        return "view_sale";
     }
-    @GetMapping("/Modify")
+    @GetMapping("/modify")
     public String getModifyArticleVendu(@RequestParam(name = "id", required = true) int id, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyEncheres ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         model.addAttribute("ArticleVendu",ArticleVendu);
-        return "view-Vente";
+        return "view_sale";
     }
-    @GetMapping("/Annule")
+    @GetMapping("/cancel")
     public String getAnnuleArticleVendu(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getAnnuleArticleVendu ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         model.addAttribute("ArticleVendu",ArticleVendu);
-        return "view-Vente";
+        return "view_sale";
     }
 
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public String postArticleVenduCreate(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                      BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postArticleVenduCreate ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
+            return "bid";
         } else {
             enchereService.vendreArticle(ArticleVendu);
-            return "redirect:/Enchere";
+            return "redirect:/bid";
         }
     }
 
-    @PostMapping("/Modify")
+    @PostMapping("/modify")
     public String postArticleVenduModify(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                      BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresModify ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
+            return "bid";
         } else {
             enchereService.modifierVente(ArticleVendu);
-            return "redirect:/Enchere";
+            return "redirect:/bid";
         }
     }
-    @PostMapping("/Annule")
+    @PostMapping("/cancel")
     public String postArticleVenduDelete(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                      BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresDelete ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
+            return "bid";
         } else {
             enchereService.annulerVente(ArticleVendu);
-            return "redirect:/Enchere";
+            return "redirect:/bid";
         }
     }
 }

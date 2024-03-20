@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/Category")
+@RequestMapping("/category")
 public class CategorieControlleur {
     private final CategorieService categorieService;
 
@@ -36,21 +36,21 @@ public class CategorieControlleur {
     return "view_categorie";
 
     }
-    @GetMapping("/Delete")
+    @GetMapping("/delete")
     public String getDeleteCategorie(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteCategorie ");
         categorieService.DeleteCategorie(id);
-        return "redirect:/Category";
+        return "redirect:/category";
     }
-    @GetMapping("/Create")
+    @GetMapping("/create")
     public String getCreateCategorie(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateCategorie ");
         CCategorie categorie = new CCategorie();
         model.addAttribute("CategorieId", categorie);
         model.addAttribute("isNotModify",true);
-        return "redirect:/Category";
+        return "redirect:/category";
     }
-    @GetMapping("/Modify")
+    @GetMapping("/modify")
     public String getModifyCategorie(@RequestParam(name = "id", required = true) int id, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyCategorie ");
         CCategorie Categorie = categorieService.SearchCategorie(id);
@@ -58,7 +58,7 @@ public class CategorieControlleur {
         model.addAttribute("isNotModify",false);
         return "view_categorie";
     }
-    @PostMapping("/Modify")
+    @PostMapping("/modify")
     public String postModifyCategorie(@RequestParam(name = "id", required = true) int id,
                                       @RequestParam(name = "libelle", required = true) String libelle) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyCategorie ");
@@ -66,18 +66,18 @@ public class CategorieControlleur {
         categorie.setNoCategorie(id);
         categorie.setLibelle(libelle);
             categorieService.ModifyCategorie(categorie);
-            return "redirect:/Category";
+            return "redirect:/category";
     }
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public String postCategorieCreate(@RequestParam(name = "libelle", required = true) String Categorie) {
         Logger.log("Trace_ENI.log","Controlleur : postCategorieCreate ");
         CCategorie categorie = new CCategorie();
         categorie.setLibelle(Categorie);
             categorieService.CreateCategorie(categorie);
-            return "redirect:/Category";
+            return "redirect:/category";
     }
 
-    @PostMapping("/Delete")
+    @PostMapping("/delete")
     public String postCategorieDelete(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
                                       BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postCategorieDelete ");
@@ -86,7 +86,7 @@ public class CategorieControlleur {
             return "view_categorie";
         } else {
             categorieService.DeleteCategorie(Categorie.getNoCategorie());
-            return "redirect:/Category";
+            return "redirect:/category";
         }
     }
 }

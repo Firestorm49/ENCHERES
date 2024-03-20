@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/Encheres")
+@RequestMapping("/bid")
 @SessionAttributes({ "membreEnSession" })
 public class EnchereControlleur {
     private final EnchereService enchereService;
@@ -56,7 +56,7 @@ public class EnchereControlleur {
             encheres = enchereService.listerEncheresDeconnecte();
         }
         model.addAttribute("encheres",encheres);
-        return "view-Enchere";
+        return "view_bid";
     }
 
     @GetMapping("/detail")
@@ -65,27 +65,27 @@ public class EnchereControlleur {
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("Enchere",Enchere);
 
-        return "view-Enchere";
+        return "view_bid";
     }
 
-    @GetMapping("/Propose")
+    @GetMapping("/purpose")
     public String getProposeEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("Enchere",Enchere);
-        return "view-Enchere";
+        return "view_bid";
     }
 
-    @PostMapping("/Propose")
+    @PostMapping("/purpose")
     public String postEncheresPropose(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
                                  BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
+            return "view_bid";
         } else {
             enchereService.faireEnchere(Enchere);
-            return "redirect:/Enchere";
+            return "redirect:/bid";
         }
     }
 }

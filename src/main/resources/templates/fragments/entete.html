@@ -7,10 +7,10 @@
 		<nav>
 			<ul>
 				<li><a href="/Encheres">Enchères</a></li>
-				<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/Vente/Create">Vendre un article</a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/Users/Details">Mon Profil</a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/Category">Catégorie</a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/Users">Liste Users</a></li>
+				<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/sale/create">Vendre un article</a></li>
+				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/users/detail">Mon Profil</a></li>
+				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/category">Catégorie</a></li>
+				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/users">Liste Users</a></li>
 			<li  data-th-if="${not #authorization.expression('isAuthenticated()')}"><a href="/login">Se Connecter</a></li>
 			<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/logout">Se Déconnecter</a></li>
 			</ul>

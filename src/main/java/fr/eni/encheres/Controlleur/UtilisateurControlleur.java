@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/Users")
+@RequestMapping("/users")
 public class UtilisateurControlleur {
 
     private final UtilisateurService utilisateurService;
@@ -51,7 +51,7 @@ public class UtilisateurControlleur {
         return "view_user_list";
     }
 
-    @GetMapping("/Create")
+    @GetMapping("/create")
     public String getCreateUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateUsers ");
         model.addAttribute("postValue", "/Users/Create");
@@ -59,17 +59,17 @@ public class UtilisateurControlleur {
         return "view_user_edit";
     }
 
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public String postCreateUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
         Logger.log("Trace_ENI.log","Controlleur : postCreateUsers ");
         if (result.hasErrors()) {
             return "view_user_edit";
         }
         utilisateurService.Inscription(user);
-        return "redirect:/Enchere";
+        return "redirect:/bid";
     }
 
-    @GetMapping("/Modify")
+    @GetMapping("/modify")
     public String getModifyUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
         if(UtilisateurConnecte != null){
@@ -77,11 +77,11 @@ public class UtilisateurControlleur {
             model.addAttribute("user", UtilisateurConnecte);
             return "view_user_edit";
         }else{
-            return "redirect:/Create";
+            return "redirect:/create";
         }
     }
 
-    @PostMapping("/Modify")
+    @PostMapping("/modify")
     public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyUsers ");
 
@@ -128,7 +128,7 @@ public class UtilisateurControlleur {
     }
 
 
-    @GetMapping("/Detail")
+    @GetMapping("/detail")
     public String getDetailUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getDetailUsers ");
         if(UtilisateurConnecte != null){
@@ -138,34 +138,34 @@ public class UtilisateurControlleur {
     }
 
 
-    @GetMapping("/Delete")
+    @GetMapping("/delete")
     public String getDeleteUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteUsers ");
         return "view-user";
     }
-    @GetMapping("/Desactivation")
+    @GetMapping("/deactivation")
     public String getDesactivationUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
         return "view-user";
     }
-    @GetMapping("/Activation")
+    @GetMapping("/activation")
     public String getActivationUsers() {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
         return "view-user";
     }
-    @PostMapping("/Delete")
+    @PostMapping("/delete")
     public String postUsersDelete() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersDelete ");
-        return "redirect:/Enchere";
+        return "redirect:/bid";
     }
-    @PostMapping("/Desactivation")
+    @PostMapping("/deactivation")
     public String postUsersDesactivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersDesactivation ");
-        return "redirect:/Enchere";
+        return "redirect:/bid";
     }
-    @PostMapping("/Activation")
+    @PostMapping("/activation")
     public String postUsersActivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersActivation ");
-        return "redirect:/Enchere";
+        return "redirect:/bid";
     }
 }
