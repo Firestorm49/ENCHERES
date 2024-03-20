@@ -54,7 +54,7 @@ public class UtilisateurControlleur {
     @GetMapping("/create")
     public String getCreateUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateUsers ");
-        model.addAttribute("postValue", "/Users/Create");
+        model.addAttribute("postValue", "/users/create");
         model.addAttribute("user", new CUtilisateur());
         return "view_user_edit";
     }
@@ -73,7 +73,7 @@ public class UtilisateurControlleur {
     public String getModifyUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
         if(UtilisateurConnecte != null){
-            model.addAttribute("postValue", "/Users/Modify");
+            model.addAttribute("postValue", "/users/modify");
             model.addAttribute("user", UtilisateurConnecte);
             return "view_user_edit";
         }else{
