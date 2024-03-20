@@ -33,6 +33,9 @@ public class EnchereControlleur {
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                 UtilisateurConnecte.setAdministrateur(true);
             }
+            else if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                UtilisateurConnecte.setAdministrateur(true);
+            }
             else {
                 UtilisateurConnecte.setAdministrateur(false);
             }

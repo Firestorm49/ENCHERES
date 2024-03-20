@@ -2,7 +2,6 @@ package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.bll.CategorieService;
-import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bo.CCategorie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +33,7 @@ public class CategorieControlleur {
     public String getCategorie(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCategorie ");
         model.addAttribute("isNotModify",true);
-    return "Categorie";
+    return "view_categorie";
 
     }
     @GetMapping("/Delete")
@@ -57,7 +56,7 @@ public class CategorieControlleur {
         CCategorie Categorie = categorieService.SearchCategorie(id);
         model.addAttribute("CategorieId", Categorie);
         model.addAttribute("isNotModify",false);
-        return "/Categorie";
+        return "view_categorie";
     }
     @PostMapping("/Modify")
     public String postModifyCategorie(@RequestParam(name = "id", required = true) int id,
@@ -84,7 +83,7 @@ public class CategorieControlleur {
         Logger.log("Trace_ENI.log","Controlleur : postCategorieDelete ");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "Categorie";
+            return "view_categorie";
         } else {
             categorieService.DeleteCategorie(Categorie.getNoCategorie());
             return "redirect:/Category";

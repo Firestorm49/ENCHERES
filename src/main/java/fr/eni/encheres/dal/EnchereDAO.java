@@ -13,6 +13,10 @@ public interface EnchereDAO {
     List<CEnchere> listEncheresConnecte();
     void ProposeEnchere(CEnchere enchere);
 
+    int IsMaxOffre(CEnchere enchere);
+
+    int IsUserMaxOffre(CEnchere enchere, int maxOffre);
+
     boolean IsPositifCredit(CEnchere enchere);
 
     boolean IsPositifOffre(CEnchere enchere);

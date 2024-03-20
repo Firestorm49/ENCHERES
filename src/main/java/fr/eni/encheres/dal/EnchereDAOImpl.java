@@ -55,11 +55,29 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public void ProposeEnchere(CEnchere enchere) {
         Logger.log("Trace_ENI.log","ProposeEnchere : " + enchere);
+
+        String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + ?)  WHERE no_utilisateur=?";
+        jdbcTemplate.update(updatePrevCreditsQuery, IsMaxOffre(enchere), IsUserMaxOffre(enchere,IsMaxOffre(enchere)));
+
             String updateProposeQuery = "INSERT INTO ENCHERES (no_utilisateur,no_article, montant_enchere,date_enchere) VALUES (?,?,?,?)";
             jdbcTemplate.update(updateProposeQuery, enchere.getUtilisateur().getNoUtilisateur(), enchere.getArticle().getNoArticle(), enchere.getMontant_enchere(), enchere.getDateEnchere());
 
             String updateCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit - ?)  WHERE no_utilisateur=?";
             jdbcTemplate.update(updateCreditsQuery, enchere.getMontant_enchere(), enchere.getUtilisateur().getNoUtilisateur());
+    }
+    @Override
+    public int IsMaxOffre(CEnchere enchere) {
+        Logger.log("Trace_ENI.log","IsPositifOffre : " + enchere);
+        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        return maxOffre;
+    }
+    @Override
+    public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
+        Logger.log("Trace_ENI.log","IsPositifOffre : " + enchere);
+        String sql = "SELECT noUtilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+        Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        return UserOffre;
     }
     @Override
     public boolean IsPositifCredit(CEnchere enchere) {
