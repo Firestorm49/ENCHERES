@@ -6,7 +6,7 @@
 <main class="center-main">
     <div class="center-avis">
 <h1>Nouvelle Vente</h1>
-
+        <a data-th-href="@{/sale/modify(id=12)}" data-th-if="${#authorization.expression('isAuthenticated()')}">
 <!-- Image -->
 <img src="votre_image.jpg" alt="Votre Image">
         <!-- Trois boutons -->
@@ -14,7 +14,7 @@
             <label >Photo de l'article </label>
             <input type="file">Uploader</input>
         </form>
-<form method="post" action="/sale/create" data-th-object="${ArticleVendu}">
+<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}">
 <!-- Deux Inputs -->
 <input type="hidden" id="id" name="id" data-th-value="*{noArticle}">
 <label for="NomArticle">Article :</label>

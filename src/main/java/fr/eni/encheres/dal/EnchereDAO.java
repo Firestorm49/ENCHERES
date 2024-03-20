@@ -21,9 +21,12 @@ public interface EnchereDAO {
 
     boolean IsPositifOffre(CEnchere enchere);
 
-    CEnchere remporterVente(CArticleVendu vente);
+    void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
+
+    int IsVenteFinish(int id);
+
     void annulerVente(CArticleVendu vente);
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);

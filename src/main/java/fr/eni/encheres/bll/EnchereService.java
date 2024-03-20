@@ -8,7 +8,7 @@ public interface EnchereService {
     List<CEnchere> listerEncheresDeconnecte();
     List<CEnchere> listerEncheresConnecte();
     void faireEnchere(CEnchere enchere);
-    CEnchere remporterVente(CArticleVendu vente);
+    void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
     void annulerVente(CArticleVendu vente);

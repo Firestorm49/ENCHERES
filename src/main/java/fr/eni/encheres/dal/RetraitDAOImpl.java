@@ -35,7 +35,7 @@ public class RetraitDAOImpl implements RetraitDAO {
     @Override
     public CRetrait SearchRetrait(int id) {
         Logger.log("Trace_ENI.log","SearchRetrait : "+ id);
-        String sql = "SELECT rue, code_postal,ville FROM RETRAITS WHERE no_retrait=?";
+        String sql = "SELECT no_retrait, rue, code_postal, ville FROM RETRAITS WHERE no_retrait = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) ->
                 new CRetrait(rs.getInt("no_retrait"), rs.getString("rue"),rs.getInt("code_postal"),rs.getString("ville")));
     }
@@ -44,7 +44,7 @@ public class RetraitDAOImpl implements RetraitDAO {
     public CRetrait SearchRetraitByArticleID(int id) {
         Logger.log("Trace_ENI.log","SearchRetraitByArticleID : "+ id);
         String sql = "SELECT  RETRAITS.* FROM RETRAITS INNER JOIN\n" +
-                " ARTICLES_VENDUS ON RETRAITS.no_article = ARTICLES_VENDUS.no_article WHERE no_article=?";
+                " ARTICLES_VENDUS ON RETRAITS.no_article = ARTICLES_VENDUS.no_article WHERE RETRAITS.no_article = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) ->
                 new CRetrait(rs.getInt("no_retrait"), rs.getString("rue"),rs.getInt("code_postal"),rs.getString("ville")));
 
