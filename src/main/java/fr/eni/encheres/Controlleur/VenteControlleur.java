@@ -73,7 +73,7 @@ public class VenteControlleur {
         return "view_sale";
     }
     @GetMapping("/cancel")
-    public String getAnnuleArticleVendu(@RequestParam(name = "id", required = true) int id,Model model) {
+    public String getAnnuleArticleVendu(@RequestParam(name = "idAnnule", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getAnnuleArticleVendu ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         model.addAttribute("ArticleVendu",ArticleVendu);
@@ -113,15 +113,25 @@ public class VenteControlleur {
         }
     }
     @PostMapping("/cancel")
-    public String postArticleVenduDelete(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
-                                     BindingResult bindingResult) {
+    public String postArticleVenduDelete( @ModelAttribute("idAnnule") int id) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresDelete ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "view_bid_list";
-        } else {
-            enchereService.annulerVente(ArticleVendu);
+            enchereService.annulerVente(id);
             return "redirect:/bid";
-        }
+    }
+
+    @GetMapping("/upload")
+    public String getuploadArticleVendu(@RequestParam(name = "idPhoto", required = true) int id,
+                                        @RequestParam(name = "upload", required = true) String upload,Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getuploadArticleVendu ");
+        return "redirect:/bid";
+    }
+
+    @PostMapping("/upload")
+    public String postuploadArticleVendu( @ModelAttribute("idPhoto") int id, @ModelAttribute("upload") String upload) {
+        Logger.log("Trace_ENI.log","Controlleur : postuploadArticleVendu " +upload );
+        CArticleVendu articleVendu = enchereService.AfficherArticleById(id);
+        articleVendu.setPhoto(upload);
+         enchereService.ajouterPhotoVente(articleVendu);
+            return "redirect:/bid";
     }
 }

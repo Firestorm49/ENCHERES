@@ -9,10 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 @Repository
 public class EnchereDAOImpl implements EnchereDAO {
@@ -101,8 +97,16 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
         Logger.log("Trace_ENI.log","IsUserMaxOffre : " + enchere);
-        String sql = "SELECT noUtilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+        String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
         Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        return UserOffre;
+    }
+
+    @Override
+    public int WinnerOffre(int id) {
+        Logger.log("Trace_ENI.log","IsUserMaxOffre : " + id);
+        String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article = ? AND montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES  WHERE no_article = ?)";
+        Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{id,id}, Integer.class);
         return UserOffre;
     }
     @Override
@@ -141,10 +145,10 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public CEnchere afficherDetailEnchere(int enchereId) {
         Logger.log("Trace_ENI.log","afficherDetailEnchere : " + enchereId);
-        String sql = "SELECT  UTILISATEURS.* FROM ENCHERES INNER JOIN\n" +
+        String sql = "SELECT  ENCHERES.* FROM ENCHERES INNER JOIN\n" +
                 "ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article INNER JOIN\n" +
                 "UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE no_encheres=?";
-        return (CEnchere) Collections.singletonList(jdbcTemplate.queryForObject(sql, new Object[]{enchereId}, CUtilisateur.class));
+        return jdbcTemplate.queryForObject(sql, new Object[]{enchereId}, new EnchereRowMapper());
     }
 
     @Override
@@ -162,17 +166,17 @@ public class EnchereDAOImpl implements EnchereDAO {
         return VenteFinish;
     }
     @Override
-    public void annulerVente(CArticleVendu vente) {
-        Logger.log("Trace_ENI.log","annulerVente : " + vente);
+    public void annulerVente(int id) {
+        Logger.log("Trace_ENI.log","annulerVente : " + id);
         /* Pour l'identifiant de type d'etat d'une vente, se referencer au fichier README*/
-        String insertArticleQuery = "UPDATE ( etat_article= ?)  SET ARTICLES_VENDUS WHERE no_article=?";
-        jdbcTemplate.update(insertArticleQuery, vente.getEtatVente(), vente.getNoArticle());
+        String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 2  WHERE no_article=?";
+        jdbcTemplate.update(insertArticleQuery, id);
     }
 
     @Override
     public void ajouterPhotoVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","ajouterPhotoVente : " + vente);
-        String insertArticleQuery = "UPDATE ( photo_url= ?)  SET ARTICLES_VENDUS WHERE no_article=?";
+        String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET photo_url= ? WHERE no_article=?";
         jdbcTemplate.update(insertArticleQuery, vente.getPhoto(), vente.getNoArticle());
 
     }
@@ -216,7 +220,7 @@ public class EnchereDAOImpl implements EnchereDAO {
             CUtilisateur utilisateur = utilisateurDAO.ViewProfil(rs.getInt("no_utilisateur"));
             CArticleVendu article = viewArticle(rs.getInt("no_article"));
             a.setNoEnchere(rs.getInt("no_encheres"));
-            a.setDateEnchere(LocalDate.parse(rs.getString("date_enchere")));
+            a.setDateEnchere((rs.getTimestamp("date_enchere")).toLocalDateTime());
             a.setMontant_enchere(rs.getInt("montant_enchere"));
             a.setUtilisateur(utilisateur);
             a.setArticle(article);

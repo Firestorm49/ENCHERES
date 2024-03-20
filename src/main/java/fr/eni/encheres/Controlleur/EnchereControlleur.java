@@ -4,6 +4,7 @@ import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
+import fr.eni.encheres.bo.CArticleVendu;
 import fr.eni.encheres.bo.CCategorie;
 import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -73,8 +75,20 @@ public class EnchereControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getDetailEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("enchere",Enchere);
-
-        return "view_bid_list";
+        CArticleVendu ArticleVendu=enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
+        model.addAttribute("Vente",ArticleVendu);
+        CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(ArticleVendu.getNoArticle()));
+        if(enchereService.IsVenteFinish(ArticleVendu.getNoArticle()) == 2) {
+            if (winner == UtilisateurConnecte) {
+                model.addAttribute("Msg_FinVente", "Vous avez remporté la vente");
+            } else {
+                model.addAttribute("Msg_FinVente", winner.getPseudo() + " a remporté l'enchere");
+            }
+        }
+        else{
+            model.addAttribute("Msg_FinVente", "Enchere toujours en cours");
+        }
+        return "view_bid_detail";
     }
 
     @GetMapping("/purpose")
@@ -82,19 +96,27 @@ public class EnchereControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
         CEnchere Enchere=enchereService.afficherDetailEnchere(id);
         model.addAttribute("enchere",Enchere);
-        return "view_bid_list";
+        CArticleVendu ArticleVendu=enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
+        model.addAttribute("Vente",ArticleVendu);
+        int MOffre=enchereService.IsMaxOffre(Enchere);
+        model.addAttribute("MOffre",MOffre);
+        CUtilisateur utilisateur=utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere,MOffre));
+        model.addAttribute("MOffreUser",utilisateur.getPseudo());
+
+        return "view_bid_add";
     }
 
     @PostMapping("/purpose")
-    public String postEncheresPropose(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
-                                 BindingResult bindingResult) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "view_bid_list";
-        } else {
-            enchereService.faireEnchere(Enchere);
+    public String postEncheresPropose(@ModelAttribute("id") int id,
+                                      @ModelAttribute("Proposition") int Enchere) {
+        Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose " +id +  Enchere);
+            CEnchere enchere = new CEnchere();
+            CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
+            enchere.setMontant_enchere(Enchere);
+            enchere.setArticle(ArticleVendu);
+            enchere.setUtilisateur(UtilisateurConnecte);
+            enchere.setDateEnchere(LocalDateTime.now());
+            enchereService.faireEnchere(enchere);
             return "redirect:/bid";
-        }
     }
 }

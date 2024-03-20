@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  th:replace="~{fragments/layouts/layout :: layout(
-				 	title=~{:: title}, 
-				 	contenuPage=~{:: .center-main}, 
+				 	title=~{:: title},
+				 	contenuPage=~{:: .center-main},
 				 	ressources=~{:: #ressources-css})}">
-
 <head>
-<title th:text="#{ajouter-film.title}"></title>
-<th:block id="ressources-css">
-	<link rel="stylesheet" th:href="@{/css/general.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
-</th:block>
-</head>
+	<meta charset="UTF-8">
+	<title th:text="user"></title>
+	<th:block id="ressources-css">
+		<link rel="stylesheet" th:href="@{/css/general.css}">
+		<link rel="stylesheet" th:href="@{/css/form.css}">
+		<link rel="stylesheet" th:href="@{/css/user.css}">
+	</th:block>
+	</head>
 <body>
-	<main class="center-main">
-		<form
-			th:replace="~{fragments/layouts/films/layout-ajouter-film :: ajouter-film('Ajouter un film', '/films/ajouter')}"></form>
-	</main>
+<main class="center-main">
+	<div class="center-avis">
+		<h1> Detail vente </h1>
+		<img src="votre_image.jpg" alt="Votre Image">
+		<div class="informations">
+			<div class="top">
+				<div class="line">
+					<span th:text="${Vente.getNomArticle()}"></span>
+				</div>
+				<div class="line">
+					Description : <span th:text="${Vente.getDescription()}"></span>
+				</div>
+				<div class="line">
+					Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
+				</div>
+				<div class="line">
+					Meilleur offre : <span th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+				</div>
+				<div class="line">
+					Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
+				</div>
+				<div class="line">
+					Fin de l'enchère : <span th:text="${Vente.getDateFinEncheres()}"></span>
+				</div>
+				<div class="line">
+					Retrait : <span th:text="${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
+				</div>
+				<div class="line">
+					Vendeur : <span th:text="${Vente.getVendeur().getPseudo()}"></span>
+				</div>
+			</div>
+			<form action="/bid/purpose" method="post" data-th-if="${#authorization.expression('isAuthenticated()')}" class="form-genre">
+				<ul class="flex-outer">
+					<input type="hidden" th:value="${Vente.getNoArticle()}" name="id">
+					<li>
+						<label for="inputTitre1">Ma Proposition :
+						</label>
+						<input type="number"
+							   name="Proposition" id="inputTitre1"/>
+					</li>
+				</ul>
+				<BR>
+				<button type="submit">Enchérir</button>
+			</form>
+		</div>
+	</div>
+</main>
 </body>
 </html>

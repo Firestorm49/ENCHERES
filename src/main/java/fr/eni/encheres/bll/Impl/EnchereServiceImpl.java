@@ -18,7 +18,8 @@ public class EnchereServiceImpl implements EnchereService {
     private EnchereDAO encheresDAO;
 
     private RetraitDAO retraitDAO;
-    public EnchereServiceImpl(EnchereDAO encheresDAO,RetraitDAO retraitDAO) {
+
+    public EnchereServiceImpl(EnchereDAO encheresDAO, RetraitDAO retraitDAO) {
 
         this.encheresDAO = encheresDAO;
         this.retraitDAO = retraitDAO;
@@ -31,7 +32,7 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public List<CEnchere> listerEncheresDeconnecte() {
-        return  encheresDAO.listEncheresDeconnecte();
+        return encheresDAO.listEncheresDeconnecte();
     }
 
     @Override
@@ -41,14 +42,14 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public void faireEnchere(CEnchere enchere) {
-         if(VerifierCreditPositif(enchere) && VerifierOffreSup(enchere)){
-             encheresDAO.ProposeEnchere(enchere);
-         }
+        if (VerifierCreditPositif(enchere) && VerifierOffreSup(enchere)) {
+            encheresDAO.ProposeEnchere(enchere);
+        }
     }
 
     @Override
     public void remporterVente(CArticleVendu vente) {
-         encheresDAO.remporterVente(vente);
+        encheresDAO.remporterVente(vente);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public void annulerVente(CArticleVendu vente) {
+    public void annulerVente(int vente) {
         encheresDAO.annulerVente(vente);
     }
 
@@ -73,7 +74,7 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
-        return encheresDAO.pagination(pageNumber,pageSize);
+        return encheresDAO.pagination(pageNumber, pageSize);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
-        encheresDAO.achatCredits(utilisateur,creditsAmount);
+        encheresDAO.achatCredits(utilisateur, creditsAmount);
     }
 
     @Override
@@ -124,5 +125,35 @@ public class EnchereServiceImpl implements EnchereService {
     @Override
     public CRetrait SearchRetraitByArticleID(int id) {
         return retraitDAO.SearchRetraitByArticleID(id);
+    }
+
+    @Override
+    public int IsMaxOffre(CEnchere enchere) {
+        return encheresDAO.IsMaxOffre(enchere);
+    }
+
+    @Override
+    public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
+        return encheresDAO.IsUserMaxOffre(enchere, maxOffre);
+    }
+
+    @Override
+    public boolean IsPositifCredit(CEnchere enchere) {
+        return encheresDAO.IsPositifCredit(enchere);
+    }
+
+    @Override
+    public boolean IsPositifOffre(CEnchere enchere) {
+        return encheresDAO.IsPositifOffre(enchere);
+    }
+
+    @Override
+    public int IsVenteFinish(int id) {
+        return encheresDAO.IsVenteFinish(id);
+    }
+
+    @Override
+    public int WinnerOffre(int id) {
+        return encheresDAO.WinnerOffre(id);
     }
 }

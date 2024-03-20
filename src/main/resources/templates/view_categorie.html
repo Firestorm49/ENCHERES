@@ -6,6 +6,7 @@
 <main class="center-main">
     <div class="center-avis">
         <h1>Catégories</h1>
+        <a data-th-href="@{/bid/detail(id=1)}" data-th-if="${#authorization.expression('isAuthenticated()')}">test</a>
         <BR>
         <BR>
         <table>

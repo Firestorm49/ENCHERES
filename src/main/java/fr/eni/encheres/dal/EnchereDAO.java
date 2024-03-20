@@ -12,22 +12,18 @@ public interface EnchereDAO {
     List<CEnchere> listEncheresDeconnecte();
     List<CEnchere> listEncheresConnecte();
     void ProposeEnchere(CEnchere enchere);
-
     int IsMaxOffre(CEnchere enchere);
-
     int IsUserMaxOffre(CEnchere enchere, int maxOffre);
 
+    int WinnerOffre(int id);
+
     boolean IsPositifCredit(CEnchere enchere);
-
     boolean IsPositifOffre(CEnchere enchere);
-
     void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
-
     int IsVenteFinish(int id);
-
-    void annulerVente(CArticleVendu vente);
+    void annulerVente(int id);
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);

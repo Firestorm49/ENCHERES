@@ -155,19 +155,19 @@ public class UtilisateurControlleur {
     public String getDeleteUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteUsers ");
         utilisateurService.DeleteProfil(id);
-        return "view_user_list";
+        return "redirect:/users";
     }
     @GetMapping("/deactivation")
     public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
         utilisateurService.DesactiveProfil(utilisateurService.ViewProfil(id));
-        return "view-user";
+        return "redirect:/users";
     }
     @GetMapping("/activation")
     public String getActivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
         utilisateurService.ActiveProfil(utilisateurService.ViewProfil(id));
-        return "view-user";
+        return "redirect:/users";
     }
     @GetMapping("/administrateur")
     public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model) {
@@ -176,22 +176,22 @@ public class UtilisateurControlleur {
         if(UtilisateurConnecte != null){
             model.addAttribute("user", UtilisateurConnecte);
         }
-        return "view_user_detail";
+        return "redirect:/users";
     }
 
     @PostMapping("/delete")
     public String postUsersDelete() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersDelete ");
-        return "redirect:/";
+        return "redirect:/users";
     }
     @PostMapping("/deactivation")
     public String postUsersdeactivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersdeactivation ");
-        return "redirect:/";
+        return "redirect:/users";
     }
     @PostMapping("/activation")
     public String postUsersActivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersActivation ");
-        return "redirect:/";
+        return "redirect:/users";
     }
 }

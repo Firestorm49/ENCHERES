@@ -1,10 +1,10 @@
 package fr.eni.encheres.bo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CEnchere {
     private int noEnchere;
-    private LocalDate dateEnchere;
+    private LocalDateTime dateEnchere;
     private int montant_enchere;
     private CUtilisateur utilisateur;
 
@@ -13,7 +13,7 @@ public class CEnchere {
     public CEnchere() {
 
     }
-    public CEnchere(int noEnchere,LocalDate dateEnchere, int montant_enchere,CUtilisateur utilisateur,CArticleVendu article) {
+    public CEnchere(int noEnchere,LocalDateTime dateEnchere, int montant_enchere,CUtilisateur utilisateur,CArticleVendu article) {
         this.noEnchere = noEnchere;
         this.dateEnchere = dateEnchere;
         this.montant_enchere = montant_enchere;
@@ -29,11 +29,11 @@ public class CEnchere {
         this.noEnchere = noEnchere;
     }
 
-    public LocalDate getDateEnchere() {
+    public LocalDateTime getDateEnchere() {
         return dateEnchere;
     }
 
-    public void setDateEnchere(LocalDate dateEnchere) {
+    public void setDateEnchere(LocalDateTime dateEnchere) {
         this.dateEnchere = dateEnchere;
     }
 

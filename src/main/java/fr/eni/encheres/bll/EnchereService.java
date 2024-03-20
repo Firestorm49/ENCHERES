@@ -11,7 +11,7 @@ public interface EnchereService {
     void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
-    void annulerVente(CArticleVendu vente);
+    void annulerVente(int id);
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
@@ -24,5 +24,12 @@ public interface EnchereService {
     void DeleteRetrait(int id);
     CRetrait SearchRetrait(int id);
     CRetrait SearchRetraitByArticleID(int id);
+    int IsMaxOffre(CEnchere enchere);
+    int IsUserMaxOffre(CEnchere enchere, int maxOffre);
+    boolean IsPositifCredit(CEnchere enchere);
+    boolean IsPositifOffre(CEnchere enchere);
+    int IsVenteFinish(int id);
+
+    int WinnerOffre(int id);
 
 }

@@ -1,1 +1,1 @@
-package fr.eni.tp.filmotheque.bll.Impl;
+package fr.eni.encheres.bll.Impl;

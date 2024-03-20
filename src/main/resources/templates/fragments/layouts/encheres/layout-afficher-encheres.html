@@ -7,11 +7,8 @@
 	<h1 class="h1Title">test</h1>
 	<ul class="flex-outer">
 		<li>
-			<div class="alignement-label">
-				<label for="inputGenre" th:text="#{afficher-encheres.categorie}"></label>
-			</div>
 			<th:block th:if="${!#strings.isEmpty(action)}">
-				<select id="inputCategorie" th:field="*{categorie}">
+				<select id="inputCategorie" th:field="${categorie.libelle}">
 					<option th:each="categorie : ${categoriesEnSession}"
 						th:text="${categorie.libelle}" th:value="${categorie.no_categorie}"></option>
 				</select>

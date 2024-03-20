@@ -30,12 +30,9 @@ import java.util.Locale;
 @EnableWebSecurity
 public class WebConfiguration implements WebMvcConfigurer {
 
-    private final EnchereService enchereService;
-
     private final CategorieService categorieService;
 
-    public WebConfiguration(EnchereService enchereService,CategorieService categorieService) {
-        this.enchereService = enchereService;
+    public WebConfiguration(CategorieService categorieService) {
         this.categorieService = categorieService;
     }
 
@@ -55,6 +52,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/bid/detail").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/bid/Purpose").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/sale/create").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/sale/upload").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/sale/modify").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/sale/cancel").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users").permitAll();
