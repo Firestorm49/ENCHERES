@@ -47,8 +47,8 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public CEnchere remporterVente(CArticleVendu vente) {
-        return encheresDAO.remporterVente(vente);
+    public void remporterVente(CArticleVendu vente) {
+         encheresDAO.remporterVente(vente);
     }
 
     @Override

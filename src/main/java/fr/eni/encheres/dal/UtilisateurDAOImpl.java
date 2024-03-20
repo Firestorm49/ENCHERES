@@ -30,8 +30,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","viewAcheteurByArticleID : " + id);
         String sql = "SELECT  UTILISATEURS.* FROM ENCHERES INNER JOIN\n" +
                 "ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article INNER JOIN\n" +
-                "UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE no_article = ? AND prix_vente = montant_enchere";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new UtilisateurRowMapper());
+                "UTILISATEURS ON ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ENCHERES.no_article = ? AND prix_vente = montant_enchere";
+        CUtilisateur users = null;
+        users = jdbcTemplate.queryForObject(sql, new Object[]{id}, new UtilisateurRowMapper());
+        return users;
     }
 
     @Override
