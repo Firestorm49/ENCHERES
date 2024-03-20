@@ -3,8 +3,10 @@ package fr.eni.encheres.bll.Impl;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bo.CArticleVendu;
 import fr.eni.encheres.bo.CEnchere;
+import fr.eni.encheres.bo.CRetrait;
 import fr.eni.encheres.bo.CUtilisateur;
 import fr.eni.encheres.dal.EnchereDAO;
+import fr.eni.encheres.dal.RetraitDAO;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class EnchereServiceImpl implements EnchereService {
     private EnchereDAO encheresDAO;
 
+    private RetraitDAO retraitDAO;
+    public EnchereServiceImpl(EnchereDAO encheresDAO,RetraitDAO retraitDAO) {
 
-    public EnchereServiceImpl(EnchereDAO encheresDAO) {
         this.encheresDAO = encheresDAO;
+        this.retraitDAO = retraitDAO;
     }
 
     @Override
@@ -95,5 +99,30 @@ public class EnchereServiceImpl implements EnchereService {
     @Override
     public boolean VerifierOffreSup(CEnchere enchere) {
         return encheresDAO.IsPositifOffre(enchere);
+    }
+
+    @Override
+    public void CreateRetrait(CRetrait Retrait) {
+        retraitDAO.CreateRetrait(Retrait);
+    }
+
+    @Override
+    public void ModifyRetrait(CRetrait Retrait) {
+        retraitDAO.ModifyRetrait(Retrait);
+    }
+
+    @Override
+    public void DeleteRetrait(int id) {
+        retraitDAO.DeleteRetrait(id);
+    }
+
+    @Override
+    public CRetrait SearchRetrait(int id) {
+        return retraitDAO.SearchRetrait(id);
+    }
+
+    @Override
+    public CRetrait SearchRetraitByArticleID(int id) {
+        return retraitDAO.SearchRetraitByArticleID(id);
     }
 }

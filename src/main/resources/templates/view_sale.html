@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title>Catégories de film</title>
+<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+<main class="center-main">
+    <div class="center-avis">
+<h1>Nouvelle Vente</h1>
 
-</body>
+<!-- Image -->
+<img src="votre_image.jpg" alt="Votre Image">
+        <!-- Trois boutons -->
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+            <label >Photo de l'article </label>
+            <input type="file">Uploader</input>
+        </form>
+<form method="post" action="/sale/create" data-th-object="${ArticleVendu}">
+<!-- Deux Inputs -->
+<input type="hidden" id="id" name="id" data-th-value="*{noArticle}">
+<label for="NomArticle">Article :</label>
+<input type="text" id="NomArticle" name="NomArticle" data-th-value="*{nomArticle}">
+<br>
+<label for="Description">Description :</label>
+<input type="text" id="Description" name="Description"  data-th-value="*{description}">
+<br>
+
+<!-- DropBox -->
+<label for="dropbox">Catégorie :</label>
+<select id="dropbox" name="dropbox" data-th-field="*{categorie}"  data-th-value="*{categorie}">
+    <option data-th-each="item : ${CategorieSession}" data-th-value="${item.noCategorie}" data-th-text="${item.libelle}"></option>
+</select>
+
+<!-- Selecteur de chiffre -->
+<label for="number">Mise à prix :</label>
+<input type="number" id="number" name="MiseAPrix" min="0" max="10000000"  data-th-value="*{miseAPrix}">
+<br>
+
+<!-- Deux DateTimes -->
+<label for="datetime1">Début de l'enchère :</label>
+<input type="datetime-local" id="datetime1" name="DateDebutEncheres"  data-th-value="*{dateDebutEncheres}">
+<br>
+<label for="datetime2">Fin de l'enchère :</label>
+<input type="datetime-local" id="datetime2" name="DateFinEncheres" data-th-value="*{dateFinEncheres}">
+<br>
+
+<!-- GroupBox -->
+<fieldset th:object="${retrait}">
+    <legend>Retrait</legend>
+    <label for="rue">Rue :</label>
+    <input type="text" id="rue" name="rue" data-th-value="*{rue}">
+    <br>
+    <label for="cdPostal">Code postale :</label>
+    <input type="text" id="cdPostal" name="cdPostal"  data-th-value="*{code_postal}">
+    <br>
+    <label for="Ville">Ville :</label>
+    <input type="text" id="Ville" name="Ville"  data-th-value="*{ville}">
+    <br>
+</fieldset>
+
+        <button type="submit">Enregistrer</button>
+        <button type="reset">Annuler</button>
+        <button type="submit" data-th-if="${not isCreate}">Annuler la vente</button>
+</form>
+    </div>
+</main>
 </html>

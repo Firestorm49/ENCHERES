@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 @Repository
@@ -218,8 +219,8 @@ public class EnchereDAOImpl implements EnchereDAO {
             a.setAcheteur(acheteur);
             a.setCategorie(categorie);
             a.setDescription(rs.getString("description"));
-            a.setDateDebutEncheres(LocalDate.parse(rs.getString("date_debut_encheres")));
-            a.setDateFinEncheres(LocalDate.parse(rs.getString("date_fin_encheres")));
+            a.setDateDebutEncheres(LocalDateTime.parse(rs.getString("date_debut_encheres")));
+            a.setDateFinEncheres(LocalDateTime.parse(rs.getString("date_fin_encheres")));
             a.setEtatVente(rs.getInt("etat_article"));
             a.setMiseAPrix(rs.getInt("prix_initial"));
             a.setNomArticle(rs.getString("nom_article"));

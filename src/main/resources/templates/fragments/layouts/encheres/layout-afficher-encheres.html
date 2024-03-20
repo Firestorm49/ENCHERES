@@ -1,0 +1,26 @@
+<form xmlns:th="http://www.thymeleaf.org"
+	  th:fragment="enchere-detail(titleForm, action)"
+	  th:action="@{${action}}"
+	  th:object="${enchere}"
+	  method="post">
+	
+	<h1 class="h1Title">test</h1>
+	<ul class="flex-outer">
+		<li>
+			<div class="alignement-label">
+				<label for="inputGenre" th:text="#{afficher-encheres.categorie}"></label>
+			</div>
+			<th:block th:if="${!#strings.isEmpty(action)}">
+				<select id="inputCategorie" th:field="*{categorie}">
+					<option th:each="categorie : ${categoriesEnSession}"
+						th:text="${categorie.libelle}" th:value="${categorie.no_categorie}"></option>
+				</select>
+			</th:block>
+			<th:block th:if="${#strings.isEmpty(action)}">
+				<input type="text" id="inputGenre"
+					th:disabled="${#strings.isEmpty(action)}"
+					th:field="*{categorie.libelle}" required />
+			</th:block>
+		</li>
+	</ul>
+</form>
