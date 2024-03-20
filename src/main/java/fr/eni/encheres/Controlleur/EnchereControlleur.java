@@ -24,19 +24,6 @@ public class EnchereControlleur {
         this.enchereService = enchereService;
         this.utilisateurService = utilisateurService;
     }
-
-  /*  @ModelAttribute("genreSession")
-    public List<Genre> chargerSession() {
-        System.out.println("liste de genre");
-        return filmService.consulterGenres();
-    }
-
-    @ModelAttribute("acteursSession")
-    public List<Participant> chargerActeurs() {
-        System.out.println("liste de acteurs");
-        return filmService.consulterParticipants();
-    }
-*/
     @ModelAttribute("membreEnSession")
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
@@ -59,12 +46,6 @@ public class EnchereControlleur {
         return "view-Enchere";
     }
 
-    @GetMapping("/Create")
-    public String getCreateEncheres() {
-        Logger.log("Trace_ENI.log","Controlleur : getCreateEncheres ");
-        return "view-Enchere";
-    }
-
     @GetMapping("/detail")
     public String getDetailEncheres(@RequestParam(name = "id", required = true) int id, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getDetailEncheres ");
@@ -74,20 +55,6 @@ public class EnchereControlleur {
         return "view-Enchere";
     }
 
-    @GetMapping("/Modify")
-    public String getModifyEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getModifyEncheres ");
-        CEnchere Enchere=enchereService.afficherDetailEnchere(id);
-        model.addAttribute("Enchere",Enchere);
-        return "view-Enchere";
-    }
-    @GetMapping("/Annule")
-    public String getAnnuleEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getAnnuleEncheres ");
-        CEnchere Enchere = enchereService.afficherDetailEnchere(id);
-        model.addAttribute("Enchere",Enchere);
-        return "view-Enchere";
-    }
     @GetMapping("/Propose")
     public String getProposeEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
@@ -96,43 +63,6 @@ public class EnchereControlleur {
         return "view-Enchere";
     }
 
-    @PostMapping("/Create")
-    public String postEncheresCreate(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
-                                 BindingResult bindingResult) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresCreate ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
-        } else {
-            enchereService.faireEnchere(Enchere);
-            return "redirect:/Enchere";
-        }
-    }
-
-    @PostMapping("/Modify")
-    public String postEncheresModify(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
-                                 BindingResult bindingResult) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresModify ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
-        } else {
-            enchereService.faireEnchere(Enchere);
-            return "redirect:/Enchere";
-        }
-    }
-    @PostMapping("/Delete")
-    public String postEncheresDelete(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
-                                 BindingResult bindingResult) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresDelete ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Enchere";
-        } else {
-            enchereService.faireEnchere(Enchere);
-            return "redirect:/Enchere";
-        }
-    }
     @PostMapping("/Propose")
     public String postEncheresPropose(@Validated @ModelAttribute("Enchere") CEnchere Enchere,
                                  BindingResult bindingResult) {

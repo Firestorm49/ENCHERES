@@ -10,6 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 @Controller
 @RequestMapping("/Category")
 public class CategorieControlleur {
@@ -19,9 +22,18 @@ public class CategorieControlleur {
 
         this.categorieService = categorieService;
     }
+
+
+    @ModelAttribute("CategorieSession")
+    public List<CCategorie> chargerSession() {
+        System.out.println("liste de categorie");
+        return categorieService.ListCategorie();
+    }
+
     @GetMapping
-    public String getCategorie() {
+    public String getCategorie(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCategorie ");
+        model.addAttribute("isNotModify",true);
     return "Categorie";
 
     }
@@ -29,46 +41,41 @@ public class CategorieControlleur {
     public String getDeleteCategorie(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDeleteCategorie ");
         categorieService.DeleteCategorie(id);
-        return "redirect:/Categorie";
+        return "redirect:/Category";
     }
     @GetMapping("/Create")
     public String getCreateCategorie(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getCreateCategorie ");
         CCategorie categorie = new CCategorie();
-        model.addAttribute("categorie",categorie);
-        return "redirect:/Categorie";
+        model.addAttribute("CategorieId", categorie);
+        model.addAttribute("isNotModify",true);
+        return "redirect:/Category";
     }
     @GetMapping("/Modify")
     public String getModifyCategorie(@RequestParam(name = "id", required = true) int id, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyCategorie ");
         CCategorie Categorie = categorieService.SearchCategorie(id);
-        model.addAttribute("genreId", Categorie);
+        model.addAttribute("CategorieId", Categorie);
         model.addAttribute("isNotModify",false);
         return "/Categorie";
     }
     @PostMapping("/Modify")
-    public String postModifyCategorie(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
-                                      BindingResult bindingResult) {
+    public String postModifyCategorie(@RequestParam(name = "id", required = true) int id,
+                                      @RequestParam(name = "libelle", required = true) String libelle) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyCategorie ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Categorie";
-        } else {
-            categorieService.ModifyCategorie(Categorie);
-            return "redirect:/Categorie";
-        }
+        CCategorie categorie = new CCategorie();
+        categorie.setNoCategorie(id);
+        categorie.setLibelle(libelle);
+            categorieService.ModifyCategorie(categorie);
+            return "redirect:/Category";
     }
     @PostMapping("/Create")
-    public String postCategorieCreate(@Validated @ModelAttribute("Categorie") CCategorie Categorie,
-                                 BindingResult bindingResult) {
+    public String postCategorieCreate(@RequestParam(name = "libelle", required = true) String Categorie) {
         Logger.log("Trace_ENI.log","Controlleur : postCategorieCreate ");
-        if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
-            return "Categorie";
-        } else {
-            categorieService.CreateCategorie(Categorie);
-            return "redirect:/Categorie";
-        }
+        CCategorie categorie = new CCategorie();
+        categorie.setLibelle(Categorie);
+            categorieService.CreateCategorie(categorie);
+            return "redirect:/Category";
     }
 
     @PostMapping("/Delete")
@@ -80,7 +87,7 @@ public class CategorieControlleur {
             return "Categorie";
         } else {
             categorieService.DeleteCategorie(Categorie.getNoCategorie());
-            return "redirect:/Categorie";
+            return "redirect:/Category";
         }
     }
 }
