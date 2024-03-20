@@ -1,6 +1,7 @@
 package fr.eni.encheres.dal;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.Cryptage;
 import fr.eni.encheres.bo.CUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,10 +18,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    Cryptage cryptage = new Cryptage();
+
+
     @Override
     public void Subscribe(CUtilisateur utilisateur) {
         Logger.log("Trace_ENI.log","Subscribe : " + utilisateur);
-        String mdpCrypte = "{bcrypt}"+BCrypt.hashpw(utilisateur.getMotdepasse(), BCrypt.gensalt());
+        String mdpCrypte = "{bcrypt}"+cryptage.cryptageBCrypt(utilisateur.getMotdepasse());
         String insertUtilisateurQuery = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(insertUtilisateurQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), utilisateur.getMotdepasse(), utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive());
     }
@@ -50,7 +54,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     public void ModifyProfil(CUtilisateur utilisateur) {
         Logger.log("Trace_ENI.log","ModifyProfil : " + utilisateur);
         String updateProfilQuery = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=?, active=? WHERE no_utilisateur=?";
-        String mdpCrypte = "{bcrypt}"+BCrypt.hashpw(utilisateur.getMotdepasse(), BCrypt.gensalt());
+        String mdpCrypte = "{bcrypt}"+cryptage.cryptageBCrypt(utilisateur.getMotdepasse());
         jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), mdpCrypte, utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
     }
     @Override
@@ -99,6 +103,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","getUtilisateurByEmail : " + mail);
         String sql = "SELECT * FROM UTILISATEURS WHERE email=?";
         return jdbcTemplate.queryForObject(sql, new Object[]{mail},  new UtilisateurRowMapper() );
+    }
+
+    @Override
+    public boolean checkPassword(String mdp, int id) {
+        String mdpBaseQuery = "SELECT mot_de_passe FROM UTILISATEURS WHERE no_utilisateur=?";
+        String mdpBase = jdbcTemplate.queryForObject(mdpBaseQuery, new Object[]{id}, String.class);
+        mdpBase = mdpBase.replace("{bcrypt}", "");
+        return cryptage.checkPassword(mdp, mdpBase);
     }
 
     public class UtilisateurRowMapper implements RowMapper<CUtilisateur>

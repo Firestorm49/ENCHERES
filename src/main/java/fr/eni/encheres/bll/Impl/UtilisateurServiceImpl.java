@@ -74,4 +74,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public void ActiveProfil(CUtilisateur utilisateur) {
         utilisateursDAO.ActiveProfil(utilisateur);
     }
+
+    @Override
+    public boolean verifPassword(String mdp, CUtilisateur utilisateur) {
+        return utilisateursDAO.checkPassword(mdp, utilisateur.getNoUtilisateur());
+    }
 }

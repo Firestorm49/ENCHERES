@@ -17,4 +17,5 @@ public interface UtilisateurDAO {
     void ActiveProfil(CUtilisateur utilisateur);
     void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
+    boolean checkPassword(String mdp, int id);
 }

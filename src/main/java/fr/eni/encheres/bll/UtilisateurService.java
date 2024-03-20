@@ -15,4 +15,5 @@ public interface UtilisateurService {
     void ModifyRoleUtilisateur(int id, boolean isAdministrateur);
     List<CUtilisateur> ViewAllUtilisateurs();
     void ActiveProfil(CUtilisateur utilisateur);
+    boolean verifPassword(String mdp, CUtilisateur utilisateur);
 }

@@ -33,7 +33,6 @@ public class UtilisateurControlleur {
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
-            System.out.println(UtilisateurConnecte.toString());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                 UtilisateurConnecte.setAdministrateur(true);
             }
@@ -64,13 +63,28 @@ public class UtilisateurControlleur {
     }
 
     @PostMapping("/create")
-    public String postCreateUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String postCreateUsers(@Validated @ModelAttribute("user") CUtilisateur user) {
         Logger.log("Trace_ENI.log","Controlleur : postCreateUsers ");
-        if (result.hasErrors()) {
-            return "view_user_edit";
+
+        String mdp = "";
+        String mdpConfirmation = "";
+
+        if(user.getMotdepasse().split(",").length > 0){
+            mdp = user.getMotdepasse().split(",")[0];
         }
-        utilisateurService.Inscription(user);
-        return "redirect:/bid";
+        if(user.getMotdepasse().split(",").length > 1){
+            mdpConfirmation = user.getMotdepasse().split(",")[1];
+        }
+
+        user.setMotdepasse(mdp);
+
+        CUtilisateur userExist = utilisateurService.getUtilisateurByEmail(user.getEmail());
+        if(userExist != null){
+            return "view_user_edit";
+        }else{
+            utilisateurService.Inscription(user);
+            return "redirect:/users/detail";
+        }
     }
 
     @GetMapping("/modify")
@@ -86,17 +100,13 @@ public class UtilisateurControlleur {
     }
 
     @PostMapping("/modify")
-    public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyUsers ");
-
-        System.out.println("user : " + user.toString());
-
 
         String mdpActuel = user.getMotdepasse().split(",")[0];
         String mdpNouveau = "";
         String mdpConfirmation = "";
 
-        //si user.getMotdepasse().split(",")[1] exist
         if(user.getMotdepasse().split(",").length > 1){
             mdpNouveau = user.getMotdepasse().split(",")[1];
         }
@@ -104,14 +114,24 @@ public class UtilisateurControlleur {
             mdpConfirmation = user.getMotdepasse().split(",")[2];
         }
 
-        if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
+        if(mdpNouveau.equals("") && mdpConfirmation.equals("")){
+            if(utilisateurService.verifPassword(mdpActuel, user)){
+                utilisateurService.ModifyProfil(user);
+                return "redirect:/users/detail";
+            }else{
+                return "view_user_edit";
+            }
+        }else if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
             user.setMotdepasse(mdpNouveau);
 
-            utilisateurService.ModifyProfil(user);
-            System.out.println(user);
-            return "view_user_edit";
+            if(utilisateurService.verifPassword(mdpActuel, user)){
+                utilisateurService.ModifyProfil(user);
+                return "redirect:/users/detail";
+            }else{
+                return "view_user_edit";
+            }
 
-            //return "redirect:/Detail";
+
         }else if(!mdpNouveau.equals(mdpConfirmation)){
             return "view_user_edit";
         }else if(mdpNouveau.equals("") || mdpConfirmation.equals("")){
@@ -119,16 +139,6 @@ public class UtilisateurControlleur {
         }
 
         return "view_user_edit";
-
-        /*if (result.hasErrors()) {
-            return "view_user_edit";
-        }
-        if(UtilisateurConnecte != null) {
-            utilisateurService.ModifyProfil(user);
-            return "redirect:/Enchere";
-        }else{
-            return "redirect:/login";
-        }*/
     }
 
 
