@@ -26,7 +26,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","Subscribe : " + utilisateur);
         String mdpCrypte = "{bcrypt}"+cryptage.cryptageBCrypt(utilisateur.getMotdepasse());
         String insertUtilisateurQuery = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(insertUtilisateurQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), utilisateur.getMotdepasse(), utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive());
+        jdbcTemplate.update(insertUtilisateurQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), mdpCrypte, utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive());
     }
 
     @Override
@@ -105,6 +105,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","getUtilisateurByEmail : " + mail);
         String sql = "SELECT * FROM UTILISATEURS WHERE email=?";
         return jdbcTemplate.queryForObject(sql, new Object[]{mail},  new UtilisateurRowMapper() );
+    }
+
+    @Override
+    public boolean checkUser(String mail) {
+        Logger.log("Trace_ENI.log","checkUser" + mail);
+        String checkUserQuery = "SELECT COUNT(*) FROM UTILISATEURS WHERE email=?";
+        int count = jdbcTemplate.queryForObject(checkUserQuery, new Object[]{mail}, Integer.class);
+        return count > 0;
     }
 
     @Override

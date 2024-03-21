@@ -11,6 +11,7 @@ public interface UtilisateurService {
     void DesactiveProfil(CUtilisateur utilisateur);
     void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
+    boolean checkUser(String mail);
     CUtilisateur viewAcheteurByArticleID(int id);
     void ModifyRoleUtilisateur(int id, boolean isAdministrateur);
     List<CUtilisateur> ViewAllUtilisateurs();

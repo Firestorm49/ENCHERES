@@ -69,6 +69,8 @@ public class UtilisateurControlleur {
         String mdp = "";
         String mdpConfirmation = "";
 
+        System.out.println(user.getMotdepasse());
+
         if(user.getMotdepasse().split(",").length > 0){
             mdp = user.getMotdepasse().split(",")[0];
         }
@@ -78,9 +80,8 @@ public class UtilisateurControlleur {
 
         user.setMotdepasse(mdp);
 
-        CUtilisateur userExist = utilisateurService.getUtilisateurByEmail(user.getEmail());
-        if(userExist != null){
-            return "view_user_edit";
+        if(utilisateurService.checkUser(user.getEmail())){
+            return "redirect:/login";
         }else{
             utilisateurService.Inscription(user);
             return "redirect:/users/detail";

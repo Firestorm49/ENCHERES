@@ -56,6 +56,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
+    public boolean checkUser(String mail) {
+        return utilisateursDAO.checkUser(mail);
+    }
+
+    @Override
     public CUtilisateur viewAcheteurByArticleID(int id) {
         return utilisateursDAO.viewAcheteurByArticleID(id);
     }

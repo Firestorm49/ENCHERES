@@ -57,6 +57,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/sale/cancel").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/create").permitAll();
+            auth.requestMatchers(HttpMethod.POST,"/users/create").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/modify").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/delete").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/deactivation").permitAll();
