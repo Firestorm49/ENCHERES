@@ -1,16 +1,39 @@
 package fr.eni.encheres.bo;
 
-public class CUtilisateur {
-    private int noUtilisateur;
+import java.util.List;
 
+import jakarta.validation.constraints.*;
+
+public class CUtilisateur {
+
+    private int noUtilisateur;
+    @NotBlank(message = "Le pseudo n'est pas correcte")
+    @Size(max=250)
     private String pseudo;
+    @NotBlank(message = "Le nom n'est pas correcte")
+    @Size(max=250)
     private String nom;
+    @NotBlank(message = "Le prénom n'est pas correcte")
+    @Size(max=250)
     private String prenom;
+    @NotBlank(message = "L'email n'est pas correcte")
+    @Size(max=250)
+    @Email
     private String email;
+    @NotBlank(message = "Le téléphone n'est pas correcte")
+    @Size(max=250)
     private String telephone;
+    @NotBlank(message = "La rue n'est pas correcte")
+    @Size(max=250)
     private String rue;
+    @Max(99999)
+    @Min(1)
     private int codePostal;
+    @NotBlank(message = "La ville n'est pas correcte")
+    @Size(max=250)
     private String ville;
+    @NotBlank(message = "Le mot de passe n'est pas correcte")
+    @Size(max=250, min=8)
     private String motdepasse;
     private int credit;
     private boolean administrateur;

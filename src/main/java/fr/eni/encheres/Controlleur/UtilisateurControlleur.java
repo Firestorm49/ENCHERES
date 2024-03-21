@@ -5,11 +5,15 @@ import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
 import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
+import fr.eni.encheres.exceptions.BusinessCode;
+import fr.eni.encheres.exceptions.BusinessException;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,6 +28,7 @@ public class UtilisateurControlleur {
 
     private final UtilisateurService utilisateurService;
     private CUtilisateur UtilisateurConnecte;
+    BusinessException be = new BusinessException();
 
     public UtilisateurControlleur(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
@@ -63,13 +68,16 @@ public class UtilisateurControlleur {
     }
 
     @PostMapping("/create")
-    public String postCreateUsers(@Validated @ModelAttribute("user") CUtilisateur user) {
+    public String postCreateUsers(@Valid @ModelAttribute("user") CUtilisateur user, BindingResult bindingResult, Model model ) {
         Logger.log("Trace_ENI.log","Controlleur : postCreateUsers ");
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("postValue", "/users/create");
+            return "view_user_edit";
+        }
 
         String mdp = "";
         String mdpConfirmation = "";
-
-        System.out.println(user.getMotdepasse());
 
         if(user.getMotdepasse().split(",").length > 0){
             mdp = user.getMotdepasse().split(",")[0];
@@ -83,6 +91,9 @@ public class UtilisateurControlleur {
         if(utilisateurService.checkUser(user.getEmail())){
             return "redirect:/login";
         }else{
+            user.setCredit(0);
+            user.setAdministrateur(false);
+            user.setActive(false);
             utilisateurService.Inscription(user);
             return "redirect:/users/detail";
         }
@@ -101,7 +112,7 @@ public class UtilisateurControlleur {
     }
 
     @PostMapping("/modify")
-    public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user) {
+    public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult bindingResult, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyUsers ");
 
         String mdpActuel = user.getMotdepasse().split(",")[0];
@@ -116,12 +127,43 @@ public class UtilisateurControlleur {
         }
 
         if(mdpNouveau.equals("") && mdpConfirmation.equals("")){
-            if(utilisateurService.verifPassword(mdpActuel, user)){
+
+            try {
+                if(utilisateurService.verifPassword(mdpActuel, user)) {
+                    utilisateurService.ModifyProfil(user);
+                    return "redirect:/users/detail";
+                }else{
+                    System.out.println("avant le throw new");
+
+                    be.add(BusinessCode.VALIDATION_USER_MDP);
+
+                    throw be;
+                }
+            } catch (BusinessException e) {
+
+                System.out.println("dans le throw new");
+
+                e.getClefsExternalisations().forEach(key -> {
+                    ObjectError error = new ObjectError("global", key);
+                    bindingResult.addError(error);
+                });
+
+                model.addAttribute("postValue", "/users/modify");
+
+                return "view_user_edit";
+            }
+
+
+           /* if(utilisateurService.verifPassword(mdpActuel, user)){
                 utilisateurService.ModifyProfil(user);
                 return "redirect:/users/detail";
             }else{
+
+                ObjectError error = new ObjectError("motdepasse", "Mot de passe incorrect");
+                bindingResult.addError(error);
+
                 return "view_user_edit";
-            }
+            }*/
         }else if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
             user.setMotdepasse(mdpNouveau);
 

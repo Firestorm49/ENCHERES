@@ -1,5 +1,5 @@
 <!-- Navbar -->
-	<header data-th-fragment="entete" >
+	<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="entete" >
 	<img data-th-src="@{/images/logoENI.png}"  width="100"
   height="80" />
   		<h1 id="nav-title"><a href="/static" data-th-if="${not #authorization.expression('isAuthenticated()')}" data-th-text="'Filmothèque'" ></a>

@@ -3,6 +3,9 @@ package fr.eni.encheres.bll.Impl;
 import fr.eni.encheres.bll.UtilisateurService;
 import fr.eni.encheres.bo.CUtilisateur;
 import fr.eni.encheres.dal.UtilisateurDAO;
+import fr.eni.encheres.exceptions.BusinessCode;
+import fr.eni.encheres.exceptions.BusinessException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +14,8 @@ import java.util.List;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     private UtilisateurDAO utilisateursDAO;
+
+    BusinessException be = new BusinessException();
 
 
     public UtilisateurServiceImpl(UtilisateurDAO utilisateursDAO) {
@@ -33,7 +38,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public void ModifyProfil(CUtilisateur utilisateur) {
-        utilisateursDAO.ModifyProfil(utilisateur);
+        try {
+            utilisateursDAO.ModifyProfil(utilisateur);
+        } catch (DataAccessException e) {
+            be.add(BusinessCode.BLL_AVIS_CREER_ERREUR);
+        }
+        //utilisateursDAO.ModifyProfil(utilisateur);
     }
 
     @Override
