@@ -162,6 +162,7 @@ public class UtilisateurControlleur {
     public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
         utilisateurService.DesactiveProfil(utilisateurService.ViewProfil(id));
+
         return "redirect:/users";
     }
     @GetMapping("/activation")

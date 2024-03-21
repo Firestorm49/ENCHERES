@@ -27,16 +27,19 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public void vendreArticle(CArticleVendu article) {
+
         encheresDAO.SoldArticle(article);
     }
 
     @Override
     public List<CEnchere> listerEncheresDeconnecte() {
+
         return encheresDAO.listEncheresDeconnecte();
     }
 
     @Override
     public List<CEnchere> listerEncheresConnecte() {
+
         return encheresDAO.listEncheresConnecte();
     }
 
@@ -54,21 +57,25 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public CEnchere afficherDetailEnchere(int enchereId) {
+
         return encheresDAO.afficherDetailEnchere(enchereId);
     }
 
     @Override
     public void modifierVente(CArticleVendu vente) {
+
         encheresDAO.modifierVente(vente);
     }
 
     @Override
     public void annulerVente(int vente) {
+
         encheresDAO.annulerVente(vente);
     }
 
     @Override
     public void ajouterPhotoVente(CArticleVendu vente) {
+
         encheresDAO.ajouterPhotoVente(vente);
     }
 
@@ -79,6 +86,7 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public List<CUtilisateur> voirEncherisseurs(CArticleVendu vente) {
+
         return encheresDAO.voirEncherisseurs(vente);
     }
 
@@ -89,71 +97,85 @@ public class EnchereServiceImpl implements EnchereService {
 
     @Override
     public CArticleVendu AfficherArticleById(int id) {
+
         return encheresDAO.viewArticle(id);
     }
 
     @Override
     public boolean VerifierCreditPositif(CEnchere enchere) {
+
         return encheresDAO.IsPositifCredit(enchere);
     }
 
     @Override
     public boolean VerifierOffreSup(CEnchere enchere) {
+
         return encheresDAO.IsPositifOffre(enchere);
     }
 
     @Override
     public void CreateRetrait(CRetrait Retrait) {
+
         retraitDAO.CreateRetrait(Retrait);
     }
 
     @Override
     public void ModifyRetrait(CRetrait Retrait) {
+
         retraitDAO.ModifyRetrait(Retrait);
     }
 
     @Override
     public void DeleteRetrait(int id) {
+
         retraitDAO.DeleteRetrait(id);
     }
 
     @Override
     public CRetrait SearchRetrait(int id) {
+
         return retraitDAO.SearchRetrait(id);
     }
 
     @Override
     public CRetrait SearchRetraitByArticleID(int id) {
+
         return retraitDAO.SearchRetraitByArticleID(id);
     }
 
     @Override
     public int IsMaxOffre(CEnchere enchere) {
+
         return encheresDAO.IsMaxOffre(enchere);
     }
 
     @Override
     public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
+
         return encheresDAO.IsUserMaxOffre(enchere, maxOffre);
     }
 
     @Override
     public boolean IsPositifCredit(CEnchere enchere) {
+
         return encheresDAO.IsPositifCredit(enchere);
     }
 
     @Override
     public boolean IsPositifOffre(CEnchere enchere) {
+
         return encheresDAO.IsPositifOffre(enchere);
     }
 
     @Override
     public int IsVenteFinish(int id) {
+
         return encheresDAO.IsVenteFinish(id);
     }
 
     @Override
     public int WinnerOffre(int id) {
+
         return encheresDAO.WinnerOffre(id);
     }
 }
