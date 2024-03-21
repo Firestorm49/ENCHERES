@@ -68,7 +68,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/category/modify").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/category/delete").permitAll();
             auth.requestMatchers("/css/*").permitAll();
-            auth.requestMatchers("/img/*").permitAll();
+            auth.requestMatchers("/images/*").permitAll();
             auth.requestMatchers("/errors/**").permitAll();
             auth.anyRequest().authenticated();
         }).csrf(AbstractHttpConfigurer::disable);
