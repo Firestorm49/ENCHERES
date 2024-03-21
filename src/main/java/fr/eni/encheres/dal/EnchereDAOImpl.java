@@ -206,6 +206,15 @@ public class EnchereDAOImpl implements EnchereDAO {
         }
 
     }
+
+    @Override
+    public String SearchPhotoByArticleId(int id) {
+        Logger.log("Trace_ENI.log","SearchPhotoByArticleId : " + id);
+        String sql = "SELECT photo_url FROM ARTICLES_VENDUS WHERE no_article =?";
+        String photoUrl = jdbcTemplate.queryForObject(sql, new Object[]{id}, String.class);
+        return photoUrl;
+    }
+
     @Override
     public int IsVenteFinish(int id) {
         Logger.log("Trace_ENI.log","IsVenteFinish : " + id);

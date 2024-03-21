@@ -183,4 +183,9 @@ public class EnchereServiceImpl implements EnchereService {
 
         return encheresDAO.WinnerOffre(id);
     }
+
+    @Override
+    public String SearchPhotoByArticleId(int id) {
+        return encheresDAO.SearchPhotoByArticleId(id);
+    }
 }

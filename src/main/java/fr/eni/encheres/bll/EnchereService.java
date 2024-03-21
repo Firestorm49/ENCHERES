@@ -30,7 +30,7 @@ public interface EnchereService {
     boolean IsPositifCredit(CEnchere enchere);
     boolean IsPositifOffre(CEnchere enchere);
     int IsVenteFinish(int id);
-
     int WinnerOffre(int id);
+    String SearchPhotoByArticleId(int id);
 
 }

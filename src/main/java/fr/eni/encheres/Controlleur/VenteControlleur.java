@@ -1,17 +1,23 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.FileUploadUtil;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
 import fr.eni.encheres.bo.*;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -66,10 +72,12 @@ public class VenteControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getModifyEncheres ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         CRetrait retrait = enchereService.SearchRetraitByArticleID(id);
+        String imageArticle = enchereService.SearchPhotoByArticleId(id);
         model.addAttribute("retrait",retrait);
         model.addAttribute("ArticleVendu",ArticleVendu);
         model.addAttribute("isCreate",false);
         model.addAttribute("postValue","/sale/modify");
+        model.addAttribute("imageArticle","./../" + imageArticle);
         return "view_sale";
     }
     @GetMapping("/cancel")
@@ -123,17 +131,35 @@ public class VenteControlleur {
 
     @GetMapping("/upload")
     public String getuploadArticleVendu(@RequestParam(name = "idPhoto", required = true) int id,
-                                        @RequestParam(name = "upload", required = true) String upload,Model model) {
+                                        Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getuploadArticleVendu ");
         return "redirect:/bid";
     }
 
     @PostMapping("/upload")
-    public String postuploadArticleVendu( @ModelAttribute("idPhoto") int id, @ModelAttribute("upload") String upload) {
-        Logger.log("Trace_ENI.log","Controlleur : postuploadArticleVendu " +upload );
+    public String postuploadArticleVendu(@RequestParam("idPhoto") int id,
+                                         @RequestParam("upload") MultipartFile uploadFile) {
+        Logger.log("Trace_ENI.log","Controlleur : postuploadArticleVendu " + id + uploadFile);
+
+        String fileName = StringUtils.cleanPath(uploadFile.getOriginalFilename());
+
+        String relativePath = "/images/" + fileName;
+
+        try {
+            // Récupération du dossier images dans les ressources statiques
+            File imagesFolder = new ClassPathResource("static/images").getFile();
+            // Création d'un nouveau fichier dans le dossier images
+            File imageFile = new File(imagesFolder, fileName);
+            // Transfert du fichier téléchargé vers le nouveau fichier dans le dossier images
+            uploadFile.transferTo(imageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         CArticleVendu articleVendu = enchereService.AfficherArticleById(id);
-        articleVendu.setPhoto(upload);
-         enchereService.ajouterPhotoVente(articleVendu);
-            return "redirect:/bid";
+        articleVendu.setPhoto(relativePath);
+        enchereService.ajouterPhotoVente(articleVendu);
+
+        return "redirect:/bid";
     }
 }

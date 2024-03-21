@@ -20,6 +20,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -60,6 +61,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.POST,"/users/create").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/modify").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/delete").permitAll();
+            auth.requestMatchers(HttpMethod.POST,"/users/password_forbidden").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/deactivation").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/activation").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/category").permitAll();
@@ -84,7 +86,11 @@ public class WebConfiguration implements WebMvcConfigurer {
         return http.build();
     }
 
-
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("classpath:/static/images/");
+    }
     @Bean
     LocaleResolver localeResolver() {
        SessionLocaleResolver slr = new SessionLocaleResolver();

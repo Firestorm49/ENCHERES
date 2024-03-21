@@ -25,7 +25,7 @@ public interface EnchereDAO {
     void modifierVente(CArticleVendu vente);
 
     boolean IsPossibleModifySale(CArticleVendu vente);
-
+    String SearchPhotoByArticleId(int id);
     int IsVenteFinish(int id);
     void annulerVente(int id);
     void CheckSale(LocalDateTime localDate);

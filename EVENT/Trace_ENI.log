@@ -1,352 +1,34 @@
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDetailEncheres 
-[2024-03-20] afficherDetailEnchere : 1
-[2024-03-20] ViewProfil : 2
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] IsUserMaxOffre : 12
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDetailUsers 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyUsers 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDesactivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] DesactiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getActivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ActiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDesactivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] DesactiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getActivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ActiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDesactivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] DesactiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getActivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ActiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getAdministrateurUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ModifyRoleUtilisateur : 2
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getAdministrateurUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ModifyRoleUtilisateur : 2
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDesactivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] DesactiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getActivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ActiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDesactivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] DesactiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getActivationUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ActiveProfil : CUtilisateur{noUtilisateur=2, pseudo='philippe', nom='montdusac', prenom='philippe', email='montdusac.philippe@gmail.com', telephone='0625478481', rue='4 rue de la valse', codePostal='53640', ville='personnarod', motdepasse='null', credit=230, administrateur=false}
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getAdministrateurUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ModifyRoleUtilisateur : 2
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getAdministrateurUsers 
-[2024-03-20] ViewProfil : 2
-[2024-03-20] ModifyRoleUtilisateur : 2
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDeleteUsers 
-[2024-03-20] DeleteProfil : 2
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getCreateEncheres 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : postEncheresDelete 
-[2024-03-20] annulerVente : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] ListCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] SearchRetrait : 2
-[2024-03-20] SearchRetraitByArticleID : 12
-[2024-03-20] SearchCategorie : 7
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] SearchCategorie : 10
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : postEncheresDelete 
-[2024-03-20] annulerVente : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getEnchere 
-[2024-03-20] listEncheresConnecte : 
-[2024-03-20] ViewProfil : 1
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] viewAcheteurByArticleID : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] viewAcheteurByArticleID : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getCreateEncheres 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getModifyEncheres 
-[2024-03-20] viewArticle : 12
-[2024-03-20] SearchCategorie : 9
-[2024-03-20] ViewProfil : 1
-[2024-03-20] IsVenteFinish : 12
-[2024-03-20] viewAcheteurByArticleID : 12
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getCreateEncheres 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getCreateEncheres 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getDetailUsers 
-[2024-03-20] ListCategorie 
-[2024-03-20] Controlleur : getCategorie 
-[2024-03-20] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-20] Controlleur : getUsers 
-[2024-03-20] ViewAllUtilisateurs  
 [2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getUsers 
-[2024-03-21] ViewAllUtilisateurs  
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getDetailUsers 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
 [2024-03-21] ListCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
 [2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu ${ArticleVendu.noArticle}org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@c47ec14
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getEnchere 
 [2024-03-21] listEncheresConnecte : 
@@ -356,10 +38,56 @@
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
 [2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T21:53:12.526430400
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getCreateEncheres 
 [2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] ListCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu 12Capture d'écran 2023-12-13 103218.png
+[2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getEnchere 
 [2024-03-21] listEncheresConnecte : 
 [2024-03-21] ViewProfil : 1
@@ -368,42 +96,37 @@
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
 [2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T21:55:49.658325800
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
 [2024-03-21] ListCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
 [2024-03-21] viewArticle : 12
 [2024-03-21] SearchCategorie : 9
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
 [2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu 12Capture d'écran 2023-12-13 103218.png
 [2024-03-21] ListCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
+[2024-03-21] Controlleur : postuploadArticleVendu 12Capture d'écran 2023-12-13 103218.png
 [2024-03-21] viewArticle : 12
 [2024-03-21] SearchCategorie : 9
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
 [2024-03-21] viewAcheteurByArticleID : 12
-[2024-03-21] ListCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getCreateEncheres 
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] viewAcheteurByArticleID : 12
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCreateEncheres 
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] ajouterPhotoVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/Capture d'écran 2023-12-13 103218.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getEnchere 
 [2024-03-21] listEncheresConnecte : 
@@ -413,240 +136,930 @@
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
 [2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T22:00:37.402333500
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getCreateEncheres 
 [2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCreateEncheres 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getDetailUsers 
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getDetailUsers 
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] ListCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ViewProfil : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:51:52.326089100
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:52:12.997277200
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:53:30.811832
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:54:17.993152700
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:54:30.209538800
-[2024-03-21] ListCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresConnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:55:51.162104500
+[2024-03-21] Controlleur : postuploadArticleVendu 0Capture d'écran 2023-12-13 103218.png
+[2024-03-21] viewArticle : 0
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getCreateEncheres 
 [2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
 [2024-03-21] viewArticle : 12
 [2024-03-21] SearchCategorie : 9
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
 [2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T13:59:11.380818600
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu 12org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@5b36d720
 [2024-03-21] viewArticle : 12
 [2024-03-21] SearchCategorie : 9
 [2024-03-21] ViewProfil : 1
 [2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
 [2024-03-21] SearchRetrait : 2
-[2024-03-21] IsMaxOffre : CEnchere{dateEnchere=null, montant_enchere=0}
-[2024-03-21] remporterVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
+[2024-03-21] ajouterPhotoVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='C:\Users\landr\AppData\Local\Temp\temp6717380314033484461.tmp', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] CheckSale : 2024-03-21T14:19:04.574784300
-[2024-03-21] Controlleur : getCreateUsers 
+[2024-03-21] listEncheresConnecte : 
+[2024-03-21] ViewProfil : 1
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T22:07:15.530183600
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
 [2024-03-21] ListCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
 [2024-03-21] Controlleur : getCreateEncheres 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getDetailUsers 
 [2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
-[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getUsers 
-[2024-03-21] ViewAllUtilisateurs
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu 12org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@3b83709c
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] ajouterPhotoVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='C:\Users\landr\AppData\Local\Temp\temp16406501781040521264png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getEnchere 
+[2024-03-21] listEncheresConnecte : 
+[2024-03-21] ViewProfil : 1
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T22:08:28.913974700
 [2024-03-21] ListCategorie 
 [2024-03-21] Controlleur : getCreateEncheres 
 [2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getEnchere 
-[2024-03-21] listEncheresDeconnecte : 
-[2024-03-21] ViewProfil : 1
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] CheckSale : 2024-03-21T15:57:53.353881200
-[2024-03-21] viewArticle : 12
-[2024-03-21] SearchCategorie : 9
-[2024-03-21] ViewProfil : 1
-[2024-03-21] IsVenteFinish : 12
-[2024-03-21] SearchRetrait : 2
-[2024-03-21] IsMaxOffre : CEnchere{dateEnchere=null, montant_enchere=0}
-[2024-03-21] remporterVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='null', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
-[2024-03-21] ListCategorie 
-[2024-03-21] Controlleur : getCategorie 
 [2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
-[2024-03-21] Controlleur : getUsers 
-[2024-03-21] ViewAllUtilisateurs
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : postuploadArticleVendu 12org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@22e220bc
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] ajouterPhotoVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='images/logo.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=80, administrateur=true}}
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getEnchere 
+[2024-03-21] listEncheresConnecte : 
+[2024-03-21] ViewProfil : 1
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] CheckSale : 2024-03-21T22:22:44.498464800
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getCreateEncheres 
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10
+[2024-03-21] ListCategorie 
+[2024-03-21] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-21] Controlleur : getModifyEncheres 
+[2024-03-21] viewArticle : 12
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] ViewProfil : 1
+[2024-03-21] IsVenteFinish : 12
+[2024-03-21] viewAcheteurByArticleID : 12
+[2024-03-21] SearchRetrait : 2
+[2024-03-21] SearchRetraitByArticleID : 12
+[2024-03-21] SearchPhotoByArticleId : 12
+[2024-03-21] SearchCategorie : 7
+[2024-03-21] SearchCategorie : 9
+[2024-03-21] SearchCategorie : 10

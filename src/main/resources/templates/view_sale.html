@@ -8,11 +8,11 @@
 <h1>Nouvelle Vente</h1>
         <a data-th-href="@{/sale/modify(id=12)}" data-th-if="${#authorization.expression('isAuthenticated()')}">test</a>
 <!-- Image -->
-<img src="votre_image.jpg" alt="Votre Image">
+<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
         <!-- Trois boutons -->
-        <form action="/sale/upload" method="post" enctype="text/plain">
+        <form action="/sale/upload" method="post" enctype="multipart/form-data">
             <input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">
-            <label >Photo de l'article </label>
+            <label>Photo de l'article</label>
             <input type="file" name="upload">
             <button type="submit">Uploader</button>
         </form>
