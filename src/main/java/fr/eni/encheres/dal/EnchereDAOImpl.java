@@ -221,7 +221,7 @@ public class EnchereDAOImpl implements EnchereDAO {
             String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
             jdbcTemplate.update(updatePrevCreditsQuery, id, WinnerOffre(id), WinnerOffre(id));
 
-            String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 2  WHERE no_article=?";
+            String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= -1  WHERE no_article=?";
             jdbcTemplate.update(insertArticleQuery, id);
         }
     }

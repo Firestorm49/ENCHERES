@@ -90,9 +90,11 @@ public class VenteControlleur {
             System.out.println(bindingResult.getAllErrors());
             return "sale/create";
         } else {
-            ArticleVendu.setRetrait(Retrait);
-            ArticleVendu.setVendeur(UtilisateurConnecte);
-            enchereService.vendreArticle(ArticleVendu);
+            if(UtilisateurConnecte.isActive()) {
+                ArticleVendu.setRetrait(Retrait);
+                ArticleVendu.setVendeur(UtilisateurConnecte);
+                enchereService.vendreArticle(ArticleVendu);
+            }
             return "redirect:/bid";
         }
     }
