@@ -12,6 +12,7 @@ public interface EnchereService {
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
     void annulerVente(int id);
+    void CheckSale();
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);

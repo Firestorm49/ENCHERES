@@ -67,6 +67,7 @@ public class EnchereControlleur {
             encheres = enchereService.listerEncheresDeconnecte();
         }
         model.addAttribute("encheres",encheres);
+        enchereService.CheckSale();
         return "view_bid_list";
     }
 

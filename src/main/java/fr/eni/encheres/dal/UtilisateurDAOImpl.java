@@ -48,7 +48,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
     @Override
     public List<CUtilisateur> ViewAllUtilisateurs() {
-        Logger.log("Trace_ENI.log","ViewAllUtilisateurs  ");
+        Logger.log("Trace_ENI.log","ViewAllUtilisateurs");
         String sql = "SELECT * FROM UTILISATEURS";
         return jdbcTemplate.query(sql, new UtilisateurListRowMapper());
     }

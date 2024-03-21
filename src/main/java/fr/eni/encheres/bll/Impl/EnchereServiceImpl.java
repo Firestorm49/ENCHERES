@@ -10,6 +10,7 @@ import fr.eni.encheres.dal.RetraitDAO;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,7 +43,11 @@ public class EnchereServiceImpl implements EnchereService {
 
         return encheresDAO.listEncheresConnecte();
     }
-
+    @Override
+    public void CheckSale() {
+        LocalDateTime localDate  = LocalDateTime.now();
+       encheresDAO.CheckSale(localDate);
+    }
     @Override
     public void faireEnchere(CEnchere enchere) {
         if (VerifierCreditPositif(enchere) && VerifierOffreSup(enchere)) {
