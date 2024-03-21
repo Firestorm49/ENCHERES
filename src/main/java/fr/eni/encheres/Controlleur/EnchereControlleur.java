@@ -67,6 +67,7 @@ public class EnchereControlleur {
             encheres = enchereService.listerEncheresDeconnecte();
         }
         model.addAttribute("encheres",encheres);
+        enchereService.CheckSale();
         return "view_bid_list";
     }
 
@@ -110,6 +111,7 @@ public class EnchereControlleur {
     public String postEncheresPropose(@ModelAttribute("id") int id,
                                       @ModelAttribute("Proposition") int Enchere) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose " +id +  Enchere);
+        if(UtilisateurConnecte.isActive()) {
             CEnchere enchere = new CEnchere();
             CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
             enchere.setMontant_enchere(Enchere);
@@ -117,6 +119,7 @@ public class EnchereControlleur {
             enchere.setUtilisateur(UtilisateurConnecte);
             enchere.setDateEnchere(LocalDateTime.now());
             enchereService.faireEnchere(enchere);
+        }
             return "redirect:/bid";
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class EnchereDAOImpl implements EnchereDAO {
@@ -143,6 +145,26 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
+    public void CheckSale(LocalDateTime localDate) {
+        Logger.log("Trace_ENI.log","CheckSale : " + localDate);
+        String SelectRowsQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE etat_article = 1 AND date_fin_encheres <= CONVERT(date,?,120)";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{localDate}, Integer.class);
+
+        List<Integer> articleIDs = new ArrayList<>(Nb_Rows);
+        String SelectVenteQuery = "SELECT no_article FROM ARTICLES_VENDUS WHERE etat_article = 1 AND date_fin_encheres <= CONVERT(date,?,120)";
+        articleIDs = jdbcTemplate.queryForList(SelectVenteQuery, new Object[]{localDate}, Integer.class);
+
+        for(int i =0 ;i<Nb_Rows;i++){
+            CArticleVendu articleVendu = viewArticle(articleIDs.get(i));
+            articleVendu.setEtatVente(2);
+            CEnchere enchere = new CEnchere();
+            enchere.setArticle(articleVendu);
+            articleVendu.setPrixVente(IsMaxOffre(enchere));
+            remporterVente(articleVendu);
+        }
+    }
+
+    @Override
     public CEnchere afficherDetailEnchere(int enchereId) {
         Logger.log("Trace_ENI.log","afficherDetailEnchere : " + enchereId);
         String sql = "SELECT  ENCHERES.* FROM ENCHERES INNER JOIN\n" +
@@ -154,8 +176,34 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public void modifierVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","modifierVente : " + vente);
-        String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?, photo_url= ?,etat_article= ? WHERE no_article =?";
-        jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getPhoto(), vente.getEtatVente(), vente.getNoArticle());
+        if(IsPossibleModifySale(vente)){
+            String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?, photo_url= ?,etat_article= ? WHERE no_article =?";
+            jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getPhoto(), vente.getEtatVente(), vente.getNoArticle());
+        }
+    }
+
+    @Override
+    public boolean IsPossibleModifySale(CArticleVendu vente) {
+        Logger.log("Trace_ENI.log","IsPossibleModifySale : " + vente);
+
+        String SelectRowsQuery = "SELECT COUNT(etat_article) FROM ARTICLES_VENDUS WHERE no_article =? AND date_debut_encheres <= GETDATE()";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{vente.getNoArticle()}, Integer.class);
+
+        if(Nb_Rows > 0) {
+            String SelectVenteQuery = "SELECT etat_article FROM ARTICLES_VENDUS WHERE no_article =? AND date_debut_encheres <= GETDATE()";
+            Integer articleEtat = jdbcTemplate.queryForObject(SelectVenteQuery, new Object[]{vente.getNoArticle()}, Integer.class);
+            if(articleEtat == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET etat_article= 1 WHERE no_article =?";
+            jdbcTemplate.update(insertArticleQuery, vente.getNoArticle());
+            return false;
+        }
 
     }
     @Override
@@ -169,12 +217,13 @@ public class EnchereDAOImpl implements EnchereDAO {
     public void annulerVente(int id) {
         Logger.log("Trace_ENI.log","annulerVente : " + id);
         /* Pour l'identifiant de type d'etat d'une vente, se referencer au fichier README*/
+        if(IsPossibleModifySale(viewArticle(id))) {
+            String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
+            jdbcTemplate.update(updatePrevCreditsQuery, id, WinnerOffre(id), WinnerOffre(id));
 
-        String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
-        jdbcTemplate.update(updatePrevCreditsQuery, id, WinnerOffre(id), WinnerOffre(id));
-
-        String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 2  WHERE no_article=?";
-        jdbcTemplate.update(insertArticleQuery, id);
+            String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= -1  WHERE no_article=?";
+            jdbcTemplate.update(insertArticleQuery, id);
+        }
     }
 
     @Override

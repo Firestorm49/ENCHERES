@@ -4,6 +4,7 @@ import fr.eni.encheres.bo.CArticleVendu;
 import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EnchereDAO {
@@ -22,8 +23,12 @@ public interface EnchereDAO {
     void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
+
+    boolean IsPossibleModifySale(CArticleVendu vente);
+
     int IsVenteFinish(int id);
     void annulerVente(int id);
+    void CheckSale(LocalDateTime localDate);
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);

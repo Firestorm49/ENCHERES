@@ -2,6 +2,8 @@ package fr.eni.encheres.dal;
 
 import fr.eni.encheres.Logger.Logger;
 import fr.eni.encheres.Tools.Cryptage;
+import fr.eni.encheres.bo.CArticleVendu;
+import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
@@ -48,7 +51,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     }
     @Override
     public List<CUtilisateur> ViewAllUtilisateurs() {
-        Logger.log("Trace_ENI.log","ViewAllUtilisateurs  ");
+        Logger.log("Trace_ENI.log","ViewAllUtilisateurs");
         String sql = "SELECT * FROM UTILISATEURS";
         return jdbcTemplate.query(sql, new UtilisateurListRowMapper());
     }
@@ -68,8 +71,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
     @Override
     public void DeleteProfil(int id) {
-        Logger.log("Trace_ENI.log","DeleteProfil : " + id);
-        String deleteProfilQuery = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+        Logger.log("Trace_ENI.log", "DeleteProfil : " + id);
+        DesactiveProfil(ViewProfil(id));
+        // Supprimer l'utilisateur de la table des profils
+        String deleteProfilQuery = "DELETE FROM Utilisateurs WHERE no_utilisateur = ?";
         jdbcTemplate.update(deleteProfilQuery, id);
     }
 
@@ -84,6 +89,64 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         Logger.log("Trace_ENI.log","DesactiveProfil : " + utilisateur);
         String desactivateProfilQuery = "UPDATE UTILISATEURS SET active=0 WHERE no_utilisateur=?";
         jdbcTemplate.update(desactivateProfilQuery, utilisateur.getNoUtilisateur());
+
+        String SelectRowsQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE no_utilisateur =? AND etat_article < 2";
+        Integer Nb_RowsUsers = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{utilisateur.getNoUtilisateur()}, Integer.class);
+
+        if(Nb_RowsUsers > 0) {
+            List<Integer> articleIDs = new ArrayList<>(Nb_RowsUsers);
+            String SelectarticleQuery = "SELECT no_article FROM ARTICLES_VENDUS WHERE no_utilisateur =? AND etat_article < 2";
+            articleIDs = jdbcTemplate.queryForList(SelectarticleQuery, new Object[]{utilisateur.getNoUtilisateur()}, Integer.class);
+
+            for (int i = 0; i < Nb_RowsUsers; i++) {
+                String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article = ? AND montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES  WHERE no_article = ?)";
+                Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{articleIDs.get(i),articleIDs.get(i)}, Integer.class);
+                    String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
+                    jdbcTemplate.update(updatePrevCreditsQuery, articleIDs.get(i), UserOffre, UserOffre);
+
+                    String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= -1  WHERE no_article=?";
+                    jdbcTemplate.update(insertArticleQuery, articleIDs.get(i));
+            }
+        }
+
+        String enchereEnCoursQuery = "SELECT ENCHERES.no_article FROM ENCHERES INNER JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article \n" +
+                "WHERE ENCHERES.no_utilisateur = ? AND ARTICLES_VENDUS.etat_article = 1 \n" +
+                "GROUP BY ENCHERES.no_article";
+
+        List<Integer> articlesAEnlever = jdbcTemplate.queryForList(enchereEnCoursQuery, Integer.class, utilisateur.getNoUtilisateur());
+
+        // Pour chaque article, récupérer le deuxième montant le plus élevé et retirer l'utilisateur de la table des enchères
+        for (Integer noArticle : articlesAEnlever) {
+            String UsersMontantQuery = "SELECT montant_enchere FROM ENCHERES WHERE no_utilisateur = ? AND no_article =?";
+
+            Integer UsersMontant = jdbcTemplate.queryForObject(UsersMontantQuery, Integer.class,utilisateur.getNoUtilisateur(), noArticle);
+
+            String MontantMaxQuery = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article =?";
+
+            Integer MontantMax = jdbcTemplate.queryForObject(MontantMaxQuery, Integer.class, noArticle);
+
+            if(UsersMontant == MontantMax){
+
+                String deleteEnchereQuery = "DELETE FROM Encheres WHERE no_utilisateur = ? AND no_article = ?";
+                jdbcTemplate.update(deleteEnchereQuery, utilisateur.getNoUtilisateur(), noArticle);
+
+                String MontantSecondQuery = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article =?";
+
+                Integer MontantSecond = jdbcTemplate.queryForObject(MontantSecondQuery, Integer.class, noArticle);
+
+                String UserSecondQuery = "SELECT no_utilisateur FROM ENCHERES WHERE no_article =? AND montant_enchere = ?";
+
+                Integer UserSecond = jdbcTemplate.queryForObject(UserSecondQuery, Integer.class, noArticle, MontantSecond);
+
+                String sql = "SELECT credit FROM UTILISATEURS WHERE no_utilisateur=?";
+                Integer credit = jdbcTemplate.queryForObject(sql, new Object[]{UserSecond}, Integer.class);
+
+                if (credit != null && MontantSecond < credit) {
+                    String DesactivateProfilQuery = "UPDATE UTILISATEURS SET credit= credit - ? WHERE no_utilisateur=?";
+                    jdbcTemplate.update(DesactivateProfilQuery, MontantSecond,UserSecond);
+                }
+            }
+        }
     }
     @Override
     public void ActiveProfil(CUtilisateur utilisateur) {
