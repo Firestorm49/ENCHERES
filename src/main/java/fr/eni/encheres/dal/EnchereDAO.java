@@ -23,6 +23,9 @@ public interface EnchereDAO {
     void remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
     void modifierVente(CArticleVendu vente);
+
+    boolean IsPossibleModifySale(CArticleVendu vente);
+
     int IsVenteFinish(int id);
     void annulerVente(int id);
     void CheckSale(LocalDateTime localDate);
