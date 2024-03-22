@@ -16,7 +16,7 @@
 	<main class="center-main">
 		<form
 			th:replace="~{fragments/layouts/layout-login :: login-form('Se connecter', '/login')}"></form>
-		<a href="/users/password_forbidden">Mot de passe oublié</a>
+		<a href="/users/modify/password">Mot de passe oublié</a>
 		<form method="post" action="/users/create">
 		<button type="submit">Creer un compte</button></form>
 	</main>

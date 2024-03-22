@@ -32,7 +32,7 @@ public class CategorieDAOImpl implements CategorieDAO {
     public void DeleteCategorie(int id) {
         Logger.log("Trace_ENI.log","DeleteCategorie : "+ id);
 
-        String updateCategorieQuery = "UPDATE ARTICLES_VENDUS SET no_categorie=NULL WHERE no_categorie=?";
+        String updateCategorieQuery = "UPDATE ARTICLES_VENDUS SET no_categorie=5 WHERE no_categorie=?";
         jdbcTemplate.update(updateCategorieQuery, id);
 
         String deleteCategorieQuery = "DELETE FROM CATEGORIES WHERE no_categorie=?";
