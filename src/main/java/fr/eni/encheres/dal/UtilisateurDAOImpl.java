@@ -99,18 +99,22 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             articleIDs = jdbcTemplate.queryForList(SelectarticleQuery, new Object[]{utilisateur.getNoUtilisateur()}, Integer.class);
 
             for (int i = 0; i < Nb_RowsUsers; i++) {
+                String SelectRowsEnchereQuery = "SELECT COUNT(no_encheres) FROM ENCHERES WHERE no_article =?";
+                Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsEnchereQuery, new Object[]{articleIDs.get(i)}, Integer.class);
+
+                if(Nb_Rows > 0){
                 String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article = ? AND montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES  WHERE no_article = ?)";
                 Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{articleIDs.get(i),articleIDs.get(i)}, Integer.class);
                     String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
                     jdbcTemplate.update(updatePrevCreditsQuery, articleIDs.get(i), UserOffre, UserOffre);
-
+                }
                     String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 3  WHERE no_article=?";
                     jdbcTemplate.update(insertArticleQuery, articleIDs.get(i));
             }
         }
 
         String enchereEnCoursQuery = "SELECT ENCHERES.no_article FROM ENCHERES INNER JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article \n" +
-                "WHERE ENCHERES.no_utilisateur = ? AND ARTICLES_VENDUS.etat_article = 1 \n" +
+                "WHERE ENCHERES.no_utilisateur = ? \n" +
                 "GROUP BY ENCHERES.no_article";
 
         List<Integer> articlesAEnlever = jdbcTemplate.queryForList(enchereEnCoursQuery, Integer.class, utilisateur.getNoUtilisateur());
@@ -130,20 +134,26 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
                 String deleteEnchereQuery = "DELETE FROM Encheres WHERE no_utilisateur = ? AND no_article = ?";
                 jdbcTemplate.update(deleteEnchereQuery, utilisateur.getNoUtilisateur(), noArticle);
 
-                String MontantSecondQuery = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article =?";
+                String SelectRowsEnchereQuery = "SELECT COUNT(no_encheres) FROM ENCHERES WHERE no_article =?";
+                Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsEnchereQuery, new Object[]{noArticle}, Integer.class);
 
-                Integer MontantSecond = jdbcTemplate.queryForObject(MontantSecondQuery, Integer.class, noArticle);
+                if(Nb_Rows > 0) {
 
-                String UserSecondQuery = "SELECT no_utilisateur FROM ENCHERES WHERE no_article =? AND montant_enchere = ?";
+                    String MontantSecondQuery = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article =?";
 
-                Integer UserSecond = jdbcTemplate.queryForObject(UserSecondQuery, Integer.class, noArticle, MontantSecond);
+                    Integer MontantSecond = jdbcTemplate.queryForObject(MontantSecondQuery, Integer.class, noArticle);
 
-                String sql = "SELECT credit FROM UTILISATEURS WHERE no_utilisateur=?";
-                Integer credit = jdbcTemplate.queryForObject(sql, new Object[]{UserSecond}, Integer.class);
+                    String UserSecondQuery = "SELECT no_utilisateur FROM ENCHERES WHERE no_article =? AND montant_enchere = ?";
 
-                if (credit != null && MontantSecond < credit) {
-                    String DesactivateProfilQuery = "UPDATE UTILISATEURS SET credit= credit - ? WHERE no_utilisateur=?";
-                    jdbcTemplate.update(DesactivateProfilQuery, MontantSecond,UserSecond);
+                    Integer UserSecond = jdbcTemplate.queryForObject(UserSecondQuery, Integer.class, noArticle, MontantSecond);
+
+                    String sql = "SELECT credit FROM UTILISATEURS WHERE no_utilisateur=?";
+                    Integer credit = jdbcTemplate.queryForObject(sql, new Object[]{UserSecond}, Integer.class);
+
+                    if (credit != null && MontantSecond < credit) {
+                        String DesactivateProfilQuery = "UPDATE UTILISATEURS SET credit= credit - ? WHERE no_utilisateur=?";
+                        jdbcTemplate.update(DesactivateProfilQuery, MontantSecond, UserSecond);
+                    }
                 }
             }
         }

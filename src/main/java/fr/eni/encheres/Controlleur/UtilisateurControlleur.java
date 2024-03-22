@@ -39,6 +39,7 @@ public class UtilisateurControlleur {
     @ModelAttribute("membreEnSession")
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
+            System.out.println(authentication.getName());
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                 UtilisateurConnecte.setAdministrateur(1);
@@ -52,6 +53,7 @@ public class UtilisateurControlleur {
         } else {
             UtilisateurConnecte = null;
         }
+        System.out.println(UtilisateurConnecte);
         return UtilisateurConnecte;
     }
 
