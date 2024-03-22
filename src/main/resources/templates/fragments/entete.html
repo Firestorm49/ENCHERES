@@ -7,7 +7,7 @@
 	</div>
 	<div id="userConnecte" th:if="${#authorization.expression('isAuthenticated()')}">
 		<a href="/bid"><img th:title="#{entete.title}"
-			th:src="@{/images/encheres.png}" id="logoEncheres" /></a>
+			th:src="@{/images/encheres.png}" id="logo" /></a>
 	</div>
 
 	<nav id="navigation">
@@ -21,11 +21,11 @@
 				href="/users/detail"><img id="profil"
 					th:title="#{img.title.profil}" src="/images/user.png"></a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"
-				sec:authorize="hasRole('ADMIN')"><a href="/category"><img
+				sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"><a href="/category"><img
 					id="category" th:title="#{img.title.category}"
 					src="/images/categorie.png"></a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"
-				sec:authorize="hasRole('ADMIN')"><a href="/users"><img
+				sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"><a href="/users"><img
 					id="userList" th:title="#{img.title.userList}"
 					src="/images/userList.png"></a></li>
 			<li th:if="${not #authorization.expression('isAuthenticated()')}"><a

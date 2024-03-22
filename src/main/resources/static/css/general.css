@@ -6,69 +6,69 @@
 /*   justify-content: space-between; */
 /* } */
 header li {
-	list-style: none;
-	display: inline-block;
-	padding: 0 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, Helvetica;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica;
 }
 
 /* Header */
 header {
-	padding: 20px 50px;
-	box-shadow: 0 1px 8px #ddd;
-	background-color: #777;
+    padding: 20px 50px;
+    box-shadow: 0 1px 8px #ddd;
+    background-color: #777;
 }
 
 #nav-title {
-	margin-right: auto;
-	font-size: 1.1em;
+    margin-right: auto;
+    font-size: 1.1em;
 }
 
 header li {
-	list-style: none;
-	display: inline-block;
-	padding: 0 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
 }
 
 header a {
-	text-decoration: none;
-	color: white;
-	transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease 0s;
 }
 
 header a:hover {
-	color: rgb(0, 128, 192);
+    color: rgb(0, 128, 192);
 }
 
 main {
-	margin-top: 15px;
-	margin-left: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 header h1 {
-	margin: 10px;
-	color: black;
+    margin: 10px;
+    color: black;
 }
 .center-main {
-	width: 100%;
-	margin: auto;
+    width: 100%;
+    margin: auto;
 }
 .center-films {
-	width: 100%;
-	margin-bottom: 414px;
+    width: 100%;
+    margin-bottom: 414px;
 }
 .center-avis {
-	width: 100%;
-	margin-bottom: 0px;
+    width: 100%;
+    margin-bottom: 0px;
 }
 .center-section {
-	margin: auto;
-	text-align: center;
+    margin: auto;
+    text-align: center;
 }
 
 input[type=text], input[type=number], input[type=password],input[type=datetime-local] {
@@ -119,8 +119,8 @@ textarea:focus {
     border: 0.188rem solid #555;
 }
 .disabled-input {
-    color: #888; 
-    background-color: #eee; 
+    color: #888;
+    background-color: #eee;
 }
 body {
     margin: 0;
@@ -142,24 +142,28 @@ footer {
 }
 
 #login, #bid, #logout, #category, #profil, #userList, #logoEncheres {
-	width: 65px;
+    width: 65px;
 }
 
 #vendre {
-	margin-top: 2rem;
-	width: 45px;
+    margin-top: 2rem;
+    width: 45px;
 }
 
 h1{
-	text-align: center;
+    text-align: center;
 }
 
 #userDeconnecte, #userConnecte{
-	float: left;
-	margin: auto;
+    float: left;
+    margin: auto;
 }
 
 #navigation{
-	float: right;
-	margin: auto;
+    float: right;
+    margin: auto;
+}
+
+#article{
+
 }

@@ -17,7 +17,7 @@
 	<main class="center-main page-user">
 		<div class="content">
 			<h1> Mon profil EDIT / CREATE </h1>
-			<form action="#" th:action="@{${postValue}}" th:object="${user}" method="post">
+			<form th:action="@{${postValue}}" th:object="${user}" method="post">
 
 				<p class="cards" data-th-each="err : ${#fields.errors('global')}" data-th-text="#{${err}}"/>
 

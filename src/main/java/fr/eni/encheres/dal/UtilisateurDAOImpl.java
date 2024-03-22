@@ -73,6 +73,23 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     public void DeleteProfil(int id) {
         Logger.log("Trace_ENI.log", "DeleteProfil : " + id);
         DesactiveProfil(ViewProfil(id));
+
+        String SelectRowsQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE no_utilisateur =? ";
+        Integer Nb_RowsUsers = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{id}, Integer.class);
+
+        if(Nb_RowsUsers > 0) {
+            List<Integer> articleIDs = new ArrayList<>(Nb_RowsUsers);
+            String SelectarticleQuery = "SELECT no_article FROM ARTICLES_VENDUS WHERE no_utilisateur =?";
+            articleIDs = jdbcTemplate.queryForList(SelectarticleQuery, new Object[]{id}, Integer.class);
+
+            for (int i = 0; i < Nb_RowsUsers; i++) {
+                String deleteQuery = "DELETE FROM RETRAITS WHERE no_article = ?";
+                jdbcTemplate.update(deleteQuery, articleIDs.get(i));
+            }
+        }
+        String deleteQuery = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
+        jdbcTemplate.update(deleteQuery, id);
+
         // Supprimer l'utilisateur de la table des profils
         String deleteProfilQuery = "DELETE FROM Utilisateurs WHERE no_utilisateur = ?";
         jdbcTemplate.update(deleteProfilQuery, id);
