@@ -17,7 +17,7 @@
 <main class="center-main">
 	<div class="center-avis">
 		<h1> Detail vente </h1>
-		<img src="votre_image.jpg" alt="Votre Image">
+		<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
 		<div class="informations">
 			<div class="top">
 				<div class="line">

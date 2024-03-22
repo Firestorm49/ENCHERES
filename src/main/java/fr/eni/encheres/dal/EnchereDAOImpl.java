@@ -68,7 +68,13 @@ public class EnchereDAOImpl implements EnchereDAO {
         return  jdbcTemplate.query(sql, new EnchereRowMapper());
 
     }
+    @Override
+    public List<CEnchere> listEncheresByArticleId(int id) {
+        Logger.log("Trace_ENI.log","listEncheresByArticleId : ");
+        String sql = "SELECT ENCHERES.* FROM ENCHERES WHERE no_article= ? ORDER BY montant_enchere DESC";
+        return  jdbcTemplate.query(sql, new Object[]{id},new EnchereRowMapper());
 
+    }
     @Override
     public List<CEnchere> listEncheresConnecte() {
         Logger.log("Trace_ENI.log","listEncheresConnecte : ");

@@ -72,11 +72,11 @@ public class VenteControlleur {
         Logger.log("Trace_ENI.log","Controlleur : getModifyEncheres ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         CRetrait retrait = enchereService.SearchRetraitByArticleID(id);
-        String imageArticle = enchereService.SearchPhotoByArticleId(id);
         model.addAttribute("retrait",retrait);
         model.addAttribute("ArticleVendu",ArticleVendu);
         model.addAttribute("isCreate",false);
         model.addAttribute("postValue","/sale/modify");
+        String imageArticle = enchereService.SearchPhotoByArticleId(id);
         model.addAttribute("imageArticle","./../" + imageArticle);
         return "view_sale";
     }

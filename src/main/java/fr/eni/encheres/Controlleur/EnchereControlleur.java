@@ -89,7 +89,28 @@ public class EnchereControlleur {
         else{
             model.addAttribute("Msg_FinVente", "Enchere toujours en cours");
         }
+        if(ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()){
+            model.addAttribute("isVendeur", true);
+        }
+        else{
+            model.addAttribute("isVendeur", false);
+        }
+        String imageArticle = enchereService.SearchPhotoByArticleId(Enchere.getArticle().getNoArticle());
+        model.addAttribute("imageArticle","./../" + imageArticle);
         return "view_bid_detail";
+    }
+
+    @GetMapping("/Encherisseurs")
+    public String getEncherisseursEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getEncherisseursEncheres ");
+
+        CArticleVendu ArticleVendu=enchereService.AfficherArticleById(id);
+        model.addAttribute("Vente",ArticleVendu);
+        String imageArticle = enchereService.SearchPhotoByArticleId(id);
+        model.addAttribute("imageArticle","./../" + imageArticle);
+        List<CEnchere> encheres = enchereService.listEncheresByArticleId(id);
+        model.addAttribute("Encheres",encheres);
+        return "view_bid_list_users";
     }
 
     @GetMapping("/purpose")
@@ -103,10 +124,10 @@ public class EnchereControlleur {
         model.addAttribute("MOffre",MOffre);
         CUtilisateur utilisateur=utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere,MOffre));
         model.addAttribute("MOffreUser",utilisateur.getPseudo());
-
+        String imageArticle = enchereService.SearchPhotoByArticleId(Enchere.getArticle().getNoArticle());
+        model.addAttribute("imageArticle","./../" + imageArticle);
         return "view_bid_add";
     }
-
     @PostMapping("/purpose")
     public String postEncheresPropose(@ModelAttribute("id") int id,
                                       @ModelAttribute("Proposition") int Enchere) {

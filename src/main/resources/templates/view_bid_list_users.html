@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title>Liste des Encherisseurs</title>
+<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+<main class="center-main">
+  <div class="center-avis">
+    <h1>Encherisseurs</h1>
+    <BR>
+    <BR>
+    <div class="top">
+      <img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
+      <div class="line">
+        <span th:text="${Vente.getNomArticle()}"></span>
+      </div>
+      <div class="line">
+        Description : <span th:text="${Vente.getDescription()}"></span>
+      </div>
+      <div class="line">
+        Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
+      </div>
+      <div class="line">
+        Meilleur offre : <span th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+      </div>
+      <div class="line">
+        Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
+      </div>
+      <div class="line">
+        Fin de l'enchère : <span th:text="${Vente.getDateFinEncheres()}"></span>
+      </div>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Nom de l'encherisseur</th>
+        <th>Proposition</th>
+        <th>Date de l'enchere</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-th-if="${Encheres != null}" data-th-each="item : ${Encheres}">
+        <td data-th-text="${item.getUtilisateur().getPseudo()}"></td>
+        <td data-th-text="${item.getMontant_enchere()} + ' points'"></td>
+        <td data-th-text="${item.getDateEnchere()}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <BR>
+  </div>
+</main>
+</html>

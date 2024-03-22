@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -200,6 +201,7 @@ public class UtilisateurControlleur {
         utilisateurService.DeleteProfil(id);
         return "redirect:/users";
     }
+
     @GetMapping("/deactivation")
     public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
@@ -207,6 +209,7 @@ public class UtilisateurControlleur {
 
         return "redirect:/users";
     }
+
     @GetMapping("/activation")
     public String getActivationUsers(@RequestParam(name = "id", required = true) int id) {
         Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
@@ -236,6 +239,18 @@ public class UtilisateurControlleur {
     @PostMapping("/activation")
     public String postUsersActivation() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersActivation ");
+        return "redirect:/users";
+    }
+
+    @PostMapping("/deleteMultiUsers")
+    public String postDeleteMultiUsers(@RequestParam(name = "supprimeMultiUtilisateur", required = false) int[] userIds) {
+        List<CUtilisateur> users = new ArrayList<>();
+        if (userIds != null && userIds.length > 0) {
+            for (int userId : userIds) {
+                users.add(utilisateurService.ViewProfil(userId));
+            }
+            utilisateurService.DeleteMultiProfil(users);
+        }
         return "redirect:/users";
     }
 }

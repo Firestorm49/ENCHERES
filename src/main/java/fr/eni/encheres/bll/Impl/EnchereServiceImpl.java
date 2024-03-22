@@ -188,4 +188,9 @@ public class EnchereServiceImpl implements EnchereService {
     public String SearchPhotoByArticleId(int id) {
         return encheresDAO.SearchPhotoByArticleId(id);
     }
+
+    @Override
+    public List<CEnchere> listEncheresByArticleId(int id) {
+        return encheresDAO.listEncheresByArticleId(id);
+    }
 }

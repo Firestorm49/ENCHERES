@@ -51,6 +51,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/bid").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/bid/detail").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/bid/Encherisseurs").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/bid/Purpose").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/sale/create").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/sale/upload").permitAll();
@@ -61,6 +62,7 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.POST,"/users/create").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/modify").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/delete").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/users/deleteMultiUsers").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/users/password_forbidden").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/deactivation").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/activation").permitAll();

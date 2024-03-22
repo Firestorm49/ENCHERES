@@ -32,5 +32,5 @@ public interface EnchereService {
     int IsVenteFinish(int id);
     int WinnerOffre(int id);
     String SearchPhotoByArticleId(int id);
-
+    List<CEnchere> listEncheresByArticleId(int id);
 }
