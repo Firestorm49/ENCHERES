@@ -37,13 +37,17 @@ public class VenteControlleur {
     }
     @ModelAttribute("membreEnSession")
     public CUtilisateur MembreAuthenticate(Authentication authentication) {
+        System.out.println(authentication + " " + authentication.isAuthenticated());
         if (authentication != null && authentication.isAuthenticated()) {
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(true);
+                UtilisateurConnecte.setAdministrateur(1);
+            }
+            else if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                UtilisateurConnecte.setAdministrateur(2);
             }
             else {
-                UtilisateurConnecte.setAdministrateur(false);
+                UtilisateurConnecte.setAdministrateur(0);
             }
         } else {
             UtilisateurConnecte = null;
@@ -91,14 +95,32 @@ public class VenteControlleur {
 
     @PostMapping("/create")
     public String postArticleVenduCreate(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
+                                         @RequestParam("upload") MultipartFile uploadFile,
                                          @ModelAttribute("Retrait") CRetrait Retrait,
                                      BindingResult bindingResult) {
         Logger.log("Trace_ENI.log","Controlleur : postArticleVenduCreate " +ArticleVendu );
+        System.out.println(UtilisateurConnecte);
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "sale/create";
         } else {
             if(UtilisateurConnecte.isActive()) {
+                String fileName = StringUtils.cleanPath(uploadFile.getOriginalFilename());
+
+                String relativePath = "/images/" + fileName;
+
+                try {
+                    // Récupération du dossier images dans les ressources statiques
+                    File imagesFolder = new ClassPathResource("static/images").getFile();
+                    // Création d'un nouveau fichier dans le dossier images
+                    File imageFile = new File(imagesFolder, fileName);
+                    // Transfert du fichier téléchargé vers le nouveau fichier dans le dossier images
+                    uploadFile.transferTo(imageFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                ArticleVendu.setPhoto(relativePath);
                 ArticleVendu.setRetrait(Retrait);
                 ArticleVendu.setVendeur(UtilisateurConnecte);
                 enchereService.vendreArticle(ArticleVendu);

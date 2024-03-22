@@ -36,14 +36,14 @@ public class CUtilisateur {
     @Size(max=250, min=8)
     private String motdepasse;
     private int credit;
-    private boolean administrateur;
+    private int administrateur;
     private boolean Active;
 
     public CUtilisateur() {
 
     }
 
-    public CUtilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, int codePostal, String ville, String motdepasse, int credit, boolean administrateur) {
+    public CUtilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, int codePostal, String ville, String motdepasse, int credit, int administrateur) {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
@@ -146,11 +146,11 @@ public class CUtilisateur {
         this.credit = credit;
     }
 
-    public boolean isAdministrateur() {
+    public int isAdministrateur() {
         return administrateur;
     }
 
-    public void setAdministrateur(boolean administrateur) {
+    public void setAdministrateur(int administrateur) {
         this.administrateur = administrateur;
     }
 

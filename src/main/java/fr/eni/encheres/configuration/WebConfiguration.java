@@ -63,15 +63,16 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/users/modify").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/delete").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/users/buycredit").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/users/deleteMultiUsers").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/users/deleteMultiUsers").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/users/administrateur").hasRole("SUPER_ADMIN");
             auth.requestMatchers(HttpMethod.POST,"/users/password_forbidden").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/users/deactivation").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/users/activation").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/category").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/category/detail").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/category/create").permitAll();
-            auth.requestMatchers(HttpMethod.GET,"/category/modify").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET,"/category/delete").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/users/deactivation").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/users/activation").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/category").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/category/detail").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/category/create").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/category/modify").hasAnyRole("ADMIN","SUPER_ADMIN");
+            auth.requestMatchers(HttpMethod.GET,"/category/delete").hasAnyRole("ADMIN","SUPER_ADMIN");
             auth.requestMatchers("/css/*").permitAll();
             auth.requestMatchers("/images/*").permitAll();
             auth.requestMatchers("/errors/**").permitAll();
@@ -80,7 +81,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 
         http.formLogin(form -> form
-                .loginPage("/login").failureUrl("/login?error=true").permitAll().defaultSuccessUrl("/")
+                .loginPage("/login").failureUrl("/login?error=true").permitAll().defaultSuccessUrl("/bid")
         );
 
         http.logout(logout -> logout.logoutSuccessUrl("/").deleteCookies("JSESSIONID"));

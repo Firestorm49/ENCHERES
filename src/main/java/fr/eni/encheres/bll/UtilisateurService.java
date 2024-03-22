@@ -13,7 +13,7 @@ public interface UtilisateurService {
     CUtilisateur getUtilisateurByEmail(String mail);
     boolean checkUser(String mail);
     CUtilisateur viewAcheteurByArticleID(int id);
-    void ModifyRoleUtilisateur(int id, boolean isAdministrateur);
+    void ModifyRoleUtilisateur(int id, int isAdministrateur);
     List<CUtilisateur> ViewAllUtilisateurs();
     void ActiveProfil(CUtilisateur utilisateur);
     boolean verifPassword(String mdp, CUtilisateur utilisateur);

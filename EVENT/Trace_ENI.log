@@ -425,3 +425,354 @@
 [2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
 [2024-03-22] Controlleur : getUsers 
 [2024-03-22] ViewAllUtilisateurs
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:29:53.929064500
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsMaxOffre : CEnchere{dateEnchere=null, montant_enchere=0}
+[2024-03-22] remporterVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='images/logo.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=true}}
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCategorie 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:41:39.656974700
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:41', dateFinEncheres='2024-04-06T10:41', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:41', dateFinEncheres='2024-04-06T10:41', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:45:05.389219700
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:45', dateFinEncheres='2024-04-07T10:45', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:47:59.312510800
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:48', dateFinEncheres='2024-04-07T10:48', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:51', dateFinEncheres='2024-04-07T10:51', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postuploadArticleVendu 12null
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postuploadArticleVendu 12org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@3215b668
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] ajouterPhotoVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=true}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=true}}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:54:34.614525900
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='pc supralu', description='pc supraluminic xe14', dateDebutEncheres='2024-02-26T10:54', dateFinEncheres='2024-04-07T10:55', miseAPrix=200, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=7, libelle=Informatique}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:55:07.110081
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:57:29.382931200
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:57:37.552634400
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:58:12.623280100
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T10:58:16.164449900
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] Controlleur : postCreateUsers 
+[2024-03-22] Controlleur : postCreateUsers 
+[2024-03-22] checkUsersothiguil49pml@gmail.com
+[2024-03-22] Subscribe : CUtilisateur{noUtilisateur=0, pseudo='michel', nom='barbara', prenom='barbe447895', email='sothiguil49pml@gmail.com', telephone='0254785412', rue='rue du charmes', codePostal='47840', ville='becanne', motdepasse='test47', credit=0, administrateur=false}
+[2024-03-22] Controlleur : postCreateUsers 
+[2024-03-22] Controlleur : postCreateUsers 
+[2024-03-22] checkUsertpsguillet46pml@gmail.com
+[2024-03-22] Subscribe : CUtilisateur{noUtilisateur=0, pseudo='sofie', nom='nardi', prenom='barge', email='tpsguillet46pml@gmail.com', telephone='0245788415', rue='rue du baton', codePostal='47850', ville='becanne', motdepasse='test47', credit=0, administrateur=false}
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] Controlleur : getActivationUsers 
+[2024-03-22] ViewProfil : 5
+[2024-03-22] ActiveProfil : CUtilisateur{noUtilisateur=5, pseudo='michel', nom='barbara', prenom='barbe447895', email='sothiguil49pml@gmail.com', telephone='0254785412', rue='rue du charmes', codePostal='47840', ville='becanne', motdepasse='null', credit=0, administrateur=false}
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] Controlleur : getActivationUsers 
+[2024-03-22] ViewProfil : 6
+[2024-03-22] ActiveProfil : CUtilisateur{noUtilisateur=6, pseudo='sofie', nom='nardi', prenom='barge', email='tpsguillet46pml@gmail.com', telephone='0245788415', rue='rue du baton', codePostal='47850', ville='becanne', motdepasse='null', credit=0, administrateur=false}
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : sothiguil49pml@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T11:01:09.504762700
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] Controlleur : postArticleVenduCreate CArticleVendu{noArticle=0, nomArticle='television', description='samsung X10', dateDebutEncheres='2024-03-13T11:01', dateFinEncheres='2024-04-07T11:01', miseAPrix=100, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='null', retrait=null, Acheteur=null, Vendeur=null}
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T11:01:48.151033400
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : sothiguil49pml@gmail.com
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] ViewProfil : 1
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] CheckSale : 2024-03-22T11:04:32.563426600
+[2024-03-22] Controlleur : getDetailUsers 

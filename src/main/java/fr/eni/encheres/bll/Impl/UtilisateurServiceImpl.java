@@ -76,7 +76,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void ModifyRoleUtilisateur(int id, boolean isAdministrateur) {
+    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
         utilisateursDAO.ModifyRoleUtilisateur(id,isAdministrateur);
     }
     @Override

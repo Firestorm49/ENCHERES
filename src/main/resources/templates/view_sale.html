@@ -10,13 +10,14 @@
 <!-- Image -->
 <img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
         <!-- Trois boutons -->
-        <form action="/sale/upload" method="post" enctype="multipart/form-data">
+        <form data-th-if="${not isCreate}" action="/sale/upload" method="post" enctype="multipart/form-data">
             <input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">
             <label>Photo de l'article</label>
             <input type="file" name="upload">
             <button type="submit">Uploader</button>
         </form>
-<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}">
+<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}" enctype="multipart/form-data">
+    <input data-th-if="${isCreate}" type="file" name="upload" >
 <!-- Deux Inputs -->
 <input type="hidden" id="id" name="id" data-th-value="*{noArticle}">
 <label for="NomArticle">Article :</label>

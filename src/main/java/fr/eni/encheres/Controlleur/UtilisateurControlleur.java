@@ -25,6 +25,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/users")
+@SessionAttributes({ "membreEnSession" })
 public class UtilisateurControlleur {
 
     private final UtilisateurService utilisateurService;
@@ -40,17 +41,19 @@ public class UtilisateurControlleur {
         if (authentication != null && authentication.isAuthenticated()) {
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(true);
+                UtilisateurConnecte.setAdministrateur(1);
+            }
+            else if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                UtilisateurConnecte.setAdministrateur(2);
             }
             else {
-                UtilisateurConnecte.setAdministrateur(false);
+                UtilisateurConnecte.setAdministrateur(0);
             }
         } else {
             UtilisateurConnecte = null;
         }
         return UtilisateurConnecte;
     }
-
 
     @GetMapping
     public String getUsers(Model model) {
@@ -93,7 +96,7 @@ public class UtilisateurControlleur {
             return "redirect:/login";
         }else{
             user.setCredit(0);
-            user.setAdministrateur(false);
+            user.setAdministrateur(0);
             user.setActive(false);
             utilisateurService.Inscription(user);
             return "redirect:/users/detail";
@@ -219,7 +222,13 @@ public class UtilisateurControlleur {
     @GetMapping("/administrateur")
     public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getAdministrateurUsers ");
-        utilisateurService.ModifyRoleUtilisateur(id,(!utilisateurService.ViewProfil(id).isAdministrateur()));
+        if(utilisateurService.ViewProfil(id).isAdministrateur() == 1){
+            utilisateurService.ModifyRoleUtilisateur(id,0);
+        }
+        else if(utilisateurService.ViewProfil(id).isAdministrateur() == 0){
+            utilisateurService.ModifyRoleUtilisateur(id,1);
+        }
+
         if(UtilisateurConnecte != null){
             model.addAttribute("user", UtilisateurConnecte);
         }

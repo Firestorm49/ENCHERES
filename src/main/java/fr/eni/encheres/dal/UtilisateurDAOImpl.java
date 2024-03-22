@@ -63,7 +63,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         jdbcTemplate.update(updateProfilQuery, utilisateur.getPseudo(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getTelephone(), utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille(), mdpCrypte, utilisateur.getCredit(), utilisateur.isAdministrateur(), utilisateur.isActive(), utilisateur.getNoUtilisateur());
     }
     @Override
-    public void ModifyRoleUtilisateur(int id, boolean isAdministrateur) {
+    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
         Logger.log("Trace_ENI.log","ModifyRoleUtilisateur : " + id);
         String updateProfilQuery = "UPDATE UTILISATEURS SET  administrateur=? WHERE no_utilisateur=?";
         jdbcTemplate.update(updateProfilQuery, isAdministrateur, id);
@@ -210,7 +210,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             a.setRue(rs.getString("rue"));
             a.setVille(rs.getString("ville"));
             a.setCredit(rs.getInt("credit"));
-            a.setAdministrateur(rs.getBoolean("administrateur"));
+            a.setAdministrateur(rs.getInt("administrateur"));
             a.setActive(rs.getBoolean("active"));
 
             return a;
@@ -232,7 +232,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             utilisateur.setRue(rs.getString("rue"));
             utilisateur.setVille(rs.getString("ville"));
             utilisateur.setCredit(rs.getInt("credit"));
-            utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+            utilisateur.setAdministrateur(rs.getInt("administrateur"));
             utilisateur.setActive(rs.getBoolean("active"));
 
             return utilisateur;

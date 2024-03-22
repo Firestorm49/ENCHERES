@@ -37,13 +37,13 @@ public class EnchereControlleur {
         if (authentication != null && authentication.isAuthenticated()) {
             UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
             if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(true);
+                UtilisateurConnecte.setAdministrateur(1);
             }
             else if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(true);
+                UtilisateurConnecte.setAdministrateur(2);
             }
             else {
-                UtilisateurConnecte.setAdministrateur(false);
+                UtilisateurConnecte.setAdministrateur(0);
             }
         } else {
             UtilisateurConnecte = null;
