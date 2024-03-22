@@ -153,3 +153,13 @@ footer {
 h1{
 	text-align: center;
 }
+
+#userDeconnecte, #userConnecte{
+	float: left;
+	margin: auto;
+}
+
+#navigation{
+	float: right;
+	margin: auto;
+}
