@@ -19,9 +19,6 @@ header li {
 
 /* Header */
 header {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
 	padding: 20px 50px;
 	box-shadow: 0 1px 8px #ddd;
 	background-color: #777;
@@ -145,17 +142,12 @@ footer {
 }
 
 #login, #bid, #logout, #category, #profil, #userList, #logoEncheres {
-	width: 45px;
+	width: 65px;
 }
 
 #vendre {
 	margin-top: 2rem;
 	width: 45px;
-}
-
-#logoEncheres {
-	float: left;
-	margin: auto;
 }
 
 h1{

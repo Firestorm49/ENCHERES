@@ -1,17 +1,32 @@
 <!-- Navbar -->
-	<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="entete" >
-	<img th:src="@{/images/encheres.png}" id="logoEncheres"/>
-  		<h1 id="nav-title"><a href="/" data-th-text="'Enchères'" ></a>
-		</h1>
-		<nav>
-			<ul>
-				<li><a href="/bid"><img id="bid" src="/images/encheres.png" th:title="#{img.title.bid}"></a></li>
-				<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/sale/create"><img id="vendre" th:title="#{img.title.vendre}" src="/images/vendre.png"></a></a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/users/detail"><img id="profil" th:title="#{img.title.profil}" src="/images/user.png"></a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/category"><img id="category" th:title="#{img.title.category}" src="/images/categorie.png"></a></li>
-				<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/users"><img id="userList" th:title="#{img.title.userList}" src="/images/userList.png"></a></li>
-			<li  data-th-if="${not #authorization.expression('isAuthenticated()')}"><a href="/login"><img id="login" src="/images/user.png" th:title="#{img.title.bid}"></a></li>
-			<li  data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="/logout"> <img id="logout" th:title="#{img.title.logout}" src="/images/logout.png"></a></li>
-			</ul>
-		</nav>
-	</header>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="entete"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div style="float: left; margin:auto;"><a href="/"><img th:title="#{entete.title}" th:src="@{/images/encheres.png}" id="logoEncheres" /></a></div>
+	
+	<nav style="float: right; margin:auto;">
+		<ul>
+			<li><a href="/bid"><img id="bid" src="/images/encheres.png"
+					th:title="#{img.title.bid}"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				href="/sale/create"><img id="vendre"
+					th:title="#{img.title.vendre}" src="/images/vendre.png"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				href="/users/detail"><img id="profil"
+					th:title="#{img.title.profil}" src="/images/user.png"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				sec:authorize="hasRole('ADMIN')"><a href="/category"><img
+					id="category" th:title="#{img.title.category}"
+					src="/images/categorie.png"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				sec:authorize="hasRole('ADMIN')"><a href="/users"><img
+					id="userList" th:title="#{img.title.userList}"
+					src="/images/userList.png"></a></li>
+			<li th:if="${not #authorization.expression('isAuthenticated()')}"><a
+				href="/login"><img id="login" src="/images/user.png"
+					th:title="#{img.title.bid}"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				href="/logout"> <img id="logout" th:title="#{img.title.logout}"
+					src="/images/logout.png"></a></li>
+		</ul>
+	</nav>
+</header>
