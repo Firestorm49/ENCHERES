@@ -195,7 +195,8 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
-    public boolean IsPossibleModifySale(CArticleVendu vente) {
+    public boolean
+    IsPossibleModifySale(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","IsPossibleModifySale : " + vente);
 
         String SelectRowsQuery = "SELECT COUNT(etat_article) FROM ARTICLES_VENDUS WHERE no_article =? AND date_debut_encheres <= GETDATE()";
@@ -239,10 +240,14 @@ public class EnchereDAOImpl implements EnchereDAO {
         Logger.log("Trace_ENI.log","annulerVente : " + id);
         /* Pour l'identifiant de type d'etat d'une vente, se referencer au fichier README*/
         if(IsPossibleModifySale(viewArticle(id))) {
-            String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
-            jdbcTemplate.update(updatePrevCreditsQuery, id, WinnerOffre(id), WinnerOffre(id));
+            String sql = "SELECT COUNT(no_article) FROM ENCHERES WHERE ENCHERES.no_article =?";
+            Integer nbRows = jdbcTemplate.queryForObject(sql, new Object[]{id}, Integer.class);
+            if(nbRows > 0){
+                String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + (SELECT montant_enchere FROM ENCHERES WHERE no_article = ? AND no_utilisateur=? ))  WHERE no_utilisateur=?";
+                jdbcTemplate.update(updatePrevCreditsQuery, id, WinnerOffre(id), WinnerOffre(id));
 
-            String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= -1  WHERE no_article=?";
+            }
+            String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 3  WHERE no_article=?";
             jdbcTemplate.update(insertArticleQuery, id);
         }
     }

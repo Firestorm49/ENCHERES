@@ -928,3 +928,393 @@
 [2024-03-22] viewAcheteurByArticleID : 12
 [2024-03-22] SearchRetrait : 2
 [2024-03-22] CheckSale : 2024-03-22T11:56:03.083554100
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] getUtilisateurByEmail : michou46pml@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:22:37.559878900
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] Controlleur : getUsers 
+[2024-03-22] ViewAllUtilisateurs
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] getUtilisateurByEmail : michou46pml@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:27:27.813075
+[2024-03-22] Controlleur : getDetailUsers 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:28:38.152831900
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 12
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:29:30.059707800
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 12
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:29:49.947220900
+[2024-03-22] ListCategorie 
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 12
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:31:20.543370600
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 12
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='1', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:31:58.853915
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] IsMaxOffre : CEnchere{dateEnchere=null, montant_enchere=0}
+[2024-03-22] remporterVente : CArticleVendu{noArticle=12, nomArticle='pelle', description='pelle deluxe', dateDebutEncheres='2024-03-04T00:00', dateFinEncheres='2024-02-21T00:00', miseAPrix=10, prixVente=20, etatVente='2', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/capture.png', retrait=CRetrait{rue=rue du charmes, code_postal=47840, ville=jgfghfghjghkl}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 15
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] SearchRetraitByArticleID : 15
+[2024-03-22] SearchPhotoByArticleId : 15
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 15
+[2024-03-22] viewArticle : 15
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=15, nomArticle='television', description='samsung X10', dateDebutEncheres='2024-03-13T00:00', dateFinEncheres='2024-04-07T00:00', miseAPrix=100, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/logo.png', retrait=CRetrait{rue=rue du charmes, code_postal=44540, ville=maumusson}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] IsUserMaxOffre : 15
+[2024-03-22] getUtilisateurByEmail : landry.guillet3@gmail.com
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getCreateEncheres 
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 12
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchRetraitByArticleID : 12
+[2024-03-22] SearchPhotoByArticleId : 12
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getModifyEncheres 
+[2024-03-22] viewArticle : 15
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] SearchRetraitByArticleID : 15
+[2024-03-22] SearchPhotoByArticleId : 15
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : postEncheresDelete 
+[2024-03-22] annulerVente : 15
+[2024-03-22] viewArticle : 15
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] IsPossibleModifySale : CArticleVendu{noArticle=15, nomArticle='television', description='samsung X10', dateDebutEncheres='2024-03-13T00:00', dateFinEncheres='2024-04-07T00:00', miseAPrix=100, prixVente=0, etatVente='0', categorie=CCategorie{noCategorie=9, libelle=ménager}, photo='/images/logo.png', retrait=CRetrait{rue=rue du charmes, code_postal=44540, ville=maumusson}, Acheteur=null, Vendeur=CUtilisateur{noUtilisateur=1, pseudo='landry.guillet3@gmail.com', nom='guillet', prenom='landry', email='landry.guillet3@gmail.com', telephone='241952840', rue='charles edmont', codePostal='49780', ville='plessis mace', motdepasse='null', credit=300, administrateur=2}}
+[2024-03-22] ListCategorie 
+[2024-03-22] Controlleur : getEnchere 
+[2024-03-22] listEncheresConnecte : 
+[2024-03-22] SearchCategorie : 10
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 11
+[2024-03-22] SearchRetrait : 1
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 12
+[2024-03-22] viewAcheteurByArticleID : 12
+[2024-03-22] SearchRetrait : 2
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 13
+[2024-03-22] SearchRetrait : 3
+[2024-03-22] SearchCategorie : 7
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 14
+[2024-03-22] SearchRetrait : 4
+[2024-03-22] SearchCategorie : 9
+[2024-03-22] ViewProfil : 1
+[2024-03-22] IsVenteFinish : 15
+[2024-03-22] SearchRetrait : 5
+[2024-03-22] CheckSale : 2024-03-22T12:38:32.006778800
