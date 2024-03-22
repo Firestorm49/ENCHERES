@@ -64,10 +64,10 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public List<CArticleVendu> listEncheresDeconnecte() {
         Logger.log("Trace_ENI.log","listEncheresDeconnecte : ");
-        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.*\\n\" +\n" +
-                "                \"FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\\n\" +\n" +
-                "                \"UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN\\n\" +\n" +
-                "                \"RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE etat_article = 1";
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
+                " FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
+                " UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
+                "  RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE etat_article = 1";
         return  jdbcTemplate.query(sql, new ArticleVenduRowMapper());
 
     }
@@ -79,10 +79,13 @@ public class EnchereDAOImpl implements EnchereDAO {
 
     }
     @Override
-    public List<CEnchere> listEncheresConnecte() {
+    public List<CArticleVendu> listEncheresConnecte() {
         Logger.log("Trace_ENI.log","listEncheresConnecte : ");
-        String sql = "SELECT ENCHERES.* FROM ENCHERES";
-        return  jdbcTemplate.query(sql, new EnchereRowMapper());
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
+                "   FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
+                "   UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
+                "  RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article";
+        return  jdbcTemplate.query(sql, new ArticleVenduRowMapper());
     }
 
     @Override

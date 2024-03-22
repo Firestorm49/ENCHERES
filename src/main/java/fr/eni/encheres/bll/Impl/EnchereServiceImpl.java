@@ -39,7 +39,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CEnchere> listerEncheresConnecte() {
+    public List<CArticleVendu> listerEncheresConnecte() {
 
         return encheresDAO.listEncheresConnecte();
     }

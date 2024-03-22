@@ -14,7 +14,7 @@ public interface EnchereDAO {
 
     List<CEnchere> listEncheresByArticleId(int id);
 
-    List<CEnchere> listEncheresConnecte();
+    List<CArticleVendu> listEncheresConnecte();
     void ProposeEnchere(CEnchere enchere);
     int IsMaxOffre(CEnchere enchere);
     int IsUserMaxOffre(CEnchere enchere, int maxOffre);

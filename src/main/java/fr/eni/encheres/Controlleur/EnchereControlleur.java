@@ -59,14 +59,14 @@ public class EnchereControlleur {
     @GetMapping
     public String getEnchere(Authentication authentication, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getEnchere ");
-        List<CEnchere> encheres = null;
+        List<CArticleVendu> ArticleVendu = null;
         if(authentication != null && authentication.isAuthenticated()){
-            encheres = enchereService.listerEncheresConnecte();
+            ArticleVendu = enchereService.listerEncheresConnecte();
         }
         else{
-            encheres = enchereService.listerEncheresDeconnecte();
+            ArticleVendu = enchereService.listerEncheresDeconnecte();
         }
-        model.addAttribute("encheres",encheres);
+        model.addAttribute("encheres",ArticleVendu);
         enchereService.CheckSale();
         return "view_bid_list";
     }
