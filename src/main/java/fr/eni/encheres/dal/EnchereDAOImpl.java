@@ -161,18 +161,37 @@ public class EnchereDAOImpl implements EnchereDAO {
         Logger.log("Trace_ENI.log","CheckSale : " + localDate);
         String SelectRowsQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE etat_article = 1 AND date_fin_encheres <= CONVERT(date,?,120)";
         Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{localDate}, Integer.class);
-
+        if(Nb_Rows > 0)
+        {
         List<Integer> articleIDs = new ArrayList<>(Nb_Rows);
         String SelectVenteQuery = "SELECT no_article FROM ARTICLES_VENDUS WHERE etat_article = 1 AND date_fin_encheres <= CONVERT(date,?,120)";
         articleIDs = jdbcTemplate.queryForList(SelectVenteQuery, new Object[]{localDate}, Integer.class);
 
         for(int i =0 ;i<Nb_Rows;i++){
-            CArticleVendu articleVendu = viewArticle(articleIDs.get(i));
-            articleVendu.setEtatVente(2);
-            CEnchere enchere = new CEnchere();
-            enchere.setArticle(articleVendu);
-            articleVendu.setPrixVente(IsMaxOffre(enchere));
-            remporterVente(articleVendu);
+            String SelectRowsENCHERESQuery = "SELECT COUNT(no_encheres) FROM ENCHERES WHERE no_article = ?";
+            Integer Nb_RowsENCHERES = jdbcTemplate.queryForObject(SelectRowsENCHERESQuery, new Object[]{articleIDs.get(i)}, Integer.class);
+            if(Nb_RowsENCHERES > 0) {
+                CArticleVendu articleVendu = viewArticle(articleIDs.get(i));
+                articleVendu.setEtatVente(2);
+                CEnchere enchere = new CEnchere();
+                enchere.setArticle(articleVendu);
+                articleVendu.setPrixVente(IsMaxOffre(enchere));
+                remporterVente(articleVendu);
+            }
+        }
+        }
+        String SelectRowsNoStartQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE etat_article = 0 AND date_debut_encheres <= CONVERT(date,?,120)";
+        Integer Nb_RowsNoStart = jdbcTemplate.queryForObject(SelectRowsNoStartQuery, new Object[]{localDate}, Integer.class);
+        if(Nb_RowsNoStart > 0)
+        {
+            List<Integer> articleIDs = new ArrayList<>(Nb_RowsNoStart);
+            String SelectVenteQuery = "SELECT no_article FROM ARTICLES_VENDUS WHERE etat_article = 0 AND date_debut_encheres <= CONVERT(date,?,120)";
+            articleIDs = jdbcTemplate.queryForList(SelectVenteQuery, new Object[]{localDate}, Integer.class);
+
+            for(int i =0 ;i<Nb_RowsNoStart;i++){
+                String updateCreditsQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 1 WHERE no_article=?";
+                jdbcTemplate.update(updateCreditsQuery, articleIDs.get(i));
+            }
         }
     }
 
