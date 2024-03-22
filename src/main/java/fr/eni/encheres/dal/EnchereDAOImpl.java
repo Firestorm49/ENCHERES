@@ -272,14 +272,6 @@ public class EnchereDAOImpl implements EnchereDAO {
         return jdbcTemplate.queryForList(sql, new Object[]{vente.getNoArticle()}, CUtilisateur.class);
     }
 
-    @Override
-    public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
-        Logger.log("Trace_ENI.log","achatCredits : " + utilisateur + " " + creditsAmount);
-        String updateCreditsQuery = "UPDATE UTILISATEURS SET credit=? WHERE no_utilisateur=?";
-        jdbcTemplate.update(updateCreditsQuery, creditsAmount, utilisateur.getNoUtilisateur());
-
-    }
-
     public class EnchereRowMapper implements RowMapper<CEnchere> {
 
         @Override

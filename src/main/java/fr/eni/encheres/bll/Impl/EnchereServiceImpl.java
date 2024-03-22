@@ -96,11 +96,6 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
-        encheresDAO.achatCredits(utilisateur, creditsAmount);
-    }
-
-    @Override
     public CArticleVendu AfficherArticleById(int id) {
 
         return encheresDAO.viewArticle(id);

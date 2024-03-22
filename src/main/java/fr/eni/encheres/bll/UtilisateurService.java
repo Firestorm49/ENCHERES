@@ -17,4 +17,5 @@ public interface UtilisateurService {
     List<CUtilisateur> ViewAllUtilisateurs();
     void ActiveProfil(CUtilisateur utilisateur);
     boolean verifPassword(String mdp, CUtilisateur utilisateur);
+    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }

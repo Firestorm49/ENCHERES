@@ -19,4 +19,5 @@ public interface UtilisateurDAO {
     CUtilisateur getUtilisateurByEmail(String mail);
     boolean checkUser(String mail);
     boolean checkPassword(String mdp, int id);
+    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }

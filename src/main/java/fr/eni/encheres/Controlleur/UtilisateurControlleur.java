@@ -225,7 +225,14 @@ public class UtilisateurControlleur {
         }
         return "redirect:/users";
     }
-
+    @PostMapping("/buycredits")
+    public String postbuycredits(@RequestParam(name = "id", required = true) int id,
+                                 @RequestParam(name = "NumberPoint", required = true) int NumberPoint) {
+        Logger.log("Trace_ENI.log","Controlleur : postbuycredits ");
+        CUtilisateur users = utilisateurService.ViewProfil(id);
+        utilisateurService.achatCredits(users,NumberPoint);
+        return "redirect:/users";
+    }
     @PostMapping("/delete")
     public String postUsersDelete() {
         Logger.log("Trace_ENI.log","Controlleur : postUsersDelete ");

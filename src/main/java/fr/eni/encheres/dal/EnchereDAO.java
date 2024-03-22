@@ -35,5 +35,4 @@ public interface EnchereDAO {
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
-    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }

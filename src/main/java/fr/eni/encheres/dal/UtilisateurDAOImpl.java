@@ -185,7 +185,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         mdpBase = mdpBase.replace("{bcrypt}", "");
         return cryptage.checkPassword(mdp, mdpBase);
     }
+    @Override
+    public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
+        Logger.log("Trace_ENI.log","achatCredits : " + utilisateur + " " + creditsAmount);
+        String updateCreditsQuery = "UPDATE UTILISATEURS SET credit= credit + ? WHERE no_utilisateur=?";
+        jdbcTemplate.update(updateCreditsQuery, creditsAmount, utilisateur.getNoUtilisateur());
 
+    }
     public class UtilisateurRowMapper implements RowMapper<CUtilisateur>
     {
 

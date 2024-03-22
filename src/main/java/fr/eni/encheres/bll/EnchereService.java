@@ -16,7 +16,6 @@ public interface EnchereService {
     void ajouterPhotoVente(CArticleVendu vente);
     List<CArticleVendu> pagination(int pageNumber, int pageSize);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
-    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
     CArticleVendu AfficherArticleById(int id);
     boolean VerifierCreditPositif(CEnchere enchere);
     boolean VerifierOffreSup(CEnchere enchere);

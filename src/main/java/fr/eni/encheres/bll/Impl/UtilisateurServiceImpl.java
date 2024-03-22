@@ -79,7 +79,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public void ModifyRoleUtilisateur(int id, boolean isAdministrateur) {
         utilisateursDAO.ModifyRoleUtilisateur(id,isAdministrateur);
     }
-
+    @Override
+    public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
+        utilisateursDAO.achatCredits(utilisateur, creditsAmount);
+    }
     @Override
     public List<CUtilisateur> ViewAllUtilisateurs() {
         return utilisateursDAO.ViewAllUtilisateurs();
