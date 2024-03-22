@@ -71,6 +71,15 @@ public class EnchereDAOImpl implements EnchereDAO {
         return  jdbcTemplate.query(sql, new ArticleVenduRowMapper());
 
     }
+
+    @Override
+    public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
+        Logger.log("Trace_ENI.log","pagination : " + pageNumber + " " + pageSize);
+        int min = pageNumber*pageSize;
+        int max = min + pageSize;
+        String sql = "SELECT  * FROM ARTICLES_VENDUS WHERE no_article BETWEEN ? AND ?";
+        return jdbcTemplate.queryForList(sql, new Object[]{min,max}, CArticleVendu.class);
+    }
     @Override
     public List<CEnchere> listEncheresByArticleId(int id) {
         Logger.log("Trace_ENI.log","listEncheresByArticleId : ");
@@ -277,15 +286,6 @@ public class EnchereDAOImpl implements EnchereDAO {
         String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET photo_url= ? WHERE no_article=?";
         jdbcTemplate.update(insertArticleQuery, vente.getPhoto(), vente.getNoArticle());
 
-    }
-
-    @Override
-    public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
-        Logger.log("Trace_ENI.log","pagination : " + pageNumber + " " + pageSize);
-        int min = pageNumber*pageSize;
-        int max = min + pageSize;
-        String sql = "SELECT  * FROM ARTICLES_VENDUS WHERE no_article BETWEEN ? AND ?";
-        return jdbcTemplate.queryForList(sql, new Object[]{min,max}, CArticleVendu.class);
     }
 
     @Override
