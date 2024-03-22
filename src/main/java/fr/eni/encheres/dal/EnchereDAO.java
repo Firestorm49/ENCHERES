@@ -10,7 +10,7 @@ import java.util.List;
 public interface EnchereDAO {
     void SoldArticle(CArticleVendu article);
     CArticleVendu viewArticle(int id);
-    List<CEnchere> listEncheresDeconnecte();
+    List<CArticleVendu> listEncheresDeconnecte();
 
     List<CEnchere> listEncheresByArticleId(int id);
 

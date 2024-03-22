@@ -79,11 +79,23 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.anyRequest().authenticated();
         }).csrf(AbstractHttpConfigurer::disable);
 
+http.sessionManagement((session) -> session
+                .invalidSessionUrl("/login?timeout")
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(false)
+                .expiredUrl("/login?timeout")
+);
+
 
         http.formLogin(form -> form
                 .loginPage("/login").failureUrl("/login?error=true").permitAll().defaultSuccessUrl("/bid")
         );
 
+        http.rememberMe((remember) -> remember
+                .key("remember-me") // Clé secrète pour signer le cookie
+                .rememberMeParameter("rememberMe") // Nom du champ de case à cocher
+                .tokenValiditySeconds(86400)
+        );
         http.logout(logout -> logout.logoutSuccessUrl("/").deleteCookies("JSESSIONID"));
 
 

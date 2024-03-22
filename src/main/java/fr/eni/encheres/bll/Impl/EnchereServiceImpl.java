@@ -33,7 +33,7 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CEnchere> listerEncheresDeconnecte() {
+    public List<CArticleVendu> listerEncheresDeconnecte() {
 
         return encheresDAO.listEncheresDeconnecte();
     }

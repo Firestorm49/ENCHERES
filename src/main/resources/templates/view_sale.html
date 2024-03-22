@@ -19,7 +19,7 @@
 <form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}" enctype="multipart/form-data">
     <input data-th-if="${isCreate}" type="file" name="upload" >
 <!-- Deux Inputs -->
-<input type="hidden" id="id" name="id" data-th-value="*{noArticle}">
+<input type="hidden" id="id" name="noArticle" data-th-value="*{noArticle}">
 <label for="NomArticle">Article :</label>
 <input type="text" id="NomArticle" name="NomArticle" data-th-value="*{nomArticle}">
 <br>

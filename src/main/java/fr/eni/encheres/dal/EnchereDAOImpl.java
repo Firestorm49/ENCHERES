@@ -62,10 +62,13 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
-    public List<CEnchere> listEncheresDeconnecte() {
+    public List<CArticleVendu> listEncheresDeconnecte() {
         Logger.log("Trace_ENI.log","listEncheresDeconnecte : ");
-        String sql = "SELECT ENCHERES.* FROM ENCHERES INNER JOIN ARTICLES_VENDUS ON ENCHERES.no_article = ARTICLES_VENDUS.no_article WHERE etat_article = 1";
-        return  jdbcTemplate.query(sql, new EnchereRowMapper());
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.*\\n\" +\n" +
+                "                \"FROM  ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN\\n\" +\n" +
+                "                \"UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN\\n\" +\n" +
+                "                \"RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE etat_article = 1";
+        return  jdbcTemplate.query(sql, new ArticleVenduRowMapper());
 
     }
     @Override
@@ -183,8 +186,8 @@ public class EnchereDAOImpl implements EnchereDAO {
     public void modifierVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","modifierVente : " + vente);
         if(IsPossibleModifySale(vente)){
-            String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?, photo_url= ?,etat_article= ? WHERE no_article =?";
-            jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getPhoto(), vente.getEtatVente(), vente.getNoArticle());
+            String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?,etat_article= ? WHERE no_article =?";
+            jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getEtatVente(), vente.getNoArticle());
         }
     }
 
