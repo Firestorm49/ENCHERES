@@ -61,11 +61,13 @@ public class WebConfiguration implements WebMvcConfigurer {
             auth.requestMatchers(HttpMethod.GET,"/users/create").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/users/create").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/modify").permitAll();
+            auth.requestMatchers(HttpMethod.POST,"/users/modify").permitAll();
+            auth.requestMatchers(HttpMethod.GET,"/users/modify/password").permitAll();
+            auth.requestMatchers(HttpMethod.POST,"/users/modify/password").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/delete").permitAll();
             auth.requestMatchers(HttpMethod.POST,"/users/buycredit").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/deleteMultiUsers").hasAnyRole("ADMIN","SUPER_ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/users/administrateur").hasRole("SUPER_ADMIN");
-            auth.requestMatchers(HttpMethod.POST,"/users/password_forbidden").permitAll();
             auth.requestMatchers(HttpMethod.GET,"/users/deactivation").hasAnyRole("ADMIN","SUPER_ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/users/activation").hasAnyRole("ADMIN","SUPER_ADMIN");
             auth.requestMatchers(HttpMethod.GET,"/category").hasAnyRole("ADMIN","SUPER_ADMIN");

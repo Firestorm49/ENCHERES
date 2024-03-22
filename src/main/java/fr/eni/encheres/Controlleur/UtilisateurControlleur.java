@@ -104,6 +104,48 @@ public class UtilisateurControlleur {
             return "redirect:/users/detail";
         }
     }
+    @GetMapping("/modify/password")
+    public String getModifyPasswordUsers(@RequestParam(name = "email", required = false) String email,
+                                        @RequestParam(name = "mdp", required = false) String mdp,
+                                        @RequestParam(name = "mdpConfirmer", required = false) String mdpConfirmer, Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : getModifyPasswordUsers ");
+        if(UtilisateurConnecte == null){
+            model.addAttribute("postValue", "/users/modify/password");
+            return "view_user_password";
+        }else{
+            return "redirect:/modify";
+        }
+    }
+    @PostMapping("/modify/password")
+    public String postModifyPasswordUsers(@ModelAttribute(name = "email") String email,
+                                          @ModelAttribute(name = "mdp") String mdp,
+                                          @ModelAttribute(name = "mdpConfirmer") String mdpConfirmer,
+                                          BindingResult bindingResult,
+                                          Model model) {
+        Logger.log("Trace_ENI.log","Controlleur : postModifyUsersPassword ");
+        try {
+            CUtilisateur user = utilisateurService.getUtilisateurByEmail(email);
+
+            if(user != null) {
+                if (mdp.equals(mdpConfirmer)) {
+                    user.setMotdepasse(mdp);
+                    utilisateurService.ModifyProfil(user);
+                    return "redirect:/login";
+                } else {
+                    be.add(BusinessCode.VALIDATION_USER_MDP);
+                    throw be;
+                }
+            }
+        } catch (BusinessException e) {
+            e.getClefsExternalisations().forEach(key -> {
+                ObjectError error = new ObjectError("global", key);
+                bindingResult.addError(error);
+            });
+            model.addAttribute("postValue", "/users/modify/password");
+            return "view_user_password";
+        }
+        return "view_user_password";
+    }
 
     @GetMapping("/modify")
     public String getModifyUsers(Model model) {
@@ -136,6 +178,7 @@ public class UtilisateurControlleur {
 
             try {
                 if(utilisateurService.verifPassword(mdpActuel, user)) {
+                    user.setMotdepasse(mdpActuel);
                     utilisateurService.ModifyProfil(user);
                     return "redirect:/users/detail";
                 }else{
@@ -146,9 +189,6 @@ public class UtilisateurControlleur {
                     throw be;
                 }
             } catch (BusinessException e) {
-
-                System.out.println("dans le throw new");
-
                 e.getClefsExternalisations().forEach(key -> {
                     ObjectError error = new ObjectError("global", key);
                     bindingResult.addError(error);
@@ -158,22 +198,9 @@ public class UtilisateurControlleur {
 
                 return "view_user_edit";
             }
-
-
-           /* if(utilisateurService.verifPassword(mdpActuel, user)){
-                utilisateurService.ModifyProfil(user);
-                return "redirect:/users/detail";
-            }else{
-
-                ObjectError error = new ObjectError("motdepasse", "Mot de passe incorrect");
-                bindingResult.addError(error);
-
-                return "view_user_edit";
-            }*/
         }else if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
-            user.setMotdepasse(mdpNouveau);
-
             if(utilisateurService.verifPassword(mdpActuel, user)){
+                user.setMotdepasse(mdpNouveau);
                 utilisateurService.ModifyProfil(user);
                 return "redirect:/users/detail";
             }else{

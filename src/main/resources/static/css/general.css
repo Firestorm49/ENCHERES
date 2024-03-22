@@ -71,19 +71,19 @@ header h1 {
     text-align: center;
 }
 
-input[type=text], input[type=number], input[type=password],input[type=datetime-local] {
+input[type=text], input[type=number], input[type=email], input[type=password],input[type=datetime-local] {
     width: 26.438rem;
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 5px solid #ccc;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
     bottom: 0px;
     z-index: 1000;
 }
-input[type=text]:focus , input[type=number]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
+input[type=text]:focus , input[type=number]:focus, input[type=email]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
     border: 0.188rem solid #555;
 }
 
@@ -92,7 +92,7 @@ select {
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 5px solid #ccc;
     border-radius: 4px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -144,26 +144,21 @@ footer {
 #login, #bid, #logout, #category, #profil, #userList, #logoEncheres {
     width: 65px;
 }
-
 #vendre {
     margin-top: 2rem;
     width: 45px;
 }
-
 h1{
     text-align: center;
 }
-
 #userDeconnecte, #userConnecte{
     float: left;
     margin: auto;
 }
-
 #navigation{
     float: right;
     margin: auto;
 }
-
 #article{
 
 }
