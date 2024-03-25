@@ -8,19 +8,18 @@
 		id="afficherArticle">
 		<img id="article" data-th-title="Image"
 			data-th-src="@{/images/encheres.png}">
-		<div class="top">
+		<div>
 			<div class="line">
 				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>
 			</div>
 			<div class="line">
-				Prix : <span data-th-text="${enchere.prixVente} + ' points' "></span>
+				Prix : <span class="detailArticle" data-th-text="${enchere.prixVente} + ' points' "></span>
 			</div>
 			<div class="line">
-				Fin de l'enchère : <span data-th-text="${enchere.dateFinEncheres}"></span>
+				Fin de l'enchère : <span class="detailArticle" data-th-text="${enchere.dateFinEncheres}"></span>
 			</div>
 			<div class="line">
-				Vendeur : <span
-					data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
+				Vendeur : <span class="detailArticle" data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
 			</div>
 		</div>
 	</form>
