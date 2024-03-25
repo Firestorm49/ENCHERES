@@ -138,34 +138,53 @@ public class EnchereDAOImpl implements EnchereDAO {
             params.add(categorie);
         }
         if (radio == 1) {
-            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND ";
-            params.add(no_utilisateur);
+            Boolean EntrerOR = false;
+            Filter += " ( ";
             if (encheresencours) {
-                Filter += " etat_article = 1 OR  ";
+                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?))";
+                EntrerOR = true;
+                params.add(no_utilisateur);
             }
             if (encheresouvertes) {
-                Filter += " etat_article = 0 OR  ";
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES )) ";
+                EntrerOR = true;
             }
             if (encheresremporter) {
-                Filter += " etat_article = 2 OR  ";
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " (etat_article = 2 and ARTICLES_VENDUS.prix_vente IN (SELECT montant_enchere FROM ENCHERES WHERE no_utilisateur =?)) ";
+                params.add(no_utilisateur);
             }
 
             Filter += ") AND";
         }
         else  if (radio == 2) {
-            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND ";
+            Boolean EntrerOR = false;
+            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
             params.add(no_utilisateur);
 
             if (ventesencours) {
-                Filter += " etat_article = 1 OR  ";
+                Filter += " etat_article = 1  ";
+                EntrerOR = true;
             }
             if (ventesnoncommencer) {
-                Filter += " etat_article = 0 OR  ";
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " etat_article = 0  ";
+                EntrerOR = true;
             }
             if (ventesterminer) {
-                Filter += " etat_article = 2 OR  ";
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " etat_article = 2  ";
             }
-            Filter += ") AND";
+            Filter += ")) AND";
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
@@ -202,9 +221,10 @@ public class EnchereDAOImpl implements EnchereDAO {
     public String ProposeEnchere(CEnchere enchere) {
         Logger.log("Trace_ENI.log","ProposeEnchere : " + enchere);
         try{
-        String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + ?)  WHERE no_utilisateur=?";
-        jdbcTemplate.update(updatePrevCreditsQuery, IsMaxOffre(enchere), IsUserMaxOffre(enchere,IsMaxOffre(enchere)));
-
+            if(IsMaxOffre(enchere) > 0 && IsUserMaxOffre(enchere,IsMaxOffre(enchere)) > 0) {
+                String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + ?)  WHERE no_utilisateur=?";
+                jdbcTemplate.update(updatePrevCreditsQuery, IsMaxOffre(enchere), IsUserMaxOffre(enchere, IsMaxOffre(enchere)));
+            }
             String updateProposeQuery = "INSERT INTO ENCHERES (no_utilisateur,no_article, montant_enchere,date_enchere) VALUES (?,?,?,?)";
             jdbcTemplate.update(updateProposeQuery, enchere.getUtilisateur().getNoUtilisateur(), enchere.getArticle().getNoArticle(), enchere.getMontant_enchere(), enchere.getDateEnchere());
 
@@ -226,15 +246,25 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public int IsMaxOffre(CEnchere enchere) {
         Logger.log("Trace_ENI.log","IsMaxOffre : " + enchere);
-        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
-        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        Integer maxOffre = 0;
+        if(Nb_Rows > 0) {
+            String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+             maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        }
         return maxOffre;
     }
     @Override
     public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
         Logger.log("Trace_ENI.log","IsUserMaxOffre : " + enchere);
-        String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
-        Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(no_utilisateur) FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        Integer UserOffre = 0;
+        if(Nb_Rows > 0) {
+            String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+            UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        }
         return UserOffre;
     }
 
@@ -261,15 +291,21 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public boolean IsPositifOffre(CEnchere enchere) {
         Logger.log("Trace_ENI.log","IsPositifOffre : " + enchere);
-        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
-        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        if(Nb_Rows > 0) {
+            String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+            Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
 
         if (maxOffre != null && enchere.getMontant_enchere() > maxOffre) {
             return true;
         } else {
             return false;
         }
-
+        }
+        else{
+            return true;
+        }
     }
     @Override
     public String remporterVente(CArticleVendu vente) {
