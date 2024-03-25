@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:fragment="layout(title, contenuPage, ressources)">
+	data-th-fragment="layout(title, contenuPage, ressources)">
 <head>
-<title th:replace="${title}">Enchères</title>
-<link rel="icon" th:href="@{/images/encheres.png}">
-<link rel="stylesheet" th:href="@{/css/form.css}">
-<link rel="stylesheet" th:href="@{/css/general.css}">
-	<th:block th:replace="${ressources} ?: ~{}"></th:block>
+<title data-th-replace="${title}">Enchères</title>
+<link rel="icon" data-th-href="@{/images/encheres.png}">
+<link rel="stylesheet" data-th-href="@{/css/form.css}">
+<link rel="stylesheet" data-th-href="@{/css/general.css}">
+	<data-th-block data-th-replace="${ressources} ?: ~{}"></data-th-block>
 </head>
 <body>
-	<div th:replace="~{fragments/entete::entete}"></div>
-	<main class="center-main" th:replace="${contenuPage} ?: ~{}">
+	<div data-th-replace="~{fragments/entete::entete}"></div>
+	<main class="center-main" data-th-replace="${contenuPage} ?: ~{}">
 		Contenu de la page</main>
-	<div th:replace="~{fragments/footer::footer}"></div>
+	<div data-th-replace="~{fragments/footer::footer}"></div>
 </body>
 </html>

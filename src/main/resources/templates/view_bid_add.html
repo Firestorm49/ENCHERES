@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  th:replace="~{fragments/layouts/layout :: layout(
+	  data-th-replace="~{fragments/layouts/layout :: layout(
 				 	title=~{:: title},
 				 	contenuPage=~{:: .center-main},
 				 	ressources=~{:: #ressources-css})}">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="user"></title>
-	<th:block id="ressources-css">
-		<link rel="stylesheet" th:href="@{/css/general.css}">
-		<link rel="stylesheet" th:href="@{/css/form.css}">
-		<link rel="stylesheet" th:href="@{/css/user.css}">
-	</th:block>
+	<title data-th-text="user"></title>
+	<data-th-block id="ressources-css">
+		<link rel="stylesheet" data-th-href="@{/css/general.css}">
+		<link rel="stylesheet" data-th-href="@{/css/form.css}">
+		<link rel="stylesheet" data-th-href="@{/css/user.css}">
+	</data-th-block>
 	</head>
 <body>
 <main class="center-main">
@@ -21,33 +21,33 @@
 		<div class="informations">
 			<div class="top">
 				<div class="line">
-					<span th:text="${Vente.getNomArticle()}"></span>
+					<span data-th-text="${Vente.getNomArticle()}"></span>
 				</div>
 				<div class="line">
-					Description : <span th:text="${Vente.getDescription()}"></span>
+					Description : <span data-th-text="${Vente.getDescription()}"></span>
 				</div>
 				<div class="line">
-					Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
+					Catégorie : <span data-th-text="${Vente.getCategorie().getLibelle()}"></span>
 				</div>
 				<div class="line">
 					Meilleur offre : <span data-th-if="${MOffre != null and MOffreUser != null}" th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
 				</div>
 				<div class="line">
-					Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
+					Mise à prix : <span data-th-text="${Vente.getMiseAPrix()} + ' points'"></span>
 				</div>
 				<div class="line">
-					Fin de l'enchère : <span th:text="${Vente.getDateFinEncheres()}"></span>
+					Fin de l'enchère : <span data-th-text="${Vente.getDateFinEncheres()}"></span>
 				</div>
 				<div class="line">
-					Retrait : <span th:text="${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
+					Retrait : <span data-th-text="${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
 				</div>
 				<div class="line">
-					Vendeur : <span th:text="${Vente.getVendeur().getPseudo()}"></span>
+					Vendeur : <span data-th-text="${Vente.getVendeur().getPseudo()}"></span>
 				</div>
 			</div>
 			<form action="/bid/purpose" method="post" data-th-if="${#authorization.expression('isAuthenticated()')}" class="form-genre">
 				<ul class="flex-outer">
-					<input type="hidden" th:value="${Vente.getNoArticle()}" name="id">
+					<input type="hidden" data-th-value="${Vente.getNoArticle()}" name="id">
 					<li>
 						<label for="inputTitre1">Ma Proposition :
 						</label>
