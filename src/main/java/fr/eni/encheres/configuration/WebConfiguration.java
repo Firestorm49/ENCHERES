@@ -49,7 +49,6 @@ public class WebConfiguration implements WebMvcConfigurer {
 		http.authorizeHttpRequests(auth -> {
 			auth.requestMatchers(HttpMethod.GET, "/").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/bid").permitAll();
-			auth.requestMatchers(HttpMethod.GET, "/bid/filter").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/bid/detail").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/bid/Purpose").permitAll();
 			auth.requestMatchers(HttpMethod.GET, "/sale/create").permitAll();

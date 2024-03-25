@@ -61,49 +61,39 @@ public class EnchereControlleur {
 		System.out.println("liste de categorie");
 		return categorieService.ListCategorie();
 	}
-
 	@GetMapping
-	public String getEnchere(Authentication authentication, Model model) {
-		Logger.log("Trace_ENI.log", "Controlleur : getEnchere ");
-		List<CArticleVendu> ArticleVendu = null;
-		if (authentication != null && authentication.isAuthenticated()) {
-			ArticleVendu = enchereService.listerEncheresConnecte();
-		} else {
-			ArticleVendu = enchereService.listerEncheresDeconnecte();
-		}
-		model.addAttribute("encheres", ArticleVendu);
-		return "view_bid_list";
-	}
-
-	@PostMapping("/filter")
-	public String postEnchere(@RequestParam(name = "nomArticle", required = false) String nomArticle,
-			@RequestParam(name = "categorie", required = false) String categorie,
-			/*@RequestParam(name = "radioButton", required = false) int radioButton,
+	public String getEnchere(@RequestParam(name = "nom_Article", required = false) String nomArticle,
+							 @RequestParam(name = "dropbox", required = false) Integer categorie,
+			@RequestParam(name = "radioButton", required = false) Integer radioButton,
 			@RequestParam(name = "mesVentesEnCours", required = false) boolean mesVentesEnCours,
 			@RequestParam(name = "ventesNonCommencees", required = false) boolean ventesNonCommencees,
 			@RequestParam(name = "ventesTerminees", required = false) boolean ventesTerminees,
-			@RequestParam(name = "ventesRemportees", required = false) boolean mesEncheresRemportees,
+			@RequestParam(name = "mesEncheresRemportees", required = false) boolean mesEncheresRemportees,
 			@RequestParam(name = "mesEncheresEnCours", required = false) boolean mesEncheresEnCours,
-			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,*/
-			//@RequestParam(name = "numeroPage", required = false) int pageNumber,
-			//@RequestParam(name = "pageSize", required = false) int pageSize,
+			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,
+			/*@RequestParam(name = "numeroPage", required = false) int pageNumber,
+			@RequestParam(name = "pageSize", required = false) int pageSize,*/
 			Model model,
 			Authentication authentication) {
-		Logger.log("Trace_ENI.log", "Controlleur : postEnchere ");
+		Logger.log("Trace_ENI.log", "Controlleur : getEnchere ");
+		List<CArticleVendu> listArticlesVendus = new ArrayList<>();
+
 		if (authentication != null && authentication.isAuthenticated()) {
-		/*List<CArticleVendu> listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
-					categorie, UtilisateurConnecte.getNoUtilisateur(), radioButton,
+		 listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
+					categorie != null ? categorie.intValue() : 0, UtilisateurConnecte.getNoUtilisateur(), radioButton != null ? radioButton.intValue() : 0,
 					mesVentesEnCours, ventesNonCommencees, ventesTerminees, mesEncheresRemportees, mesEncheresEnCours,
-					encheresOuvertes, 10, 1);*/
+					encheresOuvertes, 1, 10);
 		} else {
-			List<CArticleVendu> listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
-					categorie, 10, 1);
+		listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
+				categorie != null ? categorie.intValue() : 0, 1, 10);
 		}
+
+		model.addAttribute("encheres",listArticlesVendus);
 		return "view_bid_list";
 	}
 
 	@GetMapping("/detail")
-	public String getDetailEncheres(@RequestParam(name = "id", required = true) int id,
+	public String getEnchere(@RequestParam(name = "id", required = true) int id,
 			Model model) {
 		Logger.log("Trace_ENI.log", "Controlleur : getDetailEncheres ");
 		CEnchere Enchere = enchereService.afficherDetailEnchere(id);

@@ -92,56 +92,71 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, int categorie, int pageNumber, int pageSize) {
         Logger.log("Trace_ENI.log","listerEncheresDeconnecteByFilters : " + pageNumber + " " + pageSize);
-        int min = pageNumber * pageSize;
-        int max = min + pageSize;
-
-        String pagination = " BETWEEN ? AND ?";
+        int min = 0;
+        int max = 0;
+        if(pageNumber > 1) {
+             min = pageNumber * pageSize;
+             max = min + pageSize;
+        }
+        else{
+            min = 1;
+            max = min + pageSize;
+        }
+System.out.println(categorie);
+        String pagination = " ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
         String Filter = "";
         List<Object> params = new ArrayList<>();
 
-        if (nomArticle != null) {
+        if (nomArticle != null && nomArticle.trim() != "") {
             Filter += " nom_article = ? AND ";
             params.add(nomArticle);
         }
-        if (categorie != 0) {
-            Filter += " no_categorie = ? AND ";
+        if (categorie  != 0) {
+            Filter += " ARTICLES_VENDUS.no_categorie = ? AND ";
             params.add(categorie);
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
                 "FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
                 "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
-                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE " + Filter + pagination;
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article  WHERE " + Filter + pagination;
 
         // Ajout des paramètres de pagination
-        params.add(min);
+       params.add(min);
         params.add(max);
-
         // Utilisation de toArray() pour convertir la liste en tableau d'objets
-        return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
+        return jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
     }
     @Override
     public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
         Logger.log("Trace_ENI.log","listerEncheresConnecteByFilters : " + pageNumber + " " + pageSize);
-        int min = pageNumber*pageSize;
-        int max = min + pageSize;
-        String pagination = "ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
+        int min = 0;
+        int max = 0;
+        if(pageNumber > 1) {
+            min = pageNumber * pageSize;
+            max = min + pageSize;
+        }
+        else{
+            min = 1;
+            max = min + pageSize;
+        }
+        String pagination = " ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
         String Filter = "";
         List<Object> params = new ArrayList<>();
 
-      if (nomArticle != null) {
+      if (nomArticle != null && nomArticle.trim() != "") {
             Filter += " nom_article = ? AND ";
             params.add(nomArticle);
         }
       if (categorie != 0) {
-            Filter += " no_categorie = ? AND ";
+            Filter += " ARTICLES_VENDUS.no_categorie = ? AND ";
             params.add(categorie);
         }
         if (radio == 1) {
             Boolean EntrerOR = false;
             Filter += " ( ";
             if (encheresencours) {
-                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?))";
+                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?)) ";
                 EntrerOR = true;
                 params.add(no_utilisateur);
             }
@@ -160,7 +175,7 @@ public class EnchereDAOImpl implements EnchereDAO {
                 params.add(no_utilisateur);
             }
 
-            Filter += ") AND";
+            Filter += ") AND ";
         }
         else  if (radio == 2) {
             Boolean EntrerOR = false;
@@ -184,7 +199,7 @@ public class EnchereDAOImpl implements EnchereDAO {
                 }
                 Filter += " etat_article = 2  ";
             }
-            Filter += ")) AND";
+            Filter += ")) AND ";
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
@@ -197,7 +212,7 @@ public class EnchereDAOImpl implements EnchereDAO {
         params.add(max);
 
         // Utilisation de toArray() pour convertir la liste en tableau d'objets
-        return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
+        return jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
     }
 
     @Override

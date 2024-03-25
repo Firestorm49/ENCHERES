@@ -1,14 +1,13 @@
 <form xmlns:th="http://www.thymeleaf.org"
 	th:fragment="enchere-detail(titleForm, action)"
-	th:action="@{${action}}" method="post">
+	th:action="@{${action}}" method="get">
 	<br>
 	<h1 style="text-align: center;">Liste des enchères</h1>
 	<br> <br> <label id="filtres">Filtres : </label><input
-		type="text" placeholder="Rechercher" name="nomArticle"></input> <label
-		class="labelFiltresEncheres" for="dropbox">Catégorie : </label><select
-		id="dropbox" name="categorie" th:field="${CategorieSession}">
-		<option th:each="item : ${CategorieSession}"
-			th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
+		type="text" placeholder="Rechercher" name="nom_Article"></input> <label
+		class="labelFiltresEncheres" for="dropbox">Catégorie : </label>
+	<select id="dropbox" name="dropbox">
+		<option data-th-each="item : ${CategorieSession}" data-th-value="${item.noCategorie}" data-th-text="${item.libelle}"></option>
 	</select>
 	<button id="searchButton" type="submit">Rechercher</button>
 	<br>
@@ -20,16 +19,16 @@
 			<label class="labelFiltresEncheres" for="radioButton">Achats</label><br>
 			<span class="filtresEncheres"><input type="checkbox"
 				id="encheresOuvertes" name="encheresOuvertes"
-				value="encheresOuvertes"><label class="labelFiltresEncheres"
+				value="true"><label class="labelFiltresEncheres"
 				for="encheresOuvertes">Enchères ouvertes</label></span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="mesEncheresEnCours" name="mesEncheresEnCours"
-				value="mesEncheresEnCours"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresEnCours">Mes
 					enchères en cours</label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="mesEncheresRemportees" name="mesEncheresRemportees"
-				value="mesEncheresRemportees"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresRemportees">Mes
 					enchères remportées</label> </span><br />
 		</div>
@@ -38,15 +37,15 @@
 			<label class="labelFiltresEncheres" for="radioButton">Mes
 				ventes</label> <br> <span class="filtresEncheres"><input
 				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
-				value="mesVentesEnCours"><label class="labelFiltresEncheres"
+				value="true"><label class="labelFiltresEncheres"
 				for="mesVentesEnCours">Mes ventes en cours</label> </span> <br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="ventesNonCommencees" name="ventesNonCommencees"
-				value="ventesNonCommencees"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="ventesNonCommencees">Ventes
 					non débutées</label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesTerminees" name="ventesTerminees" value="ventesTerminees"><label
+				id="ventesTerminees" name="ventesTerminees" value="true"><label
 				class="labelFiltresEncheres" for="ventesTerminees">Ventes
 					terminées</label> </span><br />
 		</div>
