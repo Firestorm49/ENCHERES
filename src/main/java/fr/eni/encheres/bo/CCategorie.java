@@ -1,7 +1,12 @@
 package fr.eni.encheres.bo;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class CCategorie {
     private int noCategorie;
+    @NotBlank(message = "Le libelle n'est pas correcte")
+    @Size(max=250)
     private String libelle;
     public CCategorie() {
 

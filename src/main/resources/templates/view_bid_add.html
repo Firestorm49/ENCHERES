@@ -30,7 +30,7 @@
 					Catégorie : <span data-th-text="${Vente.getCategorie().getLibelle()}"></span>
 				</div>
 				<div class="line">
-					Meilleur offre : <span data-th-text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+					Meilleur offre : <span data-th-if="${MOffre != null and MOffreUser != null}" th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
 				</div>
 				<div class="line">
 					Mise à prix : <span data-th-text="${Vente.getMiseAPrix()} + ' points'"></span>

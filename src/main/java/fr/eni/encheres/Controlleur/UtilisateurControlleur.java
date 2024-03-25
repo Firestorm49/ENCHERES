@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 

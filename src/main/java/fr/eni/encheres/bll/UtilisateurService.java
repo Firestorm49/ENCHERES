@@ -3,19 +3,19 @@ package fr.eni.encheres.bll;
 import java.util.List;
 import fr.eni.encheres.bo.*;
 public interface UtilisateurService {
-    void Inscription(CUtilisateur utilisateur);
+    String Inscription(CUtilisateur utilisateur);
     CUtilisateur ViewProfil(int id);
-    void DeleteProfil(int id);
-    void ModifyProfil(CUtilisateur utilisateur);
-    void DeleteProfil(CUtilisateur utilisateur);
-    void DesactiveProfil(CUtilisateur utilisateur);
-    void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
+    String DeleteProfil(int id);
+    String ModifyProfil(CUtilisateur utilisateur);
+    String DeleteProfil(CUtilisateur utilisateur);
+    String DesactiveProfil(CUtilisateur utilisateur);
+    String DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
     boolean checkUser(String mail);
     CUtilisateur viewAcheteurByArticleID(int id);
-    void ModifyRoleUtilisateur(int id, int isAdministrateur);
+    String ModifyRoleUtilisateur(int id, int isAdministrateur);
     List<CUtilisateur> ViewAllUtilisateurs();
-    void ActiveProfil(CUtilisateur utilisateur);
+    String ActiveProfil(CUtilisateur utilisateur);
     boolean verifPassword(String mdp, CUtilisateur utilisateur);
-    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
+    String achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }

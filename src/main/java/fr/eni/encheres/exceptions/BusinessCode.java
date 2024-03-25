@@ -39,4 +39,5 @@ public class BusinessCode {
 
 	public static final String VALIDATION_FILM_INCONNU = "validation.film.inconnu";
 	public static final String VALIDATION_FILM_ID_INCONNU = "validation.film.id.inconnu";
+
 }

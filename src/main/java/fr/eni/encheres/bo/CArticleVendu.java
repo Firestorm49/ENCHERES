@@ -1,18 +1,33 @@
 package fr.eni.encheres.bo;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CArticleVendu {
     private int noArticle;
+    @NotBlank(message = "Le nom de l'article n'est pas correcte")
+    @Size(max=250)
     private String nomArticle;
+    @NotBlank(message = "La description n'est pas correcte")
+    @Size(max=400)
     private String description;
-    private LocalDateTime  dateDebutEncheres;
+    @NotNull(message = "La date de début des enchères ne peut pas être nulle")
+    private LocalDateTime dateDebutEncheres;
+
+    @NotNull(message = "La date de fin des enchères ne peut pas être nulle")
+    @Future(message = "La date de fin des enchères doit être dans le futur")
     private LocalDateTime dateFinEncheres;
+    @Min(0)
     private int miseAPrix = 0;
+    @Min(0)
     private int prixVente = 0;
+    @Max(4)
+    @Min(0)
     private int etatVente = 0;
     private CCategorie categorie;
+
     private String photo;
     private CRetrait retrait;
     private CUtilisateur Acheteur;

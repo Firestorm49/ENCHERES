@@ -116,22 +116,28 @@ public class EnchereControlleur {
     @GetMapping("/purpose")
     public String getProposeEncheres(@RequestParam(name = "id", required = true) int id,Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getProposeEncheres ");
-        CEnchere Enchere=enchereService.afficherDetailEnchere(id);
-        model.addAttribute("enchere",Enchere);
-        CArticleVendu ArticleVendu=enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
+        CEnchere Enchere=new CEnchere();
+        CArticleVendu ArticleVendu=enchereService.AfficherArticleById(id);
+        Enchere.setArticle(ArticleVendu);
         model.addAttribute("Vente",ArticleVendu);
         int MOffre=enchereService.IsMaxOffre(Enchere);
         model.addAttribute("MOffre",MOffre);
-        CUtilisateur utilisateur=utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere,MOffre));
-        model.addAttribute("MOffreUser",utilisateur.getPseudo());
-        String imageArticle = enchereService.SearchPhotoByArticleId(Enchere.getArticle().getNoArticle());
+        if(MOffre > 0) {
+            CUtilisateur utilisateur = utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere, MOffre));
+            model.addAttribute("MOffreUser", utilisateur.getPseudo());
+        }
+        else{
+            model.addAttribute("MOffreUser", null);
+        }
+        String imageArticle = enchereService.SearchPhotoByArticleId(id);
         model.addAttribute("imageArticle","./../" + imageArticle);
         return "view_bid_add";
     }
     @PostMapping("/purpose")
     public String postEncheresPropose(@ModelAttribute("id") int id,
                                       @ModelAttribute("Proposition") int Enchere) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose " +id +  Enchere);
+        Logger.log("Trace_ENI.log","Controlleur : postEncheresPropose " +id +  Enchere + UtilisateurConnecte.isActive());
+        String Result;
         if(UtilisateurConnecte.isActive()) {
             CEnchere enchere = new CEnchere();
             CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
@@ -139,7 +145,9 @@ public class EnchereControlleur {
             enchere.setArticle(ArticleVendu);
             enchere.setUtilisateur(UtilisateurConnecte);
             enchere.setDateEnchere(LocalDateTime.now());
-            enchereService.faireEnchere(enchere);
+            Result =  enchereService.faireEnchere(enchere);
+            System.out.println(Result);
+            Logger.log("Trace_ERROR.log","Controlleur : postEncheresPropose " +Result);
         }
             return "redirect:/bid";
     }

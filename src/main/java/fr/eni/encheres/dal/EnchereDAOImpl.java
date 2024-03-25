@@ -1,8 +1,14 @@
 package fr.eni.encheres.dal;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DeadlockLoserDataAccessException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -17,7 +23,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 
     private final CategorieDAO categorieDAO;
     private final UtilisateurDAO utilisateurDAO;
-
     private final RetraitDAO retraitDAO;
 
     public EnchereDAOImpl(CategorieDAO categorieDAO, UtilisateurDAO utilisateurDAO,RetraitDAO retraitDAO) {
@@ -30,7 +35,8 @@ public class EnchereDAOImpl implements EnchereDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void SoldArticle(CArticleVendu article) {
+    public String SoldArticle(CArticleVendu article) {
+        try{
         String insertArticleQuery = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, photo_url, etat_article) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int rowsAffected = jdbcTemplate.update(insertArticleQuery, article.getNomArticle(), article.getDescription(), article.getDateDebutEncheres(), article.getDateFinEncheres(), article.getMiseAPrix(), article.getPrixVente(), article.getVendeur().getNoUtilisateur(), article.getCategorie().getNoCategorie(), article.getPhoto(), article.getEtatVente());
 
@@ -48,6 +54,18 @@ public class EnchereDAOImpl implements EnchereDAO {
                 jdbcTemplate.update(insertRetraitQuery, IdArticle, article.getRetrait().getRue(), article.getRetrait().getCode_postal(), article.getRetrait().getVille());
             }
           }
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
@@ -71,15 +89,117 @@ public class EnchereDAOImpl implements EnchereDAO {
         return  jdbcTemplate.query(sql, new ArticleVenduRowMapper());
 
     }
-
     @Override
-    public List<CArticleVendu> pagination(int pageNumber, int pageSize) {
-        Logger.log("Trace_ENI.log","pagination : " + pageNumber + " " + pageSize);
+    public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, int categorie, int pageNumber, int pageSize) {
+        Logger.log("Trace_ENI.log","listerEncheresDeconnecteByFilters : " + pageNumber + " " + pageSize);
+        int min = pageNumber * pageSize;
+        int max = min + pageSize;
+
+        String pagination = " BETWEEN ? AND ?";
+        String Filter = "";
+        List<Object> params = new ArrayList<>();
+
+        if (nomArticle != null) {
+            Filter += " nom_article = ? AND ";
+            params.add(nomArticle);
+        }
+        if (categorie != 0) {
+            Filter += " no_categorie = ? AND ";
+            params.add(categorie);
+        }
+
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
+                "FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
+                "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE " + Filter + pagination;
+
+        // Ajout des paramètres de pagination
+        params.add(min);
+        params.add(max);
+
+        // Utilisation de toArray() pour convertir la liste en tableau d'objets
+        return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
+    }
+    @Override
+    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
+        Logger.log("Trace_ENI.log","listerEncheresConnecteByFilters : " + pageNumber + " " + pageSize);
         int min = pageNumber*pageSize;
         int max = min + pageSize;
-        String sql = "SELECT  * FROM ARTICLES_VENDUS WHERE no_article BETWEEN ? AND ?";
-        return jdbcTemplate.queryForList(sql, new Object[]{min,max}, CArticleVendu.class);
+        String pagination = "ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
+        String Filter = "";
+        List<Object> params = new ArrayList<>();
+
+      if (nomArticle != null) {
+            Filter += " nom_article = ? AND ";
+            params.add(nomArticle);
+        }
+      if (categorie != 0) {
+            Filter += " no_categorie = ? AND ";
+            params.add(categorie);
+        }
+        if (radio == 1) {
+            Boolean EntrerOR = false;
+            Filter += " ( ";
+            if (encheresencours) {
+                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?))";
+                EntrerOR = true;
+                params.add(no_utilisateur);
+            }
+            if (encheresouvertes) {
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES )) ";
+                EntrerOR = true;
+            }
+            if (encheresremporter) {
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " (etat_article = 2 and ARTICLES_VENDUS.prix_vente IN (SELECT montant_enchere FROM ENCHERES WHERE no_utilisateur =?)) ";
+                params.add(no_utilisateur);
+            }
+
+            Filter += ") AND";
+        }
+        else  if (radio == 2) {
+            Boolean EntrerOR = false;
+            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
+            params.add(no_utilisateur);
+
+            if (ventesencours) {
+                Filter += " etat_article = 1  ";
+                EntrerOR = true;
+            }
+            if (ventesnoncommencer) {
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " etat_article = 0  ";
+                EntrerOR = true;
+            }
+            if (ventesterminer) {
+                if(EntrerOR == true){
+                    Filter += " OR ";
+                }
+                Filter += " etat_article = 2  ";
+            }
+            Filter += ")) AND";
+        }
+
+        String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
+                "FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
+                "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE " + Filter + pagination;
+
+        // Ajout des paramètres de pagination
+        params.add(min);
+        params.add(max);
+
+        // Utilisation de toArray() pour convertir la liste en tableau d'objets
+        return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
     }
+
     @Override
     public List<CEnchere> listEncheresByArticleId(int id) {
         Logger.log("Trace_ENI.log","listEncheresByArticleId : ");
@@ -98,30 +218,53 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
-    public void ProposeEnchere(CEnchere enchere) {
+    public String ProposeEnchere(CEnchere enchere) {
         Logger.log("Trace_ENI.log","ProposeEnchere : " + enchere);
-
-        String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + ?)  WHERE no_utilisateur=?";
-        jdbcTemplate.update(updatePrevCreditsQuery, IsMaxOffre(enchere), IsUserMaxOffre(enchere,IsMaxOffre(enchere)));
-
+        try{
+            if(IsMaxOffre(enchere) > 0 && IsUserMaxOffre(enchere,IsMaxOffre(enchere)) > 0) {
+                String updatePrevCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit + ?)  WHERE no_utilisateur=?";
+                jdbcTemplate.update(updatePrevCreditsQuery, IsMaxOffre(enchere), IsUserMaxOffre(enchere, IsMaxOffre(enchere)));
+            }
             String updateProposeQuery = "INSERT INTO ENCHERES (no_utilisateur,no_article, montant_enchere,date_enchere) VALUES (?,?,?,?)";
             jdbcTemplate.update(updateProposeQuery, enchere.getUtilisateur().getNoUtilisateur(), enchere.getArticle().getNoArticle(), enchere.getMontant_enchere(), enchere.getDateEnchere());
 
             String updateCreditsQuery = "UPDATE UTILISATEURS SET credit=(credit - ?)  WHERE no_utilisateur=?";
             jdbcTemplate.update(updateCreditsQuery, enchere.getMontant_enchere(), enchere.getUtilisateur().getNoUtilisateur());
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
     @Override
     public int IsMaxOffre(CEnchere enchere) {
         Logger.log("Trace_ENI.log","IsMaxOffre : " + enchere);
-        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
-        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        Integer maxOffre = 0;
+        if(Nb_Rows > 0) {
+            String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+             maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        }
         return maxOffre;
     }
     @Override
     public int IsUserMaxOffre(CEnchere enchere, int maxOffre) {
         Logger.log("Trace_ENI.log","IsUserMaxOffre : " + enchere);
-        String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
-        Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(no_utilisateur) FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        Integer UserOffre = 0;
+        if(Nb_Rows > 0) {
+            String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article=? AND montant_enchere = ?";
+            UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle(), maxOffre}, Integer.class);
+        }
         return UserOffre;
     }
 
@@ -148,26 +291,46 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public boolean IsPositifOffre(CEnchere enchere) {
         Logger.log("Trace_ENI.log","IsPositifOffre : " + enchere);
-        String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
-        Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(montant_enchere) FROM ENCHERES WHERE no_article=?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
+        if(Nb_Rows > 0) {
+            String sql = "SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article=?";
+            Integer maxOffre = jdbcTemplate.queryForObject(sql, new Object[]{enchere.getArticle().getNoArticle()}, Integer.class);
 
         if (maxOffre != null && enchere.getMontant_enchere() > maxOffre) {
             return true;
         } else {
             return false;
         }
-
+        }
+        else{
+            return true;
+        }
     }
     @Override
-    public void remporterVente(CArticleVendu vente) {
+    public String remporterVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","remporterVente : " + vente);
+        try{
         String updateCreditsQuery = "UPDATE ARTICLES_VENDUS SET prix_vente=?,etat_article= ? WHERE no_article=?";
         jdbcTemplate.update(updateCreditsQuery, vente.getPrixVente(),vente.getEtatVente(),vente.getNoArticle());
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
-    public void CheckSale(LocalDateTime localDate) {
+    public String CheckSale(LocalDateTime localDate) {
         Logger.log("Trace_ENI.log","CheckSale : " + localDate);
+        try{
         String SelectRowsQuery = "SELECT COUNT(no_article) FROM ARTICLES_VENDUS WHERE etat_article = 1 AND date_fin_encheres <= CONVERT(date,?,120)";
         Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{localDate}, Integer.class);
         if(Nb_Rows > 0)
@@ -202,6 +365,18 @@ public class EnchereDAOImpl implements EnchereDAO {
                 jdbcTemplate.update(updateCreditsQuery, articleIDs.get(i));
             }
         }
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
@@ -214,11 +389,24 @@ public class EnchereDAOImpl implements EnchereDAO {
     }
 
     @Override
-    public void modifierVente(CArticleVendu vente) {
+    public String modifierVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","modifierVente : " + vente);
-        if(IsPossibleModifySale(vente)){
-            String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?,etat_article= ? WHERE no_article =?";
-            jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getEtatVente(), vente.getNoArticle());
+        try {
+            if (IsPossibleModifySale(vente)) {
+                String insertArticleQuery = "UPDATE  ARTICLES_VENDUS SET nom_article= ?, description= ?, date_debut_encheres= ?, date_fin_encheres= ?, prix_initial= ?, prix_vente= ?, no_utilisateur= ?, no_categorie= ?,etat_article= ? WHERE no_article =?";
+                jdbcTemplate.update(insertArticleQuery, vente.getNomArticle(), vente.getDescription(), vente.getDateDebutEncheres(), vente.getDateFinEncheres(), vente.getMiseAPrix(), vente.getPrixVente(), vente.getVendeur().getNoUtilisateur(), vente.getCategorie().getNoCategorie(), vente.getEtatVente(), vente.getNoArticle());
+            }
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
         }
     }
 
@@ -264,9 +452,10 @@ public class EnchereDAOImpl implements EnchereDAO {
         return VenteFinish;
     }
     @Override
-    public void annulerVente(int id) {
+    public String annulerVente(int id) {
         Logger.log("Trace_ENI.log","annulerVente : " + id);
         /* Pour l'identifiant de type d'etat d'une vente, se referencer au fichier README*/
+        try{
         if(IsPossibleModifySale(viewArticle(id))) {
             String sql = "SELECT COUNT(no_article) FROM ENCHERES WHERE ENCHERES.no_article =?";
             Integer nbRows = jdbcTemplate.queryForObject(sql, new Object[]{id}, Integer.class);
@@ -278,14 +467,38 @@ public class EnchereDAOImpl implements EnchereDAO {
             String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET etat_article= 3  WHERE no_article=?";
             jdbcTemplate.update(insertArticleQuery, id);
         }
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
-    public void ajouterPhotoVente(CArticleVendu vente) {
+    public String ajouterPhotoVente(CArticleVendu vente) {
         Logger.log("Trace_ENI.log","ajouterPhotoVente : " + vente);
+        try{
         String insertArticleQuery = "UPDATE ARTICLES_VENDUS SET photo_url= ? WHERE no_article=?";
         jdbcTemplate.update(insertArticleQuery, vente.getPhoto(), vente.getNoArticle());
-
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override

@@ -22,8 +22,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         this.utilisateursDAO = utilisateursDAO;
     }
     @Override
-    public void Inscription(CUtilisateur utilisateur) {
-        utilisateursDAO.Subscribe(utilisateur);
+    public String Inscription(CUtilisateur utilisateur) {
+        return utilisateursDAO.Subscribe(utilisateur);
     }
 
     @Override
@@ -32,33 +32,30 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void DeleteProfil(int id) {
-        utilisateursDAO.DeleteProfil(id);
+    public String DeleteProfil(int id) {
+        return utilisateursDAO.DeleteProfil(id);
     }
 
     @Override
-    public void ModifyProfil(CUtilisateur utilisateur) {
-        try {
-            utilisateursDAO.ModifyProfil(utilisateur);
-        } catch (DataAccessException e) {
-            be.add(BusinessCode.BLL_AVIS_CREER_ERREUR);
-        }
-        //utilisateursDAO.ModifyProfil(utilisateur);
+    public String ModifyProfil(CUtilisateur utilisateur) {
+
+           return utilisateursDAO.ModifyProfil(utilisateur);
+
     }
 
     @Override
-    public void DeleteProfil(CUtilisateur utilisateur) {
-        utilisateursDAO.DeleteProfil(utilisateur);
+    public String DeleteProfil(CUtilisateur utilisateur) {
+        return utilisateursDAO.DeleteProfil(utilisateur);
     }
 
     @Override
-    public void DesactiveProfil(CUtilisateur utilisateur) {
-        utilisateursDAO.DesactiveProfil(utilisateur);
+    public String DesactiveProfil(CUtilisateur utilisateur) {
+        return utilisateursDAO.DesactiveProfil(utilisateur);
     }
 
     @Override
-    public void DeleteMultiProfil(List<CUtilisateur> utilisateurList) {
-        utilisateursDAO.DeleteMultiProfil(utilisateurList);
+    public String DeleteMultiProfil(List<CUtilisateur> utilisateurList) {
+        return utilisateursDAO.DeleteMultiProfil(utilisateurList);
     }
     @Override
     public CUtilisateur getUtilisateurByEmail(String mail) {
@@ -76,12 +73,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void ModifyRoleUtilisateur(int id, int isAdministrateur) {
-        utilisateursDAO.ModifyRoleUtilisateur(id,isAdministrateur);
+    public String ModifyRoleUtilisateur(int id, int isAdministrateur) {
+        return utilisateursDAO.ModifyRoleUtilisateur(id,isAdministrateur);
     }
     @Override
-    public void achatCredits(CUtilisateur utilisateur, int creditsAmount) {
-        utilisateursDAO.achatCredits(utilisateur, creditsAmount);
+    public String achatCredits(CUtilisateur utilisateur, int creditsAmount) {
+        return utilisateursDAO.achatCredits(utilisateur, creditsAmount);
     }
     @Override
     public List<CUtilisateur> ViewAllUtilisateurs() {
@@ -89,8 +86,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public void ActiveProfil(CUtilisateur utilisateur) {
-        utilisateursDAO.ActiveProfil(utilisateur);
+    public String ActiveProfil(CUtilisateur utilisateur) {
+        return utilisateursDAO.ActiveProfil(utilisateur);
     }
 
     @Override

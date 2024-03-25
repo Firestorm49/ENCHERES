@@ -35,6 +35,7 @@ public class CUtilisateur {
     @NotBlank(message = "Le mot de passe n'est pas correcte")
     @Size(max=250, min=8)
     private String motdepasse;
+    @Min(0)
     private int credit;
     private int administrateur;
     private boolean Active;
