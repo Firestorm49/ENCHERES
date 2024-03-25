@@ -48,8 +48,8 @@ public class EnchereServiceImpl implements EnchereService {
         return encheresDAO.listerEncheresDeconnecteByFilters(nomArticle,categorie,pageNumber,pageSize);
     }
     @Override
-    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
-        return encheresDAO.listerEncheresConnecteByFilters(nomArticle, categorie, radio, ventesencours, ventesnoncommencer, ventesterminer, encheresremporter, encheresencours, encheresouvertes, pageNumber, pageSize);
+    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
+        return encheresDAO.listerEncheresConnecteByFilters(nomArticle, categorie, no_utilisateur, radio, ventesencours, ventesnoncommencer, ventesterminer, encheresremporter, encheresencours, encheresouvertes, pageNumber, pageSize);
     }
     @Override
     public String CheckSale() {

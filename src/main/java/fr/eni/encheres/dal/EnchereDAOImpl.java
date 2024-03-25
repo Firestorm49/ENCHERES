@@ -121,7 +121,7 @@ public class EnchereDAOImpl implements EnchereDAO {
         return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
     }
     @Override
-    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
+    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
         Logger.log("Trace_ENI.log","listerEncheresConnecteByFilters : " + pageNumber + " " + pageSize);
         int min = pageNumber*pageSize;
         int max = min + pageSize;
@@ -136,6 +136,36 @@ public class EnchereDAOImpl implements EnchereDAO {
       if (categorie != null) {
             Filter += " no_categorie = ? AND ";
             params.add(categorie);
+        }
+        if (radio == 1) {
+            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND ";
+            params.add(no_utilisateur);
+            if (encheresencours) {
+                Filter += " etat_article = 1 OR  ";
+            }
+            if (encheresouvertes) {
+                Filter += " etat_article = 0 OR  ";
+            }
+            if (encheresremporter) {
+                Filter += " etat_article = 2 OR  ";
+            }
+
+            Filter += ") AND";
+        }
+        else  if (radio == 2) {
+            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND ";
+            params.add(no_utilisateur);
+
+            if (ventesencours) {
+                Filter += " etat_article = 1 OR  ";
+            }
+            if (ventesnoncommencer) {
+                Filter += " etat_article = 0 OR  ";
+            }
+            if (ventesterminer) {
+                Filter += " etat_article = 2 OR  ";
+            }
+            Filter += ") AND";
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +

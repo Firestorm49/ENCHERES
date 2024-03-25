@@ -27,8 +27,7 @@ public class CArticleVendu {
     @Min(0)
     private int etatVente = 0;
     private CCategorie categorie;
-    @NotBlank(message = "L'url de la photo n'est pas correcte")
-    @Size(max=400)
+
     private String photo;
     private CRetrait retrait;
     private CUtilisateur Acheteur;
