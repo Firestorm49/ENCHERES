@@ -1,22 +1,27 @@
-<link rel="stylesheet" data-th-href="@{/css/general.css}">
-<form xmlns:th="http://www.thymeleaf.org"
-	  th:fragment="article-detail(titleForm, action)"
-	  th:action="@{${action}}" data-th-object="${ArticleVendu}" style="display: flex;">
-	  <img id="logoEncheres" th:src="@{/images/encheres.png}">
-		<div class="informations" style="margin: 0.5rem;">
-			<div class="top">
-				<div class="line" style="margin: 0.5rem;">
-					Nom du produit : 
-				</div>
-				<div class="line" style="margin: 0.5rem;">
-					Prix : <span></span>
-				</div>
-				<div class="line" style="margin: 0.5rem;">
-					Fin de l'enchère : 
-				</div>
-				<div class="line" style="margin: 0.5rem;">
-					Vendeur : <span></span>
-				</div>
+<link xmlns:th="http://www.thymeleaf.org" rel="stylesheet"
+	data-th-href="@{/css/general.css}">
+<link xmlns:th="http://www.thymeleaf.org" rel="stylesheet"
+	data-th-href="@{/css/form.css}">
+<div data-th-fragment="article-detail(titleForm, action)"
+	data-th-each="enchere : ${encheres}">
+	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
+		id="afficherArticle">
+		<img id="article" data-th-title="Image"
+			data-th-src="@{/images/encheres.png}">
+		<div class="top">
+			<div class="line">
+				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>
+			</div>
+			<div class="line">
+				Prix : <span data-th-text="${enchere.prixVente} + ' points' "></span>
+			</div>
+			<div class="line">
+				Fin de l'enchère : <span data-th-text="${enchere.dateFinEncheres}"></span>
+			</div>
+			<div class="line">
+				Vendeur : <span
+					data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
 			</div>
 		</div>
-</form>
+	</form>
+</div>

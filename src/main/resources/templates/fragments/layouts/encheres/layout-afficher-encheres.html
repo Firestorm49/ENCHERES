@@ -1,16 +1,18 @@
 <form xmlns:th="http://www.thymeleaf.org" th:fragment="enchere-detail(titleForm, action)" th:action="@{${action}}"
 	method="post">
-	<br> <br> <label style="margin: 0.5rem;">Filtres : </label><input type="text" placeholder="Rechercher"></input>
+	<br>
+	<h1 style="text-align:center;">Liste des enchères</h1>
+	<br> <br> <label id="filtres">Filtres : </label><input type="text" placeholder="Rechercher"></input>
 	&nbsp;&nbsp;&nbsp; <label for="dropbox">Catégorie : </label><select id="dropbox" name="dropbox"
 		th:field="${CategorieSession}">
 		<option th:each="item : ${CategorieSession}" th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
 	</select> &nbsp;&nbsp;&nbsp;
-	<button type="submit">Rechercher</button>
-	<br>
-	<div style="display: flex;" data-th-if="${#authorization.expression('isAuthenticated()')}">
+	<button id="searchButton" type="submit">Rechercher</button>
+	<br><br>
+	<div class="radioAndCheckbox" th:if="${#authorization.expression('isAuthenticated()')}">
 		<div>
-			<input type="radio" id="radioAchats" name="achats" value="achats" />
-			<label for="radioAchats">Achats</label><br>
+			<input type="radio" id="radioButton" name="radioButton" value="1" />
+			<label for="radioButton">Achats</label><br>
 			&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="encheresOuvertes"
 					name="encheresOuvertes" value="encheresOuvertes">&nbsp;<label for="encheresOuvertes">Enchères
 					ouvertes</label></span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"
@@ -23,12 +25,12 @@
 		</div>
 		&nbsp;&nbsp;&nbsp;
 		<div>
-			<input type="radio" id="mesVentes" name="mesVentes" value="mesVentes" />
-			<label for="mesVentes">Mes ventes</label> <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="checkbox1" name="mesVentesEnCours"
-					value="mesVentesEnCours">&nbsp;<label for="checkbox1">Mes ventes en cours</label>
+			<input type="radio" id="radioButton" name="radioButton" value="2" />
+			<label for="radioButton">Mes ventes</label> <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
+					value="mesVentesEnCours">&nbsp;<label for="mesVentesEnCours">Mes ventes en cours</label>
 			</span> <br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="checkbox2"
-					name="options[]" value="2">&nbsp;<label for="checkbox2">Ventes non
+					name="ventesNonCommencees" value="ventesNonCommencees">&nbsp;<label for="checkbox2">Ventes non
 					débutées</label>
 			</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"
 					id="ventesTerminees" name="ventesTerminees" value="ventesTerminees">&nbsp;<label
@@ -36,5 +38,5 @@
 			</span><br />
 		</div>
 	</div>
-
+<br><br>
 </form>
