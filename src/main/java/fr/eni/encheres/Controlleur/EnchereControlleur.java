@@ -146,4 +146,30 @@ public class EnchereControlleur {
 		enchereService.faireEnchere(enchere);
 		return "redirect:/bid";
 	}
+
+	@PostMapping("/detail")
+	public String PostEnchere(@RequestParam(name = "id", required = true) int id,
+							 Model model) {
+		Logger.log("Trace_ENI.log", "Controlleur : PostEnchere ");
+		CEnchere Enchere = enchereService.afficherDetailEnchere(id);
+		model.addAttribute("enchere", Enchere);
+		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
+		model.addAttribute("Vente", ArticleVendu);
+		CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(ArticleVendu.getNoArticle()));
+		if (enchereService.IsVenteFinish(ArticleVendu.getNoArticle()) == 2) {
+			if (winner.getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
+				model.addAttribute("Msg_FinVente", "Vous avez remporté la vente");
+			} else {
+				model.addAttribute("Msg_FinVente", winner.getPseudo() + " a remporté l'enchere");
+			}
+		} else {
+			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
+				model.addAttribute("Msg_FinVente", "Vente encore en cours");
+			} else {
+				return "view_bid_add";
+			}
+
+		}
+		return "view_bid_detail";
+	}
 }
