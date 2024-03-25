@@ -14,14 +14,10 @@
 </head>
 <body>
 	<h1>Liste des enchères</h1>
-	<main>
-		<form
-			th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('Ajouter un film', '/bid')}">
+	<main>		
+		<form th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('Ajouter un film', '/bid')}">
 		</form>
-		<div >
-			<div
-				th:replace="~{fragments/layouts/encheres/layout-afficher-article :: article-detail('Ajouter un film', '/bid/filter')}"></div>
-		</div>
+		<div th:replace="~{fragments/layouts/encheres/layout-afficher-article :: article-detail('Ajouter un film', '/bid')}"></div>
 	</main>
 	<br>
 </body>
