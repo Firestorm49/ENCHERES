@@ -71,8 +71,8 @@ public class EnchereControlleur {
 			@RequestParam(name = "mesEncheresRemportees", required = false) boolean mesEncheresRemportees,
 			@RequestParam(name = "mesEncheresEnCours", required = false) boolean mesEncheresEnCours,
 			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,
-			/*@RequestParam(name = "numeroPage", required = false) int pageNumber,
-			@RequestParam(name = "pageSize", required = false) int pageSize,*/
+			@RequestParam(name = "numeroPage", required = false) Integer pageNumber,
+			@RequestParam(name = "pageSize", required = false) Integer pageSize,
 			Model model,
 			Authentication authentication) {
 		Logger.log("Trace_ENI.log", "Controlleur : getEnchere ");
@@ -82,10 +82,10 @@ public class EnchereControlleur {
 		 listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
 					categorie != null ? categorie.intValue() : 0, UtilisateurConnecte.getNoUtilisateur(), radioButton != null ? radioButton.intValue() : 0,
 					mesVentesEnCours, ventesNonCommencees, ventesTerminees, mesEncheresRemportees, mesEncheresEnCours,
-					encheresOuvertes, 1, 10);
+					encheresOuvertes, pageNumber != null ? pageNumber.intValue() : 0, pageSize != null ? pageSize.intValue() : 0);
 		} else {
 		listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
-				categorie != null ? categorie.intValue() : 0, 1, 10);
+				categorie != null ? categorie.intValue() : 0, pageNumber != null ? pageNumber.intValue() : 0, pageSize != null ? pageSize.intValue() : 0);
 		}
 
 		model.addAttribute("encheres",listArticlesVendus);
@@ -96,21 +96,25 @@ public class EnchereControlleur {
 	public String getEnchere(@RequestParam(name = "id", required = true) int id,
 			Model model) {
 		Logger.log("Trace_ENI.log", "Controlleur : getDetailEncheres ");
-		CEnchere Enchere = enchereService.afficherDetailEnchere(id);
-		model.addAttribute("enchere", Enchere);
-		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
+		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
 		model.addAttribute("Vente", ArticleVendu);
-		CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(ArticleVendu.getNoArticle()));
-		if (enchereService.IsVenteFinish(ArticleVendu.getNoArticle()) == 2) {
-			if (winner == UtilisateurConnecte) {
+		CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(id));
+		if (enchereService.IsVenteFinish(id) == 2) {
+			if (winner.getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
 				model.addAttribute("Msg_FinVente", "Vous avez remporté la vente");
+				return "view_bid_detail";
 			} else {
 				model.addAttribute("Msg_FinVente", winner.getPseudo() + " a remporté l'enchere");
+				return "view_bid_detail";
 			}
 		} else {
-			model.addAttribute("Msg_FinVente", "Enchere toujours en cours");
+			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
+				model.addAttribute("Msg_FinVente", "Vente encore en cours");
+				return "view_bid_detail";
+			} else {
+				return "view_bid_add";
+			}
 		}
-		return "view_bid_detail";
 	}
 
 	@GetMapping("/purpose")
@@ -145,31 +149,5 @@ public class EnchereControlleur {
 		enchere.setDateEnchere(LocalDateTime.now());
 		enchereService.faireEnchere(enchere);
 		return "redirect:/bid";
-	}
-
-	@PostMapping("/detail")
-	public String PostEnchere(@RequestParam(name = "id", required = true) int id,
-							 Model model) {
-		Logger.log("Trace_ENI.log", "Controlleur : PostEnchere ");
-		CEnchere Enchere = enchereService.afficherDetailEnchere(id);
-		model.addAttribute("enchere", Enchere);
-		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(Enchere.getArticle().getNoArticle());
-		model.addAttribute("Vente", ArticleVendu);
-		CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(ArticleVendu.getNoArticle()));
-		if (enchereService.IsVenteFinish(ArticleVendu.getNoArticle()) == 2) {
-			if (winner.getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
-				model.addAttribute("Msg_FinVente", "Vous avez remporté la vente");
-			} else {
-				model.addAttribute("Msg_FinVente", winner.getPseudo() + " a remporté l'enchere");
-			}
-		} else {
-			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
-				model.addAttribute("Msg_FinVente", "Vente encore en cours");
-			} else {
-				return "view_bid_add";
-			}
-
-		}
-		return "view_bid_detail";
 	}
 }

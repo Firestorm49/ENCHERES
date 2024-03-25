@@ -4,7 +4,7 @@
 	data-th-href="@{/css/form.css}">
 <div data-th-fragment="article-detail(titleForm, action)"
 	data-th-each="enchere : ${encheres}">
-	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}" method="post"
+	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}" method="get"
 		id="afficherArticle">
 		<img id="article" data-th-title="Image"
 			data-th-src="@{/images/encheres.png}">
