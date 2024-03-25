@@ -12,8 +12,8 @@ public interface EnchereService {
     CEnchere afficherDetailEnchere(int enchereId);
     String modifierVente(CArticleVendu vente);
     String annulerVente(int id);
-    List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, String categorie, int pageNumber, int pageSize);
-    List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize);
+    List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, int categorie, int pageNumber, int pageSize);
+    List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize);
     String CheckSale();
     String ajouterPhotoVente(CArticleVendu vente);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);

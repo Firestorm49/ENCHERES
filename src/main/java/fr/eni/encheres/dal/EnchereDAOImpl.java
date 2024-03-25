@@ -90,7 +90,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 
     }
     @Override
-    public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, String categorie, int pageNumber, int pageSize) {
+    public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, int categorie, int pageNumber, int pageSize) {
         Logger.log("Trace_ENI.log","listerEncheresDeconnecteByFilters : " + pageNumber + " " + pageSize);
         int min = pageNumber * pageSize;
         int max = min + pageSize;
@@ -103,7 +103,7 @@ public class EnchereDAOImpl implements EnchereDAO {
             Filter += " nom_article = ? AND ";
             params.add(nomArticle);
         }
-        if (categorie != null) {
+        if (categorie != 0) {
             Filter += " no_categorie = ? AND ";
             params.add(categorie);
         }
@@ -121,7 +121,7 @@ public class EnchereDAOImpl implements EnchereDAO {
         return jdbcTemplate.queryForList(sql, params.toArray(), CArticleVendu.class);
     }
     @Override
-    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
+    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
         Logger.log("Trace_ENI.log","listerEncheresConnecteByFilters : " + pageNumber + " " + pageSize);
         int min = pageNumber*pageSize;
         int max = min + pageSize;
@@ -133,7 +133,7 @@ public class EnchereDAOImpl implements EnchereDAO {
             Filter += " nom_article = ? AND ";
             params.add(nomArticle);
         }
-      if (categorie != null) {
+      if (categorie != 0) {
             Filter += " no_categorie = ? AND ";
             params.add(categorie);
         }

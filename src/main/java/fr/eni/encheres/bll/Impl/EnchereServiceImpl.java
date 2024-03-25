@@ -44,11 +44,11 @@ public class EnchereServiceImpl implements EnchereService {
     }
 
     @Override
-    public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, String categorie, int pageNumber, int pageSize) {
+    public List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, int categorie, int pageNumber, int pageSize) {
         return encheresDAO.listerEncheresDeconnecteByFilters(nomArticle,categorie,pageNumber,pageSize);
     }
     @Override
-    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
+    public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
         return encheresDAO.listerEncheresConnecteByFilters(nomArticle, categorie, no_utilisateur, radio, ventesencours, ventesnoncommencer, ventesterminer, encheresremporter, encheresencours, encheresouvertes, pageNumber, pageSize);
     }
     @Override
