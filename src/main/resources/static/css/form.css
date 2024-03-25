@@ -1,12 +1,21 @@
 @charset "UTF-8";
 
 form {
-	background-color: rgb(221, 225, 219);
-	border-radius: 5px;
+	border-radius: 1.5rem;
+	padding: 2rem;
 }
 
 form h1 {
 	margin: 15px;
+}
+
+
+.flex-outer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	flex-direction: column;
 }
 
 .flex-outer li {
@@ -14,6 +23,49 @@ form h1 {
 	flex-wrap: wrap;
 	align-items: center;
 	margin: 5px;
+	position: relative;
+	width: 100%;
+}
+
+.flex-outer li .label{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 500;
+	margin-left: 0.5rem;
+	transition: top 0.3s, transform 0.3s, font-size 0.3s, background-color 0.3s;
+}
+
+.flex-outer li .input{
+	width: 100%;
+	height: 2rem;
+	z-index: 450;
+}
+
+.flex-outer li .input:focus + .label,
+.flex-outer li .input:valid + .label{
+	top: -0.2rem;
+	transform: translateY(0);
+	font-size: 0.8rem;
+	background-color: white;
+}
+
+.submit{
+	width: 100%;
+}
+.submit .flex-outer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	flex-direction: row;
+}
+
+.submit .flex-outer li{
+	width: auto;
 }
 
 .flex-outer>li>label {
@@ -26,8 +78,6 @@ form h1 {
 }
 
 .flex-outer li button {
-	margin-left: auto;
-	margin-bottom: 5px;
 	padding : 8px 8px;
 	border: none;
 	background: #333;
@@ -38,9 +88,19 @@ form h1 {
 	padding: 8px 16px;
 }
 
+input[type=text], input[type=number], input[type=email], input[type=password],input[type=datetime-local] {
+	outline: none;
+	width: 100%;
+	height: 2rem;
+	z-index: 1000;
+}
+input[type=text]:focus , input[type=number]:focus, input[type=email]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
+	border: 0.188rem solid #555;
+}
+
+
 input {
 	border-radius: 5px;
-	border: 1px solid black;
 }
 
 button{
@@ -51,72 +111,7 @@ li.save-button{
 	margin-top: 5px;
 }
 
-.h1Title{
-	margin: 0.25rem 0.5rem 0.25rem 0.5rem;
-	padding-top: 1rem;
-	text-align: center;
-}
-
-.synopsis{
-	padding-bottom: 1rem;
-}
-
-.alignement-label{
-	margin-left: 0rem;
-	width: 10rem;
-}
-
-#inputGenre,
-#inputRealisateur,
-#inputAnnee,
-#inputTitre,
-#inputDuree,
-#taComment,
-#inputNote,
-#inputNom,
-#inputPrenom,
-#inputTitreGenre,
-#inputPassword{
-	padding: 0.3rem;
-	width: 85.8%;	
-}
-
-#selectActeurs{
-	padding: 0.3rem;
-	width: 86.6%;
-	border-radius: 5px;
-	border: 1px solid black;
-}
-
-#textarea-synopsis{
-	width: 85.7%;
-	border: 1px solid black;
-	border-radius: 5px;
-	padding: 0.3rem;
-}
 
 li{
 	padding: 0.2rem;
-}
-
-main{
-	margin-top: 0.5rem;
-}
-
-select#inputGenre,
-select#inputRealisateur,
-select#inputActeurs{
-	border-radius: 5px;
-	width: 86.5%;
-	padding: 0.3rem;
-	border: 1px solid black;
-}
-
-#titreAvis{
-	padding-top: 0.5rem;
-}
-
-#boutonAjouter, #boutonEnregistrer, #loginButton, #modifyButton {
-	border-radius: 5px;
-	margin-right: 2.5rem;
 }

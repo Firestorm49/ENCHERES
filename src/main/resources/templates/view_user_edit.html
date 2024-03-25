@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  th:replace="~{fragments/layouts/layout :: layout(
+	  data-th-replace="~{fragments/layouts/layout :: layout(
 				 	title=~{:: title}, 
 				 	contenuPage=~{:: .center-main}, 
 				 	ressources=~{:: #ressources-css})}">
 <head>
 <meta charset="UTF-8">
-<title th:text="user"></title>
-<th:block id="ressources-css">
-	<link rel="stylesheet" th:href="@{/css/general.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
-	<link rel="stylesheet" th:href="@{/css/user.css}">
-</th:block>
+<title data-th-text="user"></title>
+<data-th-block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/general.css}">
+	<link rel="stylesheet" data-th-href="@{/css/form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/user.css}">
+</data-th-block>
 </head>
 <body>
 	<main class="center-main page-user">
 		<div class="content">
 			<h1> Mon profil EDIT / CREATE </h1>
-			<form th:action="@{${postValue}}" th:object="${user}" method="post">
-
+			<form data-th-action="@{${postValue}}" data-th-object="${user}" method="post">
 				<p class="cards" data-th-each="err : ${#fields.errors('global')}" data-th-text="#{${err}}"/>
-
 				<div class="content-form">
 					<div class="left colone">
 						<div class="input">
-							<input type="hidden" th:field="*{noUtilisateur}" />
-
-							<label for="pseudo">Pseudo :</label>
-							<input type="text" id="pseudo" th:field="*{pseudo}" />
-							<p th:errors="*{pseudo}" class="text-danger" th:if="${#fields.hasErrors('pseudo')}"></p>
-
-							<label for="prenom">Prénom :</label>
-							<input type="text" id="prenom" th:field="*{prenom}" />
-							<p th:errors="*{prenom}" class="text-danger" th:if="${#fields.hasErrors('prenom')}"></p>
-
-							<label for="telephone">Téléphone :</label>
-							<input type="number" id="telephone" th:field="*{telephone}" />
-							<p th:errors="*{telephone}" class="text-danger" th:if="${#fields.hasErrors('telephone')}"></p>
-
-							<label for="codePoste">Code postal :</label>
-							<input type="text" id="codePoste" th:field="*{codePostal}" />
-							<p th:errors="*{codePostal}" class="text-danger" th:if="${#fields.hasErrors('codePostal')}"></p>
-
-							<label data-th-if="${postValue} == '/users/modify'" for="mypassword">Mot de passe actuel :</label>
-							<input data-th-if="${postValue} == '/users/modify'" type="password" id="mypassword" th:field="*{motdepasse}" />
-							<p th:errors="*{motdepasse}" class="text-danger" th:if="${#fields.hasErrors('motdepasse')}"></p>
-
-							<label for="password">Mot de passe :</label>
-							<input type="password" id="password" th:field="*{motdepasse}" />
-							<p th:errors="*{motdepasse}" class="text-danger" th:if="${#fields.hasErrors('motdepasse')}"></p>
+							<ul class="flex-outer">
+								<li style="display: none;">
+									<input type="hidden" data-th-field="*{noUtilisateur}" />
+								</li>
+								<p data-th-errors="*{pseudo}" class="text-danger" data-th-if="${#fields.hasErrors('pseudo')}"></p>
+								<li>
+									<input class="input" type="text" id="pseudo" data-th-field="*{pseudo}" />
+									<label class="label" for="pseudo">Pseudo :</label>
+								</li>
+								<p data-th-errors="*{prenom}" class="text-danger" data-th-if="${#fields.hasErrors('prenom')}"></p>
+								<li>
+									<input class="input" type="text" id="prenom" data-th-field="*{prenom}" />
+									<label class="label" for="prenom">Prénom :</label>
+								</li>
+								<p data-th-errors="*{telephone}" class="text-danger" data-th-if="${#fields.hasErrors('telephone')}"></p>
+								<li>
+									<input class="input" type="number" id="telephone" data-th-field="*{telephone}" />
+									<label class="label" for="telephone">Téléphone :</label>
+								</li>
+								<p data-th-errors="*{codePostal}" class="text-danger" data-th-if="${#fields.hasErrors('codePostal')}"></p>
+								<li>
+									<input class="input" type="text" id="codePoste" data-th-field="*{codePostal}" />
+									<label class="label" for="codePoste">Code postal :</label>
+								</li>
+								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
+								<li>
+									<input class="input" data-th-if="${postValue} == '/users/modify'" type="password" id="mypassword" data-th-field="*{motdepasse}" />
+									<label class="label" data-th-if="${postValue} == '/users/modify'" for="mypassword">Mot de passe actuel :</label>
+								</li>
+								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
+								<li>
+									<input class="input" type="password" id="password" data-th-field="*{motdepasse}" />
+									<label class="label" for="password">Mot de passe :</label>
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="right colone">
 						<div class="input">
-							<label for="nom">Nom :</label>
-							<input type="text" id="nom" th:field="*{nom}" />
-							<p th:errors="*{nom}" class="text-danger" th:if="${#fields.hasErrors('nom')}"></p>
-
-							<label for="email">Email :</label>
-							<input type="email" id="email" th:field="*{email}" />
-							<p th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
-
-							<label for="adresse">Rue :</label>
-							<input type="text" id="adresse" th:field="*{rue}" />
-							<p th:errors="*{rue}" class="text-danger" th:if="${#fields.hasErrors('rue')}"></p>
-
-							<label for="ville">Ville :</label>
-							<input type="text" id="ville" th:field="*{ville}" />
-							<p th:errors="*{ville}" class="text-danger" th:if="${#fields.hasErrors('ville')}"></p>
-
-							<label data-th-if="${postValue} == '/users/modify'" style="opacity:0;" for="input-vide">Code postal :</label>
-							<input data-th-if="${postValue} == '/users/modify'" style="opacity:0;" type="text" id="input-vide" th:field="*{codePostal}" />
-							<p th:errors="*{codePostal}" class="text-danger" th:if="${#fields.hasErrors('codePostal')}"></p>
-
-							<label for="confirmPassword">Confirmation :</label>
-							<input type="password" id="confirmPassword" th:field="*{motdepasse}" />
-							<p th:errors="*{motdepasse}" class="text-danger" th:if="${#fields.hasErrors('motdepasse')}"></p>
+							<ul class="flex-outer">
+								<p data-th-errors="*{nom}" class="text-danger" data-th-if="${#fields.hasErrors('nom')}"></p>
+								<li>
+									<input class="input" type="text" id="nom" data-th-field="*{nom}" />
+									<label class="label" for="nom">Nom :</label>
+								</li>
+								<p data-th-errors="*{email}" class="text-danger" data-th-if="${#fields.hasErrors('email')}"></p>
+								<li>
+									<input class="input" type="email" id="email" data-th-field="*{email}" />
+									<label class="label" for="email">Email :</label>
+								</li>
+								<p data-th-errors="*{rue}" class="text-danger" data-th-if="${#fields.hasErrors('rue')}"></p>
+								<li>
+									<input class="input" type="text" id="adresse" data-th-field="*{rue}" />
+									<label class="label" for="adresse">Rue :</label>
+								</li>
+								<p data-th-errors="*{ville}" class="text-danger" data-th-if="${#fields.hasErrors('ville')}"></p>
+								<li>
+									<input class="input" type="text" id="ville" data-th-field="*{ville}" />
+									<label class="label" for="ville">Ville :</label>
+								</li>
+								<p data-th-errors="*{codePostal}" class="text-danger" data-th-if="${#fields.hasErrors('codePostal')}"></p>
+								<li>
+									<input class="input" data-th-if="${postValue} == '/users/modify'" style="opacity:0;" disabled type="text" id="input-vide" />
+								</li>
+								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
+								<li>
+									<input class="input" type="password" id="confirmPassword" data-th-field="*{motdepasse}" />
+									<label class="label" for="confirmPassword">Confirmation :</label>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
+				<div class="submit">
+					<ul class="flex-outer">
+						<li>
+							<button type="submit">Créer</button>
+						</li>
+						<li>
+							<button type="submit">Annuler</button>
+						</li>
+					</ul>
+				</div>
+
+				<!--
 				<div class="input">
 					<input type="submit" value="Créer" />
-					<input type="reset" value="Annuler" />
-				</div>
+				</div>-->
 			</form>
 		</div>
 	</main>

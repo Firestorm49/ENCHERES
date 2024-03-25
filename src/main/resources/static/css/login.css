@@ -1,0 +1,25 @@
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.login-form .flex-outer li {
+    width: 50%;
+}
+
+.login-form .right{
+    width: 100%;
+}
+
+.login-form .left{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

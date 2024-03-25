@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  th:replace="~{fragments/layouts/layout :: layout(
+	  data-th-replace="~{fragments/layouts/layout :: layout(
 				 	title=~{:: title}, 
 				 	contenuPage=~{:: .center-main}, 
 				 	ressources=~{:: #ressources-css})}">
 <head>
 <meta charset="UTF-8">
-<title th:text="user"></title>
-<th:block id="ressources-css">
-	<link rel="stylesheet" th:href="@{/css/general.css}">
-	<link rel="stylesheet" th:href="@{/css/form.css}">
-	<link rel="stylesheet" th:href="@{/css/user.css}">
-</th:block>
+<title data-th-text="user"></title>
+<data-th-block id="ressources-css">
+	<link rel="stylesheet" data-th-href="@{/css/general.css}">
+	<link rel="stylesheet" data-th-href="@{/css/form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/user.css}">
+</data-th-block>
 </head>
 <body>
 	<main class="center-main page-user">
 		<div class="content">
 			<h1> Mon profil DETAIL </h1>
-			<div class="informations" th:object="${user}">
+			<div class="informations" data-th-object="${user}">
 				<div class="top">
 					<div class="line">
-						Pseudo : <span th:text="*{pseudo}"></span>
+						Pseudo : <span data-th-text="*{pseudo}"></span>
 					</div>
 					<div class="line">
-						Nom : <span th:text="*{nom}"></span>
+						Nom : <span data-th-text="*{nom}"></span>
 					</div>
 					<div class="line">
-						Prénom : <span th:text="*{prenom}"></span>
+						Prénom : <span data-th-text="*{prenom}"></span>
 					</div>
 					<div class="line">
-						Email : <span th:text="*{email}"></span>
+						Email : <span data-th-text="*{email}"></span>
 					</div>
 					<div class="line">
-						Téléphone : <span th:text="*{telephone}"></span>
+						Téléphone : <span data-th-text="*{telephone}"></span>
 					</div>
 					<div class="line">
-						Rue : <span th:text="*{rue}"></span>
+						Rue : <span data-th-text="*{rue}"></span>
 					</div>
 					<div class="line">
-						Code postal : <span th:text="*{codePostal}"></span>
+						Code postal : <span data-th-text="*{codePostal}"></span>
 					</div>
 					<div class="line">
-						Ville : <span th:text="*{ville}"></span>
+						Ville : <span data-th-text="*{ville}"></span>
 					</div>
 					<form method="post" action="\users\buycredits">
 						<input type="hidden" name="id" data-th-value="*{noUtilisateur}">

@@ -6,87 +6,102 @@
 /*   justify-content: space-between; */
 /* } */
 header li {
-	list-style: none;
-	display: inline-block;
-	padding: 0 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, Helvetica;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica;
 }
 
 /* Header */
 header {
-	padding: 20px 50px;
-	box-shadow: 0 1px 8px #ddd;
-	background-color: #777;
+    padding: 20px 50px;
+    box-shadow: 0 1px 8px #ddd;
+    background-color: #777;
+    height: 5rem;
 }
 
 #nav-title {
-	margin-right: auto;
-	font-size: 1.1em;
+    margin-right: auto;
+    font-size: 1.1em;
 }
 
 header li {
-	list-style: none;
-	display: inline-block;
-	padding: 0 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
 }
 
 header a {
-	text-decoration: none;
-	color: white;
-	transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease 0s;
 }
 
 header a:hover {
-	color: rgb(0, 128, 192);
+    color: rgb(0, 128, 192);
 }
 
 main {
-	margin-top: 15px;
-	margin-left: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 header h1 {
-	margin: 10px;
-	color: black;
+    margin: 10px;
+    color: black;
 }
 .center-main {
-	width: 100%;
-	margin: auto;
-}
-.center-films {
-	width: 100%;
-	margin-bottom: 414px;
-}
-.center-avis {
-	width: 100%;
-	margin-bottom: 0px;
-}
-.center-section {
-	margin: auto;
-	text-align: center;
+    margin: 2rem 10rem 0 10rem;
+    padding: 2rem;
 }
 
-input[type=text], input[type=number], input[type=password],input[type=datetime-local] {
+@media screen and (max-width: 768px) {
+    .center-main{
+        margin: 1rem 5rem 0 5rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .center-main{
+        margin: 1rem 1rem 0 1rem;
+        padding: 0.5rem;
+    }
+}
+
+.center-films {
+    width: 100%;
+    margin-bottom: 414px;
+}
+.center-avis {
+    width: 100%;
+    margin-bottom: 0px;
+}
+.center-section {
+    margin: auto;
+    text-align: center;
+}
+/*
+input[type=text], input[type=number], input[type=email], input[type=password],input[type=datetime-local] {
     width: 26.438rem;
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 5px solid #ccc;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
     bottom: 0px;
     z-index: 1000;
 }
-input[type=text]:focus , input[type=number]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
+input[type=text]:focus , input[type=number]:focus, input[type=email]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
     border: 0.188rem solid #555;
-}
-
+}*/
 select {
     width: 26.438rem;
     padding: 0.75rem 1.25rem;
@@ -119,8 +134,8 @@ textarea:focus {
     border: 0.188rem solid #555;
 }
 .disabled-input {
-    color: #888; 
-    background-color: #eee; 
+    color: #888;
+    background-color: #eee;
 }
 body {
     margin: 0;
@@ -128,6 +143,8 @@ body {
     height: 100vh; /* 100% de la hauteur de la vue */
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow-x: hidden
 }
 
 .wrapper {
@@ -141,26 +158,21 @@ footer {
     text-align: center; /* Centrage du contenu */
 }
 
-#login,
-#bid,
-#logout,
-#category,
-#profil,
-#userList,
-#logoEncheres,
+#login, #bid, #logout, #category, #profil, #userList, #logoEncheres {
+    width: 65px;
+}
 #vendre {
-	width: 65px;
+    margin-top: 2rem;
+    width: 45px;
 }
-
 h1{
-	text-align: center;
+    text-align: center;
 }
-
 #userDeconnecte, #userConnecte{
-	float: left;
-	margin: auto;
+    float: left;
+    margin: auto;
+    height: 100%;
 }
-
 #navigation{
 	float: right;
 	margin: auto;
@@ -172,18 +184,8 @@ h1{
 }
 
 #searchButton{
-	padding: 1rem; 
-	border: 1px solid black;
-}
-
-.radioAndCheckbox{
-	display: flex;
-	margin-left: 1rem;
-	margin-top: 1rem;
-}
-
-#informations{
 	padding: 1rem;
+	border: 1px solid black;
 }
 
 #filtres{

@@ -1,27 +1,26 @@
-<form xmlns:th="http://www.thymeleaf.org"
-	th:fragment="login-form(titleForm, action)" th:action="@{/login}"
-	method="post">
-	<h1 class="h1Title" th:text="#{login.h1}"></h1>
+<form xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+	  data-th-fragment="login-form(titleForm, action)" data-th-action="@{/login}"
+	  method="post">
+	<h1 class="h1Title" data-th-text="#{login.h1}"></h1>
 	<ul class="flex-outer">
 		<li>
-			<div class="alignement-label">
-				<label for="inputNom" th:text="#{login-form.username}"></label>
-			</div>
-			<input id="inputNom" name="username" type="text"
-				   th:attr="placeholder=#{username.placeholder}" required />
+			<input class="input" id="inputNom" name="username" type="text" required />
+			<label class="label" for="inputNom" data-th-text="#{login-form.username}"></label>
 		</li>
 		<li>
-			<div class="alignement-label">
-				<label for="inputPassword" th:text="#{login-form.password}"></label>
+			<input class="input" id="inputPassword" name="password" type="password" required />
+			<label class="label" for="inputPassword" data-th-text="#{login-form.password}"></label>
+		</li>
+		<li>
+			<a href="/users/modify/password">Mot de passe oublié</a>
+			<div>
+				<input type="checkbox" id="rememberMe" name="rememberMe">
+				<label for="rememberMe">Rester connecté</label>
 			</div>
-			<input id="inputPassword" name="password" type="password" 
-				   th:attr="placeholder=#{password.placeholder}" placeholder="Votre Mot de passe" required />
 		</li>
 		<li data-th-if="${errorMessage}" data-th-text="${errorMessage}"
 			class="error-message"></li>
 		<li>
-			<input type="checkbox" id="rememberMe" name="rememberMe">
-			<label for="rememberMe">Rester connecté</label>
 			<button type="submit" name="SeConnecter" id="loginButton">Se
 				Connecter</button>
 		</li>
