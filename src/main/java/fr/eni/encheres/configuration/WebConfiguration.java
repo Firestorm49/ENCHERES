@@ -139,11 +139,11 @@ http.sessionManagement((session) -> session
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getDateTimeConverter());
-        registry.addConverter(getActeurConverter());
+        registry.addConverter(getCategorieConverter());
     }
 
     @Bean
-    CategorieConverter getActeurConverter() {
+    CategorieConverter getCategorieConverter() {
         return new CategorieConverter(categorieService);
     }
 

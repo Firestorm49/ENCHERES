@@ -6,9 +6,9 @@ import fr.eni.encheres.bo.CRetrait;
 import java.util.List;
 
 public interface RetraitDAO {
-    void CreateRetrait(CRetrait Retrait);
-    void ModifyRetrait(CRetrait Retrait);
-    void DeleteRetrait(int id);
+    String CreateRetrait(CRetrait Retrait);
+    String ModifyRetrait(CRetrait Retrait);
+    String DeleteRetrait(int id);
     CRetrait SearchRetrait(int id);
     CRetrait SearchRetraitByArticleID(int id);
 }

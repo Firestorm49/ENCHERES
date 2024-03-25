@@ -18,18 +18,18 @@ public class CategorieServiceImpl implements CategorieService {
         this.categorieDAO = categorieDAO;
     }
     @Override
-    public void CreateCategorie(CCategorie categorie) {
-        categorieDAO.CreateCategorie(categorie);
+    public String CreateCategorie(CCategorie categorie) {
+        return categorieDAO.CreateCategorie(categorie);
     }
 
     @Override
-    public void ModifyCategorie(CCategorie categorie) {
-        categorieDAO.ModifyCategorie(categorie);
+    public String ModifyCategorie(CCategorie categorie) {
+        return categorieDAO.ModifyCategorie(categorie);
     }
 
     @Override
-    public void DeleteCategorie(int id) {
-        categorieDAO.DeleteCategorie(id);
+    public String DeleteCategorie(int id) {
+        return categorieDAO.DeleteCategorie(id);
     }
 
     @Override

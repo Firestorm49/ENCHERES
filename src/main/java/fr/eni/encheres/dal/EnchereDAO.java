@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface EnchereDAO {
-    void SoldArticle(CArticleVendu article);
+    String SoldArticle(CArticleVendu article);
     CArticleVendu viewArticle(int id);
     List<CArticleVendu> listEncheresDeconnecte();
 
     List<CEnchere> listEncheresByArticleId(int id);
 
     List<CArticleVendu> listEncheresConnecte();
-    void ProposeEnchere(CEnchere enchere);
+    String ProposeEnchere(CEnchere enchere);
     int IsMaxOffre(CEnchere enchere);
     int IsUserMaxOffre(CEnchere enchere, int maxOffre);
 
@@ -23,16 +23,17 @@ public interface EnchereDAO {
 
     boolean IsPositifCredit(CEnchere enchere);
     boolean IsPositifOffre(CEnchere enchere);
-    void remporterVente(CArticleVendu vente);
+    String remporterVente(CArticleVendu vente);
     CEnchere afficherDetailEnchere(int enchereId);
-    void modifierVente(CArticleVendu vente);
+    String modifierVente(CArticleVendu vente);
 
     boolean IsPossibleModifySale(CArticleVendu vente);
     String SearchPhotoByArticleId(int id);
     int IsVenteFinish(int id);
-    void annulerVente(int id);
-    void CheckSale(LocalDateTime localDate);
-    void ajouterPhotoVente(CArticleVendu vente);
-    List<CArticleVendu> pagination(int pageNumber, int pageSize);
+    String annulerVente(int id);
+    String CheckSale(LocalDateTime localDate);
+    String ajouterPhotoVente(CArticleVendu vente);
     List<CUtilisateur> voirEncherisseurs(CArticleVendu vente);
+    List<CArticleVendu> listerEncheresDeconnecteByFilters(String nomArticle, String categorie, int pageNumber, int pageSize);
+    List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, String categorie, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize);
 }

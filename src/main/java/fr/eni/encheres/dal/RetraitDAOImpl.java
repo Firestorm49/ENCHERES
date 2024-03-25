@@ -1,8 +1,14 @@
 package fr.eni.encheres.dal;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bo.CRetrait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DeadlockLoserDataAccessException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,24 +18,63 @@ public class RetraitDAOImpl implements RetraitDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
-    public void CreateRetrait(CRetrait Retrait) {
+    public String CreateRetrait(CRetrait Retrait) {
         Logger.log("Trace_ENI.log","CreateRetrait : "+ Retrait);
         String insertRetraitQuery = "INSERT INTO RETRAITS (rue,code_postal,ville) VALUES (?,?,?)";
+        try{
         jdbcTemplate.update(insertRetraitQuery, Retrait.getRue(), Retrait.getCode_postal(), Retrait.getVille());
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
-    public void ModifyRetrait(CRetrait Retrait) {
+    public String ModifyRetrait(CRetrait Retrait) {
         Logger.log("Trace_ENI.log","ModifyRetrait : "+ Retrait);
         String updateRetraitQuery = "UPDATE (rue = ?,code_postal = ?,ville = ?) SET RETRAITS WHERE no_retrait = ?";
+        try{
         jdbcTemplate.update(updateRetraitQuery, Retrait.getRue(), Retrait.getCode_postal(), Retrait.getVille(), Retrait.getNoRetrait());
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override
-    public void DeleteRetrait(int id) {
+    public String DeleteRetrait(int id) {
         Logger.log("Trace_ENI.log","DeleteRetrait : "+ id);
         String deleteRetraitQuery = "DELETE FROM  RETRAITS WHERE no_retrait = ?";
+        try{
         jdbcTemplate.update(deleteRetraitQuery, id);
+            return ErrorCode.NO_ERROR; // pas d'erreur
+        } catch (DuplicateKeyException e) {
+            return ErrorCode.DUPLICATE_KEY; // Clé en double
+        } catch (DataIntegrityViolationException e) {
+            return ErrorCode.CONSTRAINT_VIOLATION; // Violation de contrainte
+        } catch (DeadlockLoserDataAccessException e) {
+            return ErrorCode.DEADLOCK_DETECTED; // Deadlock détecté
+        } catch (BadSqlGrammarException e) {
+            return ErrorCode.INCORRECT_COLUMN_TYPE; // Type de colonne incorrect
+        } catch (DataAccessException e) {
+            return ErrorCode.SQL_ERROR; // Erreur SQL non traitée
+        }
     }
 
     @Override

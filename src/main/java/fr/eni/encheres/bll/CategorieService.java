@@ -5,9 +5,9 @@ import fr.eni.encheres.bo.CCategorie;
 import java.util.List;
 
 public interface CategorieService {
-    void CreateCategorie(CCategorie categorie);
-    void ModifyCategorie(CCategorie categorie);
-    void DeleteCategorie(int id);
+    String CreateCategorie(CCategorie categorie);
+    String ModifyCategorie(CCategorie categorie);
+    String DeleteCategorie(int id);
     CCategorie SearchCategorie(int id);
     List<CCategorie> ListCategorie();
 }

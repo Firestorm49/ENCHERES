@@ -1,9 +1,20 @@
 package fr.eni.encheres.bo;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class CRetrait {
     private int noRetrait;
+    @NotBlank(message = "La rue n'est pas correcte")
+    @Size(max=250)
     private String rue;
+    @Max(99999)
+    @Min(1)
     private int code_postal;
+    @NotBlank(message = "La ville n'est pas correcte")
+    @Size(max=250)
     private String ville;
     public CRetrait() {
 

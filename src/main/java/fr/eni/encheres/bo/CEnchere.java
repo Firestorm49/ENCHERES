@@ -1,13 +1,17 @@
 package fr.eni.encheres.bo;
 
+import jakarta.validation.constraints.*;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import java.time.LocalDateTime;
 
 public class CEnchere {
     private int noEnchere;
+    @NotNull(message = "La date de l' enchère ne peut pas être nulle")
     private LocalDateTime dateEnchere;
+    @Min(1)
     private int montant_enchere;
     private CUtilisateur utilisateur;
-
     private CArticleVendu article;
 
     public CEnchere() {

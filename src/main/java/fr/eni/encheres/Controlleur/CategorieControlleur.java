@@ -1,6 +1,7 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bo.CCategorie;
 import org.springframework.stereotype.Controller;
@@ -18,14 +19,11 @@ public class CategorieControlleur {
     private final CategorieService categorieService;
 
     public CategorieControlleur(CategorieService categorieService) {
-
         this.categorieService = categorieService;
     }
 
-
     @ModelAttribute("CategorieSession")
     public List<CCategorie> chargerSession() {
-        System.out.println("liste de categorie");
         return categorieService.ListCategorie();
     }
 
@@ -60,13 +58,19 @@ public class CategorieControlleur {
     }
     @PostMapping("/modify")
     public String postModifyCategorie(@RequestParam(name = "id", required = true) int id,
-                                      @RequestParam(name = "libelle", required = true) String libelle) {
+                                      @RequestParam(name = "libelle", required = true) String libelle, Model model) {
         Logger.log("Trace_ENI.log","Controlleur : postModifyCategorie ");
         CCategorie categorie = new CCategorie();
         categorie.setNoCategorie(id);
         categorie.setLibelle(libelle);
-            categorieService.ModifyCategorie(categorie);
+        String result = categorieService.ModifyCategorie(categorie);
+        if(result != ErrorCode.NO_ERROR){
+            model.addAttribute("ErrorStringCode",result);
+            return "view_categorie";
+        }
+        else{
             return "redirect:/category";
+        }
     }
     @PostMapping("/create")
     public String postCategorieCreate(@RequestParam(name = "libelle", required = true) String Categorie) {

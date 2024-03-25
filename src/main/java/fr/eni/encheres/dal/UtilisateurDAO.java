@@ -5,19 +5,19 @@ import fr.eni.encheres.bo.CUtilisateur;
 import java.util.List;
 
 public interface UtilisateurDAO {
-    void Subscribe(CUtilisateur utilisateur);
+    String Subscribe(CUtilisateur utilisateur);
     CUtilisateur viewAcheteurByArticleID(int id);
     CUtilisateur ViewProfil(int id);
-    void ModifyRoleUtilisateur(int id, int isAdministrateur);
-    void DeleteProfil(int id);
+    String ModifyRoleUtilisateur(int id, int isAdministrateur);
+    String DeleteProfil(int id);
     List<CUtilisateur> ViewAllUtilisateurs();
-    void ModifyProfil(CUtilisateur utilisateur);
-    void DeleteProfil(CUtilisateur utilisateur);
-    void DesactiveProfil(CUtilisateur utilisateur);
-    void ActiveProfil(CUtilisateur utilisateur);
-    void DeleteMultiProfil(List<CUtilisateur> utilisateurList);
+    String ModifyProfil(CUtilisateur utilisateur);
+    String DeleteProfil(CUtilisateur utilisateur);
+    String DesactiveProfil(CUtilisateur utilisateur);
+    String ActiveProfil(CUtilisateur utilisateur);
+    String DeleteMultiProfil(List<CUtilisateur> utilisateurList);
     CUtilisateur getUtilisateurByEmail(String mail);
     boolean checkUser(String mail);
     boolean checkPassword(String mdp, int id);
-    void achatCredits(CUtilisateur utilisateur, int creditsAmount);
+    String achatCredits(CUtilisateur utilisateur, int creditsAmount);
 }
