@@ -27,35 +27,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 @SessionAttributes({ "membreEnSession" })
-public class UtilisateurControlleur {
+public class UtilisateurControlleur extends BaseControlleur  {
 
     private final UtilisateurService utilisateurService;
-    private CUtilisateur UtilisateurConnecte;
+
     BusinessException be = new BusinessException();
 
     public UtilisateurControlleur(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
-    }
-
-    @ModelAttribute("membreEnSession")
-    public CUtilisateur MembreAuthenticate(Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) {
-            System.out.println(authentication.getName());
-            UtilisateurConnecte	= utilisateurService.getUtilisateurByEmail(authentication.getName());
-            if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(1);
-            }
-            else if(UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
-                UtilisateurConnecte.setAdministrateur(2);
-            }
-            else {
-                UtilisateurConnecte.setAdministrateur(0);
-            }
-        } else {
-            UtilisateurConnecte = null;
-        }
-        System.out.println(UtilisateurConnecte);
-        return UtilisateurConnecte;
     }
 
     @GetMapping
@@ -222,7 +201,7 @@ public class UtilisateurControlleur {
     @GetMapping("/detail")
     public String getDetailUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getDetailUsers ");
-        if(UtilisateurConnecte != null){
+        if(UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("user", UtilisateurConnecte);
         }
         return "view_user_detail";

@@ -22,12 +22,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/bid")
 @SessionAttributes({ "membreEnSession", "CategorieSession" })
-public class EnchereControlleur {
+public class EnchereControlleur extends BaseControlleur {
 
 	private final EnchereService enchereService;
 	private final UtilisateurService utilisateurService;
 	private final CategorieService categorieService;
-	private CUtilisateur UtilisateurConnecte;
 
 	public EnchereControlleur(EnchereService enchereService,
 			UtilisateurService utilisateurService,
@@ -37,24 +36,6 @@ public class EnchereControlleur {
 		this.categorieService = categorieService;
 	}
 
-	@ModelAttribute("membreEnSession")
-	public CUtilisateur MembreAuthenticate(Authentication authentication) {
-		if (authentication != null && authentication.isAuthenticated()) {
-			UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
-			if (UtilisateurConnecte.getNoUtilisateur() > 0
-					&& authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-				UtilisateurConnecte.setAdministrateur(1);
-			} else if (UtilisateurConnecte.getNoUtilisateur() > 0 && authentication.getAuthorities().stream()
-					.anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
-				UtilisateurConnecte.setAdministrateur(2);
-			} else {
-				UtilisateurConnecte.setAdministrateur(0);
-			}
-		} else {
-			UtilisateurConnecte = null;
-		}
-		return UtilisateurConnecte;
-	}
 
 	@ModelAttribute("CategorieSession")
 	public List<CCategorie> chargerSession() {
