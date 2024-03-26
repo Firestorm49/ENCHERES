@@ -11,11 +11,12 @@
     width: 50%;
 }
 
-.login-form .right{
+
+.login-form .left{
     width: 100%;
 }
 
-.login-form .left{
+.login-form .right{
     background-color: red;
     display: flex;
     justify-content: center;

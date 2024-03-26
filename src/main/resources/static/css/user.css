@@ -6,20 +6,6 @@
     gap: 40px;
 }
 
-.page-user .content-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-.page-user .content form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 40px;
-}
 
 .page-user form .content-form{
     display: flex;
@@ -36,4 +22,106 @@
     gap: 10px;
 }
 
+/* page user detail */
+.page-user-detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.page-user-detail .content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    padding: 3rem;
+    background-color: #cccccc;
+    max-width: 40rem;
+}
+
+.page-user-detail h1{
+    text-transform: uppercase;
+}
+
+.page-user .content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.page-user-detail .informations{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-direction: row;
+    width: 100%;
+}
+
+.page-user-detail .informations .left{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+}
+
+.page-user-detail .informations .left .line{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: end;
+}
+
+.page-user-detail .informations .left .line{
+    display: flex;
+    align-items: center;
+}
+
+.page-user-detail .informations .left .line .line-name{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.page-user-detail .informations .right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.page-user-detail .informations .right{
+    height: 100%;
+    margin-bottom: 2rem;
+}
+
+.page-user-detail .informations .right form .button{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #777;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-user-detail .mofication a{
+    text-decoration: none;
+    color: white;
+    background-color: #777;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 20rem;
+}

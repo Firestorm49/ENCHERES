@@ -14,44 +14,46 @@
 </data-th-block>
 </head>
 <body>
-	<main class="center-main page-user">
+	<main class="center-main page-user page-user-detail">
 		<div class="content">
-			<h1> Mon profil DETAIL </h1>
+			<h1> Mon profil </h1>
+			<div class="mofication">
+				<a href="/users/modify" class="button">Modifier</a>
+			</div>
 			<div class="informations" data-th-object="${user}">
-				<div class="top">
+				<div class="left">
 					<div class="line">
-						Pseudo : <span data-th-text="*{pseudo}"></span>
+						<div class="line-name"> Pseudo : </div><span data-th-text="*{pseudo}"></span>
 					</div>
 					<div class="line">
-						Nom : <span data-th-text="*{nom}"></span>
+						<div class="line-name"> Nom : </div> <span data-th-text="*{nom}"></span>
 					</div>
 					<div class="line">
-						Prénom : <span data-th-text="*{prenom}"></span>
+						<div class="line-name"> Prénom : </div><span data-th-text="*{prenom}"></span>
 					</div>
 					<div class="line">
-						Email : <span data-th-text="*{email}"></span>
+						<div class="line-name"> Email : </div><span data-th-text="*{email}"></span>
 					</div>
 					<div class="line">
-						Téléphone : <span data-th-text="*{telephone}"></span>
+						<div class="line-name"> Téléphone : </div><span data-th-text="*{telephone}"></span>
 					</div>
 					<div class="line">
-						Rue : <span data-th-text="*{rue}"></span>
+						<div class="line-name"> Rue : </div><span data-th-text="*{rue}"></span>
 					</div>
 					<div class="line">
-						Code postal : <span data-th-text="*{codePostal}"></span>
+						<div class="line-name"> Code postal : </div><span data-th-text="*{codePostal}"></span>
 					</div>
 					<div class="line">
-						Ville : <span data-th-text="*{ville}"></span>
+						<div class="line-name"> Ville : </div><span data-th-text="*{ville}"></span>
 					</div>
+				</div>
+				<div class="right">
 					<form method="post" action="\users\buycredits">
 						<input type="hidden" name="id" data-th-value="*{noUtilisateur}">
 						<label>Nombre de point à acheter</label>
 						<input type="number" name="NumberPoint">
-						<button  type="submit">Acheter des crédits</button>
+						<button class="button" type="submit">+</button>
 					</form>
-				</div>
-				<div class="bottom">
-					<a href="/users/modify" class="button">Modifier</a>
 				</div>
 			</div>
 		</div>
