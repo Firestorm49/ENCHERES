@@ -1,36 +1,45 @@
 <!-- Navbar -->
-<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="entete"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<div id="userDeconnecte" data-th-if="${not #authorization.expression('isAuthenticated()')}">
-		<a href="/"><img data-th-title="#{entete.title}"
-			data-th-src="@{/images/encheres.png}" id="logoEncheres" /></a>
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="entete"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="display:flex;">
+	<div class="logo">
+		<div id="userDeconnecte"
+			th:if="${not #authorization.expression('isAuthenticated()')}">
+			<a href="/"><img th:title="#{entete.title}"
+				th:src="@{/images/encheres.png}" id="logoEncheres" /></a>
+		</div>
+		<div id="userConnecte"
+			th:if="${#authorization.expression('isAuthenticated()')}">
+			<a href="/bid"><img th:title="#{entete.title}"
+				th:src="@{/images/encheres.png}" id="logoEncheres" /></a>
+		</div>
 	</div>
-	<div id="userConnecte" data-th-if="${#authorization.expression('isAuthenticated()')}">
-		<a href="/bid"><img data-th-title="#{entete.title}"
-			data-th-src="@{/images/encheres.png}" id="logo" /></a>
+	<div class="flag">
+		<a href="/?language=fr"><img alt="Français" id="frFlag"
+			th:title="#{img.title.flag.fr}" src="/images/france.png"></a> <a
+			href="/?language=en"><img alt="Anglais" id="enFlag"
+			th:title="#{img.title.flag.en}" src="/images/english.png"></a>
 	</div>
-
-	<nav id="navigation">
+	<nav class="navigation">
 		<ul>
 			<li><a href="/bid"><img id="bid" src="/images/encheres.png"
-					data-th-title="#{img.title.bid}"></a></li>
-			<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a
+					th:title="#{img.title.bid}"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
 				href="/sale/create"><img id="vendre"
-					data-th-title="#{img.title.vendre}" src="/images/vendre.png"></a></li>
-			<li data-th-if="${#authorization.expression('isAuthenticated()')}"><a
+					th:title="#{img.title.vendre}" src="/images/vendre.png"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
 				href="/users/detail"><img id="profil"
-					data-th-title="#{img.title.profil}" src="/images/user.png"></a></li>
-			<li data-th-if="${#authorization.expression('isAuthenticated()')}"
-				sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"><a href="/category"><img
-					id="category" data-th-title="#{img.title.category}"
+					th:title="#{img.title.profil}" src="/images/user.png"></a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				sec:authorize="hasRole('ADMIN')"><a href="/category"><img
+					id="category" th:title="#{img.title.category}"
 					src="/images/categorie.png"></a></li>
-			<li data-th-if="${#authorization.expression('isAuthenticated()')}"
-				sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"><a href="/users"><img
-					id="userList" data-th-title="#{img.title.userList}"
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				sec:authorize="hasRole('ADMIN')"><a href="/users"><img
+					id="userList" th:title="#{img.title.userList}"
 					src="/images/userList.png"></a></li>
-			<li data-th-if="${not #authorization.expression('isAuthenticated()')}"><a
+			<li th:if="${not #authorization.expression('isAuthenticated()')}"><a
 				href="/login"><img id="login" src="/images/user.png"
-					data-th-title="#{img.title.bid}"></a></li>
+					th:title="#{img.title.bid}"></a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
 				href="/logout"> <img id="logout" th:title="#{img.title.logout}"
 					src="/images/logout.png"></a></li>
