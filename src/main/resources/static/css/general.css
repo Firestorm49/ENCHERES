@@ -236,3 +236,41 @@ span.filtresEncheres, #searchButton, .radioButtonMesVentes{
 #frFlag{
 	margin-left: 2rem;
 }
+
+#cancelButton, #saveButton{
+	padding: 0.5rem;
+}
+
+.buttons{
+	margin: 0.5rem;
+}
+
+.alignement-label{
+	margin-top: 1.5rem;
+	margin-left: 1rem;
+	width: 10rem;
+}
+
+.inputText{
+	display: flex;
+}
+
+#cdPostal,
+#rue,
+#ville,
+#dateFinEncheres,
+#dateDebutEncheres,
+#miseAPrix,
+#description,
+#nomArticle,
+fieldset{
+	border-radius: 0.313rem;
+}
+
+input#file-upload-button, #uploadButton{
+	padding: 0.5rem;
+}
+
+.enteteColonne{
+	text-align: center;
+}

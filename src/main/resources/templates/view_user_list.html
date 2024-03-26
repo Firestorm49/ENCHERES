@@ -1,78 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-<title>Liste des Utilisateurs</title>
-<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title th:text="#{usersList}">Liste des Utilisateurs</title>
+<link rel="stylesheet" data-th-href="@{/css/table.css}">
+<link rel="stylesheet" data-th-href="@{/css/form.css}">
 <main class="center-main">
-    <div class="center-avis">
-        <h1>Utilisateurs</h1>
-        <BR>
-        <BR>
-        <form method="post" action="/users/deleteMultiUsers">
-        <table>
-            <thead>
-            <tr>
-                <th  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} "></th>
-                <th>Utilisateur</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr data-th-if="${users != null}" data-th-each="item : ${users}">
-                <td  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
-                    <input type="checkbox" name="supprimeMultiUtilisateur" data-th-value="${item.noUtilisateur}" >
-                </td>
-                <td data-th-text="${item.getPrenom()} + ' ' + ${item.getNom()}"></td>
-                <td>
-                    <a data-th-href="@{/users/detail(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" data-sec-authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Detail</a>
-                    <a data-th-href="@{/users/modify(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')} and ( not ${item.isAdministrateur()} or ${#authorization.expression('hasRole(''SUPER_ADMIN'')')} )" data-sec-authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Modifier</a>
-                    <a data-th-href="@{/users/delete(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')}  and ( not ${item.isAdministrateur()} or ${#authorization.expression('hasRole(''SUPER_ADMIN'')')} )" data-sec-authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Supprimer</a>
-                    <a data-th-href="@{/users/deactivation(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')} and ${item.isActive()}  and ( not ${item.isAdministrateur()} or ${#authorization.expression('hasRole(''SUPER_ADMIN'')')} )" data-sec-authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Desactiver</a>
-                    <a data-th-href="@{/users/activation(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')} and not ${item.isActive()} and ( not ${item.isAdministrateur()} or ${#authorization.expression('hasRole(''SUPER_ADMIN'')')} )" data-sec-authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Activer</a>
-                    <a data-th-href="@{/users/administrateur(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')} and not ${item.isAdministrateur()}" data-sec-authorize="hasRole('SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Administrateur</a>
-                    <a data-th-href="@{/users/administrateur(id=${item.getNoUtilisateur()})}" data-th-if="${#authorization.expression('isAuthenticated()')} and ${item.isAdministrateur()}" data-sec-authorize="hasRole('SUPER_ADMIN')">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Utilisateur</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <input type="submit" text="Supprimer les utilisateurs"  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
-        </form>
-        <BR>
-    </div>
+	<h1 th:text="#{users}"></h1>
+	<BR> <BR>
+	<table>
+		<thead>
+			<tr>
+				<th class="enteteColonne" th:text="#{category}">Utilisateur</th>
+				<th class="enteteColonne" th:text="#{action}">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-th-if="${users != null}" data-th-each="item : ${users}">
+				<td data-th-text="${item.getPrenom()} + ' ' + ${item.getNom()}"></td>
+				<td><a
+					data-th-href="@{/users/detail(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Detail
+				</a> <a data-th-href="@{/users/modify(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Modifier
+				</a> <a data-th-href="@{/users/delete(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Supprimer
+				</a> <a
+					data-th-href="@{/users/deactivation(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')} and ${item.isActive()}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Desactiver
+				</a> <a
+					data-th-href="@{/users/activation(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')} and not ${item.isActive()}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Activer
+				</a> <a
+					data-th-href="@{/users/administrateur(id=${item.getNoUtilisateur()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}"
+					data-sec-authorize="hasRole('ADMIN')"> <span></span> <span></span>
+						<span></span> <span></span> Administrateur
+				</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<BR>
 </main>
 </html>

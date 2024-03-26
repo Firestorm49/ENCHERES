@@ -1,83 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-<title>Catégories de film</title>
-<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title th:text="#{category}"></title>
+<link rel="stylesheet" data-th-href="@{/css/form.css}">
+<link rel="stylesheet" data-th-href="@{/css/table.css}">
 <main class="center-main">
-    <div class="center-avis">
-        <h1>Catégories</h1>
-        <a data-th-href="@{/bid/detail(id=1)}" data-th-if="${#authorization.expression('isAuthenticated()')}">test</a>
-        <BR>
-        <BR>
-        <table>
-            <thead>
-            <tr>
-                <th>Catégories</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr data-th-if="${CategorieId != null}" data-th-each="item : ${CategorieId}">
-            <tr data-th-unless="${CategorieId != null}" data-th-each="item : ${CategorieSession}">
-                <td data-th-text="${item.getLibelle()}"></td>
-                <td>
-                    <a data-th-href="@{/category/modify(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Modifier</a>
-                    <a data-th-href="@{/category/delete(id=${item.getNoCategorie()})}" data-th-if="${#authorization.expression('isAuthenticated()')}" >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Supprimer</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <BR>
-        <form action="/category/create" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}" class="form-genre">
-            <h2>Ajouter une nouvelle catégorie :</h2>
-            <ul class="flex-outer">
-                <li>
-                    <label for="inputTitre1">Titre de la catégorie :
-                    </label>
-                    <input type="text"
-                           name="libelle" id="inputTitre1"/>
-                </li>
-            </ul>
-            <BR>
-            <button type="submit">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Créer</button>
-        </form>
-        <form data-th-object="${CategorieId}" action="/category/modify" method="post" data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"  class="form-genre">
-            <h2>Modifier une catégorie :</h2>
-            <ul class="flex-outer">
-                <li>
-                    <input type="hidden" data-th-value="*{noCategorie}"
-                           name="id"/>
-                </li>
-                <li>
-                    <label for="inputTitre2">Titre de la catégorie :
-                    </label>
-                    <input type="text" data-th-value="*{libelle}"
-                           name="libelle" id="inputTitre2"/>
-                </li>
-            </ul>
-            <BR>
-            <button type="submit">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Modifier</button>
-        </form>
-    </div>
+	<h1 th:text="#{category}"></h1>
+	<br> <a data-th-href="@{/bid/detail(id=1)}"
+		data-th-if="${#authorization.expression('isAuthenticated()')}">Test</a>
+	<br> <br>
+	<table>
+		<thead>
+			<tr>
+				<th class="enteteColonne" th:text="#{category}"></th>
+				<th class="enteteColonne" th:text="#{action}"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-th-if="${CategorieId != null}"
+				data-th-each="item : ${CategorieId}">
+			<tr data-th-unless="${CategorieId != null}"
+				data-th-each="item : ${CategorieSession}">
+				<td data-th-text="${item.getLibelle()}"></td>
+				<td><a
+					data-th-href="@{/category/modify(id=${item.getNoCategorie()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}">
+						<span></span> <span></span> <span></span> <span></span> Modifier
+				</a> <a data-th-href="@{/category/delete(id=${item.getNoCategorie()})}"
+					data-th-if="${#authorization.expression('isAuthenticated()')}">
+						<span></span> <span></span> <span></span> <span></span> Supprimer
+				</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<BR>
+	<form action="/category/create" method="post"
+		data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}"
+		class="form-genre">
+		<h2>Ajouter une nouvelle catégorie :</h2>
+		<ul class="flex-outer">
+			<li><label for="inputTitre1">Titre de la catégorie : </label> <input
+				type="text" name="libelle" id="inputTitre1" /></li>
+		</ul>
+		<BR>
+		<button type="submit">
+			<span></span> <span></span> <span></span> <span></span> Créer
+		</button>
+	</form>
+	<form data-th-object="${CategorieId}" action="/category/modify"
+		method="post"
+		data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"
+		class="form-genre">
+		<h2>Modifier une catégorie :</h2>
+		<ul class="flex-outer">
+			<li><input type="hidden" data-th-value="*{noCategorie}"
+				name="id" /></li>
+			<li><label for="inputTitre2">Titre de la catégorie : </label> <input
+				type="text" data-th-value="*{libelle}" name="libelle"
+				id="inputTitre2" /></li>
+		</ul>
+		<BR>
+		<button type="submit">
+			<span></span> <span></span> <span></span> <span></span> Modifier
+		</button>
+	</form>
 </main>
 </html>
