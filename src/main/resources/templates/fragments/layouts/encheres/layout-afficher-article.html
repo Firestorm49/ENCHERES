@@ -25,18 +25,7 @@
 					data-th-text="#{seller.label} +  ${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
 			</div>
 		</div>
+		<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
+		<input type="submit">
 	</form>
-	<div class="pagination">
-		<button id="prevBtn" data-th-text="#{previousButton.label}"></button>
-		<input id="pageNumber" name="numeroPage" type="number" min="1">
-		<button id="nextBtn" data-th-text="#{nextButton.label}"></button>
-
-		<label for="pageSize" data-th-text="#{pageSizeButton.label}"></label> <select id="pageSize"
-			name="pageSize">
-			<option value="5">5</option>
-			<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="50">50</option>
-		</select>
-	</div>
 </div>
