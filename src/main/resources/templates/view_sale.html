@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-<title>Catégories de film</title>
-<link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
+	th:replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
+<title th:text="#{sell.label}"></title>
+<link rel="stylesheet" th:href="@{/css/demo-form.css}">
 <main class="center-main">
-    <div class="center-avis">
-<h1>Nouvelle Vente</h1>
-        <a data-th-href="@{/sale/modify(id=12)}" data-th-if="${#authorization.expression('isAuthenticated()')}">test</a>
-<!-- Image -->
-<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
-        <!-- Trois boutons -->
-        <form data-th-if="${not isCreate}" action="/sale/upload" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">
-            <label>Photo de l'article</label>
-            <input type="file" name="upload">
-            <button type="submit">Uploader</button>
-        </form>
-<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}" enctype="multipart/form-data">
-    <input data-th-if="${isCreate}" type="file" name="upload" >
-<!-- Deux Inputs -->
-<input type="hidden" id="id" name="noArticle" data-th-value="*{noArticle}">
-<label for="NomArticle">Article :</label>
-<input type="text" id="NomArticle" name="NomArticle" data-th-value="*{nomArticle}">
-<br>
-<label for="Description">Description :</label>
-<input type="text" id="Description" name="Description"  data-th-value="*{description}">
-<br>
+	<div class="center-avis">
+		<h1 style="padding: 1rem;" th:text="#{sale.label}"></h1>
+		<a th:href="@{/sale/modify(id=12)}"
+			th:if="${#authorization.expression('isAuthenticated()')}">test</a>
+		<!-- Image -->
+		<img src="votre_image.jpg" alt="Votre Image">
+		<!-- Trois boutons -->
+		<form action="/sale/upload" method="post" enctype="text/plain">
+			<input type="hidden" name="idPhoto"
+				th:value="${ArticleVendu.noArticle}"> <label>Photo
+				de l'article </label>
+				<input type="file" name="upload">
+			<button type="submit" id="uploadButton">Uploader</button>
+		</form>
+		<form method="post" th:action="${postValue}"
+			th:object="${ArticleVendu}" style="padding: 1rem;">
+			<!-- Deux Inputs -->
+			<div class="inputText">
+				<input type="hidden" id="id" name="id" th:value="*{noArticle}">
+				<div class="alignement-label">
+					<label for="nomArticle" th:text="#{article.label}"></label>
+				</div>
+				<input type="text" id="nomArticle" name="nomArticle"
+					th:value="*{nomArticle}"> <br>
+			</div>
+			<div class="inputText">
+				<div class="alignement-label">
+					<label for="description" th:text="#{description.label}"></label>
+				</div>
+				<input type="text" id="description" name="description"
+					th:value="*{description}"> <br>
+			</div>
 
-<!-- DropBox -->
-<label for="dropbox">Catégorie :</label>
-<select id="dropbox" name="dropbox" data-th-field="*{categorie}"  data-th-value="*{categorie}">
-    <option data-th-each="item : ${CategorieSession}" data-th-value="${item.noCategorie}" data-th-text="${item.libelle}"></option>
-</select>
+			<!-- DropBox -->
+			<div class="inputText">
+				<div class="alignement-label">
+					<label for="dropbox" th:text="#{category.label}"></label>
+				</div>
+				<select id="dropbox" name="dropbox" th:field="*{categorie}"
+					th:value="*{categorie}">
+					<option th:each="item : ${CategorieSession}"
+						th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
+				</select> <br>
+			</div>
 
-<!-- Selecteur de chiffre -->
-<label for="number">Mise à prix :</label>
-<input type="number" id="number" name="MiseAPrix" min="0" max="10000000"  data-th-value="*{miseAPrix}">
-<br>
+			<!-- Selecteur de chiffre -->
 
-<!-- Deux DateTimes -->
-<label for="datetime1">Début de l'enchère :</label>
-<input type="datetime-local" id="datetime1" name="DateDebutEncheres"  data-th-value="*{dateDebutEncheres}">
-<br>
-<label for="datetime2">Fin de l'enchère :</label>
-<input type="datetime-local" id="datetime2" name="DateFinEncheres" data-th-value="*{dateFinEncheres}">
-<br>
+			<div class="inputText">
+				<div class="alignement-label">
+					<label for="number" th:text="#{startingBids.label}"></label>
+				</div>
+				<input type="number" id="miseAPrix" name="MiseAPrix" min="0"
+					max="10000000" th:value="*{miseAPrix}"> <br>
+			</div>
 
-<!-- GroupBox -->
-<fieldset data-th-object="${retrait}">
-    <legend>Retrait</legend>
-    <label for="rue">Rue :</label>
-    <input type="text" id="rue" name="rue" data-th-value="*{rue}">
-    <br>
-    <label for="cdPostal">Code postale :</label>
-    <input type="text" id="cdPostal" name="code_postal"  data-th-value="*{code_postal}">
-    <br>
-    <label for="Ville">Ville :</label>
-    <input type="text" id="Ville" name="Ville"  data-th-value="*{ville}">
-    <br>
-</fieldset>
+			<!-- Deux DateTimes -->
+			<div class="inputText">
+				<div class="alignement-label">
+					<label for="datetime1" th:text="#{startingDate.label}"></label>
+				</div>
+				<input type="datetime-local" id="dateDebutEncheres"
+					name="DateDebutEncheres" th:value="*{dateDebutEncheres}"> <br>
+			</div>
+			<div class="inputText">
+				<div class="alignement-label">
+					<label for="datetime2" th:text="#{endDate.label}"></label>
+				</div>
+				<input type="datetime-local" id="dateFinEncheres"
+					name="DateFinEncheres" th:value="*{dateFinEncheres}"> <br>
+			</div>
 
-        <button type="submit">Enregistrer</button>
-        <button type="reset">Annuler</button>
-
-</form>
-            <form action="/sale/cancel" method="post" data-th-object="${ArticleVendu}">
-                <input type="hidden" name="idAnnule" data-th-value="*{noArticle}">
-                <button type="submit" data-th-if="${not isCreate}" >Annuler la vente</button>
-            </form>
-    </div>
+			<!-- GroupBox -->
+			<fieldset th:object="${retrait}" class="withdrawal">
+				<legend th:text="#{withdrawal.label}"></legend>
+				<div class="inputText">
+					<div class="alignement-label">
+						<label for="rue" th:text="#{street.label}"></label>
+					</div>
+					<input type="text" id="rue" name="rue" th:value="*{rue}"> <br>
+				</div>
+				<div class="inputText">
+					<div class="alignement-label">
+						<label for="cdPostal" th:text="#{postCode.label}"></label>
+					</div>
+					<input type="text" id="cdPostal" name="code_postal"
+						th:value="*{code_postal}"> <br>
+				</div>
+				<div class="inputText">
+					<div class="alignement-label">
+						<label for="ville" th:text="#{city.label}"></label>
+					</div>
+					<input type="text" id="ville" name="ville" th:value="*{ville}">
+					<br>
+				</div>
+			</fieldset>
+			<div class="buttons">
+				<button type="submit" id="saveButton" th:text="#{save.label}"></button>
+				<button type="reset" id="cancelButton" th:text="#{cancel.label}"></button>
+			</div>
+		</form>
+		<form action="/sale/cancel" method="post" th:object="${ArticleVendu}">
+			<input type="hidden" name="idAnnule" th:value="*{noArticle}">
+			<button type="submit" th:if="${not isCreate}">Annuler la
+				vente</button>
+		</form>
+	</div>
 </main>
 </html>
