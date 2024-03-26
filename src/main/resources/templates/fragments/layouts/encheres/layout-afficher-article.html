@@ -24,8 +24,8 @@
 				<span class="detailArticle"
 					data-th-text="#{seller.label} +  ${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
 			</div>
+			<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
+			<button  type="submit">Detail Vente</button>
 		</div>
-		<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
-		<input type="submit">
 	</form>
 </div>
