@@ -2,7 +2,7 @@
 	data-th-href="@{/css/general.css}">
 <link xmlns:th="http://www.thymeleaf.org" rel="stylesheet"
 	data-th-href="@{/css/form.css}">
-<div data-th-fragment="article-detail(titleForm, action)"
+<div data-th-fragment="article-detail(action)"
 	data-th-each="enchere : ${encheres}">
 	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
 		id="afficherArticle" method="get">

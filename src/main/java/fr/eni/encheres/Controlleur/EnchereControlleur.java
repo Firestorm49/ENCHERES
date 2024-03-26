@@ -87,10 +87,10 @@ public class EnchereControlleur {
 		 listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
 					categorie != null ? categorie.intValue() : 0, UtilisateurConnecte.getNoUtilisateur(), radioButton != null ? radioButton.intValue() : 0,
 					mesVentesEnCours, ventesNonCommencees, ventesTerminees, mesEncheresRemportees, mesEncheresEnCours,
-					encheresOuvertes, pageNumber != null ? pageNumber.intValue() : 0, pageSize != null ? pageSize.intValue() : 0);
+					encheresOuvertes, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
 		} else {
 		listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
-				categorie != null ? categorie.intValue() : 0, pageNumber != null ? pageNumber.intValue() : 0, pageSize != null ? pageSize.intValue() : 0);
+				categorie != null ? categorie.intValue() : 0, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
 		}
 
 		model.addAttribute("encheres",listArticlesVendus);

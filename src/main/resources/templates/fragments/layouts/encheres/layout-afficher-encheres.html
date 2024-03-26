@@ -1,12 +1,13 @@
 <form xmlns:th="http://www.thymeleaf.org"
-	th:fragment="enchere-detail(titleForm, action)"
+	th:fragment="enchere-detail(action)"
 	th:action="@{${action}}" method="get">
 	<br>
 	<h1 style="text-align: center;" th:text="#{listeEncheres.h1}"></h1>
 	<br> <br> <label id="filtres" th:text="#{filter.label}"></label><input
 		type="text" placeholder="Rechercher" name="nomArticle"></input> <label
 		class="labelFiltresEncheres" for="dropbox" th:text="#{category.label}"></label><select
-		id="dropbox" name="categorie" th:field="${CategorieSession}">
+		id="dropbox" name="dropbox" >
+	<option th:value="'0'">Sélectionnez une catégorie</option>
 		<option th:each="item : ${CategorieSession}"
 			th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
 	</select>
@@ -51,6 +52,18 @@
 					terminées</label> </span><br />
 		</div>
 	</div>
+
+	<button id="prevBtn" type="submit">Précédent</button>
+	<input id="pageNumber" name="pageNumber" type="number" th:value="${pageNumber}">
+	<button id="nextBtn" type="submit">Suivant</button>
+
+	<label for="pageSize">Taille de page:</label>
+	<select id="pageSize" data-th-value="${pageSize}" name="pageSize">
+		<option value="5" th:selected="${pageSize == 5}">5</option>
+		<option value="10" th:selected="${pageSize == 10}">10</option>
+		<option value="20" th:selected="${pageSize == 20}">20</option>
+		<option value="50" th:selected="${pageSize == 50}">50</option>
+	</select>
 	<br>
 	<br>
 </form>

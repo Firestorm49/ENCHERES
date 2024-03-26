@@ -15,9 +15,9 @@
 <body>
 	<h1>Liste des enchères</h1>
 	<main>		
-		<form th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('Ajouter un film', '/bid')}">
+		<form th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('/bid')}">
 		</form>
-		<div th:replace="~{fragments/layouts/encheres/layout-afficher-article :: article-detail('Ajouter un film', '/bid/detail')}"></div>
+		<div th:replace="~{fragments/layouts/encheres/layout-afficher-article :: article-detail('/bid/detail')}"></div>
 	</main>
 	<br>
 </body>
