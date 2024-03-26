@@ -22,7 +22,7 @@ public class BaseControlleur {
         if (authentication != null && authentication.isAuthenticated()) {
             System.out.println("MembreAuthenticate Enchere 2");
             UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
-            if (UtilisateurConnecte != null) {
+            if (UtilisateurConnecte.getNoUtilisateur() > 0) {
                 System.out.println("MembreAuthenticate Enchere 3" + UtilisateurConnecte);
                 if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                     UtilisateurConnecte.setAdministrateur(1);

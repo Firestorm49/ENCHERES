@@ -130,7 +130,7 @@ public class UtilisateurControlleur extends BaseControlleur  {
     @GetMapping("/modify")
     public String getModifyUsers(Model model) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
-        if(UtilisateurConnecte != null){
+        if(UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("postValue", "/users/modify");
             model.addAttribute("user", UtilisateurConnecte);
             return "view_user_edit";
@@ -238,7 +238,7 @@ public class UtilisateurControlleur extends BaseControlleur  {
             utilisateurService.ModifyRoleUtilisateur(id,1);
         }
 
-        if(UtilisateurConnecte != null){
+        if(UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("user", UtilisateurConnecte);
         }
         return "redirect:/users";
