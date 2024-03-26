@@ -30,6 +30,10 @@ header {
     font-size: 1.1em;
 }
 
+header #logo{
+    height: 100%;
+}
+
 header li {
     list-style: none;
     display: inline-block;
@@ -55,9 +59,11 @@ header h1 {
     margin: 10px;
     color: black;
 }
+
 .center-main {
     margin: 2rem 10rem 0 10rem;
     padding: 2rem;
+    height: 100%;
 }
 
 @media screen and (max-width: 768px) {
