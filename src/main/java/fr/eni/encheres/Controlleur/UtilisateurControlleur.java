@@ -1,26 +1,21 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
-import fr.eni.encheres.bll.EnchereService;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bll.UtilisateurService;
-import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
 import fr.eni.encheres.exceptions.BusinessCode;
 import fr.eni.encheres.exceptions.BusinessException;
 import jakarta.validation.Valid;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +35,7 @@ public class UtilisateurControlleur {
 
     @GetMapping
     public String getUsers(Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getUsers ");
         List<CUtilisateur> users = utilisateurService.ViewAllUtilisateurs();
         model.addAttribute("users",users);
         return "view_user_list";
@@ -48,7 +43,7 @@ public class UtilisateurControlleur {
 
     @GetMapping("/create")
     public String getCreateUsers(Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getCreateUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getCreateUsers ");
         model.addAttribute("postValue", "/users/create");
         model.addAttribute("user", new CUtilisateur());
         return "view_user_edit";
@@ -56,7 +51,7 @@ public class UtilisateurControlleur {
 
     @PostMapping("/create")
     public String postCreateUsers(@Valid @ModelAttribute("user") CUtilisateur user, BindingResult bindingResult, Model model ) {
-        Logger.log("Trace_ENI.log","Controlleur : postCreateUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postCreateUsers ");
 
         if(bindingResult.hasErrors()){
             model.addAttribute("postValue", "/users/create");
@@ -81,15 +76,23 @@ public class UtilisateurControlleur {
             user.setCredit(0);
             user.setAdministrateur(0);
             user.setActive(false);
-            utilisateurService.Inscription(user);
-            return "redirect:/users/detail";
+            String result = utilisateurService.Inscription(user);
+            if(result != ErrorCode.NO_ERROR){
+                Logger.log("Trace_ERROR.log","UtilisateurControlleur: postCreateUsers - " + result);
+                model.addAttribute("ErrorStringCode",result);
+                return "view_user_edit";
+            }
+            else{
+                return "redirect:/users/detail";
+            }
+
         }
     }
     @GetMapping("/modify/password")
     public String getModifyPasswordUsers(@RequestParam(name = "email", required = false) String email,
                                         @RequestParam(name = "mdp", required = false) String mdp,
                                         @RequestParam(name = "mdpConfirmer", required = false) String mdpConfirmer, Model model, HttpSession session) {
-        Logger.log("Trace_ENI.log","Controlleur : getModifyPasswordUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getModifyPasswordUsers ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if(UtilisateurConnecte == null){
             model.addAttribute("postValue", "/users/modify/password");
@@ -104,15 +107,22 @@ public class UtilisateurControlleur {
                                           @ModelAttribute(name = "mdpConfirmer") String mdpConfirmer,
                                           BindingResult bindingResult,
                                           Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : postModifyUsersPassword ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postModifyUsersPassword ");
         try {
             CUtilisateur user = utilisateurService.getUtilisateurByEmail(email);
 
             if(user != null) {
                 if (mdp.equals(mdpConfirmer)) {
                     user.setMotdepasse(mdp);
-                    utilisateurService.ModifyProfil(user);
-                    return "redirect:/login";
+                    String result = utilisateurService.ModifyProfil(user);
+                    if(result != ErrorCode.NO_ERROR){
+                        Logger.log("Trace_ERROR.log","UtilisateurControlleur: postModifyUsersPassword - " + result);
+                        model.addAttribute("ErrorStringCode",result);
+                        return "view_user_password";
+                    }
+                    else{
+                        return "redirect:/login";
+                    }
                 } else {
                     be.add(BusinessCode.VALIDATION_USER_MDP);
                     throw be;
@@ -131,7 +141,7 @@ public class UtilisateurControlleur {
 
     @GetMapping("/modify")
     public String getModifyUsers(Model model, HttpSession session) {
-        Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getModifyUsers ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("postValue", "/users/modify");
@@ -144,7 +154,7 @@ public class UtilisateurControlleur {
 
     @PostMapping("/modify")
     public String postModifyUsers(@Validated @ModelAttribute("user") CUtilisateur user, BindingResult bindingResult, Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : postModifyUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postModifyUsers ");
 
         String mdpActuel = user.getMotdepasse().split(",")[0];
         String mdpNouveau = "";
@@ -162,8 +172,16 @@ public class UtilisateurControlleur {
             try {
                 if(utilisateurService.verifPassword(mdpActuel, user)) {
                     user.setMotdepasse(mdpActuel);
-                    utilisateurService.ModifyProfil(user);
-                    return "redirect:/users/detail";
+                    String result = utilisateurService.ModifyProfil(user);
+                    if(result != ErrorCode.NO_ERROR){
+                        Logger.log("Trace_ERROR.log","UtilisateurControlleur: postModifyUsers - " + result);
+                        model.addAttribute("ErrorStringCode",result);
+                        return "view_user_edit";
+                    }
+                    else{
+                        return "redirect:/users/detail";
+                    }
+
                 }else{
                     System.out.println("avant le throw new");
 
@@ -184,8 +202,16 @@ public class UtilisateurControlleur {
         }else if(mdpNouveau.equals(mdpConfirmation) && !mdpNouveau.equals("") && !mdpConfirmation.equals("")) {
             if(utilisateurService.verifPassword(mdpActuel, user)){
                 user.setMotdepasse(mdpNouveau);
-                utilisateurService.ModifyProfil(user);
-                return "redirect:/users/detail";
+                String result = utilisateurService.ModifyProfil(user);
+                if(result != ErrorCode.NO_ERROR){
+                    Logger.log("Trace_ERROR.log","UtilisateurControlleur: postModifyUsers - " + result);
+                    model.addAttribute("ErrorStringCode",result);
+                    return "view_user_edit";
+                }
+                else{
+                    return "redirect:/users/detail";
+                }
+
             }else{
                 return "view_user_edit";
             }
@@ -203,84 +229,138 @@ public class UtilisateurControlleur {
 
     @GetMapping("/detail")
     public String getDetailUsers(Model model, HttpSession session) {
+        Logger.log("Trace_ENI.log", "UtilisateurControlleur : getDetailUsers " );
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
-            System.out.println(UtilisateurConnecte);
-            Logger.log("Trace_ENI.log", "Controlleur : getDetailUsers " + UtilisateurConnecte);
             model.addAttribute("user", UtilisateurConnecte);
 
         return "view_user_detail";
     }
 
     @GetMapping("/delete")
-    public String getDeleteUsers(@RequestParam(name = "id", required = true) int id) {
-        Logger.log("Trace_ENI.log","Controlleur : getDeleteUsers ");
-        utilisateurService.DeleteProfil(id);
-        return "redirect:/users";
+    public String getDeleteUsers(@RequestParam(name = "id", required = true) int id, Model model) {
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getDeleteUsers ");
+       String result = utilisateurService.DeleteProfil(id);
+        if(result != ErrorCode.NO_ERROR){
+            Logger.log("Trace_ERROR.log","UtilisateurControlleur: getDeleteUsers - " + result);
+            model.addAttribute("ErrorStringCode",result);
+            return "view_user_list";
+        }
+        else{
+            return "redirect:/users";
+        }
     }
 
     @GetMapping("/deactivation")
-    public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id) {
-        Logger.log("Trace_ENI.log","Controlleur : getDesactivationUsers ");
-        utilisateurService.DesactiveProfil(utilisateurService.ViewProfil(id));
-
-        return "redirect:/users";
+    public String getDesactivationUsers(@RequestParam(name = "id", required = true) int id, Model model) {
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getDesactivationUsers ");
+        String result = utilisateurService.DesactiveProfil(utilisateurService.ViewProfil(id));
+        if(result != ErrorCode.NO_ERROR){
+            Logger.log("Trace_ERROR.log","UtilisateurControlleur: getDesactivationUsers - " + result);
+            model.addAttribute("ErrorStringCode",result);
+            return "view_user_list";
+        }
+        else{
+            return "redirect:/users";
+        }
     }
 
     @GetMapping("/activation")
-    public String getActivationUsers(@RequestParam(name = "id", required = true) int id) {
-        Logger.log("Trace_ENI.log","Controlleur : getActivationUsers ");
-        utilisateurService.ActiveProfil(utilisateurService.ViewProfil(id));
-        return "redirect:/users";
+    public String getActivationUsers(@RequestParam(name = "id", required = true) int id, Model model) {
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getActivationUsers ");
+        String result = utilisateurService.ActiveProfil(utilisateurService.ViewProfil(id));
+        if(result != ErrorCode.NO_ERROR){
+            Logger.log("Trace_ERROR.log","UtilisateurControlleur: getActivationUsers - " + result);
+            model.addAttribute("ErrorStringCode",result);
+            return "view_user_list";
+        }
+        else{
+            return "redirect:/users";
+        }
     }
     @GetMapping("/administrateur")
     public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model, HttpSession session) {
-        Logger.log("Trace_ENI.log","Controlleur : getAdministrateurUsers ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : getAdministrateurUsers ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
-        if(utilisateurService.ViewProfil(id).isAdministrateur() == 1){
-            utilisateurService.ModifyRoleUtilisateur(id,0);
-        }
-        else if(utilisateurService.ViewProfil(id).isAdministrateur() == 0){
-            utilisateurService.ModifyRoleUtilisateur(id,1);
-        }
-
         if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("user", UtilisateurConnecte);
         }
-        return "redirect:/users";
+        if(utilisateurService.ViewProfil(id).isAdministrateur() == 1){
+            String result = utilisateurService.ModifyRoleUtilisateur(id,0);
+            if(result != ErrorCode.NO_ERROR){
+                Logger.log("Trace_ERROR.log","UtilisateurControlleur: getAdministrateurUsers - " + result);
+                model.addAttribute("ErrorStringCode",result);
+                return "view_user_list";
+            }
+            else{
+                return "redirect:/users";
+            }
+        }
+        else if(utilisateurService.ViewProfil(id).isAdministrateur() == 0){
+            String result = utilisateurService.ModifyRoleUtilisateur(id,1);
+            if(result != ErrorCode.NO_ERROR){
+                Logger.log("Trace_ERROR.log","UtilisateurControlleur: getAdministrateurUsers - " + result);
+                model.addAttribute("ErrorStringCode",result);
+                return "view_user_list";
+            }
+            else{
+                return "redirect:/users";
+            }
+        }
+        else{
+            return "redirect:/users";
+        }
     }
     @PostMapping("/buycredits")
     public String postbuycredits(@RequestParam(name = "id", required = true) int id,
-                                 @RequestParam(name = "NumberPoint", required = true) int NumberPoint) {
-        Logger.log("Trace_ENI.log","Controlleur : postbuycredits ");
+                                 @RequestParam(name = "NumberPoint", required = true) int NumberPoint, Model model) {
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postbuycredits ");
         CUtilisateur users = utilisateurService.ViewProfil(id);
-        utilisateurService.achatCredits(users,NumberPoint);
-        return "redirect:/users";
+        String result = utilisateurService.achatCredits(users,NumberPoint);
+        if(result != ErrorCode.NO_ERROR){
+            Logger.log("Trace_ERROR.log","UtilisateurControlleur: postbuycredits - " + result);
+            model.addAttribute("ErrorStringCode",result);
+            return "view_user_detail";
+        }
+        else{
+            return "redirect:/users";
+        }
     }
     @PostMapping("/delete")
     public String postUsersDelete() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersDelete ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postUsersDelete ");
         return "redirect:/users";
     }
     @PostMapping("/deactivation")
     public String postUsersdeactivation() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersdeactivation ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postUsersdeactivation ");
         return "redirect:/users";
     }
     @PostMapping("/activation")
     public String postUsersActivation() {
-        Logger.log("Trace_ENI.log","Controlleur : postUsersActivation ");
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postUsersActivation ");
         return "redirect:/users";
     }
 
     @PostMapping("/deleteMultiUsers")
-    public String postDeleteMultiUsers(@RequestParam(name = "supprimeMultiUtilisateur", required = false) int[] userIds) {
+    public String postDeleteMultiUsers(@RequestParam(name = "supprimeMultiUtilisateur", required = false) int[] userIds, Model model) {
+        Logger.log("Trace_ENI.log","UtilisateurControlleur : postDeleteMultiUsers ");
         List<CUtilisateur> users = new ArrayList<>();
         if (userIds != null && userIds.length > 0) {
             for (int userId : userIds) {
                 users.add(utilisateurService.ViewProfil(userId));
             }
-            utilisateurService.DeleteMultiProfil(users);
+            String result = utilisateurService.DeleteMultiProfil(users);
+            if(result != ErrorCode.NO_ERROR){
+                Logger.log("Trace_ERROR.log","UtilisateurControlleur: postDeleteMultiUsers - " + result);
+                model.addAttribute("ErrorStringCode",result);
+                return "view_user_detail";
+            }
+            else{
+                return "redirect:/users";
+            }
         }
-        return "redirect:/users";
+        else{
+            return "redirect:/users";
+        }
     }
 }

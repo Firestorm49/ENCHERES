@@ -1,7 +1,7 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
-import fr.eni.encheres.Tools.FileUploadUtil;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
@@ -40,14 +40,11 @@ public class VenteControlleur {
 
     @ModelAttribute("membreEnSession")
     public CUtilisateur MembreAuthenticate(Authentication authentication, HttpSession session) {
-        System.out.println("MembreAuthenticate Enchere 1");
         UtilisateurConnecte = null;
         session.removeAttribute("membreEnSession");
         if (authentication != null && authentication.isAuthenticated()) {
-            System.out.println("MembreAuthenticate Enchere 2");
             UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
             if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
-                System.out.println("MembreAuthenticate Enchere 3" + UtilisateurConnecte);
                 if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                     UtilisateurConnecte.setAdministrateur(1);
                 } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
@@ -74,8 +71,8 @@ public class VenteControlleur {
     }
     @GetMapping("/create")
     public String getCreateArticleVendu(Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getCreateEncheres ");
-        CArticleVendu ArticleVendu= new CArticleVendu();
+        Logger.log("Trace_ENI.log","VenteControlleur : getCreateEncheres ");
+        CArticleVendu ArticleVendu = new CArticleVendu();
         CRetrait retrait = new CRetrait();
         model.addAttribute("retrait",retrait);
         model.addAttribute("ArticleVendu",ArticleVendu);
@@ -85,7 +82,7 @@ public class VenteControlleur {
     }
     @GetMapping("/modify")
     public String getModifyArticleVendu(@RequestParam(name = "id", required = true) int id, Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getModifyEncheres ");
+        Logger.log("Trace_ENI.log","VenteControlleur : getModifyEncheres ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         CRetrait retrait = enchereService.SearchRetraitByArticleID(id);
         model.addAttribute("retrait",retrait);
@@ -98,7 +95,7 @@ public class VenteControlleur {
     }
     @GetMapping("/cancel")
     public String getAnnuleArticleVendu(@RequestParam(name = "idAnnule", required = true) int id,Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getAnnuleArticleVendu ");
+        Logger.log("Trace_ENI.log","VenteControlleur : getAnnuleArticleVendu ");
         CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
         model.addAttribute("ArticleVendu",ArticleVendu);
         model.addAttribute("postValue","/sale/cancel");
@@ -109,10 +106,9 @@ public class VenteControlleur {
     public String postArticleVenduCreate(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                          @RequestParam("upload") MultipartFile uploadFile,
                                          @ModelAttribute("Retrait") CRetrait Retrait,
-                                     BindingResult bindingResult, HttpSession session) {
-        Logger.log("Trace_ENI.log","Controlleur : postArticleVenduCreate " +ArticleVendu );
+                                     BindingResult bindingResult, HttpSession session, Model model) {
+        Logger.log("Trace_ENI.log","VenteControlleur : postArticleVenduCreate ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
-        System.out.println(UtilisateurConnecte);
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "sale/create";
@@ -136,17 +132,24 @@ public class VenteControlleur {
                 ArticleVendu.setPhoto(relativePath);
                 ArticleVendu.setRetrait(Retrait);
                 ArticleVendu.setVendeur(UtilisateurConnecte);
-                enchereService.vendreArticle(ArticleVendu);
+                String result = enchereService.vendreArticle(ArticleVendu);
+                if(result != ErrorCode.NO_ERROR){
+                    model.addAttribute("ErrorStringCode",result);
+                    return "view_sale";
+                }
+                else{
+                    return "redirect:/bid";
+                }
             }
-            return "redirect:/bid";
         }
+        return "redirect:/bid";
     }
 
     @PostMapping("/modify")
     public String postArticleVenduModify(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                          @ModelAttribute("Retrait") CRetrait Retrait,
-                                     BindingResult bindingResult, HttpSession session) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresModify ");
+                                     BindingResult bindingResult, HttpSession session, Model model) {
+        Logger.log("Trace_ENI.log","VenteControlleur : postEncheresModify ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
@@ -154,28 +157,40 @@ public class VenteControlleur {
         } else {
             ArticleVendu.setRetrait(Retrait);
             ArticleVendu.setVendeur(UtilisateurConnecte);
-            enchereService.modifierVente(ArticleVendu);
-            return "redirect:/bid";
+            String result = enchereService.modifierVente(ArticleVendu);
+            if(result != ErrorCode.NO_ERROR){
+                model.addAttribute("ErrorStringCode",result);
+                return "view_sale";
+            }
+            else{
+                return "redirect:/bid";
+            }
         }
     }
     @PostMapping("/cancel")
-    public String postArticleVenduDelete( @ModelAttribute("idAnnule") int id) {
-        Logger.log("Trace_ENI.log","Controlleur : postEncheresDelete ");
-            enchereService.annulerVente(id);
+    public String postArticleVenduDelete( @ModelAttribute("idAnnule") int id, Model model) {
+        Logger.log("Trace_ENI.log","VenteControlleur : postEncheresDelete ");
+        String result = enchereService.annulerVente(id);
+        if(result != ErrorCode.NO_ERROR){
+            model.addAttribute("ErrorStringCode",result);
+            return "view_sale";
+        }
+        else{
             return "redirect:/bid";
+        }
     }
 
     @GetMapping("/upload")
     public String getuploadArticleVendu(@RequestParam(name = "idPhoto", required = true) int id,
                                         Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getuploadArticleVendu ");
+        Logger.log("Trace_ENI.log","VenteControlleur : getuploadArticleVendu ");
         return "redirect:/bid";
     }
 
     @PostMapping("/upload")
     public String postuploadArticleVendu(@RequestParam("idPhoto") int id,
-                                         @RequestParam("upload") MultipartFile uploadFile) {
-        Logger.log("Trace_ENI.log","Controlleur : postuploadArticleVendu " + id + uploadFile);
+                                         @RequestParam("upload") MultipartFile uploadFile, Model model) {
+        Logger.log("Trace_ENI.log","VenteControlleur : postuploadArticleVendu ");
 
         String fileName = StringUtils.cleanPath(uploadFile.getOriginalFilename());
 
@@ -194,8 +209,13 @@ public class VenteControlleur {
 
         CArticleVendu articleVendu = enchereService.AfficherArticleById(id);
         articleVendu.setPhoto(relativePath);
-        enchereService.ajouterPhotoVente(articleVendu);
-
-        return "redirect:/bid";
+        String result = enchereService.ajouterPhotoVente(articleVendu);
+        if(result != ErrorCode.NO_ERROR){
+            model.addAttribute("ErrorStringCode",result);
+            return "view_sale";
+        }
+        else{
+            return "redirect:/bid";
+        }
     }
 }

@@ -1,6 +1,7 @@
 package fr.eni.encheres.Controlleur;
 
 import fr.eni.encheres.Logger.Logger;
+import fr.eni.encheres.Tools.ErrorCode;
 import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
@@ -9,12 +10,9 @@ import fr.eni.encheres.bo.CCategorie;
 import fr.eni.encheres.bo.CEnchere;
 import fr.eni.encheres.bo.CUtilisateur;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -42,14 +40,11 @@ public class EnchereControlleur {
 
 	@ModelAttribute("membreEnSession")
 	public CUtilisateur MembreAuthenticate(Authentication authentication, HttpSession session) {
-		System.out.println("MembreAuthenticate Enchere 1");
 		UtilisateurConnecte = null;
 		session.removeAttribute("membreEnSession");
 		if (authentication != null && authentication.isAuthenticated()) {
-			System.out.println("MembreAuthenticate Enchere 2");
 			UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
 			if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
-				System.out.println("MembreAuthenticate Enchere 3" + UtilisateurConnecte);
 				if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
 					UtilisateurConnecte.setAdministrateur(1);
 				} else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
@@ -86,13 +81,11 @@ public class EnchereControlleur {
 			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,
 			@RequestParam(name = "numeroPage", required = false) Integer pageNumber,
 			@RequestParam(name = "pageSize", required = false) Integer pageSize,
-			Model model,
-			Authentication authentication, HttpSession session) {
-		Logger.log("Trace_ENI.log", "Controlleur : getEnchere ");
+			Model model, HttpSession session) {
+		Logger.log("Trace_ENI.log", "EnchereControlleur : getEnchere ");
 		List<CArticleVendu> listArticlesVendus = new ArrayList<>();
 		UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
 		if (UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0) {
-			System.out.println(UtilisateurConnecte);
 		 listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
 					categorie != null ? categorie.intValue() : 0, UtilisateurConnecte.getNoUtilisateur(), radioButton != null ? radioButton.intValue() : 0,
 					mesVentesEnCours, ventesNonCommencees, ventesTerminees, mesEncheresRemportees, mesEncheresEnCours,
@@ -109,7 +102,7 @@ public class EnchereControlleur {
 	@GetMapping("/detail")
 	public String getEnchere(@RequestParam(name = "id", required = true) int id,
 			Model model, HttpSession session) {
-		Logger.log("Trace_ENI.log", "Controlleur : getDetailEncheres ");
+		Logger.log("Trace_ENI.log", "EnchereControlleur : getDetailEncheres ");
 		UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
 		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
 		model.addAttribute("Vente", ArticleVendu);
@@ -134,7 +127,7 @@ public class EnchereControlleur {
 
 	@GetMapping("/purpose")
 	public String getProposeEncheres(@RequestParam(name = "id", required = true) int id, Model model) {
-		Logger.log("Trace_ENI.log", "Controlleur : getProposeEncheres ");
+		Logger.log("Trace_ENI.log", "EnchereControlleur : getProposeEncheres ");
 		CEnchere Enchere = new CEnchere();
 		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
 		Enchere.setArticle(ArticleVendu);
@@ -154,8 +147,8 @@ public class EnchereControlleur {
 
 	@PostMapping("/purpose")
 	public String postEncheresPropose(@ModelAttribute("id") int id,
-			@ModelAttribute("Proposition") int Enchere, HttpSession session) {
-		Logger.log("Trace_ENI.log", "Controlleur : postEncheresPropose " + id + Enchere);
+			@ModelAttribute("Proposition") int Enchere, HttpSession session, Model model) {
+		Logger.log("Trace_ENI.log", "EnchereControlleur : postEncheresPropose ");
 		UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
 		CEnchere enchere = new CEnchere();
 		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
@@ -163,7 +156,14 @@ public class EnchereControlleur {
 		enchere.setArticle(ArticleVendu);
 		enchere.setUtilisateur(UtilisateurConnecte);
 		enchere.setDateEnchere(LocalDateTime.now());
-		enchereService.faireEnchere(enchere);
-		return "redirect:/bid";
+		String result = enchereService.faireEnchere(enchere);
+		if(result != ErrorCode.NO_ERROR){
+			Logger.log("Trace_ERROR.log","Controlleur Enchere: postEncheresPropose - " + result);
+			model.addAttribute("ErrorStringCode",result);
+			return "view_bid_add";
+		}
+		else{
+			return "redirect:/bid";
+		}
 	}
 }
