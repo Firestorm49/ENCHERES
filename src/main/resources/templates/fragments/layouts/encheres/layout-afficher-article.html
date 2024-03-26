@@ -4,27 +4,39 @@
 	data-th-href="@{/css/form.css}">
 <div data-th-fragment="article-detail(titleForm, action)"
 	data-th-each="enchere : ${encheres}">
-	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}" method="get"
-		id="afficherArticle">
+	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
+		id="afficherArticle" method="get">
 		<img id="article" data-th-title="Image"
 			data-th-src="@{/images/encheres.png}">
 		<div>
-			<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
 			<div class="line">
 				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>
 			</div>
 			<div class="line">
-				Prix : <span class="detailArticle" data-th-text="${enchere.prixVente} + ' points' "></span>
+				<span class="detailArticle"
+					data-th-text="#{price.label} + ${enchere.prixVente} + ' points' "></span>
 			</div>
 			<div class="line">
-				Fin de l'enchère : <span class="detailArticle" data-th-text="${enchere.dateFinEncheres}"></span>
+				<span class="detailArticle"
+					data-th-text="#{endOfBid.label} +  ${enchere.dateFinEncheres}"></span>
 			</div>
 			<div class="line">
-				Vendeur : <span class="detailArticle" data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
-			</div>
-			<div class="line">
-				 <input class="detailArticle" type="submit">
+				<span class="detailArticle"
+					data-th-text="#{seller.label} +  ${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
 			</div>
 		</div>
 	</form>
+	<div class="pagination">
+		<button id="prevBtn" data-th-text="#{previousButton.label}"></button>
+		<input id="pageNumber" name="numeroPage" type="number" min="1">
+		<button id="nextBtn" data-th-text="#{nextButton.label}"></button>
+
+		<label for="pageSize" data-th-text="#{pageSizeButton.label}"></label> <select id="pageSize"
+			name="pageSize">
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="50">50</option>
+		</select>
+	</div>
 </div>

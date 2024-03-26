@@ -12,7 +12,7 @@
 			data-th-text="#{login-form.password}"></label></li>
 		<li>
 			<div id="mdpEtRememberMe">
-				<a id="mdp" href="/users/modify/password">Mot de passe oublié</a>
+				<a id="mdp" href="/users/modify/password" data-th-text="#{forgotPassword.label}"></a>
 				<div>
 					<input type="checkbox" id="rememberMe" name="rememberMe"> <label
 						for="rememberMe">Rester connecté</label>
@@ -22,8 +22,7 @@
 		<li data-th-if="${errorMessage}" data-th-text="${errorMessage}"
 			class="error-message"></li>
 		<li>
-			<button type="submit" name="SeConnecter" id="loginButton">Se
-				Connecter</button>
+			<button type="submit" name="SeConnecter" id="loginButton" data-th-text="#{login.label}"></button>
 		</li>
 	</ul>
 </form>

@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title data-th-text="#{connexion.title}"></title>
-<data-th-block id="ressources-css">
+<th:block id="ressources-css">
 	<link rel="stylesheet" data-th-href="@{/css/general.css}">
 	<link rel="stylesheet" data-th-href="@{/css/form.css}">
 	<link rel="stylesheet" data-th-href="@{/css/login.css}">
-</data-th-block>
+</th:block>
 </head>
 <body>
 	<main class="center-main">
@@ -24,7 +24,7 @@
 				<form method="get" action="/users/create">
 					<ul class="flex-outer">
 						<li>
-							<button type="submit">Creer un compte</button>
+							<button type="submit" id="createAccount" data-th-text="#{signUpButton.label}"></button>
 						</li>
 					</ul>
 				</form>
