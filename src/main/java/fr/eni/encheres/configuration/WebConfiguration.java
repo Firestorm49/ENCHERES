@@ -99,11 +99,13 @@ public class WebConfiguration implements WebMvcConfigurer {
 	}
 
 	@Bean
-	LocaleChangeInterceptor localeChangeInterceptor() {
+	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("language");
+		localeChangeInterceptor.setIgnoreInvalidLocale(true);
 		return localeChangeInterceptor;
 	}
+
 
 	@Bean
 	MessageSource messageSource() {
@@ -115,7 +117,9 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
+		registry.addInterceptor(localeChangeInterceptor())
+				.addPathPatterns("/**")
+				.excludePathPatterns("/css/**", "/images/**");
 	}
 
 	@Override
