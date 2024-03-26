@@ -180,7 +180,6 @@ public class VenteControlleur {
             return "redirect:/bid";
         }
     }
-
     @GetMapping("/upload")
     public String getuploadArticleVendu(@RequestParam(name = "idPhoto", required = true) int id,
                                         Model model) {

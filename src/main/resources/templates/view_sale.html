@@ -8,19 +8,16 @@
 		<h1 style="padding: 1rem;" th:text="#{sale.label}"></h1>
 		<a th:href="@{/sale/modify(id=12)}"
 			th:if="${#authorization.expression('isAuthenticated()')}">test</a>
-		<!-- Image -->
-		<img src="votre_image.jpg" alt="Votre Image">
+		<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
 		<!-- Trois boutons -->
-		<form action="/sale/upload" method="post" enctype="text/plain">
-			<input type="hidden" name="idPhoto"
-				th:value="${ArticleVendu.noArticle}"> <label>Photo
-				de l'article </label>
-				<input type="file" name="upload">
-			<button type="submit" id="uploadButton">Uploader</button>
+		<form data-th-if="${not isCreate}" action="/sale/upload" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">
+			<label>Photo de l'article</label>
+			<input type="file" name="upload">
+			<button type="submit">Uploader</button>
 		</form>
-		<form method="post" th:action="${postValue}"
-			th:object="${ArticleVendu}" style="padding: 1rem;">
-			<!-- Deux Inputs -->
+		<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}" enctype="multipart/form-data">
+			<input data-th-if="${isCreate}" type="file" name="upload" >
 			<div class="inputText">
 				<input type="hidden" id="id" name="id" th:value="*{noArticle}">
 				<div class="alignement-label">
@@ -53,7 +50,7 @@
 
 			<div class="inputText">
 				<div class="alignement-label">
-					<label for="number" th:text="#{startingBids.label}"></label>
+					<label for="miseAPrix" th:text="#{startingBids.label}"></label>
 				</div>
 				<input type="number" id="miseAPrix" name="MiseAPrix" min="0"
 					max="10000000" th:value="*{miseAPrix}"> <br>
@@ -62,14 +59,14 @@
 			<!-- Deux DateTimes -->
 			<div class="inputText">
 				<div class="alignement-label">
-					<label for="datetime1" th:text="#{startingDate.label}"></label>
+					<label for="dateDebutEncheres" th:text="#{startingDate.label}"></label>
 				</div>
 				<input type="datetime-local" id="dateDebutEncheres"
 					name="DateDebutEncheres" th:value="*{dateDebutEncheres}"> <br>
 			</div>
 			<div class="inputText">
 				<div class="alignement-label">
-					<label for="datetime2" th:text="#{endDate.label}"></label>
+					<label for="dateFinEncheres" th:text="#{endDate.label}"></label>
 				</div>
 				<input type="datetime-local" id="dateFinEncheres"
 					name="DateFinEncheres" th:value="*{dateFinEncheres}"> <br>
@@ -104,10 +101,13 @@
 				<button type="reset" id="cancelButton" th:text="#{cancel.label}"></button>
 			</div>
 		</form>
+		<form data-th-if="${not isCreate}" action="/bid/Encherisseurs" method="get" data-th-object="${ArticleVendu}">
+			<input type="hidden" name="id" th:value="*{noArticle}">
+			<button type="submit">Voir les encherisseurs</button>
+		</form>
 		<form action="/sale/cancel" method="post" th:object="${ArticleVendu}">
 			<input type="hidden" name="idAnnule" th:value="*{noArticle}">
-			<button type="submit" th:if="${not isCreate}">Annuler la
-				vente</button>
+			<button type="submit" th:if="${not isCreate}">Annuler la vente</button>
 		</form>
 	</div>
 </main>

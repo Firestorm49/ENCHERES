@@ -148,6 +148,18 @@ public class EnchereControlleur {
 		return "view_bid_add";
 	}
 
+	@GetMapping("/Encherisseurs")
+	public String postEncherisseursDelete( @ModelAttribute("id") int id, Model model) {
+		Logger.log("Trace_ENI.log","VenteControlleur : postEncherisseursDelete ");
+		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
+		model.addAttribute("Vente", ArticleVendu);
+		List<CEnchere> Enchere = enchereService.listEncheresByArticleId(id);
+		model.addAttribute("Encheres", Enchere);
+		String imageArticle = enchereService.SearchPhotoByArticleId(id);
+		model.addAttribute("imageArticle", "./../" + imageArticle);
+		return "view_bid_list_users";
+
+	}
 	@PostMapping("/purpose")
 	public String postEncheresPropose(@ModelAttribute("id") int id,
 			@ModelAttribute("Proposition") int Enchere, HttpSession session, Model model) {
