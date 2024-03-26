@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class EnchereDAOImpl implements EnchereDAO {
 
@@ -95,37 +97,46 @@ public class EnchereDAOImpl implements EnchereDAO {
         int min = 0;
         int max = 0;
         if(pageNumber > 1) {
-             min = pageNumber * pageSize;
+             min = (pageNumber * pageSize) -1;
              max = min + pageSize;
         }
         else{
             min = 1;
             max = min + pageSize;
         }
-System.out.println(categorie);
-        String pagination = " ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
-        String Filter = "";
-        List<Object> params = new ArrayList<>();
 
+        String Filter = "WHERE";
+        List<Object> params = new ArrayList<>();
+        boolean isAND = false;
         if (nomArticle != null && nomArticle.trim() != "") {
-            Filter += " nom_article = ? AND ";
+            Filter += " nom_article = ? ";
+            isAND = true;
             params.add(nomArticle);
         }
         if (categorie  != 0) {
-            Filter += " ARTICLES_VENDUS.no_categorie = ? AND ";
+            if(isAND == true){
+                Filter += " AND ";
+            }
+            Filter += " ARTICLES_VENDUS.no_categorie = ? ";
             params.add(categorie);
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
                 "FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
                 "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
-                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article  WHERE " + Filter + pagination;
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article " ;
+        if(Filter != "WHERE"){
+             sql += Filter;
+        }
 
-        // Ajout des paramètres de pagination
-       params.add(min);
-        params.add(max);
-        // Utilisation de toArray() pour convertir la liste en tableau d'objets
-        return jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
+        List<CArticleVendu> allArticles = jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
+
+        List<CArticleVendu> filteredArticles = allArticles.stream()
+                .skip(min - 1)
+                .limit(max - min + 1)
+                .collect(Collectors.toList());
+
+        return filteredArticles;
     }
     @Override
     public List<CArticleVendu> listerEncheresConnecteByFilters(String nomArticle, int categorie,int no_utilisateur, int radio, boolean ventesencours, boolean ventesnoncommencer, boolean ventesterminer, boolean encheresremporter, boolean encheresencours, boolean encheresouvertes, int pageNumber, int pageSize) {
@@ -133,27 +144,33 @@ System.out.println(categorie);
         int min = 0;
         int max = 0;
         if(pageNumber > 1) {
-            min = pageNumber * pageSize;
+            min = (pageNumber * pageSize) -1;
             max = min + pageSize;
         }
         else{
             min = 1;
             max = min + pageSize;
         }
-        String pagination = " ARTICLES_VENDUS.no_article BETWEEN ? AND ?";
-        String Filter = "";
+        String Filter = "WHERE";
         List<Object> params = new ArrayList<>();
-
+        Boolean EntrerAND = false;
       if (nomArticle != null && nomArticle.trim() != "") {
-            Filter += " nom_article = ? AND ";
+            Filter += " nom_article = ? ";
+          EntrerAND = true;
             params.add(nomArticle);
         }
       if (categorie != 0) {
-            Filter += " ARTICLES_VENDUS.no_categorie = ? AND ";
+          if(EntrerAND == true){
+              Filter += " AND ";
+          }
+            Filter += " ARTICLES_VENDUS.no_categorie = ? ";
             params.add(categorie);
         }
         if (radio == 1) {
             Boolean EntrerOR = false;
+            if(EntrerAND == true){
+                Filter += " AND ";
+            }
             Filter += " ( ";
             if (encheresencours) {
                 Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?)) ";
@@ -178,6 +195,9 @@ System.out.println(categorie);
             Filter += ") AND ";
         }
         else  if (radio == 2) {
+            if(EntrerAND == true){
+                Filter += " AND ";
+            }
             Boolean EntrerOR = false;
             Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
             params.add(no_utilisateur);
@@ -205,14 +225,19 @@ System.out.println(categorie);
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
                 "FROM ARTICLES_VENDUS INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie INNER JOIN \n" +
                 "UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur INNER JOIN \n" +
-                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article WHERE " + Filter + pagination;
+                "RETRAITS ON ARTICLES_VENDUS.no_article = RETRAITS.no_article ";
+        if(Filter != "WHERE"){
+            sql += Filter;
+        }
 
-        // Ajout des paramètres de pagination
-        params.add(min);
-        params.add(max);
+        List<CArticleVendu> allArticles = jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
 
-        // Utilisation de toArray() pour convertir la liste en tableau d'objets
-        return jdbcTemplate.query(sql, params.toArray(), new ArticleVenduRowMapper());
+        List<CArticleVendu> filteredArticles = allArticles.stream()
+                .skip(min - 1)
+                .limit(max - min + 1)
+                .collect(Collectors.toList());
+
+        return filteredArticles;
     }
 
     @Override
