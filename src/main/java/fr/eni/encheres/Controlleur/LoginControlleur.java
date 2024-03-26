@@ -27,8 +27,9 @@ public class LoginControlleur {
         if (auth != null) {
             SecurityContextHolder.clearContext();
             session.invalidate();
+            session.removeAttribute("membreEnSession");
         }
         redirectAttributes.addFlashAttribute("message", "Vous avez été déconnecté avec succès.");
-        return "view_login";
+        return "redirect:/login"; // Redirige vers la page de connexion
     }
 }

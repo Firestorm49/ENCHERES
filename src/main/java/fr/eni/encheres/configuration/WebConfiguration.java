@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import fr.eni.encheres.Tools.CategorieConverter;
 import fr.eni.encheres.Tools.DateTimeConverter;
 import fr.eni.encheres.bll.CategorieService;
+import jakarta.servlet.http.HttpSessionListener;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -132,4 +133,5 @@ public class WebConfiguration implements WebMvcConfigurer {
 	DateTimeConverter getDateTimeConverter() {
 		return new DateTimeConverter();
 	}
+
 }

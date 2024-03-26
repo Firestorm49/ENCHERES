@@ -1,10 +1,11 @@
 package fr.eni.encheres.bo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.validation.constraints.*;
 
-public class CUtilisateur {
+public class CUtilisateur  implements Serializable {
 
     private int noUtilisateur;
     @NotBlank(message = "Le pseudo n'est pas correcte")

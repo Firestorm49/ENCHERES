@@ -6,6 +6,7 @@ import fr.eni.encheres.bll.CategorieService;
 import fr.eni.encheres.bll.EnchereService;
 import fr.eni.encheres.bll.UtilisateurService;
 import fr.eni.encheres.bo.*;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/sale")
 @SessionAttributes({ "membreEnSession" })
-public class VenteControlleur extends BaseControlleur {
+public class VenteControlleur {
 
     private final EnchereService enchereService;
     private final UtilisateurService utilisateurService;
@@ -35,7 +36,37 @@ public class VenteControlleur extends BaseControlleur {
         this.utilisateurService = utilisateurService;
         this.categorieService = categorieService;
     }
+    public CUtilisateur UtilisateurConnecte;
 
+    @ModelAttribute("membreEnSession")
+    public CUtilisateur MembreAuthenticate(Authentication authentication, HttpSession session) {
+        System.out.println("MembreAuthenticate Enchere 1");
+        UtilisateurConnecte = null;
+        session.removeAttribute("membreEnSession");
+        if (authentication != null && authentication.isAuthenticated()) {
+            System.out.println("MembreAuthenticate Enchere 2");
+            UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
+            if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
+                System.out.println("MembreAuthenticate Enchere 3" + UtilisateurConnecte);
+                if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                    UtilisateurConnecte.setAdministrateur(1);
+                } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                    UtilisateurConnecte.setAdministrateur(2);
+                } else {
+                    UtilisateurConnecte.setAdministrateur(0);
+                }
+                session.setAttribute("membreEnSession", UtilisateurConnecte);
+                return UtilisateurConnecte;
+            } else {
+                UtilisateurConnecte = null;
+                Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate null");
+                return null;
+            }
+        } else {
+            Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate return null");
+            return null;
+        }
+    }
     @ModelAttribute("CategorieSession")
     public List<CCategorie> chargerSession() {
         System.out.println("liste de categorie");
@@ -78,8 +109,9 @@ public class VenteControlleur extends BaseControlleur {
     public String postArticleVenduCreate(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                          @RequestParam("upload") MultipartFile uploadFile,
                                          @ModelAttribute("Retrait") CRetrait Retrait,
-                                     BindingResult bindingResult) {
+                                     BindingResult bindingResult, HttpSession session) {
         Logger.log("Trace_ENI.log","Controlleur : postArticleVenduCreate " +ArticleVendu );
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         System.out.println(UtilisateurConnecte);
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
@@ -113,8 +145,9 @@ public class VenteControlleur extends BaseControlleur {
     @PostMapping("/modify")
     public String postArticleVenduModify(@Validated @ModelAttribute("ArticleVendu") CArticleVendu ArticleVendu,
                                          @ModelAttribute("Retrait") CRetrait Retrait,
-                                     BindingResult bindingResult) {
+                                     BindingResult bindingResult, HttpSession session) {
         Logger.log("Trace_ENI.log","Controlleur : postEncheresModify ");
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "view_bid_list";

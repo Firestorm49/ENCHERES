@@ -27,7 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 @SessionAttributes({ "membreEnSession" })
-public class UtilisateurControlleur extends BaseControlleur  {
+public class UtilisateurControlleur {
 
     private final UtilisateurService utilisateurService;
 
@@ -36,6 +36,7 @@ public class UtilisateurControlleur extends BaseControlleur  {
     public UtilisateurControlleur(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
+    public CUtilisateur UtilisateurConnecte;
 
     @GetMapping
     public String getUsers(Model model) {
@@ -87,8 +88,9 @@ public class UtilisateurControlleur extends BaseControlleur  {
     @GetMapping("/modify/password")
     public String getModifyPasswordUsers(@RequestParam(name = "email", required = false) String email,
                                         @RequestParam(name = "mdp", required = false) String mdp,
-                                        @RequestParam(name = "mdpConfirmer", required = false) String mdpConfirmer, Model model) {
+                                        @RequestParam(name = "mdpConfirmer", required = false) String mdpConfirmer, Model model, HttpSession session) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyPasswordUsers ");
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if(UtilisateurConnecte == null){
             model.addAttribute("postValue", "/users/modify/password");
             return "view_user_password";
@@ -128,9 +130,10 @@ public class UtilisateurControlleur extends BaseControlleur  {
     }
 
     @GetMapping("/modify")
-    public String getModifyUsers(Model model) {
+    public String getModifyUsers(Model model, HttpSession session) {
         Logger.log("Trace_ENI.log","Controlleur : getModifyUsers ");
-        if(UtilisateurConnecte.getNoUtilisateur() > 0){
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
+        if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("postValue", "/users/modify");
             model.addAttribute("user", UtilisateurConnecte);
             return "view_user_edit";
@@ -199,11 +202,12 @@ public class UtilisateurControlleur extends BaseControlleur  {
 
 
     @GetMapping("/detail")
-    public String getDetailUsers(Model model) {
-        Logger.log("Trace_ENI.log","Controlleur : getDetailUsers ");
-        if(UtilisateurConnecte.getNoUtilisateur() > 0){
+    public String getDetailUsers(Model model, HttpSession session) {
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
+            System.out.println(UtilisateurConnecte);
+            Logger.log("Trace_ENI.log", "Controlleur : getDetailUsers " + UtilisateurConnecte);
             model.addAttribute("user", UtilisateurConnecte);
-        }
+
         return "view_user_detail";
     }
 
@@ -229,8 +233,9 @@ public class UtilisateurControlleur extends BaseControlleur  {
         return "redirect:/users";
     }
     @GetMapping("/administrateur")
-    public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model) {
+    public String getAdministrateurUsers(@RequestParam(name = "id", required = true) int id,Model model, HttpSession session) {
         Logger.log("Trace_ENI.log","Controlleur : getAdministrateurUsers ");
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         if(utilisateurService.ViewProfil(id).isAdministrateur() == 1){
             utilisateurService.ModifyRoleUtilisateur(id,0);
         }
@@ -238,7 +243,7 @@ public class UtilisateurControlleur extends BaseControlleur  {
             utilisateurService.ModifyRoleUtilisateur(id,1);
         }
 
-        if(UtilisateurConnecte.getNoUtilisateur() > 0){
+        if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
             model.addAttribute("user", UtilisateurConnecte);
         }
         return "redirect:/users";
