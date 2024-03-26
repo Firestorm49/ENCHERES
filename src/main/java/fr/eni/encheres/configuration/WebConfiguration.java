@@ -39,7 +39,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 	@Bean
 	UserDetailsManager userDetailsManager(DataSource datasource) {
 		var jdbcUserDetailsManager = new JdbcUserDetailsManager(datasource);
-		jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT email, mot_de_passe, 1 FROM UTILISATEURS WHERE email=?");
+		jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT email, mot_de_passe, 1 FROM UTILISATEURS WHERE email=? AND active=1");
 		jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
 				"select Email, role from ROLES inner join UTILISATEURS ON ROLES.IS_ADMIN = UTILISATEURS.administrateur WHERE Email=?");
 		return jdbcUserDetailsManager;

@@ -7,6 +7,7 @@ import fr.eni.encheres.bo.CUtilisateur;
 import fr.eni.encheres.exceptions.BusinessCode;
 import fr.eni.encheres.exceptions.BusinessException;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,33 @@ public class UtilisateurControlleur {
         this.utilisateurService = utilisateurService;
     }
     public CUtilisateur UtilisateurConnecte;
+
+    @ModelAttribute("membreEnSession")
+    public CUtilisateur MembreAuthenticate(Authentication authentication, HttpSession session) {
+        UtilisateurConnecte = null;
+        session.removeAttribute("membreEnSession");
+        if (authentication != null && authentication.isAuthenticated()) {
+            UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
+            if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
+                if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                    UtilisateurConnecte.setAdministrateur(1);
+                } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                    UtilisateurConnecte.setAdministrateur(2);
+                } else {
+                    UtilisateurConnecte.setAdministrateur(0);
+                }
+                session.setAttribute("membreEnSession", UtilisateurConnecte);
+                return UtilisateurConnecte;
+            } else {
+                UtilisateurConnecte = null;
+                Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate null");
+                return null;
+            }
+        } else {
+            Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate return null");
+            return null;
+        }
+    }
 
     @GetMapping
     public String getUsers(Model model) {
@@ -117,7 +145,7 @@ public class UtilisateurControlleur {
                     String result = utilisateurService.ModifyProfil(user);
                     if(result != ErrorCode.NO_ERROR){
                         Logger.log("Trace_ERROR.log","UtilisateurControlleur: postModifyUsersPassword - " + result);
-                        model.addAttribute("ErrorStringCode",result);
+                        model.addAttribute("errorMessage",result);
                         return "view_user_password";
                     }
                     else{
@@ -140,16 +168,19 @@ public class UtilisateurControlleur {
     }
 
     @GetMapping("/modify")
-    public String getModifyUsers(Model model, HttpSession session) {
+    public String getModifyUsers(@RequestParam(name = "id", required = false) int id,Model model, HttpSession session) {
         Logger.log("Trace_ENI.log","UtilisateurControlleur : getModifyUsers ");
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
-        if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
-            model.addAttribute("postValue", "/users/modify");
-            model.addAttribute("user", UtilisateurConnecte);
-            return "view_user_edit";
-        }else{
-            return "redirect:/create";
+        CUtilisateur utilisateur = null;
+        if(id > 0 ){
+            utilisateur = utilisateurService.ViewProfil(id);
+        }else {
+            utilisateur = UtilisateurConnecte;
         }
+        model.addAttribute("user", utilisateur);
+
+        model.addAttribute("postValue", "/users/modify");
+            return "view_user_edit";
     }
 
     @PostMapping("/modify")
@@ -228,10 +259,16 @@ public class UtilisateurControlleur {
 
 
     @GetMapping("/detail")
-    public String getDetailUsers(Model model, HttpSession session) {
+    public String getDetailUsers(@RequestParam(name = "id", required = false) int id,Model model, HttpSession session) {
         Logger.log("Trace_ENI.log", "UtilisateurControlleur : getDetailUsers " );
         UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
-            model.addAttribute("user", UtilisateurConnecte);
+        CUtilisateur utilisateur = null;
+        if(id > 0 ){
+             utilisateur = utilisateurService.ViewProfil(id);
+        }else {
+            utilisateur = UtilisateurConnecte;
+        }
+            model.addAttribute("user", utilisateur);
 
         return "view_user_detail";
     }

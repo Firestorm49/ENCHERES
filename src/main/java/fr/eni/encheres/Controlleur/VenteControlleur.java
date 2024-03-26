@@ -71,10 +71,14 @@ public class VenteControlleur {
         return categorieService.ListCategorie();
     }
     @GetMapping("/create")
-    public String getCreateArticleVendu(Model model) {
+    public String getCreateArticleVendu(Model model, HttpSession session) {
         Logger.log("Trace_ENI.log","VenteControlleur : getCreateEncheres ");
+        UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
         CArticleVendu ArticleVendu = new CArticleVendu();
         CRetrait retrait = new CRetrait();
+        retrait.setRue(UtilisateurConnecte.getRue());
+        retrait.setCode_postal(UtilisateurConnecte.getCodePostal());
+        retrait.setVille(UtilisateurConnecte.getVille());
         model.addAttribute("retrait",retrait);
         model.addAttribute("ArticleVendu",ArticleVendu);
         model.addAttribute("isCreate",true);

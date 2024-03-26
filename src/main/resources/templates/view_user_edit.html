@@ -56,6 +56,9 @@
 									<input class="input" type="password" id="password" data-th-field="*{motdepasse}" />
 									<label class="label" for="password">Mot de passe :</label>
 								</li>
+								<li>
+									<label class="label" data-th-text="'Crédit    ' + *{credit}"></label>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -103,6 +106,11 @@
 						<li>
 							<button>
 								<a href="/users/detail">Annuler</a>
+							</button>
+						</li>
+						<li>
+							<button>
+								<a data-th-href="@{'/users/delete?id=' + ${user.noUtilisateur}}">Supprimer mon compte</a>
 							</button>
 						</li>
 					</ul>

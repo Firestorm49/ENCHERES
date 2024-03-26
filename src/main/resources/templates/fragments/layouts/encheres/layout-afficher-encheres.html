@@ -21,16 +21,16 @@
 			<label class="labelFiltresEncheres" for="radioButton">Achats</label><br>
 			<span class="filtresEncheres"><input type="checkbox"
 				id="encheresOuvertes" name="encheresOuvertes"
-				value="encheresOuvertes"><label class="labelFiltresEncheres"
+				value="true"><label class="labelFiltresEncheres"
 				for="encheresOuvertes" th:text="#{openedBids.label}"></label></span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="mesEncheresEnCours" name="mesEncheresEnCours"
-				value="mesEncheresEnCours"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresEnCours"
 				th:text="#{myOnGoingBids.label}"></label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="mesEncheresRemportees" name="mesEncheresRemportees"
-				value="mesEncheresRemportees"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresRemportees" 
 				th:text="#{myWonBids.label}"></label> </span><br />
 		</div>
@@ -39,22 +39,22 @@
 			<label class="labelFiltresEncheres" for="radioButton">Mes
 				ventes</label> <br> <span class="filtresEncheres"><input
 				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
-				value="mesVentesEnCours"><label class="labelFiltresEncheres"
+				value="true"><label class="labelFiltresEncheres"
 				for="mesVentesEnCours">Mes ventes en cours</label> </span> <br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="ventesNonCommencees" name="ventesNonCommencees"
-				value="ventesNonCommencees"><label
+				value="true"><label
 				class="labelFiltresEncheres" for="ventesNonCommencees">Ventes
 					non débutées</label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesTerminees" name="ventesTerminees" value="ventesTerminees"><label
+				id="ventesTerminees" name="ventesTerminees" value="true"><label
 				class="labelFiltresEncheres" for="ventesTerminees">Ventes
 					terminées</label> </span><br />
 		</div>
 	</div>
 
 	<button id="prevBtn" type="submit">Précédent</button>
-	<input id="pageNumber" name="pageNumber" type="number" th:value="${pageNumber}">
+	<input id="pageNumber" name="pageNumber" type="number" value="0" th:value="${pageNumber}">
 	<button id="nextBtn" type="submit">Suivant</button>
 
 	<label for="pageSize">Taille de page:</label>

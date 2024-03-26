@@ -104,14 +104,32 @@ public class EnchereControlleur {
 		UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
 		CArticleVendu ArticleVendu = enchereService.AfficherArticleById(id);
 		model.addAttribute("Vente", ArticleVendu);
-		CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(id));
+		CEnchere Enchere = new CEnchere();
+		Enchere.setArticle(ArticleVendu);
+		int MOffre = enchereService.IsMaxOffre(Enchere);
+		model.addAttribute("MOffre", MOffre);
+		if (MOffre > 0) {
+			CUtilisateur utilisateur = utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere, MOffre));
+			model.addAttribute("MOffreUser", utilisateur.getPseudo());
+		} else {
+			model.addAttribute("MOffreUser", null);
+		}
+		String imageArticle = enchereService.SearchPhotoByArticleId(id);
+		model.addAttribute("imageArticle", "./../" + imageArticle);
 		if (enchereService.IsVenteFinish(id) == 2) {
+			if(enchereService.WinnerOffre(id) > 0){
+				CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(id));
+				model.addAttribute("winner",winner);
+
 			if (winner.getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
 				model.addAttribute("Msg_FinVente", "Vous avez remporté la vente");
+				model.addAttribute("Type","W");
 				return "view_bid_detail";
-			} else {
+			} else if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
 				model.addAttribute("Msg_FinVente", winner.getPseudo() + " a remporté l'enchere");
+				model.addAttribute("Type","V");
 				return "view_bid_detail";
+			}
 			}
 		} else if (enchereService.IsVenteFinish(id) == 1) {
 			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
@@ -122,8 +140,10 @@ public class EnchereControlleur {
 			}
 		}
 		else if (enchereService.IsVenteFinish(id) == 0) {
-			attributes.addAttribute("id", id);
-			return "redirect:/sale/modify";
+			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
+				attributes.addAttribute("id", id);
+				return "redirect:/sale/modify";
+			}
 		}
 		return "redirect:/bid";
 	}

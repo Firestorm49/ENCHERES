@@ -26,8 +26,8 @@
 			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
 				href="/sale/create"><img id="vendre"
 					th:title="#{img.title.vendre}" src="/images/vendre.png"></a></li>
-			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
-				href="/users/detail"><img id="profil"
+			<li th:if="${#authorization.expression('isAuthenticated()')}">
+				<a href="/users/detail?id=0"><img id="profil"
 					th:title="#{img.title.profil}" src="/images/user.png"></a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}"
 				sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"><a href="/category"><img

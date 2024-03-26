@@ -15,12 +15,12 @@
 </head>
 <body>
 	<main class="center-main page-user page-user-detail">
-		<div class="content">
+		<div class="content" data-th-object="${user}">
 			<h1> Mon profil </h1>
 			<div class="mofication">
-				<a href="/users/modify" class="button">Modifier</a>
+				<a data-th-href="@{'/users/modify?id=' + *{noUtilisateur}}" class="button">Modifier</a>
 			</div>
-			<div class="informations" data-th-object="${user}">
+			<div class="informations">
 				<div class="left">
 					<div class="line">
 						<div class="line-name"> Pseudo : </div><span data-th-text="*{pseudo}"></span>

@@ -35,7 +35,8 @@
 					Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
 				</div>
 				<div class="line">
-					Meilleur offre : <span th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+					Meilleur offre : <span th:text="${MOffre} + ' pts par '"> </span>
+					<a data-th-href="@{'/users/detail?id=' + ${winner.noUtilisateur}}" data-th-text="${MOffreUser}"></a>
 				</div>
 				<div class="line">
 					Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
@@ -53,8 +54,8 @@
 					Tel : <span th:text="${Vente.getVendeur().getTelephone()}"></span>
 				</div>
 			</div>
-				<button type="button">Back</button>
-			<button type="button">Retrait Effectuer</button>
+				<button type="reset" data-th-if="${Type == 'W'}">Back</button>
+			<button type="reset" data-th-if="${Type == 'V'}">Retrait Effectuer</button>
 		</div>
 	</div>
 </main>

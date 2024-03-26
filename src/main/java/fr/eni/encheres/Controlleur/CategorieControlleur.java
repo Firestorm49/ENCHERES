@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/category")
+@SessionAttributes({ "membreEnSession" })
 public class CategorieControlleur {
     private final CategorieService categorieService;
 

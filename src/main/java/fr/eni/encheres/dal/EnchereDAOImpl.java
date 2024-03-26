@@ -171,8 +171,9 @@ public class EnchereDAOImpl implements EnchereDAO {
             if(EntrerAND == true){
                 Filter += " AND ";
             }
-            Filter += " ( ";
+
             if (encheresencours) {
+                Filter += " ( ";
                 Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES WHERE no_utilisateur = ?)) ";
                 EntrerOR = true;
                 params.add(no_utilisateur);
@@ -180,6 +181,8 @@ public class EnchereDAOImpl implements EnchereDAO {
             if (encheresouvertes) {
                 if(EntrerOR == true){
                     Filter += " OR ";
+                }else{
+                    Filter += " ( ";
                 }
                 Filter += " (etat_article = 1 and ARTICLES_VENDUS.no_article IN (SELECT no_article FROM ENCHERES )) ";
                 EntrerOR = true;
@@ -187,28 +190,38 @@ public class EnchereDAOImpl implements EnchereDAO {
             if (encheresremporter) {
                 if(EntrerOR == true){
                     Filter += " OR ";
+                } else{
+                    Filter += " ( ";
                 }
                 Filter += " (etat_article = 2 and ARTICLES_VENDUS.prix_vente IN (SELECT montant_enchere FROM ENCHERES WHERE no_utilisateur =?)) ";
                 params.add(no_utilisateur);
+                Filter += ") ";
             }
-
-            Filter += ") AND ";
+            else{
+                if(EntrerOR == true){
+                    Filter += ") ";
+                }
+            }
         }
         else  if (radio == 2) {
             if(EntrerAND == true){
                 Filter += " AND ";
             }
             Boolean EntrerOR = false;
-            Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
-            params.add(no_utilisateur);
 
             if (ventesencours) {
+                Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
+                params.add(no_utilisateur);
                 Filter += " etat_article = 1  ";
                 EntrerOR = true;
             }
             if (ventesnoncommencer) {
                 if(EntrerOR == true){
                     Filter += " OR ";
+                }
+                else{
+                    Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
+                    params.add(no_utilisateur);
                 }
                 Filter += " etat_article = 0  ";
                 EntrerOR = true;
@@ -217,9 +230,18 @@ public class EnchereDAOImpl implements EnchereDAO {
                 if(EntrerOR == true){
                     Filter += " OR ";
                 }
+                else{
+                    Filter += " (ARTICLES_VENDUS.no_utilisateur = ? AND (";
+                    params.add(no_utilisateur);
+                }
                 Filter += " etat_article = 2  ";
+                Filter += ")) ";
             }
-            Filter += ")) AND ";
+            else{
+                if(EntrerOR == true){
+                    Filter += ")) ";
+                }
+            }
         }
 
         String sql = "SELECT UTILISATEURS.no_utilisateur, CATEGORIES.no_categorie, ARTICLES_VENDUS.*, RETRAITS.* \n" +
@@ -311,8 +333,14 @@ public class EnchereDAOImpl implements EnchereDAO {
     @Override
     public int WinnerOffre(int id) {
         Logger.log("Trace_ENI.log","IsUserMaxOffre : " + id);
-        String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article = ? AND montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES  WHERE no_article = ?)";
-        Integer UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{id,id}, Integer.class);
+        String SelectRowsQuery = "SELECT COUNT(montant_enchere) FROM ENCHERES  WHERE no_article = ?";
+        Integer Nb_Rows = jdbcTemplate.queryForObject(SelectRowsQuery, new Object[]{id}, Integer.class);
+        Integer UserOffre = 0;
+        if(Nb_Rows > 0) {
+            String sql = "SELECT no_utilisateur FROM ENCHERES WHERE no_article = ? AND montant_enchere = (SELECT MAX(montant_enchere) FROM ENCHERES  WHERE no_article = ?)";
+
+            UserOffre = jdbcTemplate.queryForObject(sql, new Object[]{id, id}, Integer.class);
+        }
         return UserOffre;
     }
     @Override
