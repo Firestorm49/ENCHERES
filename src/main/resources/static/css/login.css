@@ -11,7 +11,6 @@
     width: 50%;
 }
 
-
 .login-form .right{
     width: 100%;
 }
@@ -24,3 +23,17 @@
     height: 100%;
     width: 100%;
 }
+
+#mdpEtRememberMe{
+	display: flex;
+}
+
+#rememberMe, #mdp{
+	width: 50%;
+}
+
+#createAccount{
+	width: 22rem;
+}
+
+
