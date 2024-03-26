@@ -59,7 +59,6 @@ header h1 {
     margin: 10px;
     color: black;
 }
-
 .center-main {
     margin: 2rem 10rem 0 10rem;
     padding: 2rem;
@@ -172,12 +171,11 @@ footer {
     width: 45px;
 }
 h1{
-    text-align: center;
+	text-align: center;
 }
 #userDeconnecte, #userConnecte{
-    float: left;
-    margin: auto;
-    height: 100%;
+	float: left;
+	margin: auto;
 }
 #navigation{
 	float: right;
@@ -194,6 +192,12 @@ h1{
 	border: 1px solid black;
 }
 
+.radioAndCheckbox{
+	display: flex;
+	margin-left: 1rem;
+	margin-top: 1rem;
+}
+
 #filtres{
 	margin: 0.5rem;
 }
@@ -204,4 +208,16 @@ h1{
 
 .line{
 	margin: 0.5rem;
+}
+
+span.filtresEncheres, #searchButton, .radioButtonMesVentes{
+	margin-left: 1rem;
+}
+
+.detailArticle{
+	margin-left: 0;
+}
+
+.labelFiltresEncheres{
+	margin-left: 0.1rem;
 }

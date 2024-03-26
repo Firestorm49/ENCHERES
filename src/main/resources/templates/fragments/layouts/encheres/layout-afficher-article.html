@@ -4,23 +4,26 @@
 	data-th-href="@{/css/form.css}">
 <div data-th-fragment="article-detail(titleForm, action)"
 	data-th-each="enchere : ${encheres}">
-	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
+	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}" method="get"
 		id="afficherArticle">
 		<img id="article" data-th-title="Image"
 			data-th-src="@{/images/encheres.png}">
-		<div class="top">
+		<div>
+			<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
 			<div class="line">
 				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>
 			</div>
 			<div class="line">
-				Prix : <span data-th-text="${enchere.prixVente} + ' points' "></span>
+				Prix : <span class="detailArticle" data-th-text="${enchere.prixVente} + ' points' "></span>
 			</div>
 			<div class="line">
-				Fin de l'enchère : <span data-th-text="${enchere.dateFinEncheres}"></span>
+				Fin de l'enchère : <span class="detailArticle" data-th-text="${enchere.dateFinEncheres}"></span>
 			</div>
 			<div class="line">
-				Vendeur : <span
-					data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
+				Vendeur : <span class="detailArticle" data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></span>
+			</div>
+			<div class="line">
+				 <input class="detailArticle" type="submit"></input>
 			</div>
 		</div>
 	</form>

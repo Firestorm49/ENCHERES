@@ -1,42 +1,66 @@
-<form xmlns:th="http://www.thymeleaf.org" th:fragment="enchere-detail(titleForm, action)" th:action="@{${action}}"
-	method="post">
+<form xmlns:th="http://www.thymeleaf.org"
+	th:fragment="enchere-detail(titleForm, action)"
+	th:action="@{${action}}" method="get">
 	<br>
-	<h1 style="text-align:center;">Liste des enchères</h1>
-	<br> <br> <label id="filtres">Filtres : </label><input type="text" placeholder="Rechercher"></input>
-	&nbsp;&nbsp;&nbsp; <label for="dropbox">Catégorie : </label><select id="dropbox" name="dropbox"
-		th:field="${CategorieSession}">
-		<option th:each="item : ${CategorieSession}" th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
-	</select> &nbsp;&nbsp;&nbsp;
+	<h1 style="text-align: center;">Liste des enchères</h1>
+	<br> <br> <label id="filtres">Filtres : </label><input
+		type="text" placeholder="Rechercher" name="nom_Article"></input> <label
+		class="labelFiltresEncheres" for="dropbox">Catégorie : </label>
+	<select id="dropbox" name="dropbox">
+		<option data-th-each="item : ${CategorieSession}" data-th-value="${item.noCategorie}" data-th-text="${item.libelle}"></option>
+	</select>
 	<button id="searchButton" type="submit">Rechercher</button>
-	<br><br>
-	<div class="radioAndCheckbox" th:if="${#authorization.expression('isAuthenticated()')}">
+	<br>
+	<br>
+	<div class="radioAndCheckbox"
+		th:if="${#authorization.expression('isAuthenticated()')}">
 		<div>
 			<input type="radio" id="radioButton" name="radioButton" value="1" />
-			<label for="radioButton">Achats</label><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="encheresOuvertes"
-					name="encheresOuvertes" value="encheresOuvertes">&nbsp;<label for="encheresOuvertes">Enchères
-					ouvertes</label></span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"
-					id="mesEncheresEnCours" name="mesEncheresEnCours" value="mesEncheresEnCours">&nbsp;<label for="mesEncheresEnCours">Mes
-					enchères en cours</label>
-			</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="ventesRemportees"
-					name="ventesRemportees" value="ventesRemportees">&nbsp;<label for="ventesRemportees">Mes enchères
-					remportées</label>
-			</span><br />
+			<label class="labelFiltresEncheres" for="radioButton">Achats</label><br>
+			<span class="filtresEncheres"><input type="checkbox"
+				id="encheresOuvertes" name="encheresOuvertes"
+				value="true"><label class="labelFiltresEncheres"
+				for="encheresOuvertes">Enchères ouvertes</label></span><br />
+			<span class="filtresEncheres"><input type="checkbox"
+				id="mesEncheresEnCours" name="mesEncheresEnCours"
+				value="true"><label
+				class="labelFiltresEncheres" for="mesEncheresEnCours">Mes
+					enchères en cours</label> </span><br />
+			<span class="filtresEncheres"><input type="checkbox"
+				id="mesEncheresRemportees" name="mesEncheresRemportees"
+				value="true"><label
+				class="labelFiltresEncheres" for="mesEncheresRemportees">Mes
+					enchères remportées</label> </span><br />
 		</div>
-		&nbsp;&nbsp;&nbsp;
-		<div>
+		<div class="radioButtonMesVentes">
 			<input type="radio" id="radioButton" name="radioButton" value="2" />
-			<label for="radioButton">Mes ventes</label> <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
-					value="mesVentesEnCours">&nbsp;<label for="mesVentesEnCours">Mes ventes en cours</label>
-			</span> <br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox" id="checkbox2"
-					name="ventesNonCommencees" value="ventesNonCommencees">&nbsp;<label for="checkbox2">Ventes non
-					débutées</label>
-			</span><br />&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"
-					id="ventesTerminees" name="ventesTerminees" value="ventesTerminees">&nbsp;<label
-					for="ventesTerminees">Ventes terminées</label>
-			</span><br />
+			<label class="labelFiltresEncheres" for="radioButton">Mes
+				ventes</label> <br> <span class="filtresEncheres"><input
+				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
+				value="true"><label class="labelFiltresEncheres"
+				for="mesVentesEnCours">Mes ventes en cours</label> </span> <br />
+			<span class="filtresEncheres"><input type="checkbox"
+				id="ventesNonCommencees" name="ventesNonCommencees"
+				value="true"><label
+				class="labelFiltresEncheres" for="ventesNonCommencees">Ventes
+					non débutées</label> </span><br />
+			<span class="filtresEncheres"><input type="checkbox"
+				id="ventesTerminees" name="ventesTerminees" value="true"><label
+				class="labelFiltresEncheres" for="ventesTerminees">Ventes
+					terminées</label> </span><br />
 		</div>
 	</div>
-<br><br>
+	<br>
+	<br>
+	<button id="prevBtn">Précédent</button>
+	<input id="pageNumber" name="numeroPage" type="number" min="1">
+	<button id="nextBtn">Suivant</button>
+
+	<label for="pageSize">Taille de page:</label>
+	<select id="pageSize" name="pageSize">
+		<option value="5">5</option>
+		<option value="10">10</option>
+		<option value="20">20</option>
+		<option value="50">50</option>
+	</select>
 </form>
