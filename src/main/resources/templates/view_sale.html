@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
 <title th:text="#{sell.label}"></title>
@@ -12,9 +12,9 @@
 		<!-- Trois boutons -->
 		<form data-th-if="${not isCreate}" action="/sale/upload" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">
-			<label>Photo de l'article</label>
+			<label th:text="#{articlePhoto.label}"></label>
 			<input type="file" name="upload">
-			<button type="submit">Uploader</button>
+			<button type="submit" th:text="#{upload.label}"></button>
 		</form>
 		<form method="post" data-th-action="${postValue}" data-th-object="${ArticleVendu}" enctype="multipart/form-data">
 			<input data-th-if="${isCreate}" type="file" name="upload" >
@@ -103,11 +103,11 @@
 		</form>
 		<form data-th-if="${not isCreate}" action="/bid/Encherisseurs" method="get" data-th-object="${ArticleVendu}">
 			<input type="hidden" name="id" th:value="*{noArticle}">
-			<button type="submit">Voir les encherisseurs</button>
+			<button type="submit" th:text="#{seeBidders.label}"></button>
 		</form>
 		<form action="/sale/cancel" method="post" th:object="${ArticleVendu}">
 			<input type="hidden" name="idAnnule" th:value="*{noArticle}">
-			<button type="submit" th:if="${not isCreate}">Annuler la vente</button>
+			<button type="submit" th:if="${not isCreate}" th:text="#{cancelSale.label}"></button>
 		</form>
 	</div>
 </main>
