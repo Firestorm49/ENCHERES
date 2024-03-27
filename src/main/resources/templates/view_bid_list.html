@@ -14,10 +14,12 @@
 </head>
 <body>
 	<h1 th:text="#{bidsList.h1}"></h1>
-	<main>		
+	<main class="center-main">
 		<form th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('/bid')}">
 		</form>
+		<div class="liste-articles">
 		<div th:replace="~{fragments/layouts/encheres/layout-afficher-article :: article-detail('/bid/detail')}"></div>
+		</div>
 	</main>
 	<br>
 </body>
