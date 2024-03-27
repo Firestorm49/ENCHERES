@@ -181,7 +181,7 @@ public class EnchereControlleur {
 		Enchere.setArticle(ArticleVendu);
 		int MOffre = enchereService.IsMaxOffre(Enchere);
 		model.addAttribute("MOffre", MOffre);
-		if (MOffre > 0) {
+		if (MOffre > 0 && enchereService.IsUserMaxOffre(Enchere, MOffre) > 0) {
 			CUtilisateur utilisateur = utilisateurService.ViewProfil(enchereService.IsUserMaxOffre(Enchere, MOffre));
 			model.addAttribute("MOffreUser", utilisateur.getPseudo());
 		} else {

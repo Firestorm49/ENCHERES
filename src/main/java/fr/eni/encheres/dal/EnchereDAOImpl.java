@@ -165,6 +165,7 @@ public class EnchereDAOImpl implements EnchereDAO {
           }
             Filter += " ARTICLES_VENDUS.no_categorie = ? ";
             params.add(categorie);
+          EntrerAND = true;
         }
         if (radio == 1) {
             Boolean EntrerOR = false;

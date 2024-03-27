@@ -8,7 +8,7 @@
 header li {
 	list-style: none;
 	display: inline-block;
-	padding: 0 20px;
+	padding: 0 1.25rem;
 }
 
 * {
@@ -19,8 +19,8 @@ header li {
 
 /* Header */
 header {
-	padding: 20px 50px;
-	box-shadow: 0 1px 8px #ddd;
+	padding: 1.25rem 3.125rem;
+	box-shadow: 0 0.063rem 0.5rem #ddd;
 	background-color: #777;
 }
 
@@ -32,7 +32,7 @@ header {
 header li {
 	list-style: none;
 	display: inline-block;
-	padding: 0 20px;
+	padding: 0 1.25rem;
 }
 
 header a {
@@ -46,12 +46,12 @@ header a:hover {
 }
 
 main {
-	margin-top: 15px;
-	margin-left: 15px;
+	margin-top: 0.938rem;
+	margin-left: 0.938rem;
 }
 
 header h1 {
-	margin: 10px;
+	margin: 0.625rem;
 	color: black;
 }
 .center-main {
@@ -59,14 +59,14 @@ header h1 {
 	padding: 2rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
     .center-main{
         margin: 1rem 5rem 0 5rem;
         padding: 1rem;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 30rem) {
     .center-main{
         margin: 1rem 1rem 0 1rem;
         padding: 0.5rem;
@@ -83,11 +83,11 @@ input[type=text], input[type=number], input[type=password],input[type=datetime-l
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 1px solid black;
+	border: 0.063rem solid black;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
-    bottom: 0px;
+    bottom: 0;
     z-index: 1000;
 }
 input[type=text]:focus , input[type=number]:focus, input[type=password]:focus,input[type=datetime-local]:focus, input[type=email]:focus {
@@ -99,12 +99,12 @@ select {
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 4px;
+	border: 0.063rem solid black;
+	border-radius: 0.25rem;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
-    bottom: 0px;
+    bottom: 0;
     z-index: 1000;
 }
 select:focus {
@@ -115,11 +115,11 @@ textarea {
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
     box-sizing: border-box;
-    border: 5px solid #ccc;
+	border: 0.313rem solid #ccc;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
-    bottom: 0px;
+    bottom: 0;
     z-index: 1000;
 }
 textarea:focus {
@@ -143,10 +143,10 @@ body {
 }
 
 footer {
-    background-color: #777; /* Couleur de fond du footer */
-    color: #fff; /* Couleur du texte du footer */
-    padding: 20px; /* Marge intérieure du footer */
-    text-align: center; /* Centrage du contenu */
+	background-color: #777; /* Couleur de fond du footer */
+	color: #fff; /* Couleur du texte du footer */
+	padding: 1.25rem; /* Marge intérieure du footer */
+	text-align: center; /* Centrage du contenu */
 }
 
 #login,
@@ -182,8 +182,8 @@ h1{
 }
 
 #searchButton{
-	padding: 1rem; 
-	border: 1px solid black;
+	padding: 1rem;
+	border: 0.063rem solid black;
 }
 
 .radioAndCheckbox{
@@ -272,4 +272,26 @@ input#file-upload-button, #uploadButton{
 
 .enteteColonne{
 	text-align: center;
+}
+#createButton, #modifyButton, #deleteUsersButton{
+	padding: 0.5rem;
+	border: 0.063rem solid black;
+}
+
+#checkboxUser{
+	display:flex;
+}
+
+#userInfos{
+	margin-left: 0.5rem;
+}
+
+#deleteUsersButton{
+	margin-left: 3.5rem;
+}
+
+#createCategoryForm{
+	background-color: #DDDDDD;
+	width: 50%;
+	margin: auto;
 }

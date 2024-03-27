@@ -12,7 +12,7 @@
 			<table>
 				<thead>
 				<tr>
-					<th  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} "></th>
+					<th  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} " class="enteteColonne"></th>
 					<th class="enteteColonne" th:text="#{user}"></th>
 					<th class="enteteColonne" th:text="#{action}"></th>
 				</tr>
@@ -20,7 +20,9 @@
 				<tbody>
 				<tr data-th-if="${users != null}" data-th-each="item : ${users}">
 					<td  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
+						<div id="checkboxUser">
 						<input type="checkbox" name="supprimeMultiUtilisateur" data-th-value="${item.noUtilisateur}" >
+						</div>
 					</td>
 					<td data-th-text="${item.getPrenom()} + ' ' + ${item.getNom()}"></td>
 					<td>
@@ -70,7 +72,9 @@
 				</tr>
 				</tbody>
 			</table>
-			<input type="submit" th:text="#{DeleteProfil.label}"  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
+			<br>
+			<br>
+			<button id="deleteUsersButton" type="submit" th:text="#{DeleteProfil.label}"  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} "></button>
 		</form>
 		<BR>
 	</div>

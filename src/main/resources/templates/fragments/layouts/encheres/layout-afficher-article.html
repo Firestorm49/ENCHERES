@@ -3,11 +3,11 @@
 <link xmlns:th="http://www.thymeleaf.org" rel="stylesheet"
 	data-th-href="@{/css/form.css}">
 <div data-th-fragment="article-detail(action)"
-	data-th-each="enchere : ${encheres}">
+	data-th-each="enchere : ${encheres}" class="article">
 	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
 		id="afficherArticle" method="get">
 		<img data-th-if="${enchere.photo != null}" data-th-src="${enchere.photo}" alt="Votre Image">
-		<div>
+		<div class="detail">
 			<div class="line">
 				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>
 			</div>

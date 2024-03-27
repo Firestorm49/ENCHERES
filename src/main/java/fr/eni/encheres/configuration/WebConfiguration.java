@@ -91,8 +91,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 				.loginPage("/login").failureUrl("/login?error=true").permitAll().defaultSuccessUrl("/bid"));
 
 		http.rememberMe((remember) -> remember
-				.key("remember-me") // Clé secrète pour signer le cookie
-				.rememberMeParameter("rememberMe") // Nom du champ de case à cocher
+				.key("remember-me")
+				.rememberMeParameter("rememberMe")
 				.tokenValiditySeconds(86400));
 		http.logout(logout -> logout.logoutSuccessUrl("/").deleteCookies("JSESSIONID"));
 		return http.build();

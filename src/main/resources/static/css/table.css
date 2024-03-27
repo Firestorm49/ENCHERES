@@ -53,7 +53,7 @@ table a:hover, table a:active {
 }
 
 .boutonAjouterGenre td, .boutonAjouterActeurs td{
-	 border-width: 0;
+	border-width: 0;
 }
 
 .boutonAjouterGenre, .boutonAjouterActeurs{

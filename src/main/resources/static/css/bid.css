@@ -1,3 +1,55 @@
 .liste-articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
+.liste-articles .article{
+    max-width: 32rem;
+    background-color: #777777;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.liste-articles form{
+    padding: 0 !important;
+    align-items: center;
+}
+
+.liste-articles form .detail{
+    padding: 2rem;
+}
+
+
+.liste-articles form button{
+    width: 10rem;
+    height: 3rem;
+    background-color: #f1f1f1;
+}
+
+#article{
+    height: 100%;
+    width: 7rem;
+    object-fit: cover;
+}
+
+
+@media screen and (max-width: 768px){
+
+    .liste-articles form .detail{
+        padding: 1rem;
+    }
+
+    .liste-articles form button{
+        width: 6rem;
+        height: 1.5rem;
+        background-color: #f1f1f1;
+    }
+
+    #article{
+        height: 100%;
+        width: 4rem;
+        object-fit: cover;
+    }
 }

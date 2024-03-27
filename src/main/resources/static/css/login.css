@@ -15,9 +15,9 @@
 .login-form .left{
     width: 100%;
     /* border top bottom left */
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 0.063rem solid black;
+    border-top: 0.063rem solid black;
+    border-bottom: 0.063rem solid black;
     border-radius: 1rem 0 0 1rem;
 }
 
@@ -31,15 +31,23 @@
 }
 
 #mdpEtRememberMe{
-	display: flex;
+    display: flex;
 }
 
 #rememberMe, #mdp{
-	width: 50%;
+    width: 9rem;
+}
+
+#rememberMe{
+    margin-left: 0.5rem;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 #createAccount{
-	width: 22rem;
+    width: 22rem;
 }
-
 

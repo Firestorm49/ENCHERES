@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    gap: 2.5rem;
 }
 
 
@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 1.563rem;
 }
 
 .page-user-edit form .content-form{
@@ -22,18 +22,12 @@
     height: 100%;
 }
 
-@media screen and (max-width: 768px) {
-    body{
-        background-color: red;
-    }
-}
-
 .page-user .content .colone input{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 /* page user detail */
@@ -50,7 +44,7 @@
     align-items: center;
     margin: 0 3rem;
     border-radius: 1rem;
-    border: 1px solid #ccc;
+    border: 0.063rem solid #ccc;
     padding: 3rem;
     background-color: #cccccc;
     max-width: 40rem;
