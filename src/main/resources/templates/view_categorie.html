@@ -24,11 +24,9 @@
 				<td data-th-text="${item.getLibelle()}"></td>
 				<td><a
 					data-th-href="@{/category/modify(id=${item.getNoCategorie()})}"
-					data-th-if="${#authorization.expression('isAuthenticated()')}">
-						<span></span> <span></span> <span></span> <span></span> Modifier
+					data-th-if="${#authorization.expression('isAuthenticated()')}" th:text="#{modify.label}">
 				</a> <a data-th-href="@{/category/delete(id=${item.getNoCategorie()})}"
-					data-th-if="${#authorization.expression('isAuthenticated()')}">
-						<span></span> <span></span> <span></span> <span></span> Supprimer
+					data-th-if="${#authorization.expression('isAuthenticated()')}" th:text="#{delete.label}">
 				</a></td>
 			</tr>
 		</tbody>
@@ -37,31 +35,30 @@
 	<form action="/category/create" method="post"
 		data-th-if="${#authorization.expression('isAuthenticated()') and isNotModify}"
 		class="form-genre">
-		<h2>Ajouter une nouvelle catégorie :</h2>
+		<h2 th:text="#{NewCategorie.label}"></h2>
 		<ul class="flex-outer">
-			<li><label for="inputTitre1">Titre de la catégorie : </label> <input
+			<li><label for="inputTitre1" th:text="#{titlecategorie.label}"> </label> <input
 				type="text" name="libelle" id="inputTitre1" /></li>
 		</ul>
 		<BR>
-		<button type="submit">
-			<span></span> <span></span> <span></span> <span></span> Créer
+		<button type="submit"  th:text="#{createButton.label}">
 		</button>
 	</form>
 	<form data-th-object="${CategorieId}" action="/category/modify"
 		method="post"
 		data-th-if="${#authorization.expression('isAuthenticated()') and not isNotModify and CategorieId != null}"
 		class="form-genre">
-		<h2>Modifier une catégorie :</h2>
+		<h2  th:text="#{modifycategorie.label}"></h2>
 		<ul class="flex-outer">
 			<li><input type="hidden" data-th-value="*{noCategorie}"
 				name="id" /></li>
-			<li><label for="inputTitre2">Titre de la catégorie : </label> <input
+			<li><label for="inputTitre2" th:text="#{titlecategorie.label}"> </label> <input
 				type="text" data-th-value="*{libelle}" name="libelle"
 				id="inputTitre2" /></li>
 		</ul>
 		<BR>
-		<button type="submit">
-			<span></span> <span></span> <span></span> <span></span> Modifier
+		<button type="submit" th:text="#{modify.label}">
+
 		</button>
 	</form>
 </main>

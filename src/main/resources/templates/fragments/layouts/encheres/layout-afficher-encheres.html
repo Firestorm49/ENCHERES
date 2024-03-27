@@ -18,7 +18,7 @@
 		th:if="${#authorization.expression('isAuthenticated()')}">
 		<div>
 			<input type="radio" id="radioButton" name="radioButton" value="1" />
-			<label class="labelFiltresEncheres" for="radioButton">Achats</label><br>
+			<label class="labelFiltresEncheres" for="radioButton" th:text="#{purchases.label}"></label><br>
 			<span class="filtresEncheres"><input type="checkbox"
 				id="encheresOuvertes" name="encheresOuvertes"
 				value="true"><label class="labelFiltresEncheres"
@@ -36,20 +36,20 @@
 		</div>
 		<div class="radioButtonMesVentes">
 			<input type="radio" id="radioButton" name="radioButton" value="2" />
-			<label class="labelFiltresEncheres" for="radioButton">Mes
-				ventes</label> <br> <span class="filtresEncheres"><input
+			<label class="labelFiltresEncheres" for="radioButton" th:text="#{mesVentes.label}">
+			</label> <br> <span class="filtresEncheres"><input
 				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
 				value="true"><label class="labelFiltresEncheres"
-				for="mesVentesEnCours">Mes ventes en cours</label> </span> <br />
+				for="mesVentesEnCours"  th:text="#{myOnGoingSales.label}"></label> </span> <br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="ventesNonCommencees" name="ventesNonCommencees"
 				value="true"><label
-				class="labelFiltresEncheres" for="ventesNonCommencees">Ventes
-					non débutées</label> </span><br />
+				class="labelFiltresEncheres" for="ventesNonCommencees" th:text="#{notStartedSales.label}" >
+			</label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="ventesTerminees" name="ventesTerminees" value="true"><label
-				class="labelFiltresEncheres" for="ventesTerminees">Ventes
-					terminées</label> </span><br />
+				class="labelFiltresEncheres" for="ventesTerminees" th:text="#{finishedSales.label}">
+			</label> </span><br />
 		</div>
 	</div>
 

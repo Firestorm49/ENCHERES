@@ -16,7 +16,7 @@
 <body>
 	<main class="center-main page-user">
 		<div class="content">
-			<h1> Mon profil EDIT / CREATE </h1>
+			<h1 th:text="#{profile.h1}"></h1>
 			<form data-th-action="@{${postValue}}" data-th-object="${user}" method="post">
 				<p class="cards" data-th-each="err : ${#fields.errors('global')}" data-th-text="#{${err}}"/>
 				<div class="content-form">
@@ -29,32 +29,32 @@
 								<p data-th-errors="*{pseudo}" class="text-danger" data-th-if="${#fields.hasErrors('pseudo')}"></p>
 								<li>
 									<input class="input" type="text" id="pseudo" data-th-field="*{pseudo}" />
-									<label class="label" for="pseudo">Pseudo :</label>
+									<label class="label" for="pseudo" th:text="#{pseudo.label}"></label>
 								</li>
 								<p data-th-errors="*{prenom}" class="text-danger" data-th-if="${#fields.hasErrors('prenom')}"></p>
 								<li>
 									<input class="input" type="text" id="prenom" data-th-field="*{prenom}" />
-									<label class="label" for="prenom">Prénom :</label>
+									<label class="label" for="prenom" th:text="#{prenom.label}"></label>
 								</li>
 								<p data-th-errors="*{telephone}" class="text-danger" data-th-if="${#fields.hasErrors('telephone')}"></p>
 								<li>
 									<input class="input" type="number" id="telephone" data-th-field="*{telephone}" />
-									<label class="label" for="telephone">Téléphone :</label>
+									<label class="label" for="telephone" th:text="#{telephone.label}"> </label>
 								</li>
 								<p data-th-errors="*{codePostal}" class="text-danger" data-th-if="${#fields.hasErrors('codePostal')}"></p>
 								<li>
 									<input class="input" type="text" id="codePoste" data-th-field="*{codePostal}" />
-									<label class="label" for="codePoste">Code postal :</label>
+									<label class="label" for="codePoste" th:text="#{postCode.label}"></label>
 								</li>
 								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
 								<li>
 									<input class="input" data-th-if="${postValue} == '/users/modify'" type="password" id="mypassword" data-th-field="*{motdepasse}" />
-									<label class="label" data-th-if="${postValue} == '/users/modify'" for="mypassword">Mot de passe actuel :</label>
+									<label class="label" data-th-if="${postValue} == '/users/modify'" for="mypassword" th:text="#{currentPassword.label}"></label>
 								</li>
 								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
 								<li>
 									<input class="input" type="password" id="password" data-th-field="*{motdepasse}" />
-									<label class="label" for="password">Mot de passe :</label>
+									<label class="label" for="password" th:text="#{password.label}"></label>
 								</li>
 								<li>
 									<label class="label" data-th-text="'Crédit    ' + *{credit}"></label>
@@ -68,22 +68,22 @@
 								<p data-th-errors="*{nom}" class="text-danger" data-th-if="${#fields.hasErrors('nom')}"></p>
 								<li>
 									<input class="input" type="text" id="nom" data-th-field="*{nom}" />
-									<label class="label" for="nom">Nom :</label>
+									<label class="label" for="nom" th:text="#{nom.label}"></label>
 								</li>
 								<p data-th-errors="*{email}" class="text-danger" data-th-if="${#fields.hasErrors('email')}"></p>
 								<li>
 									<input class="input" type="email" id="email" data-th-field="*{email}" />
-									<label class="label" for="email">Email :</label>
+									<label class="label" for="email" th:text="#{mail.label}"> </label>
 								</li>
 								<p data-th-errors="*{rue}" class="text-danger" data-th-if="${#fields.hasErrors('rue')}"></p>
 								<li>
 									<input class="input" type="text" id="adresse" data-th-field="*{rue}" />
-									<label class="label" for="adresse">Rue :</label>
+									<label class="label" for="adresse" th:text="#{street.label}"></label>
 								</li>
 								<p data-th-errors="*{ville}" class="text-danger" data-th-if="${#fields.hasErrors('ville')}"></p>
 								<li>
 									<input class="input" type="text" id="ville" data-th-field="*{ville}" />
-									<label class="label" for="ville">Ville :</label>
+									<label class="label" for="ville" th:text="#{city.label}"></label>
 								</li>
 								<p data-th-errors="*{codePostal}" class="text-danger" data-th-if="${#fields.hasErrors('codePostal')}"></p>
 								<li>
@@ -92,7 +92,7 @@
 								<p data-th-errors="*{motdepasse}" class="text-danger" data-th-if="${#fields.hasErrors('motdepasse')}"></p>
 								<li>
 									<input class="input" type="password" id="confirmPassword" data-th-field="*{motdepasse}" />
-									<label class="label" for="confirmPassword">Confirmation :</label>
+									<label class="label" for="confirmPassword" th:text="#{passwordconfirmation.label}"></label>
 								</li>
 							</ul>
 						</div>
@@ -101,25 +101,20 @@
 				<div class="submit">
 					<ul class="flex-outer">
 						<li>
-							<button type="submit">Créer</button>
+							<button type="submit" th:text="#{createButton.label}"></button>
 						</li>
 						<li>
 							<button>
-								<a href="/users/detail">Annuler</a>
+								<a href="/users/detail" th:text="#{cancelButton.label}"></a>
 							</button>
 						</li>
 						<li data-th-if="${not IsCreate}">
 							<button>
-								<a data-th-href="@{'/users/delete?id=' + ${user.noUtilisateur}}">Supprimer mon compte</a>
+								<a data-th-href="@{'/users/delete?id=' + ${user.noUtilisateur}}" th:text="#{DeleteProfil.label}"></a>
 							</button>
 						</li>
 					</ul>
 				</div>
-
-				<!--
-				<div class="input">
-					<input type="submit" value="Créer" />
-				</div>-->
 			</form>
 		</div>
 	</main>

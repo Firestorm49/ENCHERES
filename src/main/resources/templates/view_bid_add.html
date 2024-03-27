@@ -16,7 +16,7 @@
 <body>
 <main class="center-main">
 	<div class="center-avis">
-		<h1> Detail vente </h1>
+		<h1  th:text="#{Encherir.label}"></h1>
 		<img data-th-if="${Vente.getPhoto() != null}" data-th-src="${Vente.getPhoto()}" alt="Votre Image">
 		<div class="informations">
 			<div class="top">
@@ -24,39 +24,39 @@
 					<span data-th-text="${Vente.getNomArticle()}"></span>
 				</div>
 				<div class="line">
-					Description : <span data-th-text="${Vente.getDescription()}"></span>
+					<span th:text="#{description.label} + ${Vente.getDescription()}"></span>
 				</div>
 				<div class="line">
-					Catégorie : <span data-th-text="${Vente.getCategorie().getLibelle()}"></span>
+					<span th:text="#{category.label} + ${Vente.getCategorie().getLibelle()}"></span>
+				</div>
+				<div class="line" data-th-if="${MOffre != null and MOffreUser != null}">
+					<span th:text="#{MOffre.label} + ${MOffre} + ' pts par ' + ${MOffreUser}"> </span>
 				</div>
 				<div class="line">
-					Meilleur offre : <span data-th-if="${MOffre != null and MOffreUser != null}" th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+					<span th:text="#{startingBids.label} + ${Vente.getMiseAPrix()} + ' points'"></span>
 				</div>
 				<div class="line">
-					Mise à prix : <span data-th-text="${Vente.getMiseAPrix()} + ' points'"></span>
+					<span th:text="#{endDate.label} + ${Vente.getDateFinEncheres()}"></span>
 				</div>
 				<div class="line">
-					Fin de l'enchère : <span data-th-text="${Vente.getDateFinEncheres()}"></span>
+					<span th:text="#{withdrawal.label} + ${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
 				</div>
 				<div class="line">
-					Retrait : <span data-th-text="${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
-				</div>
-				<div class="line">
-					Vendeur : <span data-th-text="${Vente.getVendeur().getPseudo()}"></span>
+					<span th:text="#{seller.label} + ${Vente.getVendeur().getPseudo()}"></span>
 				</div>
 			</div>
 			<form action="/bid/purpose" method="post" data-th-if="${#authorization.expression('isAuthenticated()')}" class="form-genre">
 				<ul class="flex-outer">
 					<input type="hidden" data-th-value="${Vente.getNoArticle()}" name="id">
 					<li>
-						<label for="inputTitre1">Ma Proposition :
+						<label for="inputTitre1" th:text="#{purpose.label}">
 						</label>
 						<input type="number" value="0"
 							   name="Proposition" id="inputTitre1"/>
 					</li>
 				</ul>
 				<BR>
-				<button type="submit">Enchérir</button>
+				<button type="submit" th:text="#{Encherir.label}"></button>
 			</form>
 		</div>
 	</div>

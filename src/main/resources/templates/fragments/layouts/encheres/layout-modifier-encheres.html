@@ -2,7 +2,7 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	  data-th-fragment="modifier-acteur(titleForm, action)"
 	  data-th-if="${#authorization.expression('isAuthenticated()') and participantId != null}"
-	  sec:authorize="hasRole('ADMIN')"
+	  sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')"
 	  data-th-action="@{${action}}"
 	  data-th-object="${participantId}"
 	  method="post">
@@ -14,20 +14,20 @@
 				   data-th-value="${participantId.getId()}" /></li>
 		<li>
 			<div class="alignement-label">
-				<label for="inputPrenom">Prenom : </label>
+				<label for="inputPrenom"></label>
 			</div>
 			<input type="text" name="prenom" id="inputPrenom"
 				   data-th-value="${participantId.getNom()}" />
 		</li>
 		<li>
 			<div class="alignement-label">
-				<label for="inputNom">Nom : </label>
+				<label for="inputNom" th:text="#{nom.label}">Nom : </label>
 			</div>
 			<input type="text" name="nom" id="inputNom"
 				   data-th-value="${participantId.getPrenom()}" />
 		</li>
 		<li>
-			<button id="modifyButton" type="submit">Modifier</button>
+			<button id="modifyButton" type="submit" th:text="#{modify.label}"></button>
 		</li>
 	</ul>
 </form>

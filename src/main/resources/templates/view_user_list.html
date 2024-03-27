@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-<title>Liste des Utilisateurs</title>
+<title th:text="#{usersList}"></title>
 <link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
 <main class="center-main">
 	<div class="center-avis">
@@ -70,7 +70,7 @@
 				</tr>
 				</tbody>
 			</table>
-			<input type="submit" th:text="#{deleteUsers.label}  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
+			<input type="submit" th:text="#{DeleteProfil.label}  data-th-if="${#authorization.expression('isAuthenticated()')} and ${#authorization.expression('hasAnyRole(''ADMIN'',''SUPER_ADMIN'')')} ">
 		</form>
 		<BR>
 	</div>

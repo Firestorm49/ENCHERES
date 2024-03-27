@@ -16,41 +16,41 @@
 <body>
 	<main class="center-main page-user page-user-detail">
 		<div class="content" data-th-object="${user}">
-			<h1> Mon profil </h1>
+			<h1 th:text="#{img.title.profil}">  </h1>
 			<div class="mofication">
-				<a data-th-href="@{'/users/modify?id=' + *{noUtilisateur}}" class="button">Modifier</a>
+				<a data-th-href="@{'/users/modify?id=' + *{noUtilisateur}}" class="button" th:text="#{modify.label}"></a>
 			</div>
 			<div class="informations">
 				<div class="left">
 					<div class="line">
-						<div class="line-name"> Pseudo : </div><span data-th-text="*{pseudo}"></span>
+						<div class="line-name"> </div><span data-th-text="#{pseudo.label} + *{pseudo}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Nom : </div> <span data-th-text="*{nom}"></span>
+						<div class="line-name"> </div> <span data-th-text="#{nom.label} + *{nom}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Prénom : </div><span data-th-text="*{prenom}"></span>
+						<div class="line-name"> </div><span data-th-text="#{prenom.label} + *{prenom}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Email : </div><span data-th-text="*{email}"></span>
+						<div class="line-name"> </div><span data-th-text="#{mail.label} + *{email}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Téléphone : </div><span data-th-text="*{telephone}"></span>
+						<div class="line-name"> </div><span data-th-text="#{telephone.label} + *{telephone}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Rue : </div><span data-th-text="*{rue}"></span>
+						<div class="line-name"> </div><span data-th-text="#{street.label} + *{rue}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Code postal : </div><span data-th-text="*{codePostal}"></span>
+						<div class="line-name"> </div><span data-th-text="#{postCode.label} + *{codePostal}"></span>
 					</div>
 					<div class="line">
-						<div class="line-name"> Ville : </div><span data-th-text="*{ville}"></span>
+						<div class="line-name"> </div><span data-th-text="#{city.label} + *{ville}"></span>
 					</div>
 				</div>
 				<div class="right">
 					<form method="post" action="\users\buycredits">
 						<input type="hidden" name="id" data-th-value="*{noUtilisateur}">
-						<label>Nombre de point à acheter</label>
+						<label data-th-text="#{NbBuy.label}"></label>
 						<input type="number" name="NumberPoint">
 						<button class="button" type="submit">+</button>
 					</form>

@@ -25,7 +25,7 @@
 				<a data-th-href="@{'/users/detail?id=' + ${enchere.vendeur.noUtilisateur}}" data-th-text="${enchere.vendeur.prenom} + ' ' + ${enchere.vendeur.nom}"></a>
 			</div>
 			<input type="hidden" name="id" data-th-value="${enchere.noArticle}">
-			<button  type="submit">Detail Vente</button>
+			<button  type="submit" th:text="#{selldetail.label}"></button>
 		</div>
 	</form>
 </div>

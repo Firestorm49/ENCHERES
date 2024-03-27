@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       data-th-replace="~{fragments/layout::layout(contenuPage=~{:: .center-main}, title=~{:: title},ressources=~{:: link})}">
-<title>Liste des Encherisseurs</title>
+<title th:text="#{listEncherisseurs}"></title>
 <link rel="stylesheet" data-th-href="@{/css/demo-form.css}">
 <main class="center-main">
   <div class="center-avis">
-    <h1>Encherisseurs</h1>
+    <h1 th:text="#{Encherisseurs.label}"></h1>
     <BR>
     <BR>
     <div class="top">
@@ -14,27 +14,27 @@
         <span th:text="${Vente.getNomArticle()}"></span>
       </div>
       <div class="line">
-        Description : <span th:text="${Vente.getDescription()}"></span>
+         <span th:text="#{description.label} + ${Vente.getDescription()}"></span>
       </div>
       <div class="line">
-        Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
+        <span th:text="#{category.label} + ${Vente.getCategorie().getLibelle()}"></span>
       </div>
       <div class="line">
-        Meilleur offre : <span th:text="${MOffre} + ' pts par ' + ${MOffreUser}"></span>
+        <span th:text="#{MOffre.label} + ${MOffre} + ' pts par ' + ${MOffreUser}"></span>
       </div>
       <div class="line">
-        Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
+        <span th:text="#{startingBids.label} + ${Vente.getMiseAPrix()} + ' points'"></span>
       </div>
       <div class="line">
-        Fin de l'enchère : <span th:text="${Vente.getDateFinEncheres()}"></span>
+        <span th:text="#{endDate.label} + ${Vente.getDateFinEncheres()}"></span>
       </div>
     </div>
     <table>
       <thead>
       <tr>
-        <th>Nom de l'encherisseur</th>
-        <th>Proposition</th>
-        <th>Date de l'enchere</th>
+        <th th:text="#{NameEncherisseur.label}"></th>
+        <th th:text="#{purpose}">Proposition</th>
+        <th th:text="#{EnchereDate.label}"></th>
       </tr>
       </thead>
       <tbody>
