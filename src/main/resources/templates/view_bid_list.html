@@ -13,7 +13,7 @@
 </th:block>
 </head>
 <body>
-	<h1>Liste des enchères</h1>
+	<h1 th:text="#{bidsList.h1}"></h1>
 	<main>		
 		<form th:replace="~{fragments/layouts/encheres/layout-afficher-encheres :: enchere-detail('/bid')}">
 		</form>

@@ -119,28 +119,7 @@ public class UtilisateurControlleur {
                 model.addAttribute("IsCreate", true);
                 return "view_user_edit";
             }
-            else{
-                Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority("MEMBRE"));
-
-                Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getMotdepasse(), authorities);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                if(authentication != null && authentication.isAuthenticated()) {
-                    UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
-                    if (UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0) {
-                        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                            UtilisateurConnecte.setAdministrateur(1);
-                        } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
-                            UtilisateurConnecte.setAdministrateur(2);
-                        } else {
-                            UtilisateurConnecte.setAdministrateur(0);
-                        }
-                        return "redirect:/bid";
-                    }
-                }
             }
-        }
-
         }
         return "redirect:/users/detail";
     }
