@@ -17,37 +17,37 @@
 	<div class="radioAndCheckbox"
 		th:if="${#authorization.expression('isAuthenticated()')}">
 		<div>
-			<input type="radio" id="radioButton" name="radioButton" value="1" th:value="${radioButton}" />
+			<input type="radio" id="radioButton" name="radioButton" value="1" th:selected="${radioButton == 1}" th:checked="${radioButton == 1}" />
 			<label class="labelFiltresEncheres" for="radioButton" th:text="#{purchases.label}"></label><br>
 			<span class="filtresEncheres"><input type="checkbox"
-				id="encheresOuvertes" name="encheresOuvertes"
-				value="true" th:value="${encheresOuvertes}" ><label class="labelFiltresEncheres"
+				id="encheresOuvertes" name="encheresOuvertes" th:checked="${encheresOuvertes}"
+				value="true" th:selected="${encheresOuvertes}" ><label class="labelFiltresEncheres"
 				for="encheresOuvertes" th:text="#{openedBids.label}"></label></span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="mesEncheresEnCours" name="mesEncheresEnCours" th:value="${mesEncheresEnCours}"
+				id="mesEncheresEnCours" name="mesEncheresEnCours" th:selected="${mesEncheresEnCours}" th:checked="${mesEncheresEnCours}"
 				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresEnCours"
 				th:text="#{myOnGoingBids.label}"></label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="mesEncheresRemportees" name="mesEncheresRemportees"
-				value="true"  th:value="${mesEncheresRemportees}"><label
+				id="mesEncheresRemportees" name="mesEncheresRemportees"  th:checked="${mesEncheresRemportees}"
+				value="true"  th:selected="${mesEncheresRemportees}"><label
 				class="labelFiltresEncheres" for="mesEncheresRemportees" 
 				th:text="#{myWonBids.label}"></label> </span><br />
 		</div>
 		<div class="radioButtonMesVentes">
-			<input type="radio" id="radioButton" name="radioButton" value="2" th:value="${radioButton}"/>
+			<input type="radio" id="radioButton" name="radioButton" value="2" th:selected="${radioButton == 2}" th:checked="${radioButton == 2}"/>
 			<label class="labelFiltresEncheres" for="radioButton" th:text="#{mesVentes.label}">
 			</label> <br> <span class="filtresEncheres"><input
-				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"  th:value="${mesVentesEnCours}"
+				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"  th:selected="${mesVentesEnCours}"  th:checked="${mesVentesEnCours}"
 				value="true"><label class="labelFiltresEncheres"
 				for="mesVentesEnCours"  th:text="#{myOnGoingSales.label}"></label> </span> <br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesNonCommencees" name="ventesNonCommencees" th:value="${ventesNonCommencees}"
+				id="ventesNonCommencees" name="ventesNonCommencees" th:selected="${ventesNonCommencees}"  th:checked="${ventesNonCommencees}"
 				value="true"><label
 				class="labelFiltresEncheres" for="ventesNonCommencees" th:text="#{notStartedSales.label}" >
 			</label> </span><br />
-			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesTerminees" name="ventesTerminees" value="true" th:value="${ventesTerminees}"><label
+			<span class="filtresEncheres"><input type="checkbox" th:checked="${ventesTerminees}"
+				id="ventesTerminees" name="ventesTerminees" value="true" th:selected="${ventesTerminees}"><label
 				class="labelFiltresEncheres" for="ventesTerminees" th:text="#{finishedSales.label}">
 			</label> </span><br />
 		</div>

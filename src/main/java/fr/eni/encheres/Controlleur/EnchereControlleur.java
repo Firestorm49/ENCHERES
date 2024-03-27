@@ -71,12 +71,12 @@ public class EnchereControlleur {
 	public String getEnchere(@RequestParam(name = "nom_Article", required = false) String nomArticle,
 							 @RequestParam(name = "dropbox", required = false) Integer categorie,
 			@RequestParam(name = "radioButton", required = false) Integer radioButton,
-			@RequestParam(name = "mesVentesEnCours", required = false) boolean mesVentesEnCours,
-			@RequestParam(name = "ventesNonCommencees", required = false) boolean ventesNonCommencees,
-			@RequestParam(name = "ventesTerminees", required = false) boolean ventesTerminees,
-			@RequestParam(name = "mesEncheresRemportees", required = false) boolean mesEncheresRemportees,
-			@RequestParam(name = "mesEncheresEnCours", required = false) boolean mesEncheresEnCours,
-			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,
+			@RequestParam(name = "mesVentesEnCours", required = false) Boolean mesVentesEnCours,
+			@RequestParam(name = "ventesNonCommencees", required = false) Boolean ventesNonCommencees,
+			@RequestParam(name = "ventesTerminees", required = false) Boolean ventesTerminees,
+			@RequestParam(name = "mesEncheresRemportees", required = false) Boolean mesEncheresRemportees,
+			@RequestParam(name = "mesEncheresEnCours", required = false) Boolean mesEncheresEnCours,
+			@RequestParam(name = "encheresOuvertes", required = false) Boolean encheresOuvertes,
 			@RequestParam(name = "pageNumber", required = false) Integer pageNumber,
 			@RequestParam(name = "pageSize", required = false) Integer pageSize,
 			Model model, HttpSession session) {
@@ -98,22 +98,22 @@ public class EnchereControlleur {
 		if (radioButton != null) {
 			session.setAttribute("radioButton", radioButton);
 		}
-		if (mesVentesEnCours == false) {
+		if (mesVentesEnCours != null) {
 			session.setAttribute("mesVentesEnCours", mesVentesEnCours);
 		}
-		if (ventesNonCommencees == false) {
+		if (ventesNonCommencees != null) {
 			session.setAttribute("ventesNonCommencees", ventesNonCommencees);
 		}
-		if (ventesTerminees == false) {
+		if (ventesTerminees != null) {
 			session.setAttribute("ventesTerminees", ventesTerminees);
 		}
-		if (mesEncheresRemportees == false) {
+		if (mesEncheresRemportees != null) {
 			session.setAttribute("mesEncheresRemportees", mesEncheresRemportees);
 		}
-		if (mesEncheresEnCours == false) {
+		if (mesEncheresEnCours != null) {
 			session.setAttribute("mesEncheresEnCours", mesEncheresEnCours);
 		}
-		if (encheresOuvertes == false) {
+		if (encheresOuvertes != null) {
 			session.setAttribute("encheresOuvertes", encheresOuvertes);
 		}
 		List<CArticleVendu> listArticlesVendus = new ArrayList<>();
@@ -121,8 +121,9 @@ public class EnchereControlleur {
 		if (UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0) {
 		 listArticlesVendus = enchereService.listerEncheresConnecteByFilters(nomArticle,
 					categorie != null ? categorie.intValue() : 0, UtilisateurConnecte.getNoUtilisateur(), radioButton != null ? radioButton.intValue() : 0,
-					mesVentesEnCours, ventesNonCommencees, ventesTerminees, mesEncheresRemportees, mesEncheresEnCours,
-					encheresOuvertes, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
+					mesVentesEnCours != null ? mesVentesEnCours.booleanValue() : false, ventesNonCommencees != null ? ventesNonCommencees.booleanValue() : false,
+				 ventesTerminees != null ? ventesTerminees.booleanValue() : false, mesEncheresRemportees != null ? mesEncheresRemportees.booleanValue() : false,
+				 mesEncheresEnCours != null ? mesEncheresEnCours.booleanValue() : false, encheresOuvertes != null ? encheresOuvertes.booleanValue() : false, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
 		} else {
 		listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
 				categorie != null ? categorie.intValue() : 0, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
@@ -133,12 +134,12 @@ public class EnchereControlleur {
 		Integer storedcategorie = (Integer) session.getAttribute("dropbox");
 
 		Integer storedRadioButton = (Integer) session.getAttribute("radioButton");
-		boolean storedMesVentesEnCours = (boolean) session.getAttribute("mesVentesEnCours");
-		boolean storedVentesNonCommencees = (boolean) session.getAttribute("ventesNonCommencees");
-		boolean storedVentesTerminees = (boolean) session.getAttribute("ventesTerminees");
-		boolean storedMesEncheresRemportees = (boolean) session.getAttribute("mesEncheresRemportees");
-		boolean storedMesEncheresEnCours = (boolean) session.getAttribute("mesEncheresEnCours");
-		boolean storedEncheresOuvertes = (boolean) session.getAttribute("encheresOuvertes");
+		Boolean storedMesVentesEnCours = (Boolean) session.getAttribute("mesVentesEnCours");
+		Boolean storedVentesNonCommencees = (Boolean) session.getAttribute("ventesNonCommencees");
+		Boolean storedVentesTerminees = (Boolean) session.getAttribute("ventesTerminees");
+		Boolean storedMesEncheresRemportees = (Boolean) session.getAttribute("mesEncheresRemportees");
+		Boolean storedMesEncheresEnCours = (Boolean) session.getAttribute("mesEncheresEnCours");
+		Boolean storedEncheresOuvertes = (Boolean) session.getAttribute("encheresOuvertes");
 
 		int finalPageNumber = storedPageNumber != null ? storedPageNumber : 1;
 		int finalPageSize = storedPageSize != null ? storedPageSize : 5;
@@ -146,12 +147,12 @@ public class EnchereControlleur {
 		int finalcategorie = storedcategorie != null ? storedcategorie : 0;
 
 		int finalRadioButton = storedRadioButton != null ? storedRadioButton : 0;
-		boolean finalMesVentesEnCours = storedMesVentesEnCours == true ? storedMesVentesEnCours : false;
-		boolean finalVentesNonCommencees = storedVentesNonCommencees == true ? storedVentesNonCommencees :false;
-		boolean finalVentesTerminees = storedVentesTerminees == true ? storedVentesTerminees : false;
-		boolean finalMesEncheresRemportees = storedMesEncheresRemportees == true ? storedMesEncheresRemportees : false;
-		boolean finalMesEncheresEnCours = storedMesEncheresEnCours == true ? storedMesEncheresEnCours : false;
-		boolean finalEncheresOuvertes = storedEncheresOuvertes  == true ? storedEncheresOuvertes : false;
+		boolean finalMesVentesEnCours = storedMesVentesEnCours  != null ? storedMesVentesEnCours : false;
+		boolean finalVentesNonCommencees = storedVentesNonCommencees  != null ? storedVentesNonCommencees :false;
+		boolean finalVentesTerminees = storedVentesTerminees  != null ? storedVentesTerminees : false;
+		boolean finalMesEncheresRemportees = storedMesEncheresRemportees  != null ? storedMesEncheresRemportees : false;
+		boolean finalMesEncheresEnCours = storedMesEncheresEnCours  != null ? storedMesEncheresEnCours : false;
+		boolean finalEncheresOuvertes = storedEncheresOuvertes != null ? storedEncheresOuvertes : false;
 
 		model.addAttribute("pageNumber", finalPageNumber);
 		model.addAttribute("pageSize", finalPageSize);
