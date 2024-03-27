@@ -103,6 +103,8 @@ public class UtilisateurControlleur {
 
         user.setMotdepasse(mdp);
 
+        if(user.getEmail() != null){
+
         if(utilisateurService.checkUser(user.getEmail())){
             return "redirect:/login";
         }else{
@@ -121,9 +123,9 @@ public class UtilisateurControlleur {
 
                 Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getMotdepasse(), authorities);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                if(authentication != null && authentication.isAuthenticated()){
+                if(authentication != null && authentication.isAuthenticated()) {
                     UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
-                    if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
+                    if (UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0) {
                         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
                             UtilisateurConnecte.setAdministrateur(1);
                         } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
@@ -132,18 +134,13 @@ public class UtilisateurControlleur {
                             UtilisateurConnecte.setAdministrateur(0);
                         }
                         return "redirect:/bid";
-                    } else {
-                        UtilisateurConnecte = null;
-                        Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate null");
-                        return "redirect:/login";
                     }
-                } else {
-                    Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate return null");
-                    return "redirect:/login";
                 }
             }
+        }
 
         }
+        return "redirect:/users/detail";
     }
     @GetMapping("/modify/password")
     public String getModifyPasswordUsers(@RequestParam(name = "email", required = false) String email,

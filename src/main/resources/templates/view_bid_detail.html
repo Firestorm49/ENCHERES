@@ -29,33 +29,33 @@
 					<span th:text="${Vente.getNomArticle()}"></span>
 				</div>
 				<div class="line">
-					Description : <span th:text="${Vente.getDescription()}"></span>
+					<span th:text="#{description.label} + ${Vente.getDescription()}"></span>
 				</div>
 				<div class="line">
-					Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
+					  <span th:text="#{category.label} + ${Vente.getCategorie().getLibelle()}"></span>
 				</div>
 				<div class="line" data-th-if="${MOffre != null and winner != null and MOffreUser != null}">
-					Meilleur offre : <span th:text="${MOffre} + ' pts par '"> </span>
+					 <span th:text="#{MOffre.label} + ${MOffre} + ' pts par '"> </span>
 					<a data-th-href="@{'/users/detail?id=' + ${winner.noUtilisateur}}" data-th-text="${MOffreUser}"></a>
 				</div>
 				<div class="line">
-					Mise à prix : <span th:text="${Vente.getMiseAPrix()} + ' points'"></span>
+					 <span th:text="#{startingBids.label} + ${Vente.getMiseAPrix()} + ' points'"></span>
 				</div>
 				<div class="line">
-					Fin de l'enchère : <span th:text="${Vente.getDateFinEncheres()}"></span>
+					 <span th:text="#{endDate.label} + ${Vente.getDateFinEncheres()}"></span>
 				</div>
 				<div class="line">
-					Retrait : <span th:text="${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
+					 <span th:text="#{withdrawal.label} + ${Vente.getRetrait().getRue()} + ' \n' + ${Vente.getRetrait().getCode_postal()}+ ' ' + ${Vente.getRetrait().getVille()}"></span>
 				</div>
 				<div class="line">
-					Vendeur : <span th:text="${Vente.getVendeur().getPseudo()}"></span>
+					 <span th:text="#{seller.label} + ${Vente.getVendeur().getPseudo()}"></span>
 				</div>
 				<div class="line">
-					Tel : <span th:text="${Vente.getVendeur().getTelephone()}"></span>
+					 <span th:text="#{telephone.label} + ${Vente.getVendeur().getTelephone()}"></span>
 				</div>
 			</div>
-				<button type="reset" data-th-if="${Type == 'W'}">Back</button>
-			<button type="reset" data-th-if="${Type == 'V'}">Retrait Effectuer</button>
+				<button type="reset" th:text="#{backButton.label}" data-th-if="${Type == 'W'}"></button>
+			<button type="reset" th:text="#{doneWithdrawal.label}" data-th-if="${Type == 'V'}">Retrait Effectuer</button>
 		</div>
 	</div>
 </main>

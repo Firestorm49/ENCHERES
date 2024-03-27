@@ -129,12 +129,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
             articleIDs = jdbcTemplate.queryForList(SelectarticleQuery, new Object[]{id}, Integer.class);
 
             for (int i = 0; i < Nb_RowsUsers; i++) {
-                String deleteQuery = "DELETE FROM RETRAITS WHERE no_article = ?";
-                jdbcTemplate.update(deleteQuery, articleIDs.get(i));
+                String updateQuery = "UPDATE ARTICLES_VENDUS SET no_utilisateur=10 WHERE no_article = ?";
+                jdbcTemplate.update(updateQuery, articleIDs.get(i));
             }
         }
-        String deleteQuery = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
-        jdbcTemplate.update(deleteQuery, id);
 
         // Supprimer l'utilisateur de la table des profils
         String deleteProfilQuery = "DELETE FROM Utilisateurs WHERE no_utilisateur = ?";
