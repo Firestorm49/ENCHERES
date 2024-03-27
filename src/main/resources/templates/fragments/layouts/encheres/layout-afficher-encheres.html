@@ -7,7 +7,7 @@
 		type="text" placeholder="Rechercher" name="nomArticle"></input> <label
 		class="labelFiltresEncheres" for="dropbox" th:text="#{category.label}"></label><select
 		id="dropbox" name="dropbox" >
-	<option th:value="'0'">Sélectionnez une catégorie</option>
+	<option th:value="'0'" th:text="#{selectCategory.label}"></option>
 		<option th:each="item : ${CategorieSession}"
 			th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
 	</select>
@@ -53,11 +53,11 @@
 		</div>
 	</div>
 
-	<button id="prevBtn" type="submit">Précédent</button>
+	<button id="prevBtn" type="submit" data-th-text="#{previousButton.label}"></button>
 	<input id="pageNumber" name="pageNumber" type="number" value="0" th:value="${pageNumber}">
-	<button id="nextBtn" type="submit">Suivant</button>
+	<button id="nextBtn" type="submit" data-th-text="#{nextButton.label}"></button>
 
-	<label for="pageSize">Taille de page:</label>
+	<label for="pageSize" data-th-text="#{pageSizeButton.label}"></label>
 	<select id="pageSize" data-th-value="${pageSize}" name="pageSize">
 		<option value="5" th:selected="${pageSize == 5}">5</option>
 		<option value="10" th:selected="${pageSize == 10}">10</option>

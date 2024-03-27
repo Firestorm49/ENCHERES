@@ -88,6 +88,7 @@ public class UtilisateurControlleur {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("postValue", "/users/create");
+            model.addAttribute("IsCreate", true);
             return "view_user_edit";
         }
 
@@ -115,6 +116,7 @@ public class UtilisateurControlleur {
             if(result != ErrorCode.NO_ERROR){
                 Logger.log("Trace_ERROR.log","UtilisateurControlleur: postCreateUsers - " + result);
                 model.addAttribute("ErrorStringCode",result);
+                model.addAttribute("IsCreate", true);
                 return "view_user_edit";
             }
             else{
