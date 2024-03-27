@@ -57,7 +57,6 @@ header h1 {
 .center-main {
 	margin: 2rem 10rem 0 10rem;
 	padding: 2rem;
-    height: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -79,7 +78,7 @@ header h1 {
 	text-align: center;
 }
 
-input[type=text], input[type=number], input[type=password],input[type=datetime-local] {
+input[type=text], input[type=number], input[type=password],input[type=datetime-local], input[type=email] {
     width: 26.438rem;
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0;
@@ -91,7 +90,7 @@ input[type=text], input[type=number], input[type=password],input[type=datetime-l
     bottom: 0px;
     z-index: 1000;
 }
-input[type=text]:focus , input[type=number]:focus, input[type=password]:focus,input[type=datetime-local]:focus {
+input[type=text]:focus , input[type=number]:focus, input[type=password]:focus,input[type=datetime-local]:focus, input[type=email]:focus {
     border: 0.188rem solid #555;
 }
 

@@ -25,6 +25,7 @@ form h1 {
 	margin: 5px;
 	position: relative;
 	width: 100%;
+	height: 3rem;
 }
 
 .flex-outer li .label{
@@ -87,6 +88,17 @@ form h1 {
 	letter-spacing: .09em;
 	border-radius: 2px;
 	padding: 8px 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.flex-outer li button a{
+	text-decoration: none;
+	color: white;
+	width: 100%;
+	height: 100%;
 }
 
 input[type=text], input[type=number], input[type=email], input[type=password],input[type=datetime-local] {

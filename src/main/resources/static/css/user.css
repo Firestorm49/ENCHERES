@@ -14,6 +14,20 @@
     gap: 25px;
 }
 
+.page-user-edit form .content-form{
+    height: 30rem;
+}
+
+.page-user-edit .content .colone{
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    body{
+        background-color: red;
+    }
+}
+
 .page-user .content .colone input{
     display: flex;
     justify-content: center;

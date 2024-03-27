@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
 	  data-th-replace="~{fragments/layouts/layout :: layout(
 				 	title=~{:: title}, 
 				 	contenuPage=~{:: .center-main}, 
@@ -17,7 +17,8 @@
 	<main class="center-main page-user page-user-detail">
 		<div class="content" data-th-object="${user}">
 			<h1 th:text="#{img.title.profil}">  </h1>
-			<div class="mofication">
+			<div class="mofication" th:if="${#authorization.expression('isAuthenticated()')}"
+				 sec:authorize="hasAnyRole('ADMIN','SUPER_ADMIN')">
 				<a data-th-href="@{'/users/modify?id=' + *{noUtilisateur}}" class="button" th:text="#{modify.label}"></a>
 			</div>
 			<div class="informations">
@@ -48,7 +49,7 @@
 					</div>
 				</div>
 				<div class="right">
-					<form method="post" action="\users\buycredits">
+					<form method="post" action="\users\buycredits" th:if="${#authorization.expression('isAuthenticated()')}">
 						<input type="hidden" name="id" data-th-value="*{noUtilisateur}">
 						<label data-th-text="#{NbBuy.label}"></label>
 						<input type="number" name="NumberPoint">
