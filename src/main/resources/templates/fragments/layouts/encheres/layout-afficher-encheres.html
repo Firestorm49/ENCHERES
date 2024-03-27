@@ -4,12 +4,12 @@
 	<br>
 	<h1 style="text-align: center;" th:text="#{listeEncheres.h1}"></h1>
 	<br> <br> <label id="filtres" th:text="#{filter.label}"></label><input
-		type="text" placeholder="Rechercher" name="nomArticle"></input> <label
+		type="text" placeholder="Rechercher" name="nom_Article" value="" th:value="${nom_Article}"></input> <label
 		class="labelFiltresEncheres" for="dropbox" th:text="#{category.label}"></label><select
-		id="dropbox" name="dropbox" >
-	<option th:value="'0'" th:text="#{selectCategory.label}"></option>
+		id="dropbox" name="dropbox" th:value="${dropbox}" >
+	<option th:selected="${dropbox == 0}" value="0" th:text="#{selectCategory.label}"></option>
 		<option th:each="item : ${CategorieSession}"
-			th:value="${item.noCategorie}" th:text="${item.libelle}"></option>
+			th:value="${item.noCategorie}" th:selected="${dropbox == item.noCategorie}" th:text="${item.libelle}"></option>
 	</select>
 	<button id="searchButton" type="submit" th:text="#{searchButton.label}"></button>
 	<br>
@@ -17,45 +17,62 @@
 	<div class="radioAndCheckbox"
 		th:if="${#authorization.expression('isAuthenticated()')}">
 		<div>
-			<input type="radio" id="radioButton" name="radioButton" value="1" />
+			<input type="radio" id="radioButton" name="radioButton" value="1" th:value="${radioButton}" />
 			<label class="labelFiltresEncheres" for="radioButton" th:text="#{purchases.label}"></label><br>
 			<span class="filtresEncheres"><input type="checkbox"
 				id="encheresOuvertes" name="encheresOuvertes"
-				value="true"><label class="labelFiltresEncheres"
+				value="true" th:value="${encheresOuvertes}" ><label class="labelFiltresEncheres"
 				for="encheresOuvertes" th:text="#{openedBids.label}"></label></span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="mesEncheresEnCours" name="mesEncheresEnCours"
+				id="mesEncheresEnCours" name="mesEncheresEnCours" th:value="${mesEncheresEnCours}"
 				value="true"><label
 				class="labelFiltresEncheres" for="mesEncheresEnCours"
 				th:text="#{myOnGoingBids.label}"></label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
 				id="mesEncheresRemportees" name="mesEncheresRemportees"
-				value="true"><label
+				value="true"  th:value="${mesEncheresRemportees}"><label
 				class="labelFiltresEncheres" for="mesEncheresRemportees" 
 				th:text="#{myWonBids.label}"></label> </span><br />
 		</div>
 		<div class="radioButtonMesVentes">
-			<input type="radio" id="radioButton" name="radioButton" value="2" />
+			<input type="radio" id="radioButton" name="radioButton" value="2" th:value="${radioButton}"/>
 			<label class="labelFiltresEncheres" for="radioButton" th:text="#{mesVentes.label}">
 			</label> <br> <span class="filtresEncheres"><input
-				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"
+				type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours"  th:value="${mesVentesEnCours}"
 				value="true"><label class="labelFiltresEncheres"
 				for="mesVentesEnCours"  th:text="#{myOnGoingSales.label}"></label> </span> <br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesNonCommencees" name="ventesNonCommencees"
+				id="ventesNonCommencees" name="ventesNonCommencees" th:value="${ventesNonCommencees}"
 				value="true"><label
 				class="labelFiltresEncheres" for="ventesNonCommencees" th:text="#{notStartedSales.label}" >
 			</label> </span><br />
 			<span class="filtresEncheres"><input type="checkbox"
-				id="ventesTerminees" name="ventesTerminees" value="true"><label
+				id="ventesTerminees" name="ventesTerminees" value="true" th:value="${ventesTerminees}"><label
 				class="labelFiltresEncheres" for="ventesTerminees" th:text="#{finishedSales.label}">
 			</label> </span><br />
 		</div>
 	</div>
 
-	<button id="prevBtn" type="submit" data-th-text="#{previousButton.label}"></button>
-	<input id="pageNumber" name="pageNumber" type="number" value="0" th:value="${pageNumber}">
-	<button id="nextBtn" type="submit" data-th-text="#{nextButton.label}"></button>
+	<button id="prevBtn" data-th-text="#{previousButton.label}" onclick="decrementPageNumber()"></button>
+	<input id="pageNumber" name="pageNumber" type="number" value="1" th:value="${pageNumber}">
+	<button id="nextBtn" data-th-text="#{nextButton.label}" onclick="incrementPageNumber()"></button>
+
+	<script type="text/javascript">
+		function incrementPageNumber() {
+			var pageNumberElement = document.getElementById("pageNumber");
+			var pageNumber = parseInt(pageNumberElement.value);
+			pageNumber++;
+			pageNumberElement.value = pageNumber;
+		}
+		function decrementPageNumber() {
+			var pageNumberElement = document.getElementById("pageNumber");
+			var pageNumber = parseInt(pageNumberElement.value);
+			if (pageNumber > 0) {
+				pageNumber--;
+				pageNumberElement.value = pageNumber;
+			}
+		}
+	</script>
 
 	<label for="pageSize" data-th-text="#{pageSizeButton.label}"></label>
 	<select id="pageSize" data-th-value="${pageSize}" name="pageSize">

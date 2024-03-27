@@ -109,7 +109,7 @@ public class EnchereDAOImpl implements EnchereDAO {
         List<Object> params = new ArrayList<>();
         boolean isAND = false;
         if (nomArticle != null && nomArticle.trim() != "") {
-            Filter += " nom_article = ? ";
+            Filter += " nom_article LIKE '%' + ? + '%' ";
             isAND = true;
             params.add(nomArticle);
         }
@@ -133,7 +133,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 
         List<CArticleVendu> filteredArticles = allArticles.stream()
                 .skip(min - 1)
-                .limit(max - min + 1)
+                .limit(max - min)
                 .collect(Collectors.toList());
 
         return filteredArticles;
@@ -155,7 +155,7 @@ public class EnchereDAOImpl implements EnchereDAO {
         List<Object> params = new ArrayList<>();
         Boolean EntrerAND = false;
       if (nomArticle != null && nomArticle.trim() != "") {
-            Filter += " nom_article = ? ";
+          Filter += " nom_article LIKE '%' + ? + '%' ";
           EntrerAND = true;
             params.add(nomArticle);
         }
@@ -256,7 +256,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 
         List<CArticleVendu> filteredArticles = allArticles.stream()
                 .skip(min - 1)
-                .limit(max - min + 1)
+                .limit(max - min)
                 .collect(Collectors.toList());
 
         return filteredArticles;

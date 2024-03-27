@@ -77,10 +77,45 @@ public class EnchereControlleur {
 			@RequestParam(name = "mesEncheresRemportees", required = false) boolean mesEncheresRemportees,
 			@RequestParam(name = "mesEncheresEnCours", required = false) boolean mesEncheresEnCours,
 			@RequestParam(name = "encheresOuvertes", required = false) boolean encheresOuvertes,
-			@RequestParam(name = "numeroPage", required = false) Integer pageNumber,
+			@RequestParam(name = "pageNumber", required = false) Integer pageNumber,
 			@RequestParam(name = "pageSize", required = false) Integer pageSize,
 			Model model, HttpSession session) {
 		Logger.log("Trace_ENI.log", "EnchereControlleur : getEnchere ");
+
+
+		if (nomArticle != null && nomArticle.trim() != "") {
+			session.setAttribute("nom_Article", nomArticle);
+		}
+		if (categorie != null) {
+			session.setAttribute("dropbox", categorie);
+		}
+		if (pageNumber != null) {
+			session.setAttribute("pageNumber", pageNumber);
+		}
+		if (pageSize != null) {
+			session.setAttribute("pageSize", pageSize);
+		}
+		if (radioButton != null) {
+			session.setAttribute("radioButton", radioButton);
+		}
+		if (mesVentesEnCours == false) {
+			session.setAttribute("mesVentesEnCours", mesVentesEnCours);
+		}
+		if (ventesNonCommencees == false) {
+			session.setAttribute("ventesNonCommencees", ventesNonCommencees);
+		}
+		if (ventesTerminees == false) {
+			session.setAttribute("ventesTerminees", ventesTerminees);
+		}
+		if (mesEncheresRemportees == false) {
+			session.setAttribute("mesEncheresRemportees", mesEncheresRemportees);
+		}
+		if (mesEncheresEnCours == false) {
+			session.setAttribute("mesEncheresEnCours", mesEncheresEnCours);
+		}
+		if (encheresOuvertes == false) {
+			session.setAttribute("encheresOuvertes", encheresOuvertes);
+		}
 		List<CArticleVendu> listArticlesVendus = new ArrayList<>();
 		UtilisateurConnecte = (CUtilisateur) session.getAttribute("membreEnSession");
 		if (UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0) {
@@ -92,8 +127,45 @@ public class EnchereControlleur {
 		listArticlesVendus = enchereService.listerEncheresDeconnecteByFilters(nomArticle,
 				categorie != null ? categorie.intValue() : 0, pageNumber != null ? pageNumber.intValue() : 1, pageSize != null ? pageSize.intValue() : 5);
 		}
+		Integer storedPageNumber = (Integer) session.getAttribute("pageNumber");
+		Integer storedPageSize = (Integer) session.getAttribute("pageSize");
+		String storedNomArticle = (String) session.getAttribute("nom_Article");
+		Integer storedcategorie = (Integer) session.getAttribute("dropbox");
 
+		Integer storedRadioButton = (Integer) session.getAttribute("radioButton");
+		boolean storedMesVentesEnCours = (boolean) session.getAttribute("mesVentesEnCours");
+		boolean storedVentesNonCommencees = (boolean) session.getAttribute("ventesNonCommencees");
+		boolean storedVentesTerminees = (boolean) session.getAttribute("ventesTerminees");
+		boolean storedMesEncheresRemportees = (boolean) session.getAttribute("mesEncheresRemportees");
+		boolean storedMesEncheresEnCours = (boolean) session.getAttribute("mesEncheresEnCours");
+		boolean storedEncheresOuvertes = (boolean) session.getAttribute("encheresOuvertes");
+
+		int finalPageNumber = storedPageNumber != null ? storedPageNumber : 1;
+		int finalPageSize = storedPageSize != null ? storedPageSize : 5;
+		String finalNomArticle = storedNomArticle;
+		int finalcategorie = storedcategorie != null ? storedcategorie : 0;
+
+		int finalRadioButton = storedRadioButton != null ? storedRadioButton : 0;
+		boolean finalMesVentesEnCours = storedMesVentesEnCours == true ? storedMesVentesEnCours : false;
+		boolean finalVentesNonCommencees = storedVentesNonCommencees == true ? storedVentesNonCommencees :false;
+		boolean finalVentesTerminees = storedVentesTerminees == true ? storedVentesTerminees : false;
+		boolean finalMesEncheresRemportees = storedMesEncheresRemportees == true ? storedMesEncheresRemportees : false;
+		boolean finalMesEncheresEnCours = storedMesEncheresEnCours == true ? storedMesEncheresEnCours : false;
+		boolean finalEncheresOuvertes = storedEncheresOuvertes  == true ? storedEncheresOuvertes : false;
+
+		model.addAttribute("pageNumber", finalPageNumber);
+		model.addAttribute("pageSize", finalPageSize);
+		model.addAttribute("nom_Article", finalNomArticle);
+		model.addAttribute("dropbox", finalcategorie);
 		model.addAttribute("encheres",listArticlesVendus);
+
+		model.addAttribute("radioButton", finalRadioButton);
+		model.addAttribute("mesVentesEnCours", finalMesVentesEnCours);
+		model.addAttribute("ventesNonCommencees", finalVentesNonCommencees);
+		model.addAttribute("ventesTerminees", finalVentesTerminees);
+		model.addAttribute("mesEncheresRemportees",finalMesEncheresRemportees);
+		model.addAttribute("mesEncheresEnCours", finalMesEncheresEnCours);
+		model.addAttribute("encheresOuvertes", finalEncheresOuvertes);
 		return "view_bid_list";
 	}
 
