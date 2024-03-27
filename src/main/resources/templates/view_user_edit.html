@@ -108,7 +108,7 @@
 								<a href="/users/detail">Annuler</a>
 							</button>
 						</li>
-						<li>
+						<li data-th-if="${not IsCreate}">
 							<button>
 								<a data-th-href="@{'/users/delete?id=' + ${user.noUtilisateur}}">Supprimer mon compte</a>
 							</button>

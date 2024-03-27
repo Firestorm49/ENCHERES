@@ -290,8 +290,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     @Override
     public CUtilisateur getUtilisateurByEmail(String mail) {
         Logger.log("Trace_ENI.log","getUtilisateurByEmail : " + mail);
-        String sql = "SELECT * FROM UTILISATEURS WHERE email=?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{mail},  new UtilisateurRowMapper() );
+        String sql = "SELECT * FROM UTILISATEURS WHERE email=?  OR pseudo=?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{mail,mail},  new UtilisateurRowMapper() );
     }
 
     @Override

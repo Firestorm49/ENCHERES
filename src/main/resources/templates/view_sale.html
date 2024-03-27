@@ -8,7 +8,7 @@
 		<h1 style="padding: 1rem;" th:text="#{sale.label}"></h1>
 		<a th:href="@{/sale/modify(id=12)}"
 			th:if="${#authorization.expression('isAuthenticated()')}">test</a>
-		<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
+		<img data-th-if="${ArticleVendu.photo != null}" data-th-src="${ArticleVendu.photo}" alt="Votre Image">
 		<!-- Trois boutons -->
 		<form data-th-if="${not isCreate}" action="/sale/upload" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="idPhoto" data-th-value="${ArticleVendu.noArticle}">

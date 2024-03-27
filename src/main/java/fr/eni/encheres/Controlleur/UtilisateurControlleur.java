@@ -7,7 +7,10 @@ import fr.eni.encheres.bo.CUtilisateur;
 import fr.eni.encheres.exceptions.BusinessCode;
 import fr.eni.encheres.exceptions.BusinessException;
 import jakarta.validation.Valid;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -74,6 +78,7 @@ public class UtilisateurControlleur {
         Logger.log("Trace_ENI.log","UtilisateurControlleur : getCreateUsers ");
         model.addAttribute("postValue", "/users/create");
         model.addAttribute("user", new CUtilisateur());
+        model.addAttribute("IsCreate", true);
         return "view_user_edit";
     }
 
@@ -111,7 +116,31 @@ public class UtilisateurControlleur {
                 return "view_user_edit";
             }
             else{
-                return "redirect:/users/detail";
+                Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                authorities.add(new SimpleGrantedAuthority("MEMBRE"));
+
+                Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getMotdepasse(), authorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                if(authentication != null && authentication.isAuthenticated()){
+                    UtilisateurConnecte = utilisateurService.getUtilisateurByEmail(authentication.getName());
+                    if(UtilisateurConnecte != null && UtilisateurConnecte.getNoUtilisateur() > 0){
+                        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                            UtilisateurConnecte.setAdministrateur(1);
+                        } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPER_ADMIN"))) {
+                            UtilisateurConnecte.setAdministrateur(2);
+                        } else {
+                            UtilisateurConnecte.setAdministrateur(0);
+                        }
+                        return "redirect:/bid";
+                    } else {
+                        UtilisateurConnecte = null;
+                        Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate null");
+                        return "redirect:/login";
+                    }
+                } else {
+                    Logger.log("Trace_ERROR.log","Controlleur Enchere: MembreAuthenticate return null");
+                    return "redirect:/login";
+                }
             }
 
         }
@@ -178,7 +207,7 @@ public class UtilisateurControlleur {
             utilisateur = UtilisateurConnecte;
         }
         model.addAttribute("user", utilisateur);
-
+        model.addAttribute("IsCreate", false);
         model.addAttribute("postValue", "/users/modify");
             return "view_user_edit";
     }

@@ -17,7 +17,7 @@
 <main class="center-main">
 	<div class="center-avis">
 		<h1 data-th-text="${Msg_FinVente}"></h1>
-		<img data-th-if="${imageArticle != null}" data-th-src="${imageArticle}" alt="Votre Image">
+		<img data-th-if="${Vente.getPhoto() != null}" data-th-src="${Vente.getPhoto()}" alt="Votre Image">
 		<form method="get" action="\bid\Encherisseurs">
 			<input type="hidden" name="id" data-th-value="${Vente.getNoArticle()}">
 			<button data-th-if="${isVendeur}" type="submit">Voir les Encherisseurs</button>
@@ -34,7 +34,7 @@
 				<div class="line">
 					Catégorie : <span th:text="${Vente.getCategorie().getLibelle()}"></span>
 				</div>
-				<div class="line">
+				<div class="line" data-th-if="${MOffre != null and winner != null and MOffreUser != null}">
 					Meilleur offre : <span th:text="${MOffre} + ' pts par '"> </span>
 					<a data-th-href="@{'/users/detail?id=' + ${winner.noUtilisateur}}" data-th-text="${MOffreUser}"></a>
 				</div>

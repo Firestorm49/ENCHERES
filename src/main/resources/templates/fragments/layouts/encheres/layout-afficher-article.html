@@ -6,8 +6,7 @@
 	data-th-each="enchere : ${encheres}">
 	<form xmlns:th="http://www.thymeleaf.org" data-th-action="@{${action}}"
 		id="afficherArticle" method="get">
-		<img id="article" data-th-title="Image"
-			data-th-src="@{/images/encheres.png}">
+		<img data-th-if="${enchere.photo != null}" data-th-src="${enchere.photo}" alt="Votre Image">
 		<div>
 			<div class="line">
 				<div id="inputNomProduit" data-th-text="${enchere.nomArticle}"></div>

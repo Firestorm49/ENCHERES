@@ -114,8 +114,6 @@ public class EnchereControlleur {
 		} else {
 			model.addAttribute("MOffreUser", null);
 		}
-		String imageArticle = enchereService.SearchPhotoByArticleId(id);
-		model.addAttribute("imageArticle", "./../" + imageArticle);
 		if (enchereService.IsVenteFinish(id) == 2) {
 			if(enchereService.WinnerOffre(id) > 0){
 				CUtilisateur winner = utilisateurService.ViewProfil(enchereService.WinnerOffre(id));
@@ -132,6 +130,7 @@ public class EnchereControlleur {
 			}
 			}
 		} else if (enchereService.IsVenteFinish(id) == 1) {
+			model.addAttribute("winner",null);
 			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
 				model.addAttribute("Msg_FinVente", "Vente encore en cours");
 				return "view_bid_detail";
@@ -140,6 +139,7 @@ public class EnchereControlleur {
 			}
 		}
 		else if (enchereService.IsVenteFinish(id) == 0) {
+			model.addAttribute("winner",null);
 			if (ArticleVendu.getVendeur().getNoUtilisateur() == UtilisateurConnecte.getNoUtilisateur()) {
 				attributes.addAttribute("id", id);
 				return "redirect:/sale/modify";
@@ -163,8 +163,6 @@ public class EnchereControlleur {
 		} else {
 			model.addAttribute("MOffreUser", null);
 		}
-		String imageArticle = enchereService.SearchPhotoByArticleId(id);
-		model.addAttribute("imageArticle", "./../" + imageArticle);
 		return "view_bid_add";
 	}
 
@@ -175,8 +173,6 @@ public class EnchereControlleur {
 		model.addAttribute("Vente", ArticleVendu);
 		List<CEnchere> Enchere = enchereService.listEncheresByArticleId(id);
 		model.addAttribute("Encheres", Enchere);
-		String imageArticle = enchereService.SearchPhotoByArticleId(id);
-		model.addAttribute("imageArticle", "./../" + imageArticle);
 		return "view_bid_list_users";
 
 	}
